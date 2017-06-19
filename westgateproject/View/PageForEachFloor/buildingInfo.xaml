@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.PageForEachFloor.buildingInfo" xmlns:local="clr-namespace:westgateproject">
+	<ContentPage.Content>
+        <StackLayout BackgroundColor="MistyRose" Spacing="5">
+            <AbsoluteLayout>
+                <Label Text="4F" FontAttributes="Bold" FontSize="100" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Lavender"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
+                <Label x:Name="forthFloor" Text="User Name" FontAttributes="None" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </AbsoluteLayout>
+
+            <AbsoluteLayout>
+                <Label Text="3F" FontAttributes="Bold" FontSize="100" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightCyan"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
+                <Label x:Name="thirdFloor" Text="User Name" FontAttributes="None" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </AbsoluteLayout>
+
+            <AbsoluteLayout>
+                <Label Text="2F" FontAttributes="Bold" FontSize="100" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightGoldenrodYellow"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
+                <Label x:Name="secondFloor" Text="User Name" FontAttributes="None" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </AbsoluteLayout>
+
+            <AbsoluteLayout>
+                <Label Text="1F" FontAttributes="Bold" FontSize="100" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="LightYellow"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
+                <Label x:Name="firstFloor" Text="User Name" FontAttributes="None" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </AbsoluteLayout>
+
+            <AbsoluteLayout>
+                <Label Text="B1F" FontAttributes="Bold" FontSize="100" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="MintCream"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
+                <Label x:Name="baseFirstFloor" Text="User Name" FontAttributes="None" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </AbsoluteLayout>
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

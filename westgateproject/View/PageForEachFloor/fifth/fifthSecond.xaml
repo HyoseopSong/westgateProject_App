@@ -1,0 +1,1801 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.PageForEachFloor.fifth.fifthSecond" xmlns:local="clr-namespace:westgateproject" Title="5지구2층">
+   <AbsoluteLayout BackgroundColor="SeaShell">
+        <local:PinchToZoomContainer x:Name="zoomContainer">
+            <local:PinchToZoomContainer.Content >
+                <AbsoluteLayout x:Name="absLayout">
+                    <BoxView BackgroundColor="Transparent"
+                        AbsoluteLayout.LayoutBounds="500, 800, 30, 30"/>
+
+
+                    <Label Text="층별 안내" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Aqua" TextColor="Fuchsia" FontSize="30"
+                    AbsoluteLayout.LayoutBounds="0, 112.5, 80, 100">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="goBack"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" x:Name="standardButton" BackgroundColor="Aqua" TextColor="Fuchsia" FontSize="5"
+                    AbsoluteLayout.LayoutBounds="120, 0, 39, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="120, 30, 39, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="160, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="6" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="160, 30, 14, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="37" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="38" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="200, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="39" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 30, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="계단" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Brown" TextColor="White" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="240, 0, 26.5, 29">
+                    </Label>
+                    <Label Text="88" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="267.5, 0, 26.5, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="85" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="240, 30, 12.75, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="86" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="253.75, 30, 19.625, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="87" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="274.375, 30, 19.625, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="127" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="305, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="128" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="320, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="126" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="305, 30, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="151" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="152" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="360, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="150" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 30, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="176" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="385, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="177" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="175" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="385, 30, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="199" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="425, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="200" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="201" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="455, 0, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Transparent" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="425, 30, 14, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="202" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 30, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 55, 29, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="135, 55, 24, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="160, 55, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 75, 14, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Transparent" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="120, 75, 14, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="11" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="135, 75, 24, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 85, 14, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 100, 14, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="120, 85, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="35" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="145, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="36" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="160, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="42" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="44" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="41" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="200, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="43" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="200, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="45" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="200, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="83" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="81" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="79" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="84" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="240, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="82" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="240, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="80" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="240, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="89" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="265, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="91" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="265, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="93" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="265, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="90" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="280, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="92" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="280, 75, 14, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="92-1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="280, 85, 14, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="94" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="280, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="125" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="305, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="124" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="305, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="123" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="305, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="129" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="320, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="130" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="320, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="131" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="320, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="149" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="148" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="147" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="153" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="360, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="154" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="360, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="155" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="360, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="174" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="385, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="173" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="385, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="172" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="385, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="178" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="179" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="180" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="198" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="425, 55, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="197" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="425, 75, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="196" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="425, 95, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="203" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 55, 29, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="계단" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Brown" TextColor="White" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 75, 29, 29">
+                    </Label>
+                    <Label Text="197-1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="470, 75, 14, 39">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="196-1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 105, 29, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="마" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 125, 14, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="계단" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Brown" TextColor="White" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="90, 135, 29, 29">
+                    </Label>
+                    <Label Text="라" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="90, 165, 29, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="다" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 175, 14, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="나" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 190, 14, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="120, 125, 15, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="120, 145, 15, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="15" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="120, 165, 15, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="16" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="120, 185, 15, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="33" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="145, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="31" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="145, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="29" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="145, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="27" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="145, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="34" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="160, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="32" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="160, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="30" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="160, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="28" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="160, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="46" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="48" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="50" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="52" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="47" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="200, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="49" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="200, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="51" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="200, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="53" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="200, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="77" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="75" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="73" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="71" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="78" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="240, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="76" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="240, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="74" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="240, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="72" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="240, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+                    <Label Text="계단" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Brown" TextColor="White" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="265, 125, 29, 39">
+                    </Label>
+
+                    <Label Text="94-1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="200, 125, 14, 12">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="95" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="265, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="97" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="265, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="96" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="280, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="98" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="280, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="122" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="305, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="121" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="305, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="120" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="305, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="119" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="305, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="132" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="320, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="133" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="320, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="134" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="320, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="135" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="320, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="146" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="145" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="144" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="143" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="156" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="360, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="157" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="360, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="158" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="360, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="159" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="360, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="171" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="385, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="170" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="385, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="169" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="385, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="168" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="385, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="181" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="182" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 145, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="183" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 165, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="184" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="195" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="425, 125, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="204" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 125, 29, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="205" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 135, 29, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="194" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="425, 155, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="206" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 155, 29, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="207" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 165, 29, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="193" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="425, 185, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="208" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 185, 29, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="209" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 195, 29, 9">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="가" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 215, 14, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="26" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="135, 215, 39, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="25" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="145, 230, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="145, 244, 14, 10">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="17" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 230, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 250, 14, 19">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="19" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 270, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="24" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="145, 255, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="54" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 215, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="55" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 230, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="56" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="170, 255, 14, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="57" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 255, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="58" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="185, 270, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="70" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 215, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="69" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 230, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="99" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="265, 215, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="100" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="265, 230, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="118" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="305, 215, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="117" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="305, 230, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+
+                    <Label Text="142" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 215, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="141" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 230, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="167" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="385, 215, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="166" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="385, 230, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="210" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 215, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="192" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="425, 230, 14, 39">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="계단" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Brown" TextColor="White" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="440, 230, 29, 39">
+                    </Label>
+                    <Label Text="192-1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="470, 230, 14, 39">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="191" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="425, 270, 44, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="68" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 255, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="67" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 270, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="101" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="252.5, 255, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="103" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="252.5, 270, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="102" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="280, 255, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="104" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="280, 270, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="116" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="307.5, 255, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="115" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="307.5, 270, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="140" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 255, 34, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="139" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 270, 34, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="165" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="380, 255, 34, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="164-1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="380, 270, 16.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="164-2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="397.5, 270, 16.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                    <Label Text="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 295, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="21" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="105, 310, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="23" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="132.5, 295, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="22" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="132.5, 310, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="59" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="160, 295, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="61" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="160, 310, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="60" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="187.5, 295, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="62" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="187.5, 310, 26.5, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="65" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 295, 21, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="63" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="225, 310, 21, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="66" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="247, 295, 21, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="64" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="247, 310, 21, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="105" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="269, 295, 21, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="107" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="269, 310, 21, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="106" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="291, 295, 21, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="108" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="291, 310, 21, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="114" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="313, 295, 21, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="113" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="313, 310, 21, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="138" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 295, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="137" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="345, 310, 29, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="163" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="375, 295, 24, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="162" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="375, 310, 24, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="185" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 295, 24, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="186" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 310, 24, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="190" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="425, 295, 44, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="189" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" x:Name="lastButton" BackgroundColor="Aqua" TextColor="Fuchsia" FontSize="5"
+                    AbsoluteLayout.LayoutBounds="425, 310, 44, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </AbsoluteLayout>
+            </local:PinchToZoomContainer.Content>
+        </local:PinchToZoomContainer>
+    </AbsoluteLayout>
+</ContentPage>

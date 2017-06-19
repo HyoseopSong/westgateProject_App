@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/PageForEachFloor/office/shopUnion.xaml">
+    <Files>
+      <File FileName="westgateproject/View/PageForEachFloor/buildingInfo.xaml.cs" Line="150" Column="6" />
+      <File FileName="westgateproject/View/PageForEachFloor/second/secondEnter.xaml.cs" Line="19" Column="49" />
+      <File FileName="westgateproject/View/PageForEachFloor/office/shopUnion.xaml.cs" Line="28" Column="32" />
+      <File FileName="westgateproject/View/PageForEachFloor/office/unionParking.xaml.cs" Line="12" Column="4" />
+      <File FileName="westgateproject/View/PageForEachFloor/office/unionParking.xaml" Line="23" Column="1" />
+      <File FileName="westgateproject/View/PageForEachFloor/office/shopUnion.xaml" Line="117" Column="36" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid PreferredExecutionTarget="Android.Android_Accelerated_x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.westgateproject.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.2deb974fe6e9e3c56fb34a6716a06cba67c6f003" />
+  <MultiItemStartupConfigurations />
+</Properties>

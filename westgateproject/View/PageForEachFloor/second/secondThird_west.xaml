@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.PageForEachFloor.second.secondThird_west" xmlns:local="clr-namespace:westgateproject" Title="3층 서관">
+    <AbsoluteLayout BackgroundColor="SeaShell">
+        <local:PinchToZoomContainer x:Name="zoomContainer">
+            <local:PinchToZoomContainer.Content>
+                <AbsoluteLayout>
+                    <BoxView BackgroundColor="Transparent"
+                        AbsoluteLayout.LayoutBounds="0, 800, 30, 30"/>
+                    <Label Text="서마21-2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" x:Name="standardButton" BackgroundColor="Aqua" TextColor="Fuchsia" FontSize="5"
+                    AbsoluteLayout.LayoutBounds="0, 60, 44, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label  Text="서마21-1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="45, 60, 44, 14">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </AbsoluteLayout>
+            </local:PinchToZoomContainer.Content>
+        </local:PinchToZoomContainer>
+    </AbsoluteLayout>
+</ContentPage>

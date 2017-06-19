@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:westgateproject" x:Class="westgateproject.marketMap" Title="서문시장지도" Icon="today.png">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="앱정보" Clicked="OnItemClicked"/>
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout BackgroundColor="Gainsboro">
+        <local:PinchToZoomContainer x:Name="zoomContainer">
+            <local:PinchToZoomContainer.Content>
+                <AbsoluteLayout>
+                    <BoxView BackgroundColor="Transparent"
+                        AbsoluteLayout.LayoutBounds="600, 800, 30, 30"/>
+                    <AbsoluteLayout x:Name="absLayout" >
+                        <Image x:Name="referenceImage" Source="marketMap.png" Aspect="AspectFill"/>
+
+                        <Label Text="1지구" x:Name="first" BackgroundColor="Transparent" FontAttributes="Bold" FontSize="34" TextColor="Lime" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
+                            AbsoluteLayout.LayoutBounds="0.424, 0.26, 0.14, 0.22" AbsoluteLayout.LayoutFlags="All">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapped"
+                                    NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="2지구" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                            AbsoluteLayout.LayoutBounds="0.304, 0.57, 0.3, 0.14" AbsoluteLayout.LayoutFlags="All">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapped"
+                                    NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="4지구" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                            AbsoluteLayout.LayoutBounds="0.69, 0.24, 0.18, 0.2" AbsoluteLayout.LayoutFlags="All">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapped"
+                                    NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="5지구" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                            AbsoluteLayout.LayoutBounds="0.03, 0.95, 0.17, 0.2" AbsoluteLayout.LayoutFlags="All">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapped"
+                                    NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="동산상가" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                            AbsoluteLayout.LayoutBounds="0.97, 0.498, 0.18, 0.15" AbsoluteLayout.LayoutFlags="All">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapped"
+                                    NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="건해산물상가" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                            AbsoluteLayout.LayoutBounds="0.62, 0.77, 0.44, 0.13" AbsoluteLayout.LayoutFlags="All">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapped"
+                                    NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="아진상가" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                            AbsoluteLayout.LayoutBounds="0.97, 0.22, 0.2, 0.2" AbsoluteLayout.LayoutFlags="All">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapped"
+                                    NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="명품프라자" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                            AbsoluteLayout.LayoutBounds="0.68, 0.03, 0.22, 0.12" AbsoluteLayout.LayoutFlags="All">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapped"
+                                    NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="상가연합회" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                            AbsoluteLayout.LayoutBounds="0.7, 0.52, 0.22, 0.13" AbsoluteLayout.LayoutFlags="All">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapped"
+                                    NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </AbsoluteLayout>
+                </AbsoluteLayout>
+            </local:PinchToZoomContainer.Content>
+        </local:PinchToZoomContainer>
+    </AbsoluteLayout>
+</ContentPage>

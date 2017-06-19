@@ -1,0 +1,1212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:westgateproject" x:Class="westgateproject.View.PageForEachFloor.second.secondFirst_east" Title="1층 동관">
+    <AbsoluteLayout BackgroundColor="SeaShell">
+    <local:PinchToZoomContainer x:Name="zoomContainer">
+        <local:PinchToZoomContainer.Content>
+            <AbsoluteLayout>
+                <BoxView BackgroundColor="Transparent"
+                    AbsoluteLayout.LayoutBounds="0, 800, 30, 30"/>
+
+
+                <Label Text="층별 안내" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Aqua" TextColor="Fuchsia" FontSize="30"
+                AbsoluteLayout.LayoutBounds="0, 50, 80, 100">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="goBack"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="⇐서관" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="15" BindingContext="{x:Reference Name=standardButton}"
+                        AbsoluteLayout.LayoutBounds="0, 160, 60, 60">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTappedWest"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                    
+                <Label Text="동마8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" x:Name="standardButton" BackgroundColor="Aqua" TextColor="Fuchsia" FontSize="5"
+                AbsoluteLayout.LayoutBounds="90, 0, 14, 18.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마9" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="105, 0, 21.5, 18.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="127.5, 0, 14, 18.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마11" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="142.5, 0, 21.5, 18.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동마5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="90, 29.5, 21.5, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마6" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="112.5, 29.5, 21.5, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="135, 29.5, 32.75, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="90, 44.5, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="105, 44.5, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="120, 44.5, 25.25, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="146.25, 44.5, 21.5, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동마14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="212, 36.25, 19, 21.75">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동마12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="200, 0, 16, 25.25">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="217, 0, 16, 25.25">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+
+                <Label Text="동마15" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="244, 0, 15, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마16" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="244, 15, 15, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마17" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="244, 30, 15, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="260, 0, 15, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마19" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="260, 30, 15, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="260, 45, 15, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동마21" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="286, 0, 15, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마22" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="286, 15, 15, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마23" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="286, 30, 15, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마24" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="302, 0, 15, 59">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동마25" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="328, 0, 15, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마26" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="328, 15, 15, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마27" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="328, 30, 15, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마29" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="344, 0, 15, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마28" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="344, 30, 15, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동마30" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="370, 0, 14, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마31" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="370, 30, 14, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마34" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="385, 0, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마33" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="385, 15, 14, 21.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마32" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="385, 37.5, 14, 21.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동마35" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="410, 0, 14, 17">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마36" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="410, 18, 14, 12">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마37" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="410, 31, 14, 28">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마39" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="425, 0, 14, 34">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마38" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="425, 35, 14, 24">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동마40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="450, 0, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마41" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="450, 15, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마42" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="450, 30, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동마43" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="450, 45, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동라4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="90, 69.5, 47.75, 17.75">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="138.75, 69.5, 14, 17.75">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라6" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="153.75, 69.5, 14, 17.75">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="90, 88.25, 29, 17.75">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="120, 88.25, 17.75, 17.75">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="138.75, 88.25, 29, 17.75">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동라7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="210, 69.5, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="210, 84.5, 15, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="225, 69.5, 14, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동라9" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="250, 69.5, 34, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="285, 69.5, 29, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동라11" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="325, 69.5, 14, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="325, 89.5, 30, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="340, 69.5, 15, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동라14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="370, 70, 24, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라17" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="395, 70, 11, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라15" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="370, 90, 19, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라16" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="390, 90, 16, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동라18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="417, 70, 23, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라19" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="441, 70, 23, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="417, 90, 21, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라21" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="439, 90, 12, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동라22" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="452, 90, 12, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                
+                <Label Text="동다7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="210, 109.5, 14, 17.75">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="225, 109.5, 14, 21.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="210, 128.25, 14, 22.75">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다9" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="225, 132, 14, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동다11" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="370, 120, 14, 32">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="385, 120, 21, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="385, 136.5, 21, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동다14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="417, 120, 15, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다15" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="433, 120, 15, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다16" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="449, 120, 15, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다17" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="417, 136.5, 11, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="429, 136.5, 35, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동나17" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="417, 163, 11, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="429, 163, 35, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나19" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="417, 179.5, 27.8, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="445.8, 179.5, 18.2, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                
+                <Label Text="동나16" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="370, 163, 36, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="370, 179.5, 11, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="382, 179.5, 24, 15.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                
+                
+                <Label Text="동다4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="90, 116, 25.25, 16.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="116.25, 116, 20.25, 16.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다6" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="137.5, 116, 30.25, 16.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="90, 133.5, 25.25, 16.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="116.25, 133.5, 25.25, 16.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동다3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="142.5, 133.5, 25.25, 16.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동나3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="90, 161, 29, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="120, 161, 29, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="90, 176, 25.25, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="116.25, 176, 32.75, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동나5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="160, 161, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나6" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="175, 161, 24, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="160, 176, 29, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="190, 175, 9, 15">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동나9" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="210, 161, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="210, 176, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="225, 161, 14, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동나11" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="250, 181, 24, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="275, 181, 24, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="333, 166, 19, 29">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동나13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="310, 181, 42, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동가4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="90, 201, 29, 17">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="120, 201, 14, 17">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="90, 219, 44, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동가1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="90, 244, 29, 20.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="119, 244, 14, 20.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동가6" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="145, 201, 29, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="145, 216, 14, 19">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="145, 236, 14, 28.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="160, 216, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가9" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="160, 231, 14, 33.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+
+                <Label Text="동가11" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="210, 206, 14, 39">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="210, 246, 14, 18.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가14" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="225, 206, 14, 24">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가13" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="225, 231, 14, 33.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동가15" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="250, 206,  14, 39">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가16" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="250, 246, 14, 18.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="265, 206, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가17" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="265, 221, 14, 43.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동가20-1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="290, 206, 29, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가19" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="290, 221, 14, 43.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가20-2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="305, 221, 14, 43.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동가22" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="330, 206, 14, 28.25">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가21-1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="330, 235.25, 14, 29.25">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가23" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="345, 206, 14, 28.25">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가21-2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="345, 235.25, 14, 29.25">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동가24" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="370, 206, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가25" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="370, 221, 14, 43.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가28" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="385, 206, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가27" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="385, 221, 14, 20.75">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가26" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="385, 242.75, 14, 21.75">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동가29" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="410, 206, 29, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가30" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="440, 206, 24, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가31" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="410, 221, 14, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가32" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="425, 221, 39, 14">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="동가31" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="410, 246, 14, 18.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="동가32" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                AbsoluteLayout.LayoutBounds="425, 246, 39, 18.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                
+
+
+                
+            </AbsoluteLayout>
+        </local:PinchToZoomContainer.Content>
+    </local:PinchToZoomContainer>
+        </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.PageForEachFloor.office.shopUnion" xmlns:local="clr-namespace:westgateproject" Title="만남의 광장">
+    <AbsoluteLayout BackgroundColor="SeaShell">
+        <local:PinchToZoomContainer x:Name="zoomContainer">
+            <local:PinchToZoomContainer.Content>
+                <AbsoluteLayout>
+                    <BoxView BackgroundColor="Transparent"
+                        AbsoluteLayout.LayoutBounds="500, 800, 30, 30"/>
+                    <Label Text="&lt;" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Aqua" TextColor="Fuchsia" FontSize="15"
+                    AbsoluteLayout.LayoutBounds="0, 75, 40, 50">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="goBack"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="상가연합회 사무실" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" x:Name="standardButton" BackgroundColor="Aqua" TextColor="Fuchsia" FontSize="5"
+                    AbsoluteLayout.LayoutBounds="80, 0, 60, 29">
+                    </Label>
+                    <Label Text="입주점포" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="180, 0, 69, 29">
+                    </Label>
+                    <Label Text="남자화장실" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="250, 0, 59, 29">
+                    </Label>
+                    <Label Text="여자화장실" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="310, 0, 49, 29">
+                    </Label>
+                    <Label Text="대동신협" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 0, 69, 24">
+                    </Label>
+                    <Label Text="급기구" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="470, 0, 19, 24">
+                    </Label>
+                    <Label Text="중구청관리소" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="400, 25, 44, 24">
+                    </Label>
+                    <Label Text="점포" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="445, 25, 44, 24">
+                    </Label>
+
+                    <Label Text="여자화장실" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="50, 60, 30, 29">
+                    </Label>
+                    <Label Text="계단" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Brown" TextColor="White" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="50, 90, 30, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="현금입출금기" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="100, 60, 60, 19">
+                    </Label>
+                    <Label Text="엘리베이터" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Brown" TextColor="White" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="100, 80, 29, 29">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="무인요금정산소" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="100, 110, 29, 39">
+                    </Label>
+                    <Label Text="출구사무실" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="95, 150, 34, 39">
+                    </Label>
+                    <Label Text="주차장 차량 출구" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Gray" TextColor="White" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="130, 80, 30, 109">
+                    </Label>
+
+                    <Label Text="고객안내센터" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="190, 80, 44, 29">
+                    </Label>
+                    <Label Text="놀이방" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="235, 80, 44, 29">
+                    </Label>
+                    <Label Text="무인요금정산소" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="280, 70, 44, 39">
+                    </Label>
+
+                    <Label Text="119안전센터" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="190, 110, 154, 79">
+                    </Label>
+
+                    <Label Text="주차장 차량 입구" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Gray" TextColor="White" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="375, 80, 29, 109">
+                    </Label>
+                    <Label Text="계단" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Brown" TextColor="White" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="405, 80, 29, 39">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="엘리베이터" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Brown" TextColor="White" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="435, 80, 29, 39">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapped"
+                                NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="밸브실" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="465, 80, 29, 39">
+                    </Label>
+                    <Label Text="관리사무실" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
+                    AbsoluteLayout.LayoutBounds="405, 120, 89, 69">
+                    </Label>
+                </AbsoluteLayout>
+            </local:PinchToZoomContainer.Content>
+        </local:PinchToZoomContainer>
+    </AbsoluteLayout></ContentPage>
