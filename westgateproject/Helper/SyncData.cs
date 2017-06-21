@@ -78,18 +78,7 @@ namespace westgateproject.Helper
 			{
 				string[] building = floorInfo.Key.Split(':');
 				string resultString = "";
-				if (floorInfo.Value == null)
-				{
-					resultString = "준비 중 입니다.";
-				}
-				else if (floorInfo.Value == "없음")
-				{
-					resultString = "없음";
-				}
-				else
-				{
-					resultString = floorInfo.Value;
-				}
+				resultString = floorInfo.Value;
 
 				int retrievedID;
 				var res = await App.Database.GetBuildingAsync(building[0]);

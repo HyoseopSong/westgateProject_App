@@ -1,16 +1,22 @@
-﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/PageForEachFloor/office/shopUnion.xaml">
+﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/PageForEachFloor/second/secondBaseFirst_east.xaml">
     <Files>
-      <File FileName="westgateproject/View/PageForEachFloor/buildingInfo.xaml.cs" Line="150" Column="6" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondEnter.xaml.cs" Line="19" Column="49" />
-      <File FileName="westgateproject/View/PageForEachFloor/office/shopUnion.xaml.cs" Line="28" Column="32" />
-      <File FileName="westgateproject/View/PageForEachFloor/office/unionParking.xaml.cs" Line="12" Column="4" />
-      <File FileName="westgateproject/View/PageForEachFloor/office/unionParking.xaml" Line="23" Column="1" />
-      <File FileName="westgateproject/View/PageForEachFloor/office/shopUnion.xaml" Line="117" Column="36" />
+      <File FileName="westgateproject/View/marketMap.xaml.cs" Line="67" Column="25" />
+      <File FileName="westgateproject/View/marketMap.xaml" Line="83" Column="53" />
+      <File FileName="westgateproject/View/PageForEachFloor/buildingInfo.xaml.cs" Line="153" Column="33" />
+      <File FileName="westgateproject/View/PageForEachFloor/buildingInfo.xaml" Line="39" Column="38" />
+      <File FileName="westgateproject/Data/MarketInformationDatabase.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/Helper/SyncData.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/AboutPage.xaml" Line="9" Column="83" />
+      <File FileName="westgateproject/View/PageForEachFloor/second/secondSecond_east.xaml" Line="31" Column="253" />
+      <File FileName="westgateproject/View/AboutPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/PageForEachFloor/office/shopUnion.xaml" Line="19" Column="29" />
+      <File FileName="westgateproject/View/PageForEachFloor/second/secondBaseFirst_east.xaml" Line="17" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid PreferredExecutionTarget="Android.Android_Accelerated_x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid PreferredExecutionTarget="Android.1cb6798d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

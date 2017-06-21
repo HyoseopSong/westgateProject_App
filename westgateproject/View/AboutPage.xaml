@@ -6,7 +6,7 @@
  	<ContentPage.Content>
         <StackLayout>
             <Label x:Name="refresh" IsVisible="false"/>
-            <Label x:Name="appState" TextColor="DeepSkyBlue" FontSize="20" Text="이름" BackgroundColor="Azure" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+            <Label x:Name="appState" Text="" TextColor="DeepSkyBlue" FontSize="20" BackgroundColor="Azure" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
 
             <Label Text="제작자 이메일 : chopsticksOfMetal@gmail.com  seopjjang@gmail.com" FontSize="20" TextColor="DeepSkyBlue" BackgroundColor="Lime" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Fill"/>
 

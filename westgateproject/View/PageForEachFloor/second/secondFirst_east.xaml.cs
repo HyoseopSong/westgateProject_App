@@ -11,7 +11,6 @@ namespace westgateproject.View.PageForEachFloor.second
 			InitializeComponent();
 			zoomContainer.Content.AnchorX = 0;
 			zoomContainer.Content.AnchorY = 0;
-
 			zoomContainer.min_ty = 0;
 			switch (Device.RuntimePlatform)
 			{

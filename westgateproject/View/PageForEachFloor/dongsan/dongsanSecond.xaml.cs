@@ -12,20 +12,19 @@ namespace westgateproject.View.PageForEachFloor.dongsan
 			InitializeComponent();
 			zoomContainer.Content.AnchorX = 0;
 			zoomContainer.Content.AnchorY = 0;
-
 			zoomContainer.min_ty = 0;
 			switch (Device.RuntimePlatform)
 			{
 				case Device.Android:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 290;
+					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 279;
 					break;
 				default:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 290;
+					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 279;
 					break;
 			}
 			zoomContainer.maxScale = zoomContainer.Content.Scale;
 			zoomContainer.minScale = zoomContainer.Content.Scale;
-			zoomContainer.min_tx = -((620 * zoomContainer.Content.Scale) - App.ScreenWidth);
+			zoomContainer.min_tx = -((609 * zoomContainer.Content.Scale) - App.ScreenWidth);
 			NavigationPage.SetHasBackButton(this, false);
 		}
 

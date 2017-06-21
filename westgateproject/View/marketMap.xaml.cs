@@ -20,11 +20,9 @@ namespace westgateproject
 			switch (Device.RuntimePlatform)
 			{
 				case Device.Android:
-					Debug.WriteLine("Android width : " + App.ScreenWidth);
 					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 565;
 					break;
 				default:
-                    Debug.WriteLine("Default width : " + App.ScreenWidth);
 					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 565;
 					break;
 			}
@@ -59,6 +57,18 @@ namespace westgateproject
             sender.TextColor = color;
 		}
 
+        async void onPreparing(Label sender, EventArgs args)
+        {
+            switch (sender.Text)
+            {
+                case "4지구":
+                    await DisplayAlert(sender.Text, "화재 현장 복구 중 입니다.", "확인");
+                    break;
+                default:
+                    await DisplayAlert(sender.Text, "지도 정보가 아직 준비되지 않았습니다.", "확인");
+                    break;
+            }
+		}
 		async void OnTappedSQL(Label sender, EventArgs args)
 		{
 			await Navigation.PushAsync(new SQLiteViewer());

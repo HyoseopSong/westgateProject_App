@@ -77,7 +77,7 @@
     <Compile Include="View\PageForEachFloor\buildingInfo.xaml.cs">
       <DependentUpon>buildingInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PageForEachFloor\second\secondFirst.xaml_west.cs">
+    <Compile Include="View\PageForEachFloor\second\secondFirst_west.xaml.cs">
       <DependentUpon>secondFirst_west.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PageForEachFloor\forth\forthFirst.xaml.cs">

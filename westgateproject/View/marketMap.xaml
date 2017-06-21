@@ -12,15 +12,15 @@
                     <AbsoluteLayout x:Name="absLayout" >
                         <Image x:Name="referenceImage" Source="marketMap.png" Aspect="AspectFill"/>
 
-                        <Label Text="1지구" x:Name="first" BackgroundColor="Transparent" FontAttributes="Bold" FontSize="34" TextColor="Lime" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
+                        <Label Text="1지구" x:Name="first" BackgroundColor="Transparent" FontAttributes="Bold" FontSize="34" TextColor="Gray" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
                             AbsoluteLayout.LayoutBounds="0.424, 0.26, 0.14, 0.22" AbsoluteLayout.LayoutFlags="All">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Tapped="OnTapped"
+                                    Tapped="onPreparing"
                                     NumberOfTapsRequired="1"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="2지구" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                        <Label Text="2지구" x:Name="second" BackgroundColor="Transparent" FontAttributes="Bold" FontSize="34" TextColor="Lime" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
                             AbsoluteLayout.LayoutBounds="0.304, 0.57, 0.3, 0.14" AbsoluteLayout.LayoutFlags="All">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -32,11 +32,11 @@
                             AbsoluteLayout.LayoutBounds="0.69, 0.24, 0.18, 0.2" AbsoluteLayout.LayoutFlags="All">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Tapped="OnTapped"
+                                    Tapped="onPreparing"
                                     NumberOfTapsRequired="1"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="5지구" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                        <Label Text="5지구" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=second}"
                             AbsoluteLayout.LayoutBounds="0.03, 0.95, 0.17, 0.2" AbsoluteLayout.LayoutFlags="All">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -44,7 +44,7 @@
                                     NumberOfTapsRequired="1"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="동산상가" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                        <Label Text="동산상가" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=second}"
                             AbsoluteLayout.LayoutBounds="0.97, 0.498, 0.18, 0.15" AbsoluteLayout.LayoutFlags="All">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -56,7 +56,7 @@
                             AbsoluteLayout.LayoutBounds="0.62, 0.77, 0.44, 0.13" AbsoluteLayout.LayoutFlags="All">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Tapped="OnTapped"
+                                    Tapped="onPreparing"
                                     NumberOfTapsRequired="1"/>
                             </Label.GestureRecognizers>
                         </Label>
@@ -64,7 +64,7 @@
                             AbsoluteLayout.LayoutBounds="0.97, 0.22, 0.2, 0.2" AbsoluteLayout.LayoutFlags="All">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Tapped="OnTapped"
+                                    Tapped="onPreparing"
                                     NumberOfTapsRequired="1"/>
                             </Label.GestureRecognizers>
                         </Label>
@@ -72,11 +72,11 @@
                             AbsoluteLayout.LayoutBounds="0.68, 0.03, 0.22, 0.12" AbsoluteLayout.LayoutFlags="All">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Tapped="OnTapped"
+                                    Tapped="onPreparing"
                                     NumberOfTapsRequired="1"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="상가연합회" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=first}"
+                        <Label Text="상가연합회" BackgroundColor="{Binding Path=BackgroundColor}" FontAttributes="{Binding Path=FontAttributes}" FontSize="{Binding Path=FontSize}" TextColor="{Binding Path=TextColor}" VerticalTextAlignment="{Binding Path=VerticalTextAlignment}" HorizontalTextAlignment="{Binding Path=HorizontalTextAlignment}" BindingContext="{x:Reference Name=second}"
                             AbsoluteLayout.LayoutBounds="0.7, 0.52, 0.22, 0.13" AbsoluteLayout.LayoutFlags="All">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer

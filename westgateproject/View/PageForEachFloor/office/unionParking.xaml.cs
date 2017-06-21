@@ -16,10 +16,10 @@ namespace westgateproject.View.PageForEachFloor.office
 			switch (Device.RuntimePlatform)
 			{
 				case Device.Android:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 566;
+					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 565;
 					break;
 				default:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 566;
+					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 565;
 					break;
 			}
 			zoomContainer.min_tx = -((890 * zoomContainer.Content.Scale) - App.ScreenWidth);

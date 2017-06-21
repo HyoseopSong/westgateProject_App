@@ -10,22 +10,21 @@ namespace westgateproject.View.PageForEachFloor.fifth
         public fifthFirst()
         {
 			InitializeComponent();
-            zoomContainer.Content.AnchorX = 0;
-            zoomContainer.Content.AnchorY = 0;
-
+			zoomContainer.Content.AnchorX = 0;
+			zoomContainer.Content.AnchorY = 0;
             zoomContainer.min_ty = 0;
             switch (Device.RuntimePlatform)
             {
                 case Device.Android:
-                    zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 325;
+                    zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 314;
                     break;
                 default:
-                    zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 325;
+                    zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 314;
                     break;
             }
             zoomContainer.maxScale = zoomContainer.Content.Scale;
             zoomContainer.minScale = zoomContainer.Content.Scale;
-            zoomContainer.min_tx = -((465 * zoomContainer.Content.Scale) - App.ScreenWidth);
+            zoomContainer.min_tx = -((459 * zoomContainer.Content.Scale) - App.ScreenWidth);
             NavigationPage.SetHasBackButton(this, false);
         }
 

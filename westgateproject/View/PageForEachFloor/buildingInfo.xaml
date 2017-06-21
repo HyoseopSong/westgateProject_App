@@ -1,7 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.PageForEachFloor.buildingInfo" xmlns:local="clr-namespace:westgateproject">
 	<ContentPage.Content>
-        <StackLayout BackgroundColor="MistyRose" Spacing="5">
+        <Grid BackgroundColor="MistyRose" RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+
+            <Label Text="4F" Grid.Row="0" FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Maroon" FontAttributes="Bold" BackgroundColor="{Binding Path=BackgroundColor}" BindingContext="{x:Reference Name=forthFloor}"/>
+            <Label x:Name="forthFloor" Grid.Row="1"  FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapped"
+                        NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <BoxView BackgroundColor="Gray" Grid.Row="2" ></BoxView>
+            <Label Text="3F" Grid.Row="3"  FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Fuchsia" FontAttributes="Bold" BackgroundColor="{Binding Path=BackgroundColor}" BindingContext="{x:Reference Name=thirdFloor}"/>
+            <Label x:Name="thirdFloor" Grid.Row="4"  FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapped"
+                        NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <BoxView BackgroundColor="Gray" Grid.Row="5" ></BoxView>
+            <Label Text="2F" Grid.Row="6"  FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Teal" FontAttributes="Bold" BackgroundColor="{Binding Path=BackgroundColor}" BindingContext="{x:Reference Name=secondFloor}"/>
+            <Label x:Name="secondFloor" Grid.Row="7"  FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapped"
+                        NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <BoxView BackgroundColor="Gray" Grid.Row="8" ></BoxView>
+            <Label Text="1F" Grid.Row="9"  FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Purple" FontAttributes="Bold" BackgroundColor="{Binding Path=BackgroundColor}" BindingContext="{x:Reference Name=firstFloor}"/>
+            <Label x:Name="firstFloor" Grid.Row="10"  FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapped"
+                        NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <BoxView BackgroundColor="Gray" Grid.Row="11" ></BoxView>
+            <Label Text="B1" Grid.Row="12"  FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Lime" FontAttributes="Bold" BackgroundColor="{Binding Path=BackgroundColor}" BindingContext="{x:Reference Name=baseFirstFloor}"/>
+            <Label x:Name="baseFirstFloor" Grid.Row="13"  FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapped"
+                        NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+        </Grid>
+        
+
+
+
+        
+     <!--   <StackLayout BackgroundColor="MistyRose" Spacing="5">
             <AbsoluteLayout>
                 <Label Text="4F" FontAttributes="Bold" FontSize="100" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Lavender"
                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
@@ -66,6 +134,6 @@
                     </Label.GestureRecognizers>
                 </Label>
             </AbsoluteLayout>
-        </StackLayout>
+        </StackLayout> -->
 	</ContentPage.Content>
 </ContentPage>

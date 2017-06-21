@@ -10,9 +10,22 @@ namespace westgateproject.View.PageForEachFloor.second
         public secondThird_west()
         {
 			InitializeComponent();
-			zoomContainer.anchorX = 0.4;
-			zoomContainer.anchorY = 0.2;
-			//NavigationPage.SetHasNavigationBar(this, false);
+			zoomContainer.Content.AnchorX = 0;
+			zoomContainer.Content.AnchorY = 0;
+			zoomContainer.min_ty = 0;
+			switch (Device.RuntimePlatform)
+			{
+				case Device.Android:
+					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 239;
+					break;
+				default:
+					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 239;
+					break;
+			}
+			zoomContainer.min_tx = -((550 * zoomContainer.Content.Scale) - App.ScreenWidth);
+			zoomContainer.maxScale = zoomContainer.Content.Scale;
+			zoomContainer.minScale = zoomContainer.Content.Scale;
+			NavigationPage.SetHasBackButton(this, false);
 		}
 		async void OnTapped(object sender, EventArgs args)
 		{
@@ -20,6 +33,16 @@ namespace westgateproject.View.PageForEachFloor.second
 			var temp = sender as Label;
 			infoFromSQLite = await App.Database.GetShopAsync("2지구", "지하1층", temp.Text);
 			await Navigation.PushAsync(new ShopInfoPage(infoFromSQLite));
+		}
+		async void OnTappedEast(object sender, EventArgs args)
+		{
+			await Navigation.PushAsync(new secondThird_east());
+			Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+
+		}
+		async void goBack(object sender, EventArgs args)
+		{
+			await Navigation.PopAsync();
 		}
     }
 }

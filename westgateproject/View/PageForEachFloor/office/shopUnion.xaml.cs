@@ -17,15 +17,15 @@ namespace westgateproject.View.PageForEachFloor.office
 			switch (Device.RuntimePlatform)
 			{
 				case Device.Android:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 190;
+					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 189;
 					break;
 				default:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 190;
+					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 189;
 					break;
 			}
 			zoomContainer.maxScale = zoomContainer.Content.Scale;
 			zoomContainer.minScale = zoomContainer.Content.Scale;
-			zoomContainer.min_tx = -((540 * zoomContainer.Content.Scale) - App.ScreenWidth);
+			zoomContainer.min_tx = -((500 * zoomContainer.Content.Scale) - App.ScreenWidth);
 			NavigationPage.SetHasBackButton(this, false);
 		}
 

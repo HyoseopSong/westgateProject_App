@@ -10,16 +10,40 @@ namespace westgateproject.View.PageForEachFloor.second
         public secondSecond_east()
         {
 			InitializeComponent();
-			zoomContainer.anchorX = 0.4;
-			zoomContainer.anchorY = 0.2;
-			//NavigationPage.SetHasNavigationBar(this, false);
+			zoomContainer.Content.AnchorX = 0;
+			zoomContainer.Content.AnchorY = 0;
+			zoomContainer.min_ty = 0;
+			switch (Device.RuntimePlatform)
+			{
+				case Device.Android:
+					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 294;
+					break;
+				default:
+					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 294;
+					break;
+			}
+			zoomContainer.min_tx = -((490 * zoomContainer.Content.Scale) - App.ScreenWidth);
+			zoomContainer.maxScale = zoomContainer.Content.Scale;
+			zoomContainer.minScale = zoomContainer.Content.Scale;
+			NavigationPage.SetHasBackButton(this, false);
 		}
+
 		async void OnTapped(object sender, EventArgs args)
 		{
 			ShopInformation infoFromSQLite = new ShopInformation();
 			var temp = sender as Label;
 			infoFromSQLite = await App.Database.GetShopAsync("2지구", "지하1층", temp.Text);
 			await Navigation.PushAsync(new ShopInfoPage(infoFromSQLite));
+		}
+		async void OnTappedWest(object sender, EventArgs args)
+		{
+			await Navigation.PushAsync(new secondSecond_west());
+			Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+		}
+
+		async void goBack(object sender, EventArgs args)
+		{
+			await Navigation.PopAsync();
 		}
     }
 }

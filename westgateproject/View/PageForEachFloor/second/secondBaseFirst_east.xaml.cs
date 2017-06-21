@@ -13,15 +13,14 @@ namespace westgateproject.View.PageForEachFloor
 			InitializeComponent();
 			zoomContainer.Content.AnchorX = 0;
 			zoomContainer.Content.AnchorY = 0;
-
 			zoomContainer.min_ty = 0;
 			switch (Device.RuntimePlatform)
 			{
 				case Device.Android:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 265;
+					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 254;
 					break;
 				default:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 265;
+					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 254;
 					break;
 			}
 			zoomContainer.maxScale = zoomContainer.Content.Scale;
