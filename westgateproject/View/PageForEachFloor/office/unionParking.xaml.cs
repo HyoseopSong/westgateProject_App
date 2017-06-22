@@ -6,27 +6,27 @@ using Xamarin.Forms;
 namespace westgateproject.View.PageForEachFloor.office
 {
     public partial class unionParking : ContentPage
-    {
+	{
         public unionParking()
         {
 			InitializeComponent();
-			zoomContainer.Content.AnchorX = 0;
-			zoomContainer.Content.AnchorY = 0;
-			zoomContainer.min_ty = 0;
+			absL.AnchorX = 0;
+			absL.AnchorY = 0;
 			switch (Device.RuntimePlatform)
 			{
 				case Device.Android:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 565;
+					absL.Scale = (App.ScreenHeight - 90) / 565;
 					break;
 				default:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 565;
+					absL.Scale = (App.ScreenHeight - 70) / 565;
 					break;
 			}
-			zoomContainer.min_tx = -((890 * zoomContainer.Content.Scale) - App.ScreenWidth);
-			zoomContainer.maxScale = zoomContainer.Content.Scale;
-			zoomContainer.minScale = zoomContainer.Content.Scale;
 			NavigationPage.SetHasBackButton(this, false);
-            parkingImage.TranslationX = 90;
+			parkingImage.TranslationX = 90;
+
+			var boundaryBox = new BoxView { Color = Color.Red };
+			AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(890 * absL.Scale, App.ScreenWidth, 0, 30));
+			absL.Children.Add(boundaryBox);
 		}
 		async void goBack(object sender, EventArgs args)
 		{

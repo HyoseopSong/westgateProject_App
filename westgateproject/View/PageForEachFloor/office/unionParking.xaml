@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:local="clr-namespace:westgateproject" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Title="상가연합회 주차장" x:Class="westgateproject.View.PageForEachFloor.office.unionParking">
+    <ScrollView Orientation="Horizontal" BackgroundColor="Gainsboro" x:Name="sv">
+        <AbsoluteLayout  x:Name="absL" >
+            <Label Text="&lt;Back" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Transparent" TextColor="Blue" FontSize="15"
+            AbsoluteLayout.LayoutBounds="0, 0, 60, 30">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="goBack"
+                        NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Image x:Name="parkingImage" Source="unionParking.png" Aspect="AspectFill"/>
 
-    <AbsoluteLayout BackgroundColor="Gainsboro">
-        <local:PinchToZoomContainer x:Name="zoomContainer">
-            <local:PinchToZoomContainer.Content>
-                <AbsoluteLayout>
-                    <BoxView BackgroundColor="Transparent"
-                        AbsoluteLayout.LayoutBounds="0, 800, 30, 30"/>
-                    <Label Text="&lt;Back" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="Transparent" TextColor="Blue" FontSize="15"
-                    AbsoluteLayout.LayoutBounds="0, 0, 60, 30">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Tapped="goBack"
-                                NumberOfTapsRequired="1"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Image x:Name="parkingImage" Source="unionParking.png" Aspect="AspectFill"/>
-
-                </AbsoluteLayout>
-            </local:PinchToZoomContainer.Content>
-        </local:PinchToZoomContainer>
-    </AbsoluteLayout>
+        </AbsoluteLayout>
+    </ScrollView>
 </ContentPage>

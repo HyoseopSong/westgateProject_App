@@ -8,6 +8,7 @@ namespace westgateproject
 {
 	public partial class AboutPage : ContentPage
 	{
+        private bool onProcessing;
 		public AboutPage()
 		{
 			InitializeComponent();
@@ -46,6 +47,24 @@ namespace westgateproject
                 appState.Text += state[i] + Environment.NewLine;
 			}
 
-        }
+		}
+		void sendingEmail(Label sender, EventArgs args)
+		{
+			if (!onProcessing)
+			{
+				onProcessing = true;
+				Device.OpenUri(new Uri("mailto:ChopsticksOfMetal@gmail.com"));
+				onProcessing = false;
+			}
+		}
+		void openHomepage(Label sender, EventArgs args)
+		{
+			if (!onProcessing)
+			{
+				onProcessing = true;
+                Device.OpenUri(new Uri("http://xn--ok0bo23cmodlb.xn--3e0b707e"));
+				onProcessing = false;
+			}
+		}
 	}
 }

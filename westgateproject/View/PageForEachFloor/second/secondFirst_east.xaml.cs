@@ -5,39 +5,51 @@ using Xamarin.Forms;
 namespace westgateproject.View.PageForEachFloor.second
 {
     public partial class secondFirst_east : ContentPage
-    {
+	{
+		public bool onProcessing;
         public secondFirst_east()
         {
 			InitializeComponent();
-			zoomContainer.Content.AnchorX = 0;
-			zoomContainer.Content.AnchorY = 0;
-			zoomContainer.min_ty = 0;
+			absL.AnchorX = 0;
+			absL.AnchorY = 0;
 			switch (Device.RuntimePlatform)
 			{
 				case Device.Android:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 265;
+					absL.Scale = (App.ScreenHeight - 90) / 265;
 					break;
 				default:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 265;
+					absL.Scale = (App.ScreenHeight - 70) / 265;
 					break;
 			}
-			zoomContainer.maxScale = zoomContainer.Content.Scale;
-			zoomContainer.minScale = zoomContainer.Content.Scale;
-			zoomContainer.min_tx = -((475 * zoomContainer.Content.Scale) - App.ScreenWidth);
 			NavigationPage.SetHasBackButton(this, false);
+			onProcessing = false;
+
+			var boundaryBox = new BoxView { Color = Color.Red };
+			AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(465 * absL.Scale, App.ScreenWidth, 0, 30));
+			absL.Children.Add(boundaryBox);
 		}
 		async void OnTapped(object sender, EventArgs args)
 		{
-            ShopInformation infoFromSQLite = new ShopInformation();
-            var temp = sender as Label;
-			infoFromSQLite = await App.Database.GetShopAsync("2지구", "1층", temp.Text);
-            await Navigation.PushAsync(new ShopInfoPage(infoFromSQLite));
+			if (!onProcessing)
+			{
+				onProcessing = true;
+	            ShopInformation infoFromSQLite = new ShopInformation();
+	            var temp = sender as Label;
+				infoFromSQLite = await App.Database.GetShopAsync("2지구", "1층", temp.Text);
+				await Navigation.PushAsync(new ShopInfoPage(infoFromSQLite));
+				onProcessing = false;
+			}
         }
 
 		async void OnTappedWest(object sender, EventArgs args)
 		{
-            await Navigation.PushAsync(new secondFirst_west()); 
-            Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count-2]);
+			if (!onProcessing)
+			{
+				onProcessing = true;
+	            await Navigation.PushAsync(new secondFirst_west());
+				Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+				onProcessing = false;
+			}
 		}
 		async void goBack(object sender, EventArgs args)
 		{

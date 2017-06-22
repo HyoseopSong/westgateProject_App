@@ -13,9 +13,11 @@ namespace westgateproject
 {
 	public partial class InitialPage : ContentPage
 	{
+        private bool isClicked;
 		public InitialPage()
 		{
 			InitializeComponent();
+            isClicked = false;
 		}
 
 		async protected override void OnAppearing()
@@ -31,8 +33,12 @@ namespace westgateproject
 
 		async void startClicked(object sender, EventArgs e)
 		{
-			await Navigation.PushAsync(new marketMap());
-			Navigation.RemovePage(Navigation.NavigationStack[0]);
+            if (!isClicked)
+            {
+                isClicked = true;
+                await Navigation.PushAsync(new marketMap());
+                Navigation.RemovePage(Navigation.NavigationStack[0]);
+            }
 		}
 
         void disableButton(object sender, EventArgs e)

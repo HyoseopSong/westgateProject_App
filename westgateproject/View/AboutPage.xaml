@@ -7,10 +7,30 @@
         <StackLayout>
             <Label x:Name="refresh" IsVisible="false"/>
             <Label x:Name="appState" Text="" TextColor="DeepSkyBlue" FontSize="20" BackgroundColor="Azure" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="제작자에게&#10;e-mail 보내기" Grid.Row="0" Grid.Column="0" FontSize="20" TextColor="DeepSkyBlue" BackgroundColor="Lime" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="sendingEmail"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
 
-            <Label Text="제작자 이메일 : chopsticksOfMetal@gmail.com  seopjjang@gmail.com" FontSize="20" TextColor="DeepSkyBlue" BackgroundColor="Lime" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Fill"/>
-
-            <Label Text="제작자 홈페이지 : https://쇠젓가락.한국" FontSize="20" TextColor="DeepSkyBlue" BackgroundColor="Yellow" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="제작자 홈페이지 방문" FontSize="20" TextColor="DeepSkyBlue" BackgroundColor="Yellow" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="openHomepage"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
         
         </StackLayout>     
 	</ContentPage.Content>

@@ -1,18 +1,10 @@
 ﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/PageForEachFloor/second/secondBaseFirst_east.xaml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateProject_App 상태">
     <Files>
-      <File FileName="westgateproject/View/marketMap.xaml.cs" Line="67" Column="25" />
-      <File FileName="westgateproject/View/marketMap.xaml" Line="83" Column="53" />
-      <File FileName="westgateproject/View/PageForEachFloor/buildingInfo.xaml.cs" Line="153" Column="33" />
-      <File FileName="westgateproject/View/PageForEachFloor/buildingInfo.xaml" Line="39" Column="38" />
-      <File FileName="westgateproject/Data/MarketInformationDatabase.cs" Line="1" Column="1" />
-      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="1" Column="1" />
-      <File FileName="westgateproject/Helper/SyncData.cs" Line="1" Column="1" />
-      <File FileName="westgateproject/View/AboutPage.xaml" Line="9" Column="83" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondSecond_east.xaml" Line="31" Column="253" />
-      <File FileName="westgateproject/View/AboutPage.xaml.cs" Line="1" Column="1" />
-      <File FileName="westgateproject/View/PageForEachFloor/office/shopUnion.xaml" Line="19" Column="29" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondBaseFirst_east.xaml" Line="17" Column="29" />
+      <File FileName="westgateproject/View/AboutPage.xaml" Line="38" Column="1" />
+      <File FileName="westgateproject/View/AboutPage.xaml.cs" Line="22" Column="57" />
+      <File FileName="westgateproject/View/InitialPage.xaml" Line="19" Column="1" />
+      <File FileName="westgateProject_App 상태" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

@@ -6,36 +6,43 @@ using Xamarin.Forms;
 namespace westgateproject.View.PageForEachFloor.office
 {
     public partial class shopUnion : ContentPage
-    {
+	{
+		public bool onProcessing;
         public shopUnion()
         {
 			InitializeComponent();
-			zoomContainer.Content.AnchorX = 0;
-			zoomContainer.Content.AnchorY = 0;
+			absL.AnchorX = 0;
+			absL.AnchorY = 0;
 
-			zoomContainer.min_ty = 0;
 			switch (Device.RuntimePlatform)
 			{
 				case Device.Android:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 90) / 189;
+					absL.Scale = (App.ScreenHeight - 90) / 189;
 					break;
 				default:
-					zoomContainer.Content.Scale = (App.ScreenHeight - 70) / 189;
+					absL.Scale = (App.ScreenHeight - 70) / 189;
 					break;
 			}
-			zoomContainer.maxScale = zoomContainer.Content.Scale;
-			zoomContainer.minScale = zoomContainer.Content.Scale;
-			zoomContainer.min_tx = -((500 * zoomContainer.Content.Scale) - App.ScreenWidth);
 			NavigationPage.SetHasBackButton(this, false);
+			onProcessing = false;
+
+			var boundaryBox = new BoxView { Color = Color.Red };
+			AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(490 * absL.Scale, App.ScreenWidth, 0, 30));
+			absL.Children.Add(boundaryBox);
 		}
 
 		async void OnTapped(object sender, EventArgs args)
 		{
-			await Navigation.PushAsync(new unionParking());
+			if (!onProcessing)
+			{
+				onProcessing = true;
+				await Navigation.PushAsync(new unionParking());
+				onProcessing = false;
+			}
 		}
 		async void goBack(object sender, EventArgs args)
 		{
-			await Navigation.PopAsync();
+		    await Navigation.PopAsync();
 		}
     }
 }
