@@ -1,13 +1,13 @@
 {
   "images": [
     {
-      "filename": "서문시장 아이콘 1x.png",
+      "filename": "icon_29x29.png",
       "size": "29x29",
       "scale": "1x",
       "idiom": "iphone"
     },
     {
-      "filename": "서문시장 아이콘 복사본 2.png",
+      "filename": "icon_58x58.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "iphone"
@@ -18,7 +18,7 @@
       "idiom": "iphone"
     },
     {
-      "filename": "서문시장 아이콘 복사본 3.png",
+      "filename": "icon_80x80.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "iphone"
@@ -39,7 +39,7 @@
       "idiom": "iphone"
     },
     {
-      "filename": "서문시장 아이콘 복사본.png",
+      "filename": "icon_120x120.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
@@ -62,7 +62,7 @@
       "idiom": "ipad"
     },
     {
-      "filename": "서문시장 아이콘40.png",
+      "filename": "icon_40x40.png",
       "size": "40x40",
       "scale": "1x",
       "idiom": "ipad"
@@ -99,13 +99,13 @@
       "idiom": "ipad"
     },
     {
-      "filename": "서문시장 아이콘 76.png",
+      "filename": "icon_76x76.png",
       "size": "76x76",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "서문시장 아이콘152.png",
+      "filename": "icon_152x152.png",
       "size": "76x76",
       "scale": "2x",
       "idiom": "ipad"

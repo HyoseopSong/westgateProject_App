@@ -1,12 +1,5 @@
 ﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateProject_App 상태">
-    <Files>
-      <File FileName="westgateproject/View/AboutPage.xaml" Line="38" Column="1" />
-      <File FileName="westgateproject/View/AboutPage.xaml.cs" Line="22" Column="57" />
-      <File FileName="westgateproject/View/InitialPage.xaml" Line="19" Column="1" />
-      <File FileName="westgateProject_App 상태" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.westgateproject.Droid PreferredExecutionTarget="Android.1cb6798d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
