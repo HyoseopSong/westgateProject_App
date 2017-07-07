@@ -26,7 +26,8 @@ namespace westgateproject.Droid
 
 			// Initialize Xamarin Forms
 			global::Xamarin.Forms.Forms.Init (this, bundle);
-			global::Xamarin.FormsMaps.Init (this, bundle);
+			global::Xamarin.FormsMaps.Init(this, bundle);
+			global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, bundle);
 
 			var width = Resources.DisplayMetrics.WidthPixels;
 			var height = Resources.DisplayMetrics.HeightPixels;
