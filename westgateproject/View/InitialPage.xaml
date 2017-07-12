@@ -8,7 +8,7 @@
                 AbsoluteLayout.LayoutBounds="0.5, 0.4, 0.4, 0.07" AbsoluteLayout.LayoutFlags="All"/>
 			<Button x:Name="guest" Text="시작" FontSize="20" Clicked = "startClicked" BackgroundColor="Aqua"
                 AbsoluteLayout.LayoutBounds="0.5, 0.65, 0.4, 0.07" AbsoluteLayout.LayoutFlags="All"/>
-			<Button x:Name="login" Text="로그인" FontSize="20" Clicked = "disableButton" IsEnabled="false" BackgroundColor="LightGray" IsVisible="false"
+			<Button x:Name="login" Text="로그인" FontSize="20" Clicked = "disableButton" BackgroundColor="Aqua"
                 AbsoluteLayout.LayoutBounds="0.5, 0.75, 0.4, 0.07" AbsoluteLayout.LayoutFlags="All"/>
 
             <Label x:Name="syncStatus" Text="서버에서 지도 정보를 가져오고 있습니다..." FontSize="15" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"

@@ -1,7 +1,19 @@
-﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
-  <MonoDevelop.Ide.Workbench />
+﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/SignInActivity.cs">
+    <Files>
+      <File FileName="Droid/SignInActivity.cs" Line="57" Column="43" />
+      <File FileName="Droid/MainActivity.cs" Line="25" Column="35" />
+      <File FileName="Droid/Resources/values/style.xml" Line="12" Column="13" />
+      <File FileName="Droid/Resources/values-v21/style.xml" Line="8" Column="13" />
+      <File FileName="Droid/Resources/values/colors.xml" Line="7" Column="13" />
+      <File FileName="iOS/AppDelegate.cs" Line="1" Column="1" />
+      <File FileName="Droid/obj/Debug/android/manifest/AndroidManifest.xml" Line="21" Column="128" />
+      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="36" Column="1" />
+      <File FileName="westgateproject/App.cs" Line="22" Column="30" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid PreferredExecutionTarget="Android.1cb6798d" />
+  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
