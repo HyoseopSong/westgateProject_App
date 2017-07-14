@@ -48,7 +48,15 @@ namespace westgateproject
 
         void disableButton(object sender, EventArgs e)
         {
-            DependencyService.Get<ILoginHelper>().StartLogin();
+            switch (Device.RuntimePlatform)
+            {
+                case Device.Android:
+                    DependencyService.Get<ILoginHelper>().StartLogin();
+                    break;
+                case Device.iOS:
+                    Navigation.PushAsync(new tempPage());
+                    break;
+            }
         }
 	}
 }

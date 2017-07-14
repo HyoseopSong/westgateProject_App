@@ -32,5 +32,24 @@
 	<array>
 		<integer>1</integer>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.62511156556-7j6rnn91soeivdki3uvsvrtajqjg6vdh</string>
+			</array>
+			<key>CFBundleURLTypes</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleURLTypes</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>hyoseop.metal.chopsticks.westgateproject</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

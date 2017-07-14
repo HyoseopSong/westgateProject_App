@@ -11,13 +11,20 @@ namespace westgateproject.Droid
     {
         public LoginHelper()
         {
+
         }
 
 
         public void StartLogin()
         {
             var intent = new Intent(Forms.Context, typeof(SignInActivity));
+            intent.PutExtra("action", "login");
             Forms.Context.StartActivity(intent);
+        }
+
+        public void StartLogout()
+        {
+            
         }
     }
 }

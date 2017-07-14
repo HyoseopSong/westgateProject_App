@@ -8,6 +8,7 @@ using Android.Gms.Auth.Api.SignIn;
 using Android.Gms.Common;
 using Android.Gms.Common.Apis;
 using Android.OS;
+using Java.Lang;
 using Newtonsoft.Json.Linq;
 
 namespace westgateproject.Droid
@@ -19,7 +20,7 @@ namespace westgateproject.Droid
 		//MainLauncher = true,
 		//ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
 			   //Theme = "@android:style/Theme.Holo.Light", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class SignInActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, GoogleApiClient.IOnConnectionFailedListener
+    public class SignInActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, GoogleApiClient.IOnConnectionFailedListener, IResultCallback
     {
 		//private static readonly String TAG = "SignInActivity";
         private static readonly int RC_SIGN_IN = 9001;
@@ -46,8 +47,16 @@ namespace westgateproject.Droid
                                                   .EnableAutoManage(this, this)
                                                   .AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
                                                   .Build();
-			Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(mGoogleApiClient);
-            StartActivityForResult(signInIntent, RC_SIGN_IN);
+
+            if (Intent.GetStringExtra("action") == "login")
+            {
+                Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(mGoogleApiClient);
+                StartActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+            else
+            {
+                Auth.GoogleSignInApi.SignOut(mGoogleApiClient).SetResultCallback(this);
+            }
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -81,5 +90,9 @@ namespace westgateproject.Droid
             Finish();
         }
 
+        public void OnResult(Java.Lang.Object result)
+        {
+            Console.WriteLine("You are loged out. param : " + result);
+        }
     }
 }
