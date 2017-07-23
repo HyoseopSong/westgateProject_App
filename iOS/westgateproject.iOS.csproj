@@ -153,9 +153,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\marketMap.png" />
     <BundleResource Include="Resources\unionParking.png" />
     <BundleResource Include="GoogleService-Info.plist" />
+    <BundleResource Include="Resources\monkey.png" />
+    <BundleResource Include="Resources\xamarin.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -177,6 +178,8 @@
     </Compile>
     <Compile Include="tempPageRenderer.cs" />
     <Compile Include="InitialPageRenderer.cs" />
+    <Compile Include="WestGateMarketMapRenderer.cs" />
+    <Compile Include="CustomMKAnnotationView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />

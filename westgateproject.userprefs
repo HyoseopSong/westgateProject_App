@@ -1,15 +1,11 @@
-﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/InitialPage.xaml.cs">
+﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/WestGateMarketMapRenderer.cs">
     <Files>
-      <File FileName="../westgateProject_App_iOSGoogleSigninSDK/iOS/LoginPageRenderer.cs" Line="24" Column="10" />
-      <File FileName="../westgateProject_App_iOSGoogleSigninSDK/iOS/AppDelegate.cs" Line="28" Column="94" />
-      <File FileName="iOS/InitialPageRenderer.cs" Line="57" Column="40" NotebookId="1" />
-      <File FileName="iOS/AppDelegate.cs" Line="17" Column="4" NotebookId="1" />
-      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="46" Column="14" NotebookId="1" />
+      <File FileName="Droid/WestGateMarketMapRenderer.cs" Line="212" Column="86" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.Android_Accelerated_x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

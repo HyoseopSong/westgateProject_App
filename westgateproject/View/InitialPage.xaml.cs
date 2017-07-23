@@ -41,7 +41,7 @@ namespace westgateproject
             if (!isClicked)
             {
                 isClicked = true;
-                await Navigation.PushAsync(new marketMap());
+                await Navigation.PushAsync(new FirstPage());
                 Navigation.RemovePage(Navigation.NavigationStack[0]);
             }
 		}
@@ -54,7 +54,7 @@ namespace westgateproject
                     DependencyService.Get<ILoginHelper>().StartLogin();
                     break;
                 case Device.iOS:
-                    Navigation.PushAsync(new tempPage());
+                    login.IsVisible = false;
                     break;
             }
         }
