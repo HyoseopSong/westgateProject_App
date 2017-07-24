@@ -54,10 +54,13 @@ namespace westgateproject.iOS
 			SignIn.SharedInstance.UIDelegate = this;
 			SignIn.SharedInstance.Delegate = this;
 
-			// Sign the user in automatically
-			//SignIn.SharedInstance.SignInUserSilently();
-			ToggleAuthUI();
-			Debug.WriteLine("after initial Toggle");
+            // Sign the user in automatically
+            if(SignIn.SharedInstance.CurrentUser == null)
+			{
+				SignIn.SharedInstance.SignInUserSilently();
+				ToggleAuthUI();
+				Debug.WriteLine("after initial Toggle");
+			}
 
 
 			SignIn.SharedInstance.SignedIn += async (sender, ei) =>

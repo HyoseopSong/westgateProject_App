@@ -10,6 +10,8 @@ namespace westgateproject
 {
 	public partial class FirstPage : ContentPage
 	{
+		public bool onProcessing;
+
 		public FirstPage()
 		{
             InitializeComponent();
@@ -235,8 +237,19 @@ namespace westgateproject
 			WGMarketMap.AdvertisementPins.Add(pin);
 			WGMarketMap.Pins.Add(pin.Pin);
 
+            onProcessing = false;
 
 		}
+
+        async void OnItemClicked(object sender, EventArgs args)
+        {
+            if (!onProcessing)
+            {
+                onProcessing = true;
+                await Navigation.PushAsync(new AboutPage());
+                onProcessing = false;
+            }
+        }
 
 		private class ActivityIndicatorScope : IDisposable
 		{

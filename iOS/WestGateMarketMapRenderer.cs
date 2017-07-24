@@ -53,7 +53,7 @@ namespace westgateproject.iOS
 				nativeMap.GetViewForAnnotation = null;
 				nativeMap.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
 				//nativeMap.DidSelectAnnotationView -= OnDidSelectAnnotationView;
-				nativeMap.DidDeselectAnnotationView -= OnDidDeselectAnnotationView;
+				//nativeMap.DidDeselectAnnotationView -= OnDidDeselectAnnotationView;
 
 			}
 
@@ -66,7 +66,7 @@ namespace westgateproject.iOS
 				nativeMap.GetViewForAnnotation = GetViewForAnnotation;
 				nativeMap.CalloutAccessoryControlTapped += OnCalloutAccessoryControlTapped;
 				//nativeMap.DidSelectAnnotationView += OnDidSelectAnnotationView;
-				nativeMap.DidDeselectAnnotationView += OnDidDeselectAnnotationView;
+				//nativeMap.DidDeselectAnnotationView += OnDidDeselectAnnotationView;
 
 				//nativeMap.AddGestureRecognizer(_tapRecogniser);
 				MKPolygon polygonOverlay = new MKPolygon();
@@ -240,15 +240,15 @@ namespace westgateproject.iOS
 		//	}
 		//}
 
-		void OnDidDeselectAnnotationView(object sender, MKAnnotationViewEventArgs e)
-		{
-			if (!e.View.Selected)
-			{
-				customPinView.RemoveFromSuperview();
-				customPinView.Dispose();
-				customPinView = null;
-			}
-		}
+		//void OnDidDeselectAnnotationView(object sender, MKAnnotationViewEventArgs e)
+		//{
+		//	if (!e.View.Selected)
+		//	{
+		//		customPinView.RemoveFromSuperview();
+		//		customPinView.Dispose();
+		//		customPinView = null;
+		//	}
+		//}
 
 		AdvertisementPin GetCustomPin(MKPointAnnotation annotation)
 		{
