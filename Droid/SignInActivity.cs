@@ -1,6 +1,6 @@
 ﻿
 using System;
-
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Gms.Auth.Api;
@@ -38,6 +38,7 @@ namespace westgateproject.Droid
         {
             base.OnCreate(savedInstanceState);
 
+			Console.WriteLine("SignInActivity Start!!");
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
                                                              .RequestIdToken(Constants.WebClientID)
                                                              .RequestEmail()
@@ -47,11 +48,16 @@ namespace westgateproject.Droid
                                                   .EnableAutoManage(this, this)
                                                   .AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
                                                   .Build();
-
+            
             if (Intent.GetStringExtra("action") == "login")
             {
                 Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(mGoogleApiClient);
                 StartActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+            else if (Intent.GetStringExtra("action") == "silent_login")
+			{
+				Console.WriteLine("SignInActivity Start!!");
+                Auth.GoogleSignInApi.SilentSignIn(mGoogleApiClient);
             }
             else
             {
@@ -92,6 +98,21 @@ namespace westgateproject.Droid
 
 
 				App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token);
+				IDictionary<string, string> resultOfInvoke = new Dictionary<string, string>();
+				try
+				{
+					resultOfInvoke = await App.Client.InvokeApiAsync<IDictionary<string, string>>("notice", System.Net.Http.HttpMethod.Get, null);
+					foreach (var temp in resultOfInvoke)
+					{
+						Console.WriteLine("Key : " + temp.Key + ", Value : " + temp.Value);
+					}
+				}
+				catch (System.Exception ex)
+				{
+					Console.WriteLine(ex.GetType());
+					Console.WriteLine("서버에서 정보를 불러올 수 없습니다.");
+					return;
+				}
 
             }
             else

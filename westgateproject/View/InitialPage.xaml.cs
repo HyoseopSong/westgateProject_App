@@ -21,6 +21,16 @@ namespace westgateproject
 		public InitialPage()
 		{
 			InitializeComponent();
+   //         switch (Device.RuntimePlatform)
+			//{
+			//	case Device.Android:
+			//		DependencyService.Get<ILoginHelper>().StartSilentLogin();
+			//		login.IsVisible = false;
+			//		break;
+			//	case Device.iOS:
+			//		login.IsVisible = false;
+			//		break;
+			//}
             isClicked = false;
 		}
 
@@ -28,7 +38,7 @@ namespace westgateproject
 		{
             // Handle when your app starts
             var shopSync = await SyncData.SyncShopInfo();
-            var buildingSync = await SyncData.syncBuildingInfo();
+            var buildingSync = await SyncData.SyncBuildingInfo();
             if(!shopSync || !buildingSync)
 				syncStatus.Text="서버에서 데이터를 가져올 수 없습니다. 앱정보 페이지에서 REFRESH를 눌러 다시 시도할 수 있습니다.";
             else

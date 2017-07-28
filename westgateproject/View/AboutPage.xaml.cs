@@ -19,7 +19,7 @@ namespace westgateproject
         async void OnItemClicked(object sender, EventArgs e)
 		{
 			var shopSync = await SyncData.SyncShopInfo();
-			var buildingSync = await SyncData.syncBuildingInfo();
+			var buildingSync = await SyncData.SyncBuildingInfo();
 			refresh.IsVisible = true;
 			if (!shopSync || !buildingSync)
 				refresh.Text = "서버에서 데이터를 가져올 수 없습니다. 마지막에 저장된 데이터를 사용합니다." + Environment.NewLine + System.DateTime.Now.ToString("G");

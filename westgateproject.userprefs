@@ -1,14 +1,18 @@
 ﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/LoginHelper.cs">
     <Files>
-      <File FileName="Droid/MainActivity.cs" Line="35" Column="13" />
-      <File FileName="Droid/MainApplication.cs" Line="22" Column="54" />
-      <File FileName="Droid/Properties/AssemblyInfo.cs" Line="3" Column="19" />
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="11" Column="4" />
-      <File FileName="../CameraXF-master/CameraSample/CameraSample.Android/MainActivity.cs" Line="29" Column="1" NotebookId="1" />
-      <File FileName="../CameraXF-master/CameraSample/CameraSample.Android/MainApplication.cs" Line="17" Column="10" NotebookId="1" />
-      <File FileName="../CameraXF-master/CameraSample/CameraSample.Android/Properties/AssemblyInfo.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="westgateproject/View/WritingPage.xaml" Line="25" Column="15" NotebookId="1" />
+      <File FileName="westgateproject/View/WritingPage.xaml" Line="16" Column="52" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="25" Column="8" />
+      <File FileName="westgateproject/View/AboutPage.xaml" Line="21" Column="50" />
+      <File FileName="westgateproject/View/PageForEachFloor/buildingInfo.xaml" Line="3" Column="23" />
+      <File FileName="iOS/Main.cs" Line="20" Column="3" />
+      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="249" Column="1" />
+      <File FileName="westgateproject/View/AboutPage.xaml.cs" Line="10" Column="3" />
+      <File FileName="iOS/InitialPageRenderer.cs" Line="100" Column="6" />
+      <File FileName="Droid/SignInActivity.cs" Line="65" Column="42" />
+      <File FileName="Droid/LoginHelper.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="28" Column="30" />
+      <File FileName="westgateproject/Helper/ILoginHelper.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

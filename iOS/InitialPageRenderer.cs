@@ -86,7 +86,10 @@ namespace westgateproject.iOS
 					try
 					{
 						result = await App.Client.InvokeApiAsync<IDictionary<string, string>>("notice", System.Net.Http.HttpMethod.Get, null);
-						Debug.WriteLine(result);
+                        foreach(var temp in result)
+						{
+							Debug.WriteLine("Key : " + temp.Key + ", Value : " + temp.Value);
+                        }
 					}
 					catch (Exception ex)
 					{

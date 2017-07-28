@@ -22,6 +22,13 @@ namespace westgateproject.Droid
             Forms.Context.StartActivity(intent);
         }
 
+        public void StartSilentLogin()
+        {
+            var intent = new Intent(Forms.Context, typeof(SignInActivity));
+            intent.PutExtra("action", "silent_login");
+            Forms.Context.StartActivity(intent);
+        }
+
         public void StartLogout()
         {
             

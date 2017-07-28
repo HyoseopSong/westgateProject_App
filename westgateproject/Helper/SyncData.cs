@@ -44,7 +44,7 @@ namespace westgateproject.Helper
 
 
 		}
-		static async public Task<bool> syncBuildingInfo()
+		static async public Task<bool> SyncBuildingInfo()
 		{
 			IDictionary<string, string> result = new Dictionary<string, string>();
 			try
@@ -56,25 +56,43 @@ namespace westgateproject.Helper
 				Debug.WriteLine(ex.GetType());
                 return false;
 			}
-			BuildingInformation info1 = new BuildingInformation();
-			info1.Building = "1지구";
-			BuildingInformation info2 = new BuildingInformation();
-			info2.Building = "2지구";
-			BuildingInformation info4 = new BuildingInformation();
-			info4.Building = "4지구";
-			BuildingInformation info5 = new BuildingInformation();
-			info5.Building = "5지구";
-			BuildingInformation infoSea = new BuildingInformation();
-			infoSea.Building = "건해산물상가";
-			BuildingInformation infoDongsan = new BuildingInformation();
-			infoDongsan.Building = "동산상가";
-			BuildingInformation infomp = new BuildingInformation();
-			infomp.Building = "명품프라자";
-			BuildingInformation infoUnion = new BuildingInformation();
-			infoUnion.Building = "상가연합회";
-			BuildingInformation infoAjin = new BuildingInformation();
-			infoAjin.Building = "아진상가";
-			foreach (var floorInfo in result)
+            BuildingInformation info1 = new BuildingInformation()
+            {
+                Building = "1지구"
+            };
+            BuildingInformation info2 = new BuildingInformation()
+            {
+                Building = "2지구"
+            };
+            BuildingInformation info4 = new BuildingInformation()
+            {
+                Building = "4지구"
+            };
+            BuildingInformation info5 = new BuildingInformation()
+            {
+                Building = "5지구"
+            };
+            BuildingInformation infoSea = new BuildingInformation()
+            {
+                Building = "건해산물상가"
+            };
+            BuildingInformation infoDongsan = new BuildingInformation()
+            {
+                Building = "동산상가"
+            };
+            BuildingInformation infomp = new BuildingInformation()
+            {
+                Building = "명품프라자"
+            };
+            BuildingInformation infoUnion = new BuildingInformation()
+            {
+                Building = "상가연합회"
+            };
+            BuildingInformation infoAjin = new BuildingInformation()
+            {
+                Building = "아진상가"
+            };
+            foreach (var floorInfo in result)
 			{
 				string[] building = floorInfo.Key.Split(':');
 				string resultString = "";
