@@ -14,6 +14,7 @@
     <PackageReference Include="SQLitePCLRaw.core" Version="1.1.7" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="2.3.4.247" />
     <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.0.1" />
+    <PackageReference Include="Xam.Plugin.Media" Version="3.0.2-beta76" />
   </ItemGroup>
 
   <ItemGroup>

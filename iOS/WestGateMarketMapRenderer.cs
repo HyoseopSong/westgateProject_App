@@ -160,48 +160,49 @@ namespace westgateproject.iOS
 			{
 				annotationView = new CustomMKAnnotationView(annotation, customPin.Id);
 
-				var customLabel = new UILabel(new CGRect(0, 0, customPin.width, 25));
-				customLabel.Text = customPin.Pin.Label;
+                var customLabel = new UILabel(new CGRect(0, 0, customPin.width, 25))
+                {
+                    Text = customPin.Pin.Label,
 
-                // 2. Set the font name and size:
-				customLabel.Font = UIFont.FromName("Helvetica-Bold", 20f);
+                    // 2. Set the font name and size:
+                    Font = UIFont.FromName("Helvetica-Bold", 20f),
 
-				// 3. Optionally set additional properties that affect the display
-				customLabel.AdjustsFontSizeToFitWidth = true; // gets smaller if it doesn't fit
-				customLabel.MinimumFontSize = 12f; // never gets smaller than this size
-				customLabel.LineBreakMode = UILineBreakMode.TailTruncation;
-				customLabel.Lines = 1; // 0 means unlimited
+                    // 3. Optionally set additional properties that affect the display
+                    AdjustsFontSizeToFitWidth = true, // gets smaller if it doesn't fit
+                    MinimumFontSize = 12f, // never gets smaller than this size
+                    LineBreakMode = UILineBreakMode.TailTruncation,
+                    Lines = 1 // 0 means unlimited
+                };
+                switch (customPin.Id)
+                {
+                    case "2지구":
+                    case "5지구":
+                    case "동산상가":
+                    case "상가연합회":
+                        customLabel.BackgroundColor = UIColor.Green;
+                        customLabel.TextColor = UIColor.Magenta;
+                        annotationView.RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure);
+                        break;
+                    case "1지구":
+                    case "4지구":
+                    case "명품프라자":
+                    case "건해산물상가":
+                    case "아진상가":
+                        customLabel.BackgroundColor = UIColor.Gray;
+                        customLabel.TextColor = UIColor.Black;
+                        break;
+                }
 
-				switch (customPin.Id)
-				{
-					case "2지구":
-					case "5지구":
-					case "동산상가":
-					case "상가연합회":
-						customLabel.BackgroundColor = UIColor.Green;
-						customLabel.TextColor = UIColor.Magenta;
-						break;
-					case "1지구":
-					case "4지구":
-					case "명품프라자":
-					case "건해산물상가":
-					case "아진상가":
-						customLabel.BackgroundColor = UIColor.Gray;
-						customLabel.TextColor = UIColor.Black;
-						break;
-				}
-
-				UIGraphics.BeginImageContextWithOptions(customLabel.Bounds.Size, true, 0);
-				customLabel.Layer.RenderInContext(UIGraphics.GetCurrentContext());
-				var img = UIGraphics.GetImageFromCurrentImageContext();
-				UIGraphics.EndImageContext();
+                UIGraphics.BeginImageContextWithOptions(customLabel.Bounds.Size, true, 0);
+                customLabel.Layer.RenderInContext(UIGraphics.GetCurrentContext());
+                var img = UIGraphics.GetImageFromCurrentImageContext();
+                UIGraphics.EndImageContext();
 
 
 
 				annotationView.Image = img;
 				annotationView.CalloutOffset = new CGPoint(0, 0);
 				annotationView.LeftCalloutAccessoryView = new UIImageView(UIImage.FromFile("monkey.png"));
-				annotationView.RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure);
 				((CustomMKAnnotationView)annotationView).Id = customPin.Id;
 				((CustomMKAnnotationView)annotationView).width = customPin.width;
 			}

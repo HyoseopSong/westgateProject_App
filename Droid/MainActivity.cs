@@ -2,14 +2,13 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Plugin.Permissions;
 using westgateproject.Helper;
 using Xamarin.Forms.Platform.Android;
 
 namespace westgateproject.Droid
 {
-    [Activity (Label = "서문시장",
-		Icon = "@drawable/icon",
-		MainLauncher = true,
+    [Activity (Label = "서문시장",	Icon = "@drawable/icon", MainLauncher = true,
 		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
 	           Theme = "@android:style/Theme.Holo.Light", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
@@ -37,6 +36,11 @@ namespace westgateproject.Droid
 			// Load the main application
 			LoadApplication (new App ());
 		}
+
+		//public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+		//{
+		//	PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+		//}
 	}
 }
 

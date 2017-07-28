@@ -1,7 +1,10 @@
 ﻿﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json.Linq;
 using westgateproject.Helper;
 using westgateproject.Models;
@@ -19,9 +22,6 @@ namespace westgateproject
 		{
 			InitializeComponent();
             isClicked = false;
-            if(App.googleToken != null)
-            {
-            }
 		}
 
 		async protected override void OnAppearing()
@@ -33,7 +33,6 @@ namespace westgateproject
 				syncStatus.Text="서버에서 데이터를 가져올 수 없습니다. 앱정보 페이지에서 REFRESH를 눌러 다시 시도할 수 있습니다.";
             else
                 syncStatus.Text="지도 정보 동기화가 완료되었습니다.";
-
 		}
 
 		async void startClicked(object sender, EventArgs e)

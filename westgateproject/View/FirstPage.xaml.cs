@@ -246,7 +246,7 @@ namespace westgateproject
             if (!onProcessing)
             {
                 onProcessing = true;
-                await Navigation.PushAsync(new AboutPage());
+                await Navigation.PushAsync(new WritingPage());
                 onProcessing = false;
             }
         }

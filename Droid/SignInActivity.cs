@@ -76,12 +76,23 @@ namespace westgateproject.Droid
             if(result.IsSuccess)
             {
                 GoogleSignInAccount acct = result.SignInAccount;
-                App.googleToken = acct.IdToken;
+                var googleToken = acct.IdToken;
 				Console.WriteLine("acct value : " + acct);
+				Console.WriteLine("Account value : " + acct.Account);
+				Console.WriteLine("DisplayName value : " + acct.DisplayName);
+				Console.WriteLine("Email value : " + acct.Email);
+				Console.WriteLine("FamilyName value : " + acct.FamilyName);
+				Console.WriteLine("acGivenNamect value : " + acct.GivenName);
+				Console.WriteLine("Id value : " + acct.Id);
+				Console.WriteLine("IdToken value : " + acct.IdToken);
+				Console.WriteLine("PhotoUrl value : " + acct.PhotoUrl);
+				Console.WriteLine("ServerAuthCode value : " + acct.ServerAuthCode);
 				var token = new JObject();
-				token.Add("id_token", App.googleToken);
+				token.Add("id_token", googleToken);
+
 
 				App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token);
+
             }
             else
             {

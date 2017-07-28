@@ -65,10 +65,12 @@ namespace westgateproject.iOS
 
 			SignIn.SharedInstance.SignedIn += async (sender, ei) =>
 			{
-				// Perform any operations on signed in user here.
-				var token = new JObject();
-				token.Add("id_token", ei.User.Authentication.IdToken);
-				Debug.WriteLine("IdToken : " + ei.User.Authentication.IdToken);
+                // Perform any operations on signed in user here.
+                var token = new JObject
+                {
+                    { "id_token", ei.User.Authentication.IdToken }
+                };
+                Debug.WriteLine("IdToken : " + ei.User.Authentication.IdToken);
 				Debug.WriteLine("AccessToken : " + ei.User.Authentication.AccessToken);
 				Debug.WriteLine(ei.User.UserID + " " + ei.User.Profile.FamilyName + " " + ei.User.Profile.Email + " " + ei.User.Authentication.IdToken);
 				App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token);

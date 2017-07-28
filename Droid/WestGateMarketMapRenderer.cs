@@ -120,11 +120,8 @@ namespace westgateproject.Droid
 			if (e.PropertyName.Equals("VisibleRegion") && !isDrawn)
 			{
 				NativeMap.Clear();
-				Console.WriteLine("It doens't work again.");
-				var i = 0;
 				foreach (var pin in advertisementPins)
 				{
-					Console.WriteLine( i++ );
 					var marker = new MarkerOptions();
 					marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
 					marker.SetTitle(pin.Pin.Label);
@@ -285,14 +282,23 @@ namespace westgateproject.Droid
 					throw new Exception("Custom pin not found");
 				}
 
-				if (customPin.Id == "Xamarin")
+
+	            switch (customPin.Id)
 				{
-					view = inflater.Inflate(Resource.Layout.XamarinMapInfoWindow, null);
-				}
-				else
-				{
-					view = inflater.Inflate(Resource.Layout.MapInfoWindow, null);
-				}
+					case "Xamarin":
+                        view = inflater.Inflate(Resource.Layout.XamarinMapInfoWindow, null);
+						break;
+	                case "1지구":
+	                case "4지구":
+	                case "명품프라자":
+	                case "건해산물상가":
+					case "아진상가":
+						view = inflater.Inflate(Resource.Layout.MapInfoWindow_Preparing, null);
+						break;
+                    default:
+						view = inflater.Inflate(Resource.Layout.MapInfoWindow, null);
+						break;
+	            }
 
 				var infoTitle = view.FindViewById<TextView>(Resource.Id.InfoWindowTitle);
 				var infoSubtitle = view.FindViewById<TextView>(Resource.Id.InfoWindowSubtitle);

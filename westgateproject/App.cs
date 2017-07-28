@@ -14,12 +14,10 @@ namespace westgateproject
 		public static double ScreenHeight;
         static MarketInformationDatabase database;
         static MobileServiceClient client;
-        public static string googleToken;
 
 		public App ()
 		{
             // The root page of your application
-            googleToken = "";
             MainPage = new NavigationPage(new InitialPage());
 
 		}
