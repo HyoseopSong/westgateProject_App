@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using Plugin.Media.Abstractions;
 using westgateproject.Helper;
 using Xamarin.Forms;
 
@@ -8,11 +10,14 @@ namespace westgateproject.View
     public partial class WritingPage : TabbedPage
 	{
 		private bool onProcessing;
+        private MediaFile photoStream;
         public WritingPage()
 		{
 			InitializeComponent();
 
 			CameraButton.Clicked += CameraButton_Clicked;
+
+			syncLabel();
 		}
 
 		async void OnItemClicked(object sender, EventArgs e)
@@ -26,17 +31,44 @@ namespace westgateproject.View
 				refresh.Text = "서버에서 지도 정보를 가져왔습니다." + Environment.NewLine + System.DateTime.Now.ToString("G");
 		}
 
+		async void UploadButton_Clicked(object sender, EventArgs e)
+		{
+
+            await SyncData.UploadContents(photoStream, UploadTextEditor.Text);
+		}
+
 		private async void CameraButton_Clicked(object sender, EventArgs e)
 		{
-			var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
+			photoStream = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
 
-            if (photo != null)
+            if (photoStream != null)
             {
-                PhotoImage.Source = ImageSource.FromStream(photo.GetStream);
+                PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
                 PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
             }
 		}
 
+		async protected void syncLabel()
+		{
+			IDictionary<string, string> result = new Dictionary<string, string>();
+			try
+			{
+				result = await App.Client.InvokeApiAsync<IDictionary<string, string>>("notice", System.Net.Http.HttpMethod.Get, null);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.GetType());
+				appState.Text = "서버에서 정보를 불러올 수 없습니다.";
+				return;
+			}
+			string[] state = result["개발현황"].Split(':');
+			appState.Text = "";
+			for (int i = 0; i < state.Length; i++)
+			{
+				appState.Text += state[i] + Environment.NewLine;
+			}
+
+		}
 
 		void EditorTextChanged(object sender, TextChangedEventArgs e)
 		{

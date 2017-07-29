@@ -57,7 +57,8 @@ namespace westgateproject.iOS
             // Sign the user in automatically
             if(SignIn.SharedInstance.CurrentUser == null)
 			{
-				SignIn.SharedInstance.SignInUserSilently();
+				//SignIn.SharedInstance.SignInUserSilently();
+                SignIn.SharedInstance.SignInUser();
 				ToggleAuthUI();
 				Debug.WriteLine("after initial Toggle");
 			}
@@ -74,7 +75,7 @@ namespace westgateproject.iOS
 				Debug.WriteLine("AccessToken : " + ei.User.Authentication.AccessToken);
 				Debug.WriteLine(ei.User.UserID + " " + ei.User.Profile.FamilyName + " " + ei.User.Profile.Email + " " + ei.User.Authentication.IdToken);
 				App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token);
-
+                App.userEmail = ei.User.Profile.Email;
 				if (ei.User != null && ei.Error == null)
 				{
 
@@ -206,7 +207,7 @@ namespace westgateproject.iOS
 
         public void DidSignIn(SignIn signIn, GoogleUser user, NSError error)
         {
-            
+            Debug.WriteLine("Did Sign In method is executed!!");
         }
 
     }

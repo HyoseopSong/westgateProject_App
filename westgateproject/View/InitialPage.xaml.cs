@@ -21,17 +21,18 @@ namespace westgateproject
 		public InitialPage()
 		{
 			InitializeComponent();
-   //         switch (Device.RuntimePlatform)
-			//{
-			//	case Device.Android:
-			//		DependencyService.Get<ILoginHelper>().StartSilentLogin();
-			//		login.IsVisible = false;
-			//		break;
-			//	case Device.iOS:
-			//		login.IsVisible = false;
-			//		break;
-			//}
-            isClicked = false;
+
+	        switch (Device.RuntimePlatform)
+			{
+				case Device.Android:
+					DependencyService.Get<ILoginHelper>().StartLogin();
+					login.IsVisible = false;
+					break;
+				case Device.iOS:
+					login.IsVisible = false;
+					break;
+			}
+			isClicked = false;
 		}
 
 		async protected override void OnAppearing()

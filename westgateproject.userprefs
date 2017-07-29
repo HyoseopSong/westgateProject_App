@@ -1,18 +1,13 @@
-﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/LoginHelper.cs">
+﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/Helper/SyncData.cs">
     <Files>
-      <File FileName="westgateproject/View/WritingPage.xaml" Line="16" Column="52" />
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="25" Column="8" />
-      <File FileName="westgateproject/View/AboutPage.xaml" Line="21" Column="50" />
-      <File FileName="westgateproject/View/PageForEachFloor/buildingInfo.xaml" Line="3" Column="23" />
-      <File FileName="iOS/Main.cs" Line="20" Column="3" />
-      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="249" Column="1" />
-      <File FileName="westgateproject/View/AboutPage.xaml.cs" Line="10" Column="3" />
-      <File FileName="iOS/InitialPageRenderer.cs" Line="100" Column="6" />
-      <File FileName="Droid/SignInActivity.cs" Line="65" Column="42" />
-      <File FileName="Droid/LoginHelper.cs" Line="1" Column="1" />
-      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="28" Column="30" />
-      <File FileName="westgateproject/Helper/ILoginHelper.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/Helper/SyncData.cs" Line="48" Column="1" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="34" Column="61" />
+      <File FileName="westgateproject/View/WritingPage.xaml" Line="57" Column="14" />
+      <File FileName="westgateproject/Redundant/MainPage.xaml.cs" Line="19" Column="26" />
+      <File FileName="westgateproject/View/InitialPage.xaml" Line="19" Column="1" />
+      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="59" Column="54" />
+      <File FileName="iOS/Main.cs" Line="17" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

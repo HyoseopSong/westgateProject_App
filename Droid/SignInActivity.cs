@@ -57,7 +57,7 @@ namespace westgateproject.Droid
             else if (Intent.GetStringExtra("action") == "silent_login")
 			{
 				Console.WriteLine("SignInActivity Start!!");
-                Auth.GoogleSignInApi.SilentSignIn(mGoogleApiClient);
+                Auth.GoogleSignInApi.SilentSignIn(mGoogleApiClient).SetResultCallback(this);
             }
             else
             {
@@ -93,6 +93,9 @@ namespace westgateproject.Droid
 				Console.WriteLine("IdToken value : " + acct.IdToken);
 				Console.WriteLine("PhotoUrl value : " + acct.PhotoUrl);
 				Console.WriteLine("ServerAuthCode value : " + acct.ServerAuthCode);
+
+                App.userEmail = acct.Email;
+
 				var token = new JObject();
 				token.Add("id_token", googleToken);
 

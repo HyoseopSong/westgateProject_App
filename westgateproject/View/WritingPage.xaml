@@ -19,7 +19,7 @@
                 <Button x:Name="CameraButton" Text="Take Photo" />
 		        <Image x:Name="PhotoImage"  Grid.Row="1" />
                 <Editor x:Name="UploadTextEditor" Keyboard="Chat" Grid.Row="2" BackgroundColor="Lime" TextChanged="EditorTextChanged" HeightRequest="200"/>
-                <Button x:Name="Upload" Text="Upload" Grid.Row="3"  />
+                <Button x:Name="Upload" Text="Upload" Grid.Row="3" Clicked="UploadButton_Clicked" />
             </Grid>
         </ScrollView>
     </ContentPage>

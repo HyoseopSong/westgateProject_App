@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using Plugin.Media.Abstractions;
 using westgateproject.Models;
 using Xamarin.Forms;
 
@@ -12,6 +15,43 @@ namespace westgateproject.Helper
         public SyncData()
         {
         }
+
+		static async public Task<bool> UploadContents(MediaFile img, string text)
+		{
+            var blobName = DateTime.Now.ToString();
+            if (img != null)
+            {
+
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=westgateproject;AccountKey=qnc9q3bWy6X+yML+LjMs3oLf10hormmOK2k+UMxZWm0XAYiH3aIlwgqHTgIJ6+t2aK02ppAHUdGPpatb3CnKFA==");
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+                CloudBlobContainer container = blobClient.GetContainerReference("blob1");
+                //await container.CreateIfNotExistsAsync();
+                CloudBlockBlob blockBlob = container.GetBlockBlobReference(blobName);
+                await blockBlob.UploadFromStreamAsync(img.GetStream());
+            }
+            else
+            {
+                blobName = "empty";
+            }
+
+
+            if (text != null)
+            {
+
+                IDictionary<string, string> postDictionary = new Dictionary<string, string>
+                {
+                    { "content", text },
+                    { "id", App.userEmail},
+                    { "blobName", blobName}
+                };
+                IDictionary<string, string> result = new Dictionary<string, string>();
+                await App.Client.InvokeApiAsync("upload", System.Net.Http.HttpMethod.Post, postDictionary);
+
+            }
+
+
+			return true;
+		}
 
 		static async public Task<bool> SyncShopInfo()
 		{
@@ -41,9 +81,8 @@ namespace westgateproject.Helper
 				await App.Database.SaveShopAsync(result);
 			}
             return true;
-
-
 		}
+
 		static async public Task<bool> SyncBuildingInfo()
 		{
 			IDictionary<string, string> result = new Dictionary<string, string>();

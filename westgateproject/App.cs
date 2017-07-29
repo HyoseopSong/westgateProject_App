@@ -12,6 +12,7 @@ namespace westgateproject
 	{
 		public static double ScreenWidth;
 		public static double ScreenHeight;
+		public static string userEmail;
         static MarketInformationDatabase database;
         static MobileServiceClient client;
 
