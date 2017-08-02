@@ -71,6 +71,10 @@ namespace westgateproject.iOS
                 {
                     { "id_token", ei.User.Authentication.IdToken }
                 };
+
+                var initialpage = e.NewElement as ContentPage;
+
+
                 Debug.WriteLine("IdToken : " + ei.User.Authentication.IdToken);
 				Debug.WriteLine("AccessToken : " + ei.User.Authentication.AccessToken);
 				Debug.WriteLine(ei.User.UserID + " " + ei.User.Profile.FamilyName + " " + ei.User.Profile.Email + " " + ei.User.Authentication.IdToken);

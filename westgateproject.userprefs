@@ -1,13 +1,16 @@
-﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/Helper/SyncData.cs">
+﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/SignInActivity.cs">
     <Files>
-      <File FileName="westgateproject/Helper/SyncData.cs" Line="48" Column="1" />
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="34" Column="61" />
-      <File FileName="westgateproject/View/WritingPage.xaml" Line="57" Column="14" />
-      <File FileName="westgateproject/Redundant/MainPage.xaml.cs" Line="19" Column="26" />
-      <File FileName="westgateproject/View/InitialPage.xaml" Line="19" Column="1" />
-      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="59" Column="54" />
-      <File FileName="iOS/Main.cs" Line="17" Column="1" />
+      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="26" Column="25" />
+      <File FileName="westgateproject/View/WritingPage.xaml" Line="63" Column="14" />
+      <File FileName="westgateproject/View/PageForEachFloor/second/secondBaseFirst_west.xaml" Line="1031" Column="1" />
+      <File FileName="westgateproject/View/PageForEachFloor/buildingInfo.xaml.cs" Line="71" Column="5" />
+      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="25" Column="10" />
+      <File FileName="iOS/InitialPageRenderer.cs" Line="26" Column="12" />
+      <File FileName="Droid/SignInActivity.cs" Line="103" Column="24" />
+      <File FileName="Droid/MainActivity.cs" Line="1" Column="1" />
+      <File FileName="Droid/Properties/AndroidManifest.xml" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

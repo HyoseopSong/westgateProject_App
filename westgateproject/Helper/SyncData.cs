@@ -25,8 +25,10 @@ namespace westgateproject.Helper
                 CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=westgateproject;AccountKey=qnc9q3bWy6X+yML+LjMs3oLf10hormmOK2k+UMxZWm0XAYiH3aIlwgqHTgIJ6+t2aK02ppAHUdGPpatb3CnKFA==");
                 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
                 CloudBlobContainer container = blobClient.GetContainerReference("blob1");
-                //await container.CreateIfNotExistsAsync();
-                CloudBlockBlob blockBlob = container.GetBlockBlobReference(blobName);
+				//await container.CreateIfNotExistsAsync();
+				CloudBlockBlob blockBlob = container.GetBlockBlobReference(blobName + ".jpg");
+                blockBlob.Properties.ContentType = "image/jpeg";
+				//await blockBlob.UploadFromFileAsync(img.Path);
                 await blockBlob.UploadFromStreamAsync(img.GetStream());
             }
             else

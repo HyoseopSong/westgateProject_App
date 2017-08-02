@@ -17,6 +17,25 @@ namespace westgateproject.View
 
 			CameraButton.Clicked += CameraButton_Clicked;
 
+
+            var myImage = new Image { Aspect = Aspect.AspectFit };
+            myImage.Source = ImageSource.FromUri(new Uri("https://westgateproject.blob.core.windows.net/blob1/2017-07-31%20PM%204%3A47%3A05.jpg"));
+
+			switch (Device.RuntimePlatform)
+			{
+				case Device.Android:
+					var tapGestureRecognizer = new TapGestureRecognizer();
+					tapGestureRecognizer.Tapped += (s, e) =>
+					{
+						var img = s as Image;
+						img.Rotation += 90;
+					};
+					myImage.GestureRecognizers.Add(tapGestureRecognizer);
+					break;
+			}
+
+            myViewer.Children.Add(myImage);
+
 			syncLabel();
 		}
 
@@ -35,11 +54,16 @@ namespace westgateproject.View
 		{
 
             await SyncData.UploadContents(photoStream, UploadTextEditor.Text);
+            PhotoImage.IsVisible = false;
+            UploadTextEditor.Text = "";
 		}
 
 		private async void CameraButton_Clicked(object sender, EventArgs e)
 		{
-			photoStream = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
+            photoStream = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions() {});
+            PhotoImage.IsVisible = true;
+
+            Image temp = new Image();
 
             if (photoStream != null)
             {

@@ -114,7 +114,6 @@ namespace westgateproject.Droid
 				{
 					Console.WriteLine(ex.GetType());
 					Console.WriteLine("서버에서 정보를 불러올 수 없습니다.");
-					return;
 				}
 
             }

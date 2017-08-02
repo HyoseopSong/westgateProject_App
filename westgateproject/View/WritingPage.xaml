@@ -24,6 +24,12 @@
         </ScrollView>
     </ContentPage>
     <ContentPage>
+        <ScrollView>
+            <StackLayout x:Name="myViewer">
+            </StackLayout>
+        </ScrollView>     
+    </ContentPage>
+    <ContentPage>
         <StackLayout>
             <Label x:Name="refresh" IsVisible="false"/>
             <Label x:Name="appState" Text="" TextColor="DeepSkyBlue" FontSize="20" BackgroundColor="Azure" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
