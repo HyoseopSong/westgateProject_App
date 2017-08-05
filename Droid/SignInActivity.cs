@@ -31,7 +31,7 @@ namespace westgateproject.Droid
 
         public void OnConnectionFailed(ConnectionResult result)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -53,11 +53,6 @@ namespace westgateproject.Droid
             {
                 Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(mGoogleApiClient);
                 StartActivityForResult(signInIntent, RC_SIGN_IN);
-            }
-            else if (Intent.GetStringExtra("action") == "silent_login")
-			{
-				Console.WriteLine("SignInActivity Start!!");
-                Auth.GoogleSignInApi.SilentSignIn(mGoogleApiClient).SetResultCallback(this);
             }
             else
             {

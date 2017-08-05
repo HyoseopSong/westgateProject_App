@@ -26,10 +26,8 @@ namespace westgateproject
 			{
 				case Device.Android:
 					DependencyService.Get<ILoginHelper>().StartLogin();
-					login.IsVisible = false;
 					break;
 				case Device.iOS:
-					login.IsVisible = false;
 					break;
 			}
 			isClicked = false;
@@ -48,25 +46,28 @@ namespace westgateproject
 
 		async void startClicked(object sender, EventArgs e)
 		{
-            if (!isClicked)
-            {
-                isClicked = true;
-                await Navigation.PushAsync(new FirstPage());
-                Navigation.RemovePage(Navigation.NavigationStack[0]);
-            }
+			switch (Device.RuntimePlatform)
+			{
+				case Device.Android:
+					if (App.userEmail != null)
+					{
+						if (!isClicked)
+						{
+							isClicked = true;
+							await Navigation.PushAsync(new FirstPage());
+							Navigation.RemovePage(Navigation.NavigationStack[0]);
+						}
+					}
+					else
+					{
+						await DisplayAlert("", "로그인 진행 중 입니다.", "확인");
+					}
+					break;
+				case Device.iOS:
+					await Navigation.PushAsync(new FirstPage());
+					Navigation.RemovePage(Navigation.NavigationStack[0]);
+					break;
+			}
 		}
-
-        void disableButton(object sender, EventArgs e)
-        {
-            switch (Device.RuntimePlatform)
-            {
-                case Device.Android:
-                    DependencyService.Get<ILoginHelper>().StartLogin();
-                    break;
-                case Device.iOS:
-                    login.IsVisible = false;
-                    break;
-            }
-        }
 	}
 }

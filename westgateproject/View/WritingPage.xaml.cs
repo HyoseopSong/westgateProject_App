@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 using Plugin.Media.Abstractions;
 using westgateproject.Helper;
 using Xamarin.Forms;
@@ -11,6 +13,8 @@ namespace westgateproject.View
 	{
 		private bool onProcessing;
         private MediaFile photoStream;
+        String imageURL;
+
         public WritingPage()
 		{
 			InitializeComponent();
@@ -18,26 +22,71 @@ namespace westgateproject.View
 			CameraButton.Clicked += CameraButton_Clicked;
 
 
-            var myImage = new Image { Aspect = Aspect.AspectFit };
-            myImage.Source = ImageSource.FromUri(new Uri("https://westgateproject.blob.core.windows.net/blob1/2017-07-31%20PM%204%3A47%3A05.jpg"));
-
-			switch (Device.RuntimePlatform)
-			{
-				case Device.Android:
-					var tapGestureRecognizer = new TapGestureRecognizer();
-					tapGestureRecognizer.Tapped += (s, e) =>
-					{
-						var img = s as Image;
-						img.Rotation += 90;
-					};
-					myImage.GestureRecognizers.Add(tapGestureRecognizer);
-					break;
-			}
-
-            myViewer.Children.Add(myImage);
-
-			syncLabel();
+            syncLabel();
 		}
+        protected override async void OnAppearing()
+        {
+			IDictionary<string, string> imageSource = new Dictionary<string, string>
+			{
+				{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%84%9C%EB%AC%B8%EC%8B%9C%EC%9E%A5%20%EC%9E%85%EA%B5%AC" },
+				{ "동산상가 2층 동쪽 출입구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EB%8F%99%EC%82%B0%EC%83%81%EA%B0%80" },
+				{ "건해산물상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EA%B1%B4%ED%95%B4%EC%82%B0%EB%AC%BC%EC%83%81%EA%B0%80" },
+				{ "2지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2%EC%A7%80%EA%B5%AC" },
+				{ "1지구 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/1%EC%A7%80%EA%B5%AC" },
+				{ "아진상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%95%84%EC%A7%84%EC%83%81%EA%B0%80" },
+				{ "5지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/5%EC%A7%80%EA%B5%AC" }
+			};
+			foreach (var temp in imageSource)
+			{
+				var myImage = new Image { Aspect = Aspect.AspectFit };
+				imageURL = temp.Value;
+				var contentText = temp.Key;
+
+				switch (Device.RuntimePlatform)
+				{
+					case Device.Android:
+						var tapGestureRecognizer = new TapGestureRecognizer();
+						tapGestureRecognizer.Tapped += (s, e) =>
+						{
+							var img = s as Image;
+							img.Rotation += 90;
+						};
+						myImage.GestureRecognizers.Add(tapGestureRecognizer);
+						Debug.WriteLine("imageURL : " + imageURL);
+                        var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
+						myImage.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+						break;
+					case Device.iOS:
+						myImage.Source = ImageSource.FromUri(new Uri(imageURL));
+						break;
+				}
+
+				myViewer.Children.Add(myImage);
+
+				var myLabel = new Label()
+				{
+					Text = temp.Key
+				};
+				myViewer.Children.Add(myLabel);
+
+				var myButton = new Button()
+				{
+					Text = "삭제"
+				};
+				myViewer.Children.Add(myButton);
+
+				var myBoxView = new BoxView();
+				myBoxView.HeightRequest = 10;
+				myBoxView.BackgroundColor = Color.LightGray;
+				myViewer.Children.Add(myBoxView);
+			}
+            Debug.WriteLine("???");
+        }
+
+        public void myThreadExample()
+        {
+            
+        }
 
 		async void OnItemClicked(object sender, EventArgs e)
 		{
@@ -60,7 +109,10 @@ namespace westgateproject.View
 
 		private async void CameraButton_Clicked(object sender, EventArgs e)
 		{
-            photoStream = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions() {});
+            photoStream = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
+			{
+                PhotoSize = PhotoSize.Small
+			});
             PhotoImage.IsVisible = true;
 
             Image temp = new Image();

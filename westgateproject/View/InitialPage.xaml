@@ -2,14 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:westgateproject" x:Class="westgateproject.InitialPage" NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
 		<AbsoluteLayout BackgroundColor="BlanchedAlmond">
-            <Label Text="서문시장" FontAttributes="Bold" FontSize="60" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+            <Label Text="서문시장.net" FontAttributes="Bold" FontSize="40" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                 AbsoluteLayout.LayoutBounds="0.5, 0.2, 0.7, 0.2" AbsoluteLayout.LayoutFlags="All"/>
             <Label Text="제작 : 쇠젓가락" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                 AbsoluteLayout.LayoutBounds="0.5, 0.4, 0.4, 0.07" AbsoluteLayout.LayoutFlags="All"/>
 			<Button x:Name="guest" Text="시작" FontSize="20" Clicked = "startClicked" BackgroundColor="Aqua"
                 AbsoluteLayout.LayoutBounds="0.5, 0.65, 0.4, 0.07" AbsoluteLayout.LayoutFlags="All"/>
-			<Button x:Name="login" Text="로그인" FontSize="20" Clicked = "disableButton" BackgroundColor="Aqua"
-                AbsoluteLayout.LayoutBounds="0.5, 0.75, 0.4, 0.07" AbsoluteLayout.LayoutFlags="All"/>
 
             <Label x:Name="syncStatus" Text="서버에서 지도 정보를 가져오고 있습니다..." FontSize="15" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                 AbsoluteLayout.LayoutBounds="0.5, 0.9, 1, 0.07" AbsoluteLayout.LayoutFlags="All"/>

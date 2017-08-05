@@ -5,6 +5,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using westgateproject.View;
 using System.Threading.Tasks;
+using System.IO;
+using westgateproject.Helper;
 
 namespace westgateproject
 {
@@ -287,17 +289,18 @@ namespace westgateproject
 				}
 			}
 		}
-		//protected override void OnSizeAllocated(double width, double height)
-		//{
-		//	base.OnSizeAllocated(width, height);
-		//	if (this.Width > this.Height)
-		//	{
-		//		layout.Orientation = StackOrientation.Horizontal;
-		//	}
-		//	else
-		//	{
-		//		layout.Orientation = StackOrientation.Vertical;
-		//	}
-		//}
+        //protected override void OnSizeAllocated(double width, double height)
+        //{
+        //	base.OnSizeAllocated(width, height);
+        //	if (this.Width > this.Height)
+        //	{
+        //		layout.Orientation = StackOrientation.Horizontal;
+        //	}
+        //	else
+        //	{
+        //		layout.Orientation = StackOrientation.Vertical;
+        //	}
+        //}
+
 	}
 }

@@ -26,41 +26,53 @@ namespace westgateproject.iOS
 				return;
 			}
 
-			var signInButton = new SignInButton()
-			{
-			    Frame = new CGRect(20, 100, 150, 44)
-			};
-			View.AddSubview(signInButton);
+            //var signInButton = new SignInButton()
+            //{
+            //    Frame = new CGRect(20, 100, 150, 44)
+            //};
+            //View.AddSubview(signInButton);
 
+            var height = App.ScreenHeight;
+            var width = App.ScreenWidth;
 
+            var loginStatus = new UILabel(new CGRect((width/2)-(width/4), height*2/3, width/2, height/10))
+            {
+                Text = "로그인이 완료 되었습니다."
+            };
+            //View.AddSubview(loginStatus);
+            //var signInButton = UIButton.FromType(UIButtonType.System);
+            //signInButton.SetTitle("SignIn!", UIControlState.Normal);
+            //signInButton.Frame = new System.Drawing.RectangleF(20, 100, 150, 44);
+            //View.AddSubview(signInButton);
 
+            //var signOutButton = UIButton.FromType(UIButtonType.System);
+            //signOutButton.SetTitle("SignOut!", UIControlState.Normal);
+            //signOutButton.Frame = new System.Drawing.RectangleF(20, 150, 150, 44);
+            //View.AddSubview(signOutButton);
 
-			//var signInButton = UIButton.FromType(UIButtonType.System);
-			//signInButton.SetTitle("SignIn!", UIControlState.Normal);
-			//signInButton.Frame = new System.Drawing.RectangleF(20, 100, 150, 44);
-			//View.AddSubview(signInButton);
+            //var disconButton = UIButton.FromType(UIButtonType.System);
+            //disconButton.SetTitle("Disconnect!", UIControlState.Normal);
+            //disconButton.Frame = new System.Drawing.RectangleF(20, 200, 150, 44);
+            //View.AddSubview(disconButton);
 
-			var signOutButton = UIButton.FromType(UIButtonType.System);
-			signOutButton.SetTitle("SignOut!", UIControlState.Normal);
-			signOutButton.Frame = new System.Drawing.RectangleF(20, 150, 150, 44);
-			View.AddSubview(signOutButton);
-
-			var disconButton = UIButton.FromType(UIButtonType.System);
-			disconButton.SetTitle("Disconnect!", UIControlState.Normal);
-			disconButton.Frame = new System.Drawing.RectangleF(20, 200, 150, 44);
-			View.AddSubview(disconButton);
-
-			// Assign the SignIn Delegates to receive callbacks
-			SignIn.SharedInstance.UIDelegate = this;
+            // Assign the SignIn Delegates to receive callbacks
+            SignIn.SharedInstance.UIDelegate = this;
 			SignIn.SharedInstance.Delegate = this;
 
-            // Sign the user in automatically
-            if(SignIn.SharedInstance.CurrentUser == null)
+
+
+			// Sign the user in automatically
+			if(SignIn.SharedInstance.CurrentUser == null)
 			{
 				//SignIn.SharedInstance.SignInUserSilently();
-                SignIn.SharedInstance.SignInUser();
-				ToggleAuthUI();
-				Debug.WriteLine("after initial Toggle");
+				SignIn.SharedInstance.SignInUser();
+				//ToggleAuthUI();
+				Debug.WriteLine("currentUser null : " + SignIn.SharedInstance.CurrentUser);
+			}
+			else
+			{
+				SignIn.SharedInstance.SignInUser();
+				Debug.WriteLine("currentUser not null");
 			}
 
 
@@ -85,7 +97,7 @@ namespace westgateproject.iOS
 
 					Debug.WriteLine("You are signed in");
 					//statusText.Text = string.Format ("Signed in user: {0}", e.User.Profile.Name);
-					ToggleAuthUI();
+					//ToggleAuthUI();
 
 					IDictionary<string, string> result = new Dictionary<string, string>();
 					try
@@ -95,6 +107,7 @@ namespace westgateproject.iOS
 						{
 							Debug.WriteLine("Key : " + temp.Key + ", Value : " + temp.Value);
                         }
+                        loginStatus.Text = "로그인 완료 되었습니다.";
 					}
 					catch (Exception ex)
 					{
@@ -113,42 +126,42 @@ namespace westgateproject.iOS
 			//	ToggleAuthUI();
 			//};
 
-			signOutButton.TouchUpInside += (sender, eo) =>
-			{
-				SignIn.SharedInstance.SignOutUser();
-				ToggleAuthUI();
-			};
+			//signOutButton.TouchUpInside += (sender, eo) =>
+			//{
+			//	SignIn.SharedInstance.SignOutUser();
+			//	ToggleAuthUI();
+			//};
 
-			disconButton.TouchUpInside += (sender, ed) =>
-			{
-				SignIn.SharedInstance.DisconnectUser();
-			};
+			//disconButton.TouchUpInside += (sender, ed) =>
+			//{
+			//	SignIn.SharedInstance.DisconnectUser();
+			//};
 
-			SignIn.SharedInstance.Disconnected += (sender, ed) =>
-			{
+			//SignIn.SharedInstance.Disconnected += (sender, ed) =>
+			//{
 				// Perform any operations when the user disconnects from app here.
-				ToggleAuthUI();
-			};
+				//ToggleAuthUI();
+			//};
 
-			void ToggleAuthUI()
-			{
-				if (SignIn.SharedInstance.CurrentUser == null || SignIn.SharedInstance.CurrentUser.Authentication == null)
-				{
-					Debug.WriteLine("Toggle Signed out");
-					// Not signed in
-					signInButton.Hidden = false;
-					signOutButton.Hidden = true;
-					disconButton.Hidden = true;
-				}
-				else
-				{
-					Debug.WriteLine("Toggle Signed in");
-					// Signed in
-					signInButton.Hidden = true;
-					signOutButton.Hidden = false;
-					disconButton.Hidden = false;
-				}
-			}
+			//void ToggleAuthUI()
+			//{
+			//	if (SignIn.SharedInstance.CurrentUser == null || SignIn.SharedInstance.CurrentUser.Authentication == null)
+			//	{
+			//		Debug.WriteLine("Toggle Signed out");
+			//		// Not signed in
+			//		signInButton.Hidden = false;
+			//		signOutButton.Hidden = true;
+			//		disconButton.Hidden = true;
+			//	}
+			//	else
+			//	{
+			//		Debug.WriteLine("Toggle Signed in");
+			//		// Signed in
+			//		signInButton.Hidden = true;
+			//		signOutButton.Hidden = false;
+			//		disconButton.Hidden = false;
+			//	}
+			//}
 			//base.OnElementChanged(e);
 
 			//if (e.OldElement != null || Element == null)

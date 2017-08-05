@@ -176,6 +176,15 @@
     <BundleResource Include="GoogleService-Info.plist" />
     <BundleResource Include="Resources\monkey.png" />
     <BundleResource Include="Resources\xamarin.png" />
+    <BundleResource Include="Resources\save%403x.png" />
+    <BundleResource Include="Resources\save%402x.png" />
+    <BundleResource Include="Resources\save.png" />
+    <BundleResource Include="Resources\list%403x.png" />
+    <BundleResource Include="Resources\list%402x.png" />
+    <BundleResource Include="Resources\list.png" />
+    <BundleResource Include="Resources\advertisement%403x.png" />
+    <BundleResource Include="Resources\advertisement%402x.png" />
+    <BundleResource Include="Resources\advertisement.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

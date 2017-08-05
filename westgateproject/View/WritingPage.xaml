@@ -3,10 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="westgateproject.View.WritingPage"
              Title="About" Icon="settings.png">
-    <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="REFRESH" Clicked="OnItemClicked"/>
-    </TabbedPage.ToolbarItems>
-    <ContentPage>
+    <ContentPage Title="등록" Icon="save.png">
         <ScrollView>
 			<Grid>
                 <Grid.RowDefinitions>
@@ -16,20 +13,20 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 				
-                <Button x:Name="CameraButton" Text="Take Photo" />
+                <Button x:Name="CameraButton" Text="사진 촬영" />
 		        <Image x:Name="PhotoImage"  Grid.Row="1" />
                 <Editor x:Name="UploadTextEditor" Keyboard="Chat" Grid.Row="2" BackgroundColor="Lime" TextChanged="EditorTextChanged" HeightRequest="200"/>
-                <Button x:Name="Upload" Text="Upload" Grid.Row="3" Clicked="UploadButton_Clicked" />
+                <Button x:Name="Upload" Text="등록" Grid.Row="3" Clicked="UploadButton_Clicked" />
             </Grid>
         </ScrollView>
     </ContentPage>
-    <ContentPage>
+    <ContentPage Title="관리" Icon="list.png">
         <ScrollView>
             <StackLayout x:Name="myViewer">
             </StackLayout>
         </ScrollView>     
     </ContentPage>
-    <ContentPage>
+    <ContentPage Title="소식" Icon="advertisement.png">
         <StackLayout>
             <Label x:Name="refresh" IsVisible="false"/>
             <Label x:Name="appState" Text="" TextColor="DeepSkyBlue" FontSize="20" BackgroundColor="Azure" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"/>

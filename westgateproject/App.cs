@@ -49,6 +49,7 @@ namespace westgateproject
 
         public int ResumeAtShopInformationID { get; set; }
 
+
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
