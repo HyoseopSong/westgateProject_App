@@ -55,21 +55,18 @@ namespace westgateproject.Droid
 
 			//ThreadPool.QueueUserWorkItem(o => SlowMethod());
 
+            BitmapFactory.Options options = await GetBitmapOptionsOfImage(urlString);
+			//         BitmapFactory.Options options = new BitmapFactory.Options()
+			//         {
+			//             InSampleSize = 4
+			//};
 			URL url = new URL(urlString);
 			HttpURLConnection connection = (HttpURLConnection)url.OpenConnection();
 			connection.DoInput = true;
 			await Task.Run(() => connection.Connect());
 			Stream inputSt = await Task.Run(() => connection.InputStream);
-            //BitmapFactory.Options options = await GetBitmapOptionsOfImage(inputSt);
-            //Bitmap bitmapToDisplay = await LoadScaledDownBitmapForDisplayAsync(inputSt, options, (int)App.ScreenWidth);
-            //System.Console.WriteLine("hahahahaha");
-            //await bitmapToDisplay.CompressAsync(Bitmap.CompressFormat.Png, 0, ms);
-            //System.Console.WriteLine("NiceNiceNice");
-            BitmapFactory.Options options = new BitmapFactory.Options()
-            {
-                InSampleSize = 4
-			};
-			Bitmap myBitmap = await BitmapFactory.DecodeStreamAsync(connection.InputStream, null, options);
+			Bitmap myBitmap = await LoadScaledDownBitmapForDisplayAsync(urlString, options, (int)App.ScreenWidth);
+			//Bitmap myBitmap = await BitmapFactory.DecodeStreamAsync(inputSt, null, options);
             var ms = new MemoryStream();
 			myBitmap.Compress(Bitmap.CompressFormat.Png, 0, ms);
             //return myBitmap;
@@ -109,37 +106,45 @@ namespace westgateproject.Droid
 				}
 
 			}
-
+            System.Console.WriteLine("inSampleSize : " + inSampleSize);
 			return (int)inSampleSize;
 		}
 
-		public async Task<Bitmap> LoadScaledDownBitmapForDisplayAsync(Stream inputStream, BitmapFactory.Options options, int reqWidth)
+		public async Task<Bitmap> LoadScaledDownBitmapForDisplayAsync(string imageURL, BitmapFactory.Options options, int reqWidth)
 		{
-			//BitmapFactory.Options options = new BitmapFactory.Options()
-			//{
-			//	InSampleSize = 2
-			//};			
-
 			// Calculate inSampleSize
 			options.InSampleSize = CalculateInSampleSize(options, reqWidth);
 
 			// Decode bitmap with inSampleSize set
 			options.InJustDecodeBounds = false;
 
-			return await BitmapFactory.DecodeStreamAsync(inputStream, new Rect(0, 0, 0, 0), options);
+
+			URL url = new URL(imageURL);
+			HttpURLConnection connection = (HttpURLConnection)url.OpenConnection();
+			connection.DoInput = true;
+			await Task.Run(() => connection.Connect());
+			Stream inputSt = await Task.Run(() => connection.InputStream);
+
+			return await BitmapFactory.DecodeStreamAsync(inputSt, null, options);
 		}
 
-        async Task<BitmapFactory.Options> GetBitmapOptionsOfImage(Stream inputStream)
+        async Task<BitmapFactory.Options> GetBitmapOptionsOfImage(string imageURL)
         {
+
+			URL url = new URL(imageURL);
+			HttpURLConnection connection = (HttpURLConnection)url.OpenConnection();
+			connection.DoInput = true;
+			await Task.Run(() => connection.Connect());
+			Stream inputSt = await Task.Run(() => connection.InputStream);
             BitmapFactory.Options options = new BitmapFactory.Options
                                             {
                                                 InJustDecodeBounds = true
                                             };
 
             // The result will be null because InJustDecodeBounds == true.
-            Bitmap result=  await BitmapFactory.DecodeStreamAsync(inputStream, new Rect(0, 0, 0, 0), options);
+            Bitmap result=  await BitmapFactory.DecodeStreamAsync(inputSt, null, options);
 
-
+            System.Console.WriteLine("options.OutWidth : " + options.OutWidth + ", options.OutHeight : " + options.OutHeight);
             //int imageHeight = options.OutHeight;
             //int imageWidth = options.OutWidth;
 

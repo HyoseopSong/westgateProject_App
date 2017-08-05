@@ -35,11 +35,14 @@ namespace westgateproject.iOS
             var height = App.ScreenHeight;
             var width = App.ScreenWidth;
 
-            var loginStatus = new UILabel(new CGRect((width/2)-(width/4), height*2/3, width/2, height/10))
+            var loginStatus = new UILabel(new CGRect((width/2)-(width/5), height*2/3, width/2, height*7/100))
             {
-                Text = "로그인이 완료 되었습니다."
+                Text = "로그인 준비 중 입니다.",
+                TextAlignment = UITextAlignment.Center,
+                BackgroundColor = UIColor.Magenta
             };
-            //View.AddSubview(loginStatus);
+            View.AddSubview(loginStatus);
+
             //var signInButton = UIButton.FromType(UIButtonType.System);
             //signInButton.SetTitle("SignIn!", UIControlState.Normal);
             //signInButton.Frame = new System.Drawing.RectangleF(20, 100, 150, 44);
@@ -61,11 +64,12 @@ namespace westgateproject.iOS
 
 
 
-			// Sign the user in automatically
+            // Sign the user in automatically
 			if(SignIn.SharedInstance.CurrentUser == null)
 			{
+				loginStatus.Text = "Logging in...";
 				//SignIn.SharedInstance.SignInUserSilently();
-				SignIn.SharedInstance.SignInUser();
+				SignIn.SharedInstance.SignInUserSilently();
 				//ToggleAuthUI();
 				Debug.WriteLine("currentUser null : " + SignIn.SharedInstance.CurrentUser);
 			}
@@ -75,7 +79,6 @@ namespace westgateproject.iOS
 				Debug.WriteLine("currentUser not null");
 			}
 
-
 			SignIn.SharedInstance.SignedIn += async (sender, ei) =>
 			{
                 // Perform any operations on signed in user here.
@@ -83,7 +86,7 @@ namespace westgateproject.iOS
                 {
                     { "id_token", ei.User.Authentication.IdToken }
                 };
-
+                loginStatus.Text = "Login Completed!!";
                 var initialpage = e.NewElement as ContentPage;
 
 

@@ -64,8 +64,15 @@ namespace westgateproject
 					}
 					break;
 				case Device.iOS:
-					await Navigation.PushAsync(new FirstPage());
-					Navigation.RemovePage(Navigation.NavigationStack[0]);
+                    if (App.userEmail != null)
+                    {
+                        await Navigation.PushAsync(new FirstPage());
+                        Navigation.RemovePage(Navigation.NavigationStack[0]);
+                    }
+                    else
+                    {
+						await DisplayAlert("", "로그인 진행 중 입니다.", "확인");
+                    }
 					break;
 			}
 		}
