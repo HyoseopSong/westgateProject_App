@@ -105,6 +105,8 @@ namespace westgateproject.Droid
 					inSampleSize *= 2;
 				}
 
+                inSampleSize /= 2;
+
 			}
             System.Console.WriteLine("inSampleSize : " + inSampleSize);
 			return (int)inSampleSize;

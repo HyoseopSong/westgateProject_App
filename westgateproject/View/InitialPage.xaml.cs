@@ -33,6 +33,11 @@ namespace westgateproject
 			isClicked = false;
 		}
 
+        public Button getGuest()
+        {
+            return guest;
+        }
+
 		async protected override void OnAppearing()
 		{
             // Handle when your app starts
@@ -46,35 +51,24 @@ namespace westgateproject
 
 		async void startClicked(object sender, EventArgs e)
 		{
-			switch (Device.RuntimePlatform)
-			{
-				case Device.Android:
-					if (App.userEmail != null)
-					{
-						if (!isClicked)
-						{
-							isClicked = true;
-							await Navigation.PushAsync(new FirstPage());
-							Navigation.RemovePage(Navigation.NavigationStack[0]);
-						}
-					}
-					else
-					{
-						await DisplayAlert("", "로그인 진행 중 입니다.", "확인");
-					}
-					break;
-				case Device.iOS:
-                    if (App.userEmail != null)
-                    {
-                        await Navigation.PushAsync(new FirstPage());
-                        Navigation.RemovePage(Navigation.NavigationStack[0]);
-                    }
-                    else
-                    {
-						await DisplayAlert("", "로그인 진행 중 입니다.", "확인");
-                    }
-					break;
-			}
+            if(App.userEmail != null)
+            {
+                switch(Device.RuntimePlatform)
+                {
+                    case Device.Android:
+                        if (!isClicked)
+                            isClicked = true;
+                        break;
+                    case Device.iOS:
+                        break;
+                }
+                await Navigation.PushAsync(new FirstPage());
+                Navigation.RemovePage((Navigation.NavigationStack[0]));
+            }
+            else
+            {
+                await DisplayAlert("", "You need to be loged in.", "OK");
+            }
 		}
 	}
 }

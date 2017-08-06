@@ -1,30 +1,10 @@
-﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/InitialPageRenderer.cs">
+﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/ImageScaleHelper.cs">
     <Files>
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="52" Column="27" />
-      <File FileName="westgateproject/Helper/IImageScaleHelper.cs" Line="12" Column="1" />
-      <File FileName="../LoadingLargeBitmaps/MainActivity.cs" Line="41" Column="9" />
-      <File FileName="iOS/InitialPageRenderer.cs" Line="81" Column="1" />
-      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="73" Column="22" />
-      <File FileName="westgateproject/View/WritingPage.xaml" Line="60" Column="14" />
-      <File FileName="westgateproject/View/InitialPage.xaml" Line="17" Column="1" />
-      <File FileName="Droid/ImageScaleHelper.cs" Line="104" Column="6" NotebookId="1" />
+      <File FileName="Droid/SignInActivity.cs" Line="27" Column="9" />
+      <File FileName="Droid/ImageScaleHelper.cs" Line="58" Column="67" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="41" Column="32" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="westgateproject" expanded="True">
-            <Node name="westgateproject" expanded="True">
-              <Node name="View" expanded="True" />
-            </Node>
-            <Node name="westgateproject.Droid" expanded="True" />
-            <Node name="westgateproject.iOS" expanded="True">
-              <Node name="InitialPageRenderer.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />

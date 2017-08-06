@@ -27,7 +27,7 @@ namespace westgateproject.iOS
 
 			var googleServiceDictionary = NSDictionary.FromFile("GoogleService-Info.plist");
 			SignIn.SharedInstance.ClientID = googleServiceDictionary["CLIENT_ID"].ToString();
-			SignIn.SharedInstance.ServerClientID = @"62511156556-eb28nq2m58mqe2n4vba2j09gjqdfliu7.apps.googleusercontent.com";
+            SignIn.SharedInstance.ServerClientID = Constants.WebClientID;
 
 
 

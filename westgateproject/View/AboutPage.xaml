@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.AboutPage" Title="About" Icon="settings.png">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.AboutPage" Title="서문시장.net" Icon="settings.png">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="REFRESH" Clicked="OnItemClicked"/>
     </ContentPage.ToolbarItems>

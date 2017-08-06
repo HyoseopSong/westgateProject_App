@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using CoreGraphics;
 using Foundation;
 using Google.SignIn;
@@ -17,6 +18,122 @@ namespace westgateproject.iOS
 {
     public class InitialPageRenderer : PageRenderer, ISignInDelegate, ISignInUIDelegate
     {
+        UILabel loginStatus;
+        Button guestButton;
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+        }
+
+        public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+			var height = (float)App.ScreenHeight;
+			var width = (float)App.ScreenWidth;
+
+            loginStatus = new UILabel(new CGRect(0 * width, 0.8 * height, 1 * width, 0.07 * height))
+            {
+                Text = "로그인 중 입니다...",
+                TextAlignment = UITextAlignment.Center,
+                TextColor = UIColor.Blue
+			};
+			View.AddSubview(loginStatus);
+
+
+
+			//var signOutButton = UIButton.FromType(UIButtonType.System);
+			//signOutButton.SetTitle("SignOut!", UIControlState.Normal);
+			//signOutButton.Frame = new System.Drawing.RectangleF(0.3f * width, 0.765f * height, 0.4f * width, 0.07f * height);
+			//View.AddSubview(signOutButton);
+
+			//var disconButton = UIButton.FromType(UIButtonType.System);
+			//disconButton.SetTitle("Disconnect!", UIControlState.Normal);
+			//disconButton.Frame = new System.Drawing.RectangleF(0.6f * width, 0.765f * height, 0.2f * width, 0.07f * height);
+			//View.AddSubview(disconButton);
+   //         SignIn.SharedInstance.SignedIn +=  (sender, ei) =>
+			//{
+			//	// Perform any operations on signed in user here.
+			//	var token = new JObject
+			//	{
+			//		{ "id_token", ei.User.Authentication.IdToken }
+			//	};
+			//	loginStatus.Text = "Login Completed!!";
+
+
+			//	//Debug.WriteLine("IdToken : " + ei.User.Authentication.IdToken);
+			//	//Debug.WriteLine("AccessToken : " + ei.User.Authentication.AccessToken);
+			//	//Debug.WriteLine(ei.User.UserID + " " + ei.User.Profile.FamilyName + " " + ei.User.Profile.Email + " " + ei.User.Authentication.IdToken);
+			//	//App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token);
+			//	//App.userEmail = ei.User.Profile.Email;
+			//	//if (ei.User != null && ei.Error == null)
+			//	//{
+
+			//	//	Debug.WriteLine("You are signed in");
+			//	//	//statusText.Text = string.Format ("Signed in user: {0}", e.User.Profile.Name);
+			//	//	//ToggleAuthUI();
+
+			//	//	IDictionary<string, string> result = new Dictionary<string, string>();
+			//	//	try
+			//	//	{
+			//	//		result = await App.Client.InvokeApiAsync<IDictionary<string, string>>("notice", System.Net.Http.HttpMethod.Get, null);
+			//	//		foreach (var temp in result)
+			//	//		{
+			//	//			Debug.WriteLine("Key : " + temp.Key + ", Value : " + temp.Value);
+			//	//		}
+			//	//		loginStatus.Text = "로그인 완료 되었습니다.";
+			//	//	}
+			//	//	catch (Exception ex)
+			//	//	{
+			//	//		Debug.WriteLine(ex.GetType());
+			//	//		Debug.WriteLine("서버에서 정보를 불러올 수 없습니다.");
+			//	//		return;
+			//	//	}
+			//	//}
+
+			//};
+
+            //signInButton.TouchUpInside += (sender, eo) =>
+            //{
+            //    loginStatus.Text = "Logging in...";
+
+            //    //if (SignIn.SharedInstance.CurrentUser != null)
+            //    //{
+            //    //    var token = new JObject
+            //    //    {
+	           //    //     { "id_token", SignIn.SharedInstance.CurrentUser.Authentication.IdToken }
+	           //    // };
+            //    //    App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token);
+            //    //    App.userEmail = SignIn.SharedInstance.CurrentUser.Profile.Email;
+
+            //    //    loginStatus.Text = "로그인 완료 되었습니다.";
+            //    //}
+            //};
+
+			//signOutButton.TouchUpInside += (sender, eo) =>
+			//{
+			//	loginStatus.Text = "SignOutButton is pressed!!";
+			//	SignIn.SharedInstance.SignOutUser();
+   //             App.userEmail = null;
+			//	//ToggleAuthUI();
+			//};
+
+			//disconButton.TouchUpInside += (sender, ed) =>
+			//{
+			//	loginStatus.Text = "Disconnect Button Pressed!!";
+			//	SignIn.SharedInstance.DisconnectUser();
+			//};
+
+
+			// Assign the SignIn Delegates to receive callbacks
+			SignIn.SharedInstance.UIDelegate = this;
+			SignIn.SharedInstance.Delegate = this;
+
+
+			SignIn.SharedInstance.SignInUserSilently();
+
+			
+        }
+
         protected override void OnElementChanged(VisualElementChangedEventArgs e)
 		{
 			base.OnElementChanged(e);
@@ -26,208 +143,46 @@ namespace westgateproject.iOS
 				return;
 			}
 
-            //var signInButton = new SignInButton()
-            //{
-            //    Frame = new CGRect(20, 100, 150, 44)
-            //};
-            //View.AddSubview(signInButton);
+            var currentView = e.NewElement as InitialPage;
+            guestButton = currentView.getGuest();
+            guestButton.IsVisible = false;
 
-            var height = App.ScreenHeight;
-            var width = App.ScreenWidth;
-
-            var loginStatus = new UILabel(new CGRect((width/2)-(width/5), height*2/3, width/2, height*7/100))
-            {
-                Text = "로그인 준비 중 입니다.",
-                TextAlignment = UITextAlignment.Center,
-                BackgroundColor = UIColor.Magenta
-            };
-            View.AddSubview(loginStatus);
-
-            //var signInButton = UIButton.FromType(UIButtonType.System);
-            //signInButton.SetTitle("SignIn!", UIControlState.Normal);
-            //signInButton.Frame = new System.Drawing.RectangleF(20, 100, 150, 44);
-            //View.AddSubview(signInButton);
-
-            //var signOutButton = UIButton.FromType(UIButtonType.System);
-            //signOutButton.SetTitle("SignOut!", UIControlState.Normal);
-            //signOutButton.Frame = new System.Drawing.RectangleF(20, 150, 150, 44);
-            //View.AddSubview(signOutButton);
-
-            //var disconButton = UIButton.FromType(UIButtonType.System);
-            //disconButton.SetTitle("Disconnect!", UIControlState.Normal);
-            //disconButton.Frame = new System.Drawing.RectangleF(20, 200, 150, 44);
-            //View.AddSubview(disconButton);
-
-            // Assign the SignIn Delegates to receive callbacks
-            SignIn.SharedInstance.UIDelegate = this;
-			SignIn.SharedInstance.Delegate = this;
-
-
-
-            // Sign the user in automatically
-			if(SignIn.SharedInstance.CurrentUser == null)
-			{
-				loginStatus.Text = "Logging in...";
-				//SignIn.SharedInstance.SignInUserSilently();
-				SignIn.SharedInstance.SignInUserSilently();
-				//ToggleAuthUI();
-				Debug.WriteLine("currentUser null : " + SignIn.SharedInstance.CurrentUser);
-			}
-			else
-			{
-				SignIn.SharedInstance.SignInUser();
-				Debug.WriteLine("currentUser not null");
-			}
-
-			SignIn.SharedInstance.SignedIn += async (sender, ei) =>
-			{
-                // Perform any operations on signed in user here.
-                var token = new JObject
-                {
-                    { "id_token", ei.User.Authentication.IdToken }
-                };
-                loginStatus.Text = "Login Completed!!";
-                var initialpage = e.NewElement as ContentPage;
-
-
-                Debug.WriteLine("IdToken : " + ei.User.Authentication.IdToken);
-				Debug.WriteLine("AccessToken : " + ei.User.Authentication.AccessToken);
-				Debug.WriteLine(ei.User.UserID + " " + ei.User.Profile.FamilyName + " " + ei.User.Profile.Email + " " + ei.User.Authentication.IdToken);
-				App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token);
-                App.userEmail = ei.User.Profile.Email;
-				if (ei.User != null && ei.Error == null)
-				{
-
-					Debug.WriteLine("You are signed in");
-					//statusText.Text = string.Format ("Signed in user: {0}", e.User.Profile.Name);
-					//ToggleAuthUI();
-
-					IDictionary<string, string> result = new Dictionary<string, string>();
-					try
-					{
-						result = await App.Client.InvokeApiAsync<IDictionary<string, string>>("notice", System.Net.Http.HttpMethod.Get, null);
-                        foreach(var temp in result)
-						{
-							Debug.WriteLine("Key : " + temp.Key + ", Value : " + temp.Value);
-                        }
-                        loginStatus.Text = "로그인 완료 되었습니다.";
-					}
-					catch (Exception ex)
-					{
-						Debug.WriteLine(ex.GetType());
-						Debug.WriteLine("서버에서 정보를 불러올 수 없습니다.");
-						return;
-					}
-				}
-
-			};
-
-
-			//signInButton.TouchUpInside += (sender, eo) =>
-			//{
-			//	SignIn.SharedInstance.SignInUser();
-			//	ToggleAuthUI();
-			//};
-
-			//signOutButton.TouchUpInside += (sender, eo) =>
-			//{
-			//	SignIn.SharedInstance.SignOutUser();
-			//	ToggleAuthUI();
-			//};
-
-			//disconButton.TouchUpInside += (sender, ed) =>
-			//{
-			//	SignIn.SharedInstance.DisconnectUser();
-			//};
-
-			//SignIn.SharedInstance.Disconnected += (sender, ed) =>
-			//{
-				// Perform any operations when the user disconnects from app here.
-				//ToggleAuthUI();
-			//};
-
-			//void ToggleAuthUI()
-			//{
-			//	if (SignIn.SharedInstance.CurrentUser == null || SignIn.SharedInstance.CurrentUser.Authentication == null)
-			//	{
-			//		Debug.WriteLine("Toggle Signed out");
-			//		// Not signed in
-			//		signInButton.Hidden = false;
-			//		signOutButton.Hidden = true;
-			//		disconButton.Hidden = true;
-			//	}
-			//	else
-			//	{
-			//		Debug.WriteLine("Toggle Signed in");
-			//		// Signed in
-			//		signInButton.Hidden = true;
-			//		signOutButton.Hidden = false;
-			//		disconButton.Hidden = false;
-			//	}
-			//}
-			//base.OnElementChanged(e);
-
-			//if (e.OldElement != null || Element == null)
-			//{
-			//	return;
-			//}
-
-
-			//var signInButton = new SignInButton()
-			//{
-			//    Frame = new CGRect(100, 300, 150, 44)
-			//};
-			//View.AddSubview(signInButton);
-
-			////var signInButton = UIButton.FromType(UIButtonType.System);
-			////signInButton.SetTitle("SignIn!", UIControlState.Normal);
-			////signInButton.Frame = new System.Drawing.RectangleF(20, 100, 150, 44);
-			////View.AddSubview(signInButton);
-
-
-
-			//// Assign the SignIn Delegates to receive callbacks
-			//SignIn.SharedInstance.UIDelegate = this;
-			//SignIn.SharedInstance.Delegate = this;
-
-			////signInButton.TouchUpInside += (sender, eo) =>
-			////{
-			////	SignIn.SharedInstance.SignInUser();
-			////	Debug.WriteLine("after signInButton TouchUpInside!!");
-			////};
-
-			//SignIn.SharedInstance.SignedIn += async (sender, ei) =>
-			//{
-			//	Debug.WriteLine("SignedIn!!");
-   //             // Perform any operations on signed in user here.
-   //             var token = new JObject
-   //             {
-   //                 { "id_token", ei.User.Authentication.IdToken }
-   //             };
-   //             App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token);
-
-			//	if (ei.User != null && ei.Error == null)
-			//	{
-
-			//		IDictionary<string, string> result = new Dictionary<string, string>();
-			//		try
-			//		{
-			//			result = await App.Client.InvokeApiAsync<IDictionary<string, string>>("notice", System.Net.Http.HttpMethod.Get, null);
-			//			Debug.WriteLine(result);
-			//		}
-			//		catch (Exception ex)
-			//		{
-			//			return;
-			//		}
-			//	}
-
-			//};
         }
 
 
-        public void DidSignIn(SignIn signIn, GoogleUser user, NSError error)
-        {
-            Debug.WriteLine("Did Sign In method is executed!!");
+        public async void DidSignIn(SignIn signIn, GoogleUser user, NSError error)
+		{
+            if (SignIn.SharedInstance.CurrentUser == null)
+            {
+				var height = (float)App.ScreenHeight;
+				var width = (float)App.ScreenWidth;
+
+				//SignIn.SharedInstance.SignInUser();
+				
+                loginStatus.Text = "Please touch Sign in Button";
+
+
+				var signInButton = new SignInButton()
+				{
+					Frame = new System.Drawing.RectangleF(0.3f * width, 0.665f * height, 0.4f * width, 0.07f * height)
+				};
+				View.AddSubview(signInButton);
+
+                return;
+            }
+
+			var token = SignIn.SharedInstance.CurrentUser.Authentication.IdToken;
+			var token1 = new JObject
+				{
+					{ "id_token", token }
+				};
+			App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token1);
+		    App.userEmail = SignIn.SharedInstance.CurrentUser.Profile.Email;
+
+			loginStatus.Text = "Successfully signed in!";
+			Debug.WriteLine("Current User : " + SignIn.SharedInstance.CurrentUser);
+
+            guestButton.IsVisible = true;
         }
 
     }

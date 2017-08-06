@@ -17,6 +17,7 @@ namespace westgateproject
 		public FirstPage()
 		{
             InitializeComponent();
+
             NavigationPage.SetHasBackButton(this, false);
             Debug.WriteLine("userEmail : " + App.userEmail);
 			WGMarketMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(35.8687915, 128.580085), Distance.FromKilometers(0.12)));
