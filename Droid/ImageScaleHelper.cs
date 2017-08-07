@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,8 +14,10 @@ namespace westgateproject.Droid
 {
     public class ImageScaleHelper:IImageScaleHelper
     {
+        public string tempUrlString;
         public ImageScaleHelper()
         {
+            
         }
 
         public async Task<byte[]> GetImageStream(string urlString)
@@ -56,10 +59,11 @@ namespace westgateproject.Droid
 			//ThreadPool.QueueUserWorkItem(o => SlowMethod());
 
             BitmapFactory.Options options = await GetBitmapOptionsOfImage(urlString);
-			//         BitmapFactory.Options options = new BitmapFactory.Options()
-			//         {
-			//             InSampleSize = 4
-			//};
+            //         BitmapFactory.Options options = new BitmapFactory.Options()
+            //         {
+            //             InSampleSize = 4
+            //};
+            tempUrlString = urlString;
 			URL url = new URL(urlString);
 			HttpURLConnection connection = (HttpURLConnection)url.OpenConnection();
 			connection.DoInput = true;
@@ -76,7 +80,7 @@ namespace westgateproject.Droid
 		}
 
 
-		public static int CalculateInSampleSize(BitmapFactory.Options options, int reqWidth)
+		int CalculateInSampleSize(BitmapFactory.Options options, int reqWidth)
 		{
 			// Raw height and width of image
 			float width = options.OutWidth;
@@ -99,20 +103,35 @@ namespace westgateproject.Droid
 			{
 				int halfWidth = (int)(width / 2);
 
+
+                Debug.WriteLine("");
+				Debug.WriteLine("reqWidth : " + reqWidth);
+				Debug.WriteLine("half width of Image : " + halfWidth);
+				Debug.WriteLine("inSampleSize : " + inSampleSize);
+				Debug.WriteLine("urlString: " + tempUrlString);
+				Debug.WriteLine("");
+
+
 				// Calculate a inSampleSize that is a power of 2 - the decoder will use a value that is a power of two anyway.
 				while ((halfWidth / inSampleSize) > reqWidth)
 				{
 					inSampleSize *= 2;
 				}
 
-                inSampleSize /= 2;
+				inSampleSize /= 2;
+
+				Debug.WriteLine("");
+                Debug.WriteLine("halfWidth of result : " + (halfWidth / inSampleSize));
+				Debug.WriteLine("inSampleSize : " + inSampleSize);
+				Debug.WriteLine("urlString: " + tempUrlString);
+				Debug.WriteLine("");
+
 
 			}
-            System.Console.WriteLine("inSampleSize : " + inSampleSize);
 			return (int)inSampleSize;
 		}
 
-		public async Task<Bitmap> LoadScaledDownBitmapForDisplayAsync(string imageURL, BitmapFactory.Options options, int reqWidth)
+		async Task<Bitmap> LoadScaledDownBitmapForDisplayAsync(string imageURL, BitmapFactory.Options options, int reqWidth)
 		{
 			// Calculate inSampleSize
 			options.InSampleSize = CalculateInSampleSize(options, reqWidth);
@@ -146,7 +165,7 @@ namespace westgateproject.Droid
             // The result will be null because InJustDecodeBounds == true.
             Bitmap result=  await BitmapFactory.DecodeStreamAsync(inputSt, null, options);
 
-            System.Console.WriteLine("options.OutWidth : " + options.OutWidth + ", options.OutHeight : " + options.OutHeight);
+            Debug.WriteLine("options.OutWidth : " + options.OutWidth + ", options.OutHeight : " + options.OutHeight);
             //int imageHeight = options.OutHeight;
             //int imageWidth = options.OutWidth;
 

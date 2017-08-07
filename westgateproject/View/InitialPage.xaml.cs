@@ -26,6 +26,7 @@ namespace westgateproject
 			{
 				case Device.Android:
 					DependencyService.Get<ILoginHelper>().StartLogin();
+                    login.IsVisible = true;
 					break;
 				case Device.iOS:
 					break;
@@ -43,6 +44,7 @@ namespace westgateproject
             // Handle when your app starts
             var shopSync = await SyncData.SyncShopInfo();
             var buildingSync = await SyncData.SyncBuildingInfo();
+
             if(!shopSync || !buildingSync)
 				syncStatus.Text="서버에서 데이터를 가져올 수 없습니다. 앱정보 페이지에서 REFRESH를 눌러 다시 시도할 수 있습니다.";
             else
@@ -70,5 +72,17 @@ namespace westgateproject
                 await DisplayAlert("", "You need to be loged in.", "OK");
             }
 		}
+
+        async void disableButton(object sender, EventArgs e)
+        {
+            if (App.userEmail == null)
+            {
+                DependencyService.Get<ILoginHelper>().StartLogin();
+            }
+            else
+            {
+                await DisplayAlert("", "Login is already completed.", "OK");
+            }
+        }
 	}
 }

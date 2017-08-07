@@ -36,7 +36,7 @@ namespace westgateproject.View
 			};
 			foreach (var temp in imageSource)
 			{
-				var myImage = new Image { Aspect = Aspect.AspectFit };
+				var myImage = new Image { Aspect = Aspect.AspectFill, HorizontalOptions=LayoutOptions.FillAndExpand };
 				imageURL = temp.Value;
 				var contentText = temp.Key;
 
@@ -136,10 +136,6 @@ namespace westgateproject.View
 			}
         }
 
-        public void myThreadExample()
-        {
-            
-        }
 
 		//async void OnItemClicked(object sender, EventArgs e)
 		//{
