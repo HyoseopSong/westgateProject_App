@@ -16,7 +16,7 @@
 				<Label x:Name="myIdLabel" />
                 <Button x:Name="CameraButton" Text="사진 촬영" Grid.Row="1" />
 		        <Image x:Name="PhotoImage"  Grid.Row="2" />
-                <Editor x:Name="UploadTextEditor" Keyboard="Chat" Grid.Row="3" BackgroundColor="Lime" TextChanged="EditorTextChanged" HeightRequest="200"/>
+                <Editor x:Name="UploadTextEditor" Keyboard="Chat" Grid.Row="3" BackgroundColor="Lime" HeightRequest="200"/>
                 <Button x:Name="Upload" Text="등록" Grid.Row="4" Clicked="UploadButton_Clicked" />
             </Grid>
         </ScrollView>

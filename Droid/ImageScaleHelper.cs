@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.Graphics;
+using Android.Media;
 using Java.IO;
 using Java.Net;
 using westgateproject.Droid;
@@ -14,7 +15,6 @@ namespace westgateproject.Droid
 {
     public class ImageScaleHelper:IImageScaleHelper
     {
-        public string tempUrlString;
         public ImageScaleHelper()
         {
             
@@ -63,18 +63,11 @@ namespace westgateproject.Droid
             //         {
             //             InSampleSize = 4
             //};
-            tempUrlString = urlString;
-			URL url = new URL(urlString);
-			HttpURLConnection connection = (HttpURLConnection)url.OpenConnection();
-			connection.DoInput = true;
-			await Task.Run(() => connection.Connect());
-			Stream inputSt = await Task.Run(() => connection.InputStream);
 			Bitmap myBitmap = await LoadScaledDownBitmapForDisplayAsync(urlString, options, (int)App.ScreenWidth);
 			//Bitmap myBitmap = await BitmapFactory.DecodeStreamAsync(inputSt, null, options);
             var ms = new MemoryStream();
 			myBitmap.Compress(Bitmap.CompressFormat.Png, 0, ms);
             //return myBitmap;
-
 			return ms.ToArray();
 
 		}
@@ -103,29 +96,16 @@ namespace westgateproject.Droid
 			{
 				int halfWidth = (int)(width / 2);
 
-
-                Debug.WriteLine("");
-				Debug.WriteLine("reqWidth : " + reqWidth);
-				Debug.WriteLine("half width of Image : " + halfWidth);
-				Debug.WriteLine("inSampleSize : " + inSampleSize);
-				Debug.WriteLine("urlString: " + tempUrlString);
-				Debug.WriteLine("");
-
-
 				// Calculate a inSampleSize that is a power of 2 - the decoder will use a value that is a power of two anyway.
 				while ((halfWidth / inSampleSize) > reqWidth)
 				{
 					inSampleSize *= 2;
 				}
 
-				inSampleSize /= 2;
-
-				Debug.WriteLine("");
-                Debug.WriteLine("halfWidth of result : " + (halfWidth / inSampleSize));
-				Debug.WriteLine("inSampleSize : " + inSampleSize);
-				Debug.WriteLine("urlString: " + tempUrlString);
-				Debug.WriteLine("");
-
+                if (inSampleSize != 1)
+                {
+                    inSampleSize /= 2;
+                }
 
 			}
 			return (int)inSampleSize;
@@ -144,7 +124,7 @@ namespace westgateproject.Droid
 			HttpURLConnection connection = (HttpURLConnection)url.OpenConnection();
 			connection.DoInput = true;
 			await Task.Run(() => connection.Connect());
-			Stream inputSt = await Task.Run(() => connection.InputStream);
+            System.IO.Stream inputSt = await Task.Run(() => connection.InputStream);
 
 			return await BitmapFactory.DecodeStreamAsync(inputSt, null, options);
 		}
@@ -156,7 +136,7 @@ namespace westgateproject.Droid
 			HttpURLConnection connection = (HttpURLConnection)url.OpenConnection();
 			connection.DoInput = true;
 			await Task.Run(() => connection.Connect());
-			Stream inputSt = await Task.Run(() => connection.InputStream);
+			System.IO.Stream inputSt = await Task.Run(() => connection.InputStream);
             BitmapFactory.Options options = new BitmapFactory.Options
                                             {
                                                 InJustDecodeBounds = true
@@ -165,7 +145,6 @@ namespace westgateproject.Droid
             // The result will be null because InJustDecodeBounds == true.
             Bitmap result=  await BitmapFactory.DecodeStreamAsync(inputSt, null, options);
 
-            Debug.WriteLine("options.OutWidth : " + options.OutWidth + ", options.OutHeight : " + options.OutHeight);
             //int imageHeight = options.OutHeight;
             //int imageWidth = options.OutWidth;
 
@@ -173,5 +152,46 @@ namespace westgateproject.Droid
 
             return options;
         }
+
+        public async Task<string> OrientationOfImage(string urlString)
+		{
+            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.N)
+            {
+				URL url = new URL(urlString);
+				HttpURLConnection connection = (HttpURLConnection)url.OpenConnection();
+				connection.DoInput = true;
+				await Task.Run(() => connection.Connect());
+				System.IO.Stream inputSt = await Task.Run(() => connection.InputStream);
+				ExifInterface exifInterface = new ExifInterface(inputSt);
+                return exifInterface.GetAttribute(ExifInterface.TagOrientation);
+            }
+            //else if(Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Kitkat && Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.N)
+			//{
+				//Java.IO.File path = new Java.IO.File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), DateTime.Now.ToFileTime() + ".jpg");
+				////Java.IO.File path = new Java.IO.File(Android.App.Application.Context.FilesDir.AbsolutePath, DateTime.Now.ToString() + ".jpg");
+
+				//if (!path.Exists())
+				//{
+				//	path.CreateNewFile();
+				//}
+
+				//OutputStream os = new FileOutputStream(path);
+    //            os.Write(imageByte);
+    //            os.Close();
+
+
+				//ExifInterface exifInterface = new ExifInterface(path.AbsolutePath);
+
+    //            Debug.WriteLine("saved file path : " + path);
+    //            //path.Delete();
+				//return exifInterface.GetAttribute(ExifInterface.TagOrientation);
+                				
+            //}
+            else
+            {
+                return "false";
+            }
+		}
+		
     }
 }

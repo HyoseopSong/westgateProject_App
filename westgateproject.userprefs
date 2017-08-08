@@ -1,13 +1,12 @@
 ﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/InitialPageRenderer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/ImageScaleHelper.cs">
     <Files>
-      <File FileName="Droid/SignInActivity.cs" Line="27" Column="9" />
-      <File FileName="Droid/ImageScaleHelper.cs" Line="89" Column="49" />
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="39" Column="57" />
-      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="49" Column="40" />
-      <File FileName="westgateproject/View/InitialPage.xaml" Line="11" Column="126" />
-      <File FileName="Droid/LoginHelper.cs" Line="1" Column="1" />
-      <File FileName="iOS/InitialPageRenderer.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/WritingPage.xaml" Line="67" Column="14" />
+      <File FileName="Droid/ImageScaleHelper.cs" Line="203" Column="31" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="64" Column="13" />
+      <File FileName="westgateproject/Helper/IImageScaleHelper.cs" Line="14" Column="1" />
+      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/Helper/SyncData.cs" Line="21" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -16,6 +15,6 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.2deb974fe6e9e3c56fb34a6716a06cba67c6f003" />
+  <MonoDevelop.Ide.ItemProperties.westgateproject.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
   <MultiItemStartupConfigurations />
 </Properties>

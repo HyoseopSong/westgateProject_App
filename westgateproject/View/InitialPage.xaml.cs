@@ -60,6 +60,8 @@ namespace westgateproject
                     case Device.Android:
                         if (!isClicked)
                             isClicked = true;
+                        else
+                            return;
                         break;
                     case Device.iOS:
                         break;

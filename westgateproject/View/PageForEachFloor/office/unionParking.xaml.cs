@@ -15,17 +15,17 @@ namespace westgateproject.View.PageForEachFloor.office
 			switch (Device.RuntimePlatform)
 			{
 				case Device.Android:
-					absL.Scale = (App.ScreenHeight - 90) / 565;
+					absL.Scale = (App.ScreenHeight - 90) / 354;
 					break;
 				default:
-					absL.Scale = (App.ScreenHeight - 70) / 565;
+					absL.Scale = (App.ScreenHeight - 70) / 354;
 					break;
 			}
 			NavigationPage.SetHasBackButton(this, false);
 			parkingImage.TranslationX = 90;
 
 			var boundaryBox = new BoxView { Color = Color.Red };
-			AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(890 * absL.Scale, App.ScreenWidth, 0, 30));
+			AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(590 * absL.Scale, App.ScreenWidth, 0, 30));
 			absL.Children.Add(boundaryBox);
 		}
 		async void goBack(object sender, EventArgs args)

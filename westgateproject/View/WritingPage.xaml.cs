@@ -29,37 +29,73 @@ namespace westgateproject.View
         {
 			IDictionary<string, string> imageSource = new Dictionary<string, string>
 			{
-				{ "2지구 1층 중앙 통로입니다~ 통로에도 많은 물건들을 구경할 수 있어요^^", "https://westgateproject.blob.core.windows.net/blob1/IMG_8289.jpg" },
-				{ "2지구 지하1층에는 맛있는 먹거리들로 가득하답니다~", "https://westgateproject.blob.core.windows.net/blob1/IMG_8294.jpg" },
-				{ "각 층마다 이렇게 쉴 수 있는 공간도 마련되어 있답니다 (^^)", "https://westgateproject.blob.core.windows.net/blob1/IMG_8304.jpg" },
-				{ "서쪽 출입구에 있는 서문시장의 대표 조형물입니다~ ^^乃", "https://westgateproject.blob.core.windows.net/blob1/IMG_8315.jpg" }
+				{ "2지구 1층 중앙 통로입니다~ 통로에도 많은 물건들을 구경할 수 있어요^^", "https://westgateproject.blob.core.windows.net/blob1/2017-08-08%20PM%208%3A29%3A55.jpg" },
+
+
+
+				//{ "2지구 1층 중앙 통로입니다~ 통로에도 많은 물건들을 구경할 수 있어요^^", "https://westgateproject.blob.core.windows.net/blob1/IMG_8289.jpg" },
+				//{ "2지구 지하1층에는 맛있는 먹거리들로 가득하답니다~", "https://westgateproject.blob.core.windows.net/blob1/IMG_8294.jpg" },
+				//{ "각 층마다 이렇게 쉴 수 있는 공간도 마련되어 있답니다 (^^)", "https://westgateproject.blob.core.windows.net/blob1/IMG_8304.jpg" },
+				//{ "서쪽 출입구에 있는 서문시장의 대표 조형물입니다~ ^^乃", "https://westgateproject.blob.core.windows.net/blob1/IMG_8315.jpg" },
+
+
+
+                //{ "2지구 1층 중앙 통로입니다~ 통로에도 많은 물건들을 구경할 수 있어요^^", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+				//{ "2지구 지하1층에는 맛있는 먹거리들로 가득하답니다~", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+				{ "각 층마다 이렇게 쉴 수 있는 공간도 마련되어 있답니다 (^^)", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+				//{ "서쪽 출입구에 있는 서문시장의 대표 조형물입니다~ ^^乃", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" }
 			};
 			foreach (var temp in imageSource)
 			{
-				var myImage = new Image { Aspect = Aspect.AspectFill, HorizontalOptions=LayoutOptions.FillAndExpand };
 				imageURL = temp.Value;
-				var contentText = temp.Key;
 
-				switch (Device.RuntimePlatform)
-				{
-					case Device.Android:
-						var tapGestureRecognizer = new TapGestureRecognizer();
-						tapGestureRecognizer.Tapped += (s, e) =>
-						{
-							var img = s as Image;
-							img.Rotation += 90;
-						};
-						myImage.GestureRecognizers.Add(tapGestureRecognizer);
-						Debug.WriteLine("imageURL : " + imageURL);
+                switch (Device.RuntimePlatform)
+                {
+                    case Device.Android:
+                        var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
 						var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
-						myImage.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
-						break;
-					case Device.iOS:
-						myImage.Source = ImageSource.FromUri(new Uri(imageURL));
+						//Debug.WriteLine("imageURL : " + imageURL);
+						//Debug.WriteLine("Orientation value : " + DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageByte));
+                        myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+                        string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageURL);
+                        switch(OrientationOfImage)
+                        {
+                            case "0":
+								var tapGestureRecognizer = new TapGestureRecognizer();
+								tapGestureRecognizer.Tapped += (s, e) =>
+								{
+									var img = s as Image;
+									img.Rotation += 90;
+								};
+								myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
+                                break;
+                            case "1":
+								break;
+							case "2":
+								break;
+							case "3":
+								break;
+							case "4":
+								break;
+							case "5":
+								break;
+							case "6":
+                                myImage_Android.Rotation = 90;
+								break;
+							case "7":
+								break;
+							case "8":
+								break;
+                        }
+						myActivity.Children.Add(myImage_Android);
+                        break;
+                    case Device.iOS:
+                        var myImage_iOS = new Image { Aspect = Aspect.AspectFit };
+						myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
+						myActivity.Children.Add(myImage_iOS);
 						break;
 				}
 
-				myActivity.Children.Add(myImage);
 
 				var myLabel = new Label()
 				{
@@ -73,61 +109,73 @@ namespace westgateproject.View
 				};
 				myActivity.Children.Add(myButton);
 
-				var myBoxView = new BoxView();
-				myBoxView.HeightRequest = 10;
-				myBoxView.BackgroundColor = Color.LightGray;
-				myActivity.Children.Add(myBoxView);
+                var myBoxView = new BoxView()
+                {
+                    HeightRequest = 10,
+                    BackgroundColor = Color.LightGray
+                };
+                myActivity.Children.Add(myBoxView);
 			}
 
 
 			imageSource = new Dictionary<string, string>
 			{
-				{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%84%9C%EB%AC%B8%EC%8B%9C%EC%9E%A5%20%EC%9E%85%EA%B5%AC" },
-				{ "동산상가 2층 동쪽 출입구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EB%8F%99%EC%82%B0%EC%83%81%EA%B0%80" },
-				{ "건해산물상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EA%B1%B4%ED%95%B4%EC%82%B0%EB%AC%BC%EC%83%81%EA%B0%80" },
-				{ "2지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2%EC%A7%80%EA%B5%AC" },
-				{ "1지구 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/1%EC%A7%80%EA%B5%AC" },
-				{ "아진상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%95%84%EC%A7%84%EC%83%81%EA%B0%80" },
-				{ "5지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/5%EC%A7%80%EA%B5%AC" }
+				{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-08%20PM%208%3A22%3A37.jpg" },
+
+
+
+				//{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%84%9C%EB%AC%B8%EC%8B%9C%EC%9E%A5%20%EC%9E%85%EA%B5%AC" },
+				//{ "동산상가 2층 동쪽 출입구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EB%8F%99%EC%82%B0%EC%83%81%EA%B0%80" },
+				//{ "건해산물상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EA%B1%B4%ED%95%B4%EC%82%B0%EB%AC%BC%EC%83%81%EA%B0%80" },
+				//{ "2지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2%EC%A7%80%EA%B5%AC" },
+				//{ "1지구 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/1%EC%A7%80%EA%B5%AC" },
+				//{ "아진상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%95%84%EC%A7%84%EC%83%81%EA%B0%80" },
+				//{ "5지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/5%EC%A7%80%EA%B5%AC" },
+
+
+                //{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+				{ "동산상가 2층 동쪽 출입구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+				//{ "건해산물상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+				//{ "2지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+				//{ "1지구 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+				//{ "아진상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+				//{ "5지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" }
 			};
 			foreach (var temp in imageSource)
 			{
-				var myImage = new Image { Aspect = Aspect.AspectFit };
 				imageURL = temp.Value;
-				var contentText = temp.Key;
 
 				switch (Device.RuntimePlatform)
 				{
 					case Device.Android:
+						var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+                        Image tempImage = new Image();
 						var tapGestureRecognizer = new TapGestureRecognizer();
 						tapGestureRecognizer.Tapped += (s, e) =>
 						{
 							var img = s as Image;
 							img.Rotation += 90;
 						};
-						myImage.GestureRecognizers.Add(tapGestureRecognizer);
-						Debug.WriteLine("imageURL : " + imageURL);
-                        var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
-						myImage.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+						myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
+						//Debug.WriteLine("imageURL : " + imageURL);
+						var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
+						//Debug.WriteLine("Orientation value : " + DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageByte));
+						myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+						myRecent.Children.Add(myImage_Android);
 						break;
 					case Device.iOS:
-						myImage.Source = ImageSource.FromUri(new Uri(imageURL));
+                        var myImage_iOS = new Image { Aspect = Aspect.AspectFit };
+						myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
+						myRecent.Children.Add(myImage_iOS);
 						break;
 				}
 
-				myRecent.Children.Add(myImage);
 
 				var myLabel = new Label()
 				{
 					Text = temp.Key
 				};
 				myRecent.Children.Add(myLabel);
-
-				//var myButton = new Button()
-				//{
-				//	Text = "삭제"
-				//};
-				//myRecent.Children.Add(myButton);
 
 				var myBoxView = new BoxView();
 				myBoxView.HeightRequest = 10;
@@ -160,8 +208,11 @@ namespace westgateproject.View
 		{
             photoStream = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
 			{
-                PhotoSize = PhotoSize.Small
+                PhotoSize = PhotoSize.Small,
+                RotateImage = true
+
 			});
+
             PhotoImage.IsVisible = true;
 
             Image temp = new Image();
@@ -217,6 +268,13 @@ namespace westgateproject.View
                 
             //}
 		}
+
+        int ImageOrientation(string URL)
+        {
+
+
+            return 0;
+        }
 
         void sendingEmail(Label sender, EventArgs args)
         {
