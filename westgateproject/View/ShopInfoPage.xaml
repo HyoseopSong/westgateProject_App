@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.ShopInfoPage" Title="매장정보">
-    <StackLayout Spacing = "0">
-        <Label x:Name="location" FontSize="30" Text="위치" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-        
-        <Label x:Name="name" TextColor="White" FontSize="70" Text="이름" BackgroundColor="DarkBlue" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-        
-        <Label x:Name="phoneNumber" TextColor="White" FontSize="40" Text="연락처" BackgroundColor="DeepSkyBlue" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-    </StackLayout>
+    <ScrollView>
+        <StackLayout x:Name="myActivity">
+        </StackLayout>
+    </ScrollView> 
 </ContentPage>

@@ -4,7 +4,7 @@
             x:Class="westgateproject.View.WritingPage"
             Title="내 계정" Icon="settings.png">
     <ContentPage Title="새 게시물" Icon="save.png">
-        <ScrollView>
+        <ScrollView x:Name="newPosting">
 			<Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -13,9 +13,12 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-				<Label x:Name="myIdLabel" />
-                <Button x:Name="CameraButton" Text="사진 촬영" Grid.Row="1" />
-		        <Image x:Name="PhotoImage"  Grid.Row="2" />
+				<Label x:Name="myIdLabel"/>
+                <StackLayout Orientation="Horizontal" Spacing="0" Grid.Row="1">
+                    <Button x:Name="CameraButton" Text="사진 촬영" Clicked="CameraButton_Clicked"/>
+                    <Button x:Name="PictureButton" Text="Gallery" Clicked="PicturePicker_Clicked"/>
+                </StackLayout>
+		        <Image x:Name="PhotoImage"  Grid.Row="2"/>
                 <Editor x:Name="UploadTextEditor" Keyboard="Chat" Grid.Row="3" BackgroundColor="Lime" HeightRequest="200"/>
                 <Button x:Name="Upload" Text="등록" Grid.Row="4" Clicked="UploadButton_Clicked" />
             </Grid>

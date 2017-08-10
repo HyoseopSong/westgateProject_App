@@ -16,43 +16,84 @@ namespace westgateproject.Helper
         {
         }
 
-		static async public Task<bool> UploadContents(MediaFile img, string text)
+        static async public Task<bool> SaveAccountInfo(string ShopName, string PhoneNumber)
+        {
+
+			IDictionary<string, string> postDictionary = new Dictionary<string, string>
+			{
+				{ "id", App.userEmail},
+				{ "shopName", ShopName },
+				{ "phoneNumber", PhoneNumber}
+			};
+			await App.Client.InvokeApiAsync("userinformation", System.Net.Http.HttpMethod.Post, postDictionary);
+
+			return true;
+        }
+
+
+        static async public Task<bool> DeleteContents(string blobName)
+        {
+
+	        Dictionary<string, string> getParam = new Dictionary<string, string>
+	        {
+	            { "id", App.userEmail},
+	            { "blobName", blobName},
+	        };
+	        await App.Client.InvokeApiAsync<Dictionary<string, string>>("upload", System.Net.Http.HttpMethod.Delete, getParam);
+
+			// Retrieve storage account from connection string.
+			CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Constants.StorageConnectionString);
+
+			// Create the blob client.
+			CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+			// Retrieve reference to a previously created container.
+			var containerName = App.userEmail.Split('@');
+			CloudBlobContainer container = blobClient.GetContainerReference(containerName[0]);
+
+			// Retrieve reference to a blob named "myblob.txt".
+			CloudBlockBlob blockBlob = container.GetBlockBlobReference(blobName);
+			// Delete the blob.
+			await blockBlob.DeleteIfExistsAsync();
+
+            return true;
+        }
+
+
+		static async public Task<string> UploadContents(MediaFile img, string text)
 		{
-            var blobName = DateTime.Now.ToString();
-            if (img != null)
+            var blobName = DateTime.Now.ToFileTime().ToString();
+            if (img != null && text != null)
             {
 
-                CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=westgateproject;AccountKey=qnc9q3bWy6X+yML+LjMs3oLf10hormmOK2k+UMxZWm0XAYiH3aIlwgqHTgIJ6+t2aK02ppAHUdGPpatb3CnKFA==");
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Constants.StorageConnectionString);
                 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-                CloudBlobContainer container = blobClient.GetContainerReference("blob1");
-				//await container.CreateIfNotExistsAsync();
+                var containerName = App.userEmail.Split('@');
+                CloudBlobContainer container = blobClient.GetContainerReference(containerName[0]);
+				await container.CreateIfNotExistsAsync();
 				CloudBlockBlob blockBlob = container.GetBlockBlobReference(blobName + ".jpg");
                 blockBlob.Properties.ContentType = "image/jpeg";
 				//await blockBlob.UploadFromFileAsync(img.Path);
                 await blockBlob.UploadFromStreamAsync(img.GetStream());
+
+
+
+				IDictionary<string, string> postDictionary = new Dictionary<string, string>
+				{
+					{ "content", text },
+					{ "id", App.userEmail},
+					{ "blobName", blobName + ".jpg"}
+				};
+				await App.Client.InvokeApiAsync("upload", System.Net.Http.HttpMethod.Post, postDictionary);
+
+				return blobName;
+
             }
             else
             {
-                blobName = "empty";
+                return null;
             }
 
-
-            if (text != null)
-            {
-
-                IDictionary<string, string> postDictionary = new Dictionary<string, string>
-                {
-                    { "content", text },
-                    { "id", App.userEmail},
-                    { "blobName", blobName}
-                };
-                IDictionary<string, string> result = new Dictionary<string, string>();
-                await App.Client.InvokeApiAsync("upload", System.Net.Http.HttpMethod.Post, postDictionary);
-
-            }
-
-
-			return true;
 		}
 
 		static async public Task<bool> SyncShopInfo()

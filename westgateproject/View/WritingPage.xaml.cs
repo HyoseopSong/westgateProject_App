@@ -14,40 +14,61 @@ namespace westgateproject.View
 		private bool onProcessing;
         private MediaFile photoStream;
         String imageURL;
+        string[] imageArray;
 
         public WritingPage()
 		{
 			InitializeComponent();
 
-			CameraButton.Clicked += CameraButton_Clicked;
 
             myIdLabel.Text = "내 계정 : " + App.userEmail;
+
+            CameraButton.WidthRequest = App.ScreenWidth / 2;
+            PictureButton.WidthRequest = App.ScreenWidth / 2;
 
             //syncLabel();
 		}
         protected override async void OnAppearing()
-        {
-			IDictionary<string, string> imageSource = new Dictionary<string, string>
+		{
+			Dictionary<string, string> imageSource = new Dictionary<string, string>();
+            //Dictionary<string, string> imageSource = new Dictionary<string, string>
+            //{
+            //{ "2지구 1층 중앙 통로입니다~ 통로에도 많은 물건들을 구경할 수 있어요^^", "https://westgateproject.blob.core.windows.net/blob1/2017-08-08%20PM%208%3A29%3A55.jpg" },
+
+
+
+            //{ "2지구 1층 중앙 통로입니다~ 통로에도 많은 물건들을 구경할 수 있어요^^", "https://westgateproject.blob.core.windows.net/blob1/IMG_8289.jpg" },
+            //{ "2지구 지하1층에는 맛있는 먹거리들로 가득하답니다~", "https://westgateproject.blob.core.windows.net/blob1/IMG_8294.jpg" },
+            //{ "각 층마다 이렇게 쉴 수 있는 공간도 마련되어 있답니다 (^^)", "https://westgateproject.blob.core.windows.net/blob1/IMG_8304.jpg" },
+            //{ "서쪽 출입구에 있는 서문시장의 대표 조형물입니다~ ^^乃", "https://westgateproject.blob.core.windows.net/blob1/IMG_8315.jpg" },
+
+
+
+            //{ "2지구 1층 중앙 통로입니다~ 통로에도 많은 물건들을 구경할 수 있어요^^", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+            //{ "2지구 지하1층에는 맛있는 먹거리들로 가득하답니다~", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+            //{ "각 층마다 이렇게 쉴 수 있는 공간도 마련되어 있답니다 (^^)", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+            //{ "서쪽 출입구에 있는 서문시장의 대표 조형물입니다~ ^^乃", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" }
+            //};
+			try
 			{
-				{ "2지구 1층 중앙 통로입니다~ 통로에도 많은 물건들을 구경할 수 있어요^^", "https://westgateproject.blob.core.windows.net/blob1/2017-08-08%20PM%208%3A29%3A55.jpg" },
-
-
-
-				//{ "2지구 1층 중앙 통로입니다~ 통로에도 많은 물건들을 구경할 수 있어요^^", "https://westgateproject.blob.core.windows.net/blob1/IMG_8289.jpg" },
-				//{ "2지구 지하1층에는 맛있는 먹거리들로 가득하답니다~", "https://westgateproject.blob.core.windows.net/blob1/IMG_8294.jpg" },
-				//{ "각 층마다 이렇게 쉴 수 있는 공간도 마련되어 있답니다 (^^)", "https://westgateproject.blob.core.windows.net/blob1/IMG_8304.jpg" },
-				//{ "서쪽 출입구에 있는 서문시장의 대표 조형물입니다~ ^^乃", "https://westgateproject.blob.core.windows.net/blob1/IMG_8315.jpg" },
-
-
-
-                //{ "2지구 1층 중앙 통로입니다~ 통로에도 많은 물건들을 구경할 수 있어요^^", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-				//{ "2지구 지하1층에는 맛있는 먹거리들로 가득하답니다~", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-				{ "각 층마다 이렇게 쉴 수 있는 공간도 마련되어 있답니다 (^^)", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-				//{ "서쪽 출입구에 있는 서문시장의 대표 조형물입니다~ ^^乃", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" }
-			};
+				Dictionary<string, string> getParam = new Dictionary<string, string>
+				{
+					{ "id", App.userEmail},
+				};
+				imageSource = await App.Client.InvokeApiAsync<Dictionary<string, string>>("upload", System.Net.Http.HttpMethod.Get, getParam);
+				imageArray = new string[imageSource.Count];
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.GetType());
+				return;
+			}
+            int i = imageSource.Count - 1;
 			foreach (var temp in imageSource)
 			{
-				imageURL = temp.Value;
+                imageURL = "https://westgateproject.blob.core.windows.net/" + App.userEmail.Split('@')[0] + "/" +  temp.Key;
+
+                imageArray[i--] = temp.Key;
 
                 switch (Device.RuntimePlatform)
                 {
@@ -57,18 +78,11 @@ namespace westgateproject.View
 						//Debug.WriteLine("imageURL : " + imageURL);
 						//Debug.WriteLine("Orientation value : " + DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageByte));
                         myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+
                         string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageURL);
                         switch(OrientationOfImage)
                         {
-                            case "0":
-								var tapGestureRecognizer = new TapGestureRecognizer();
-								tapGestureRecognizer.Tapped += (s, e) =>
-								{
-									var img = s as Image;
-									img.Rotation += 90;
-								};
-								myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
-                                break;
+                            
                             case "1":
 								break;
 							case "2":
@@ -86,35 +100,52 @@ namespace westgateproject.View
 								break;
 							case "8":
 								break;
+							default:
+								var tapGestureRecognizer = new TapGestureRecognizer();
+								tapGestureRecognizer.Tapped += (s, e) =>
+								{
+									var img = s as Image;
+									img.Rotation += 90;
+								};
+								myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
+								break;
                         }
-						myActivity.Children.Add(myImage_Android);
+						myActivity.Children.Insert(0, myImage_Android);
                         break;
                     case Device.iOS:
                         var myImage_iOS = new Image { Aspect = Aspect.AspectFit };
 						myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
-						myActivity.Children.Add(myImage_iOS);
+						myActivity.Children.Insert(0, myImage_iOS);
 						break;
 				}
 
 
 				var myLabel = new Label()
 				{
-					Text = temp.Key
+					Text = temp.Value
 				};
-				myActivity.Children.Add(myLabel);
+				myActivity.Children.Insert(1, myLabel);
 
-				var myButton = new Button()
+				var imageName = new Label()
 				{
-				  Text = "삭제"
+					Text = temp.Key,
+                    IsVisible = false
 				};
-				myActivity.Children.Add(myButton);
+				myActivity.Children.Insert(2, imageName);
+
+                var myButton = new Button()
+                {
+                    Text = "삭제"
+				};
+                myButton.Clicked += DeleteButton_Clicked;
+                myActivity.Children.Insert(3, myButton);
 
                 var myBoxView = new BoxView()
                 {
                     HeightRequest = 10,
                     BackgroundColor = Color.LightGray
                 };
-                myActivity.Children.Add(myBoxView);
+				myActivity.Children.Insert(4, myBoxView);
 			}
 
 
@@ -198,10 +229,52 @@ namespace westgateproject.View
 
 		async void UploadButton_Clicked(object sender, EventArgs e)
 		{
+            var result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text);
+            switch(result)
+            {
+				case null:
+					await DisplayAlert("No blank", "You must fill both text and picture", "OK");
+                    break;
+				default:
+					result += ".jpg";
+					var myImage = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+					myImage.Source = ImageSource.FromStream(photoStream.GetStream);
+					myActivity.Children.Insert(0, myImage);
 
-            await SyncData.UploadContents(photoStream, UploadTextEditor.Text);
-            PhotoImage.IsVisible = false;
-            UploadTextEditor.Text = "";
+					var myLabel = new Label()
+					{
+						Text = UploadTextEditor.Text
+					};
+					myActivity.Children.Insert(1, myLabel);
+
+
+					var imageName = new Label()
+					{
+						Text = result,
+						IsVisible = false
+					};
+					myActivity.Children.Insert(2, imageName);
+
+
+					var myButton = new Button()
+					{
+						Text = "삭제"
+					};
+					myButton.Clicked += DeleteButton_Clicked;
+					myActivity.Children.Insert(3, myButton);
+
+					var myBoxView = new BoxView()
+					{
+						HeightRequest = 10,
+						BackgroundColor = Color.LightGray
+					};
+					myActivity.Children.Insert(4, myBoxView);
+
+					PhotoImage.IsVisible = false;
+					UploadTextEditor.Text = "";
+                    break;
+                    
+            }
 		}
 
 		private async void CameraButton_Clicked(object sender, EventArgs e)
@@ -214,8 +287,6 @@ namespace westgateproject.View
 			});
 
             PhotoImage.IsVisible = true;
-
-            Image temp = new Image();
 
             if (photoStream != null)
             {
@@ -269,11 +340,35 @@ namespace westgateproject.View
             //}
 		}
 
-        int ImageOrientation(string URL)
+        private async void DeleteButton_Clicked(object sender, EventArgs e)
         {
+            int senderIndex = myActivity.Children.IndexOf(sender as Button);
+			var imageName = myActivity.Children[senderIndex - 1] as Label;
+			var result = await SyncData.DeleteContents(imageName.Text);
+
+			int indexNumber = senderIndex / 5;
+			for (int ii = indexNumber; ii < indexNumber + 5; ii++)
+			{
+				myActivity.Children[ii].IsVisible = false;
+			}
+
+        }
 
 
-            return 0;
+        private async void PicturePicker_Clicked(object sender, EventArgs e)
+        {
+            photoStream = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new PickMediaOptions()
+            {
+                PhotoSize = PhotoSize.Small
+            });
+
+			PhotoImage.IsVisible = true;
+
+			if (photoStream != null)
+			{
+				PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
+				PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
+			}
         }
 
         void sendingEmail(Label sender, EventArgs args)

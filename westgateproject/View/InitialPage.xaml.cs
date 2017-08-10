@@ -17,7 +17,6 @@ namespace westgateproject
 {
 	public partial class InitialPage : ContentPage
 	{
-        private bool isClicked;
 		public InitialPage()
 		{
 			InitializeComponent();
@@ -31,8 +30,7 @@ namespace westgateproject
 				case Device.iOS:
 					break;
 			}
-			isClicked = false;
-		}
+        }
 
         public Button getGuest()
         {
@@ -58,14 +56,15 @@ namespace westgateproject
                 switch(Device.RuntimePlatform)
                 {
                     case Device.Android:
-                        if (!isClicked)
-                            isClicked = true;
+                        if (getGuest().IsEnabled)
+                            getGuest().IsEnabled = false;
                         else
                             return;
                         break;
                     case Device.iOS:
                         break;
                 }
+
                 await Navigation.PushAsync(new FirstPage());
                 Navigation.RemovePage((Navigation.NavigationStack[0]));
             }

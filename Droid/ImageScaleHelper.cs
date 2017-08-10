@@ -189,7 +189,7 @@ namespace westgateproject.Droid
             //}
             else
             {
-                return "false";
+                return "0";
             }
 		}
 		
