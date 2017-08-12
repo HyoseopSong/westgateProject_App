@@ -19,7 +19,6 @@ namespace westgateproject
             InitializeComponent();
 
             NavigationPage.SetHasBackButton(this, false);
-            Debug.WriteLine("userEmail : " + App.userEmail);
 			WGMarketMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(35.8687915, 128.580085), Distance.FromKilometers(0.12)));
 			WGMarketMap.ShapeCoordinates.Add(new Position(35.868344, 128.578239)); //     5지구
 			WGMarketMap.ShapeCoordinates.Add(new Position(35.868150, 128.578100)); //     5지구

@@ -4,24 +4,48 @@
             x:Class="westgateproject.View.WritingPage"
             Title="내 계정" Icon="settings.png">
     <ContentPage Title="새 게시물" Icon="save.png">
-        <ScrollView x:Name="newPosting">
-			<Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+        <ScrollView>
+			<StackLayout>
 				<Label x:Name="myIdLabel"/>
-                <StackLayout Orientation="Horizontal" Spacing="0" Grid.Row="1">
+
+                <StackLayout x:Name="MyInformation">
+
+                </StackLayout>
+                
+                <!--<StackLayout Orientation="Horizontal">
+                <Label x:Name="shopName" Text="Shop Name : example Name"/>
+                <Entry x:Name="shopNameEntry" IsVisible="false"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal">
+                <Label x:Name="shopBuilding" Text="Shop Location : example Name"/>
+                <Entry x:Name="shopBuildingEntry" IsVisible="false"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                <Label x:Name="shopFloor" Text="Shop Location : example Name"/>
+                <Entry x:Name="shopFloorEntry" IsVisible="false"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                <Label x:Name="shopLocation" Text="Shop Location : example Name"/>
+                <Entry x:Name="shopLocationEntry" IsVisible="false"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal">
+                <Label x:Name="phoneNumber" Text="Phone Number : example Name"/>
+                <Entry x:Name="phoneNumberEntry" IsVisible="false"/>
+                </StackLayout>-->
+                
+                <!--<Button x:Name="editProperty" Text="Edit" Clicked="EditPropertyClicked"/>
+                <Button x:Name="confirmProperty" Text="Confirm" Clicked="ConfirmPropertyClicked" IsVisible="false"/>
+                <BoxView HeightRequest="10" BackgroundColor="Color.LightGray" />-->
+                <StackLayout Orientation="Horizontal" Spacing="0">
                     <Button x:Name="CameraButton" Text="사진 촬영" Clicked="CameraButton_Clicked"/>
                     <Button x:Name="PictureButton" Text="Gallery" Clicked="PicturePicker_Clicked"/>
                 </StackLayout>
-		        <Image x:Name="PhotoImage"  Grid.Row="2"/>
-                <Editor x:Name="UploadTextEditor" Keyboard="Chat" Grid.Row="3" BackgroundColor="Lime" HeightRequest="200"/>
-                <Button x:Name="Upload" Text="등록" Grid.Row="4" Clicked="UploadButton_Clicked" />
-            </Grid>
+		        <Image x:Name="PhotoImage"/>
+                <Editor x:Name="UploadTextEditor" Keyboard="Chat" BackgroundColor="Lime" HeightRequest="200"/>
+                <Button x:Name="Upload" Text="등록" Clicked="UploadButton_Clicked" />
+            </StackLayout>
         </ScrollView>
     </ContentPage>
     <ContentPage Title="내 활동" Icon="list.png">
@@ -33,37 +57,6 @@
     <ContentPage Title="최근 소식" Icon="advertisement.png">
         <ScrollView>
             <StackLayout x:Name="myRecent">
-
-
-
-            
-           <!-- <Label x:Name="refresh" IsVisible="false"/>
-            <Label x:Name="appState" Text="" TextColor="DeepSkyBlue" FontSize="20" BackgroundColor="Azure" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Text="제작자에게&#10;e-mail 보내기" Grid.Row="0" Grid.Column="0" FontSize="20" TextColor="DeepSkyBlue" BackgroundColor="Lime" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="sendingEmail"
-                            NumberOfTapsRequired="1"/>
-                    </Label.GestureRecognizers>
-                </Label>
-
-                <Label Grid.Row="0" Grid.Column="1" Text="제작자 홈페이지 방문" FontSize="20" TextColor="DeepSkyBlue" BackgroundColor="Yellow" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="openHomepage"
-                            NumberOfTapsRequired="1"/>
-                    </Label.GestureRecognizers>
-                </Label>
-            </Grid>-->
-        
             </StackLayout>  
         </ScrollView>
     </ContentPage>

@@ -1,5 +1,6 @@
 ﻿﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using westgateproject.Models;
 using Xamarin.Forms;
 
@@ -37,9 +38,10 @@ namespace westgateproject.View.PageForEachFloor.dongsan
 				onProcessing = true;
 				ShopInformation infoFromSQLite = new ShopInformation();
 				var temp = sender as Label;
-				infoFromSQLite = await App.Database.GetShopAsync("동산상가", "2층", temp.Text);
-				await Navigation.PushAsync(new ShopInfoPage(infoFromSQLite));
-                onProcessing = false;
+				//infoFromSQLite = await App.Database.GetShopAsync("동산상가", "2층", temp.Text);
+				//await Navigation.PushAsync(new ShopInfoPage(infoFromSQLite));
+				await Navigation.PushAsync(new ShopInfoPage("Dongsan", "2층", temp.Text));
+				onProcessing = false;
 			}
 		}
 		async void goBack(object sender, EventArgs args)

@@ -185,7 +185,6 @@ namespace westgateproject.iOS
 		    App.userEmail = SignIn.SharedInstance.CurrentUser.Profile.Email;
 
 			loginStatus.Text = "Successfully signed in!";
-			Debug.WriteLine("Current User : " + SignIn.SharedInstance.CurrentUser);
 
             guestButton.IsVisible = true;
         }
