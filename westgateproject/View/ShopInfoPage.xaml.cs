@@ -23,7 +23,10 @@ namespace westgateproject.View
             InitializeComponent();
             _building = building;
             _floor = floor;
-            _location = location;
+			_location = location;
+
+			shopLabel.Text = "매장 위치 : " + _building + " " + _floor + " " + _location;
+			Debug.WriteLine("shopLabel.Text = " + shopLabel.Text);
 
         }
 
@@ -56,6 +59,16 @@ namespace westgateproject.View
 
             if (imageSource != null)
             {
+                if(imageSource.Count < 3)
+				{
+					this.Title = imageSource["shopName"];
+					var myLabel = new Label()
+					{
+						Text = "게시물이 없습니다."
+					};
+					myActivity.Children.Add(myLabel);
+                    return;
+                }
                 string shopOwner = "";
                 foreach (var temp in imageSource)
 				{
@@ -85,19 +98,28 @@ namespace westgateproject.View
 										case "1":
 											break;
 										case "2":
+											myImage_Android.RotationY = 180;
 											break;
 										case "3":
+											myImage_Android.RotationX = 180;
+											myImage_Android.RotationY = 180;
 											break;
 										case "4":
+											myImage_Android.RotationX = 180;
 											break;
 										case "5":
+											myImage_Android.Rotation = 90;
+											myImage_Android.RotationY = 180;
 											break;
 										case "6":
 											myImage_Android.Rotation = 90;
 											break;
 										case "7":
+											myImage_Android.Rotation = 90;
+											myImage_Android.RotationX = 180;
 											break;
 										case "8":
+											myImage_Android.Rotation = 270;
 											break;
 										default:
 											var tapGestureRecognizer = new TapGestureRecognizer();
@@ -109,12 +131,12 @@ namespace westgateproject.View
 											myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
 											break;
 									}
-									myActivity.Children.Insert(0, myImage_Android);
+									myActivity.Children.Insert(1, myImage_Android);
 									break;
 								case Device.iOS:
 									var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
 									myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
-									myActivity.Children.Insert(0, myImage_iOS);
+									myActivity.Children.Insert(2, myImage_iOS);
 									break;
 							}
 
@@ -123,14 +145,14 @@ namespace westgateproject.View
 							{
 								Text = temp.Value
 							};
-							myActivity.Children.Insert(1, myLabel);
+							myActivity.Children.Insert(3, myLabel);
 
 							var myBoxView = new BoxView()
 							{
 								HeightRequest = 10,
 								BackgroundColor = Color.LightGray
 							};
-							myActivity.Children.Insert(2, myBoxView);
+							myActivity.Children.Insert(4, myBoxView);
                             break;
                     }
 

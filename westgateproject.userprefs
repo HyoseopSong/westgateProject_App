@@ -1,23 +1,19 @@
-﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
+﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/WritingPage.xaml.cs">
     <Files>
-      <File FileName="westgateproject/View/ShopInfoPage.xaml.cs" Line="43" Column="36" NotebookId="1" />
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="207" Column="38" NotebookId="1" />
-      <File FileName="westgateproject/View/WritingPage.xaml" Line="10" Column="50" NotebookId="1" />
-      <File FileName="westgateproject/View/Register.xaml" Line="51" Column="42" NotebookId="1" />
-      <File FileName="Droid/SignInActivity.cs" Line="99" Column="18" NotebookId="1" />
+      <File FileName="westgateproject/View/ShopInfoPage.xaml.cs" Line="62" Column="19" NotebookId="1" />
     </Files>
     <FloatingWindows>
-      <FloatingWindow WindowId="1" X="1578" Y="23" Width="982" Height="1315">
+      <FloatingWindow WindowId="1" X="1578" Y="28" Width="982" Height="1315">
         <Files>
-          <File FileName="westgateproject/Helper/SyncData.cs" Line="89" Column="36" />
-          <File FileName="westgateproject/View/Register.xaml.cs" Line="28" Column="4" />
+          <File FileName="westgateproject/Helper/SyncData.cs" Line="23" Column="5" />
+          <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="667" Column="41" />
         </Files>
       </FloatingWindow>
     </FloatingWindows>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
+  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.Android_Accelerated_x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

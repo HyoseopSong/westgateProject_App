@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.ShopInfoPage">
     <ScrollView>
         <StackLayout x:Name="myActivity">
+            <Label x:Name="shopLabel"/>
+            <BoxView HeightRequest="10" BackgroundColor="Color.LightGray" />
         </StackLayout>
     </ScrollView> 
 </ContentPage>

@@ -50,7 +50,10 @@
     </ContentPage>
     <ContentPage Title="내 활동" Icon="list.png">
         <ScrollView>
-            <StackLayout x:Name="myActivity">
+            <StackLayout>
+                <Label x:Name="statusLabel" Text="내 활동 내역이 없습니다." IsVisible="false"/>
+                <StackLayout x:Name="myActivity">
+                </StackLayout>
             </StackLayout>
         </ScrollView>     
     </ContentPage>

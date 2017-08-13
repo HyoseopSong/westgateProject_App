@@ -16,21 +16,6 @@ namespace westgateproject.Helper
         {
         }
 
-        static async public Task<bool> SaveAccountInfo(string ShopName, string PhoneNumber)
-        {
-
-			IDictionary<string, string> postDictionary = new Dictionary<string, string>
-			{
-				{ "id", App.userEmail},
-				{ "shopName", ShopName },
-				{ "phoneNumber", PhoneNumber}
-			};
-			await App.Client.InvokeApiAsync("userinformation", System.Net.Http.HttpMethod.Post, postDictionary);
-
-			return true;
-        }
-
-
 		static async public Task<bool> DeleteUserInfo(string id, string building, string floor, string location)
 		{
             var shopLocation = building + ":" + floor + ":" + location;
@@ -110,6 +95,8 @@ namespace westgateproject.Helper
             }
 
 		}
+
+
 
 		static async public Task<bool> SyncShopInfo()
 		{

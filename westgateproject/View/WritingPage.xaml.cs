@@ -15,11 +15,17 @@ namespace westgateproject.View
         private MediaFile photoStream;
         String imageURL;
         string _shopName;
+        bool isInitial;
+		int deleteCount;
+		int moreButtonCount;
+        string[] recentKeyArray;
+        Dictionary<string, RecentEntity> recentSource;
 
         public WritingPage()
 		{
 			InitializeComponent();
-
+            deleteCount = 0;
+            moreButtonCount = 0;
 
             myIdLabel.Text = "내 계정 : " + App.userEmail;
             myIdLabel.VerticalTextAlignment = TextAlignment.Center;
@@ -43,13 +49,22 @@ namespace westgateproject.View
                     break;
             }
 
-
+            isInitial = true;
 
             //syncLabel();
 		}
         protected override async void OnAppearing()
 		{
-
+            if(!isInitial)
+            {
+                Debug.WriteLine("OnAppearing if");
+                return;
+            }
+            else
+			{
+				Debug.WriteLine("OnAppearing else");
+                isInitial = false;
+            }
 			Dictionary<string, UserInfoEntity> userInfo = new Dictionary<string, UserInfoEntity>();
 			Dictionary<string, string> getParamUserInfo = new Dictionary<string, string>
 			{
@@ -185,7 +200,6 @@ namespace westgateproject.View
 				MyInformation.Children.Add(myLabel);
             }
 
-            bool IsSuccess = true;
 			Dictionary<string, string> imageSource = new Dictionary<string, string>();
 			try
 			{
@@ -198,17 +212,12 @@ namespace westgateproject.View
 			catch (Exception ex)
 			{
 				Debug.WriteLine(ex.GetType() + "내 활동 내역이 없습니다.");
-                IsSuccess = false;
 
-                var myLabel = new Label()
-                {
-                    Text = "내 활동 내역이 없습니다."
-				};
-				myActivity.Children.Add(myLabel);
+                statusLabel.IsVisible = true;
 
 			}
 
-            if (IsSuccess)
+            if (imageSource.Count > 0)
             {
                 foreach (var temp in imageSource)
                 {
@@ -227,23 +236,32 @@ namespace westgateproject.View
                             switch (OrientationOfImage)
                             {
 
-                                case "1":
-                                    break;
-                                case "2":
-                                    break;
-                                case "3":
-                                    break;
-                                case "4":
-                                    break;
-                                case "5":
-                                    break;
-                                case "6":
-                                    myImage_Android.Rotation = 90;
-                                    break;
-                                case "7":
-                                    break;
-                                case "8":
-                                    break;
+								case "1":
+									break;
+								case "2":
+									myImage_Android.RotationY = 180;
+									break;
+								case "3":
+									myImage_Android.RotationX = 180;
+									myImage_Android.RotationY = 180;
+									break;
+								case "4":
+									myImage_Android.RotationX = 180;
+									break;
+								case "5":
+									myImage_Android.Rotation = 90;
+									myImage_Android.RotationY = 180;
+									break;
+								case "6":
+									myImage_Android.Rotation = 90;
+									break;
+								case "7":
+									myImage_Android.Rotation = 90;
+									myImage_Android.RotationX = 180;
+									break;
+								case "8":
+									myImage_Android.Rotation = 270;
+									break;
                                 default:
                                     var tapGestureRecognizer = new TapGestureRecognizer();
                                     tapGestureRecognizer.Tapped += (s, e) =>
@@ -292,73 +310,163 @@ namespace westgateproject.View
                     myActivity.Children.Insert(4, myBoxView);
                 }
             }
+            else
+            {
+				Debug.WriteLine("내 활동 내역이 없습니다.");
+
+                statusLabel.IsVisible = true;
+            }
+
+			//imageSource = new Dictionary<string, string>
+			//{
+				//{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-08%20PM%208%3A22%3A37.jpg" },
 
 
-			imageSource = new Dictionary<string, string>
-			{
-				{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-08%20PM%208%3A22%3A37.jpg" },
+
+            //    //{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%84%9C%EB%AC%B8%EC%8B%9C%EC%9E%A5%20%EC%9E%85%EA%B5%AC" },
+            //    //{ "동산상가 2층 동쪽 출입구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EB%8F%99%EC%82%B0%EC%83%81%EA%B0%80" },
+            //    //{ "건해산물상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EA%B1%B4%ED%95%B4%EC%82%B0%EB%AC%BC%EC%83%81%EA%B0%80" },
+            //    //{ "2지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2%EC%A7%80%EA%B5%AC" },
+            //    //{ "1지구 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/1%EC%A7%80%EA%B5%AC" },
+            //    //{ "아진상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%95%84%EC%A7%84%EC%83%81%EA%B0%80" },
+            //    //{ "5지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/5%EC%A7%80%EA%B5%AC" },
 
 
+            //    //{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+            //    { "동산상가 2층 동쪽 출입구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+            //    //{ "건해산물상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+            //    //{ "2지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+            //    //{ "1지구 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+            //    //{ "아진상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
+            //    //{ "5지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" }
+            //};
 
-				//{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%84%9C%EB%AC%B8%EC%8B%9C%EC%9E%A5%20%EC%9E%85%EA%B5%AC" },
-				//{ "동산상가 2층 동쪽 출입구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EB%8F%99%EC%82%B0%EC%83%81%EA%B0%80" },
-				//{ "건해산물상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EA%B1%B4%ED%95%B4%EC%82%B0%EB%AC%BC%EC%83%81%EA%B0%80" },
-				//{ "2지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2%EC%A7%80%EA%B5%AC" },
-				//{ "1지구 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/1%EC%A7%80%EA%B5%AC" },
-				//{ "아진상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%95%84%EC%A7%84%EC%83%81%EA%B0%80" },
-				//{ "5지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/5%EC%A7%80%EA%B5%AC" },
 
+            recentSource = new Dictionary<string, RecentEntity>();
+            recentSource = await App.Client.InvokeApiAsync<Dictionary<string, RecentEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
+            Debug.WriteLine("recentSource.Count : " + recentSource.Count);
+            if(recentSource.Count > 0)
+            {
+				// imageSource에 있는 키값 배열에 다 넣고 앞에 10개만 보여주기
+				recentKeyArray = new string[recentSource.Count];
+				Debug.WriteLine("recentKeyArray.Length : " + recentKeyArray.Length);
+                recentSource.Keys.CopyTo(recentKeyArray,0);
+                int startIndex = 0;
+                if(recentKeyArray.Length > 10)
+                {
+                    startIndex = recentKeyArray.Length - 10;
+                }
+                else
+                {
+                    startIndex = 0;
+                }
+                for (int i = startIndex; i < startIndex + 10 && i < recentKeyArray.Length; i++)
+                {
+                    var blobName = recentKeyArray[i];
+                    var recentEnt = recentSource[recentKeyArray[i]];
 
-                //{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-				{ "동산상가 2층 동쪽 출입구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-				//{ "건해산물상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-				//{ "2지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-				//{ "1지구 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-				//{ "아진상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-				//{ "5지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" }
-			};
-			foreach (var temp in imageSource)
-			{
-				imageURL = temp.Value;
+                    imageURL = "https://westgateproject.blob.core.windows.net/" + recentEnt.PartitionKey.Split('@')[0] + "/" + blobName;
 
-				switch (Device.RuntimePlatform)
-				{
-					case Device.Android:
-						var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
-                        Image tempImage = new Image();
-						var tapGestureRecognizer = new TapGestureRecognizer();
-						tapGestureRecognizer.Tapped += (s, e) =>
-						{
-							var img = s as Image;
-							img.Rotation += 90;
-						};
-						myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
-						//Debug.WriteLine("imageURL : " + imageURL);
-						var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
-						//Debug.WriteLine("Orientation value : " + DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageByte));
-						myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
-						myRecent.Children.Add(myImage_Android);
-						break;
-					case Device.iOS:
-                        var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
-						myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
-						myRecent.Children.Add(myImage_iOS);
-						break;
-				}
+					switch (Device.RuntimePlatform)
+					{
+						case Device.Android:
+							var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+							var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
+							//Debug.WriteLine("imageURL : " + imageURL);
+							//Debug.WriteLine("Orientation value : " + DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageByte));
+							myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
 
+							string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageURL);
+							switch (OrientationOfImage)
+							{
+
+								case "1":
+									break;
+								case "2":
+									myImage_Android.RotationY = 180;
+									break;
+								case "3":
+									myImage_Android.RotationX = 180;
+									myImage_Android.RotationY = 180;
+									break;
+								case "4":
+									myImage_Android.RotationX = 180;
+									break;
+								case "5":
+									myImage_Android.Rotation = 90;
+									myImage_Android.RotationY = 180;
+									break;
+								case "6":
+									myImage_Android.Rotation = 90;
+									break;
+								case "7":
+									myImage_Android.Rotation = 90;
+									myImage_Android.RotationX = 180;
+									break;
+								case "8":
+									myImage_Android.Rotation = 270;
+									break;
+								default:
+									var tapGestureRecognizer = new TapGestureRecognizer();
+									tapGestureRecognizer.Tapped += (s, e) =>
+									{
+										var img = s as Image;
+										img.Rotation += 90;
+									};
+									myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
+									break;
+							}
+							myRecent.Children.Insert(0, myImage_Android);
+							break;
+						case Device.iOS:
+							var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+							myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
+							myRecent.Children.Insert(0, myImage_iOS);
+							break;
+					}
+
+					var labelButton = new Button()
+					{
+						Text = recentEnt.Text
+					};
+					labelButton.Clicked += LabelButton_Clicked;
+					myRecent.Children.Insert(1, labelButton);
+
+					var shopInfo = new Label()
+					{
+						Text = recentEnt.PartitionKey + ":" + recentEnt.ShopName,
+						IsVisible = false
+					};
+					myRecent.Children.Insert(2, shopInfo);
+
+					var myBoxView = new BoxView()
+					{
+						HeightRequest = 10,
+						BackgroundColor = Color.LightGray
+					};
+					myRecent.Children.Insert(3, myBoxView);
+                }
+                if(recentKeyArray.Length > 10)
+                {
+
+					var labelButton = new Button()
+					{
+						Text = "더 불러오기"
+					};
+					labelButton.Clicked += MoreButton_Clicked;
+					myRecent.Children.Add(labelButton);
+                }
+
+            }
+            else
+            {
 
 				var myLabel = new Label()
 				{
-					Text = temp.Key
+					Text = "최근 정보가 없습니다."
 				};
 				myRecent.Children.Add(myLabel);
-
-				var myBoxView = new BoxView();
-				myBoxView.HeightRequest = 10;
-				myBoxView.BackgroundColor = Color.LightGray;
-				myRecent.Children.Add(myBoxView);
-			}
-
+            }
         }
 
 
@@ -375,6 +483,14 @@ namespace westgateproject.View
 
 		async void UploadButton_Clicked(object sender, EventArgs e)
 		{
+            var senderButton = sender as Button;
+            senderButton.IsEnabled = false;
+            if(_shopName == null)
+            {
+                await DisplayAlert("Shop Name is null", "When you pay, you can use this feature", "OK");
+                return;
+            }
+
             var result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text, _shopName);
             switch(result)
             {
@@ -382,16 +498,17 @@ namespace westgateproject.View
 					await DisplayAlert("No blank", "You must fill both text and picture", "OK");
                     break;
 				default:
+                    statusLabel.IsVisible = false;
 					result += ".jpg";
 					var myImage = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
 					myImage.Source = ImageSource.FromStream(photoStream.GetStream);
 					myActivity.Children.Insert(0, myImage);
 
-					var myLabel = new Label()
+					var mySubLabel = new Label()
 					{
 						Text = UploadTextEditor.Text
 					};
-					myActivity.Children.Insert(1, myLabel);
+					myActivity.Children.Insert(1, mySubLabel);
 
 
 					var imageName = new Label()
@@ -419,8 +536,9 @@ namespace westgateproject.View
 					PhotoImage.IsVisible = false;
 					UploadTextEditor.Text = "";
                     break;
-                    
-            }
+
+			}
+			senderButton.IsEnabled = true;
 		}
 
 		private async void CameraButton_Clicked(object sender, EventArgs e)
@@ -487,19 +605,167 @@ namespace westgateproject.View
 		}
 
         private async void DeleteButton_Clicked(object sender, EventArgs e)
-        {
+		{
+			var senderButton = sender as Button;
+			senderButton.IsEnabled = false;
+            deleteCount++;
             int senderIndex = myActivity.Children.IndexOf(sender as Button);
 			var imageName = myActivity.Children[senderIndex - 1] as Label;
 			var result = await SyncData.DeleteContents(imageName.Text);
 
-			int indexNumber = senderIndex / 5;
+			int indexNumber = senderIndex - 3;
 			for (int ii = indexNumber; ii < indexNumber + 5; ii++)
 			{
 				myActivity.Children[ii].IsVisible = false;
 			}
-
+            if(deleteCount == myActivity.Children.Count / 5)
+            {
+                statusLabel.IsVisible = true;
+			}
+			senderButton.IsEnabled = true;
         }
 
+		private async void MoreButton_Clicked(object sender, EventArgs e)
+		{
+			var senderButton = sender as Button;
+			senderButton.IsEnabled = false;
+
+            moreButtonCount++;
+            int startIndex = recentKeyArray.Length - (moreButtonCount * 10) - 1;
+            if(startIndex < 0)
+            {
+                startIndex = 0;
+            }
+            Debug.WriteLine("startIndex : " + startIndex);
+
+            for (int i = startIndex; (i > startIndex - 10) && i >= 0 ; i--)
+			{
+				Debug.WriteLine("for statement i : " + i);
+
+
+				var blobName = recentKeyArray[i];
+				var recentEnt = recentSource[recentKeyArray[i]];
+
+				imageURL = "https://westgateproject.blob.core.windows.net/" + recentEnt.PartitionKey.Split('@')[0] + "/" + blobName;
+
+				switch (Device.RuntimePlatform)
+				{
+					case Device.Android:
+						var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+						var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
+						//Debug.WriteLine("imageURL : " + imageURL);
+						//Debug.WriteLine("Orientation value : " + DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageByte));
+						myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+
+						string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageURL);
+						switch (OrientationOfImage)
+						{
+                            
+							case "1":
+								break;
+							case "2":
+                                myImage_Android.RotationY = 180;
+								break;
+							case "3":
+								myImage_Android.RotationX = 180;
+								myImage_Android.RotationY = 180;
+								break;
+							case "4":
+								myImage_Android.RotationX = 180;
+								break;
+							case "5":
+								myImage_Android.Rotation = 90;
+								myImage_Android.RotationY = 180;
+								break;
+							case "6":
+								myImage_Android.Rotation = 90;
+								break;
+							case "7":
+								myImage_Android.Rotation = 90;
+								myImage_Android.RotationX = 180;
+								break;
+							case "8":
+								myImage_Android.Rotation = 270;
+								break;
+							default:
+								var tapGestureRecognizer = new TapGestureRecognizer();
+								tapGestureRecognizer.Tapped += (s, ea) =>
+								{
+									var img = s as Image;
+									img.Rotation += 90;
+								};
+								myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
+								break;
+						}
+
+
+                        myRecent.Children.Insert(myRecent.Children.Count - 1, myImage_Android);
+
+
+						break;
+					case Device.iOS:
+						var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+						myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
+						myRecent.Children.Insert(myRecent.Children.Count - 1, myImage_iOS);
+						break;
+				}
+
+				var labelButton = new Button()
+				{
+					Text = recentEnt.Text
+				};
+				labelButton.Clicked += LabelButton_Clicked;
+				myRecent.Children.Insert(myRecent.Children.Count - 1, labelButton);
+
+				var shopInfo = new Label()
+				{
+					Text = recentEnt.PartitionKey + ":" + recentEnt.ShopName,
+					IsVisible = false
+				};
+				myRecent.Children.Insert(myRecent.Children.Count - 1, shopInfo);
+
+				var myBoxView = new BoxView()
+				{
+					HeightRequest = 10,
+					BackgroundColor = Color.LightGray
+				};
+				myRecent.Children.Insert(myRecent.Children.Count - 1, myBoxView);
+			}
+
+            if (recentKeyArray.Length > (moreButtonCount+1) * 10)
+            {
+                senderButton.IsVisible = true;
+            }
+            else
+            {
+                senderButton.IsVisible = false;
+            }
+
+            senderButton.IsEnabled = true;
+		}
+
+		private async void LabelButton_Clicked(object sender, EventArgs e)
+		{
+			var senderButton = sender as Button;
+			senderButton.IsEnabled = false;
+			int senderIndex = myRecent.Children.IndexOf(sender as Button);
+			var imageName = myRecent.Children[senderIndex + 1] as Label;
+            Debug.WriteLine("imageName.text : " + imageName.Text);
+			var id = imageName.Text.Split(':')[0];
+			var shopName = imageName.Text.Split(':')[1];
+
+			IDictionary<string, string> getParam = new Dictionary<string, string>
+			{
+				{ "id", id},
+				{ "shopName", shopName},
+			};
+            Dictionary<string, string> shopInfo = new Dictionary<string, string>();
+            shopInfo = await App.Client.InvokeApiAsync<Dictionary<string, string>>("recent", System.Net.Http.HttpMethod.Get, getParam);
+
+            Debug.WriteLine("building : " + shopInfo["building"] + "floor : " + shopInfo["floor"] + "location : " + shopInfo["location"]);
+			await Navigation.PushAsync(new ShopInfoPage(shopInfo["building"], shopInfo["floor"], shopInfo["location"]));
+			senderButton.IsEnabled = true;
+		}
 
         private async void PicturePicker_Clicked(object sender, EventArgs e)
         {
@@ -517,76 +783,5 @@ namespace westgateproject.View
 			}
         }
 
-		private void EditPropertyClicked(object sender, EventArgs e)
-		{
-   //         shopName.Text = "Shop Name : ";
-   //         shopNameEntry.IsVisible = true;
-			//shopNameEntry.Placeholder = "Type Shop Name";
-
-			//shopBuilding.Text = "Shop Building : ";
-			//shopBuildingEntry.IsVisible = true;
-			//shopBuildingEntry.Placeholder = "Type Shop Location";
-
-			//shopFloor.Text = "Shop Location : ";
-			//shopFloorEntry.IsVisible = true;
-			//shopFloorEntry.Placeholder = "Type Shop Location";
-
-            //shopLocation.Text = "Shop Location : ";
-            //shopLocationEntry.IsVisible = true;
-            //shopLocationEntry.Placeholder = "Type Shop Location";
-
-            //phoneNumber.Text = "Phone Number : ";
-            //phoneNumberEntry.IsVisible = true;
-            //phoneNumberEntry.Placeholder = "Type Phone Number";
-
-            //editProperty.IsVisible = false;
-            //confirmProperty.IsVisible = true;
-		}
-
-		private async void ConfirmPropertyClicked(object sender, EventArgs e)
-		{
-			//Dictionary<string, string> postParam = new Dictionary<string, string>
-			//	{
-			//		{ "id", App.userEmail},
-			//		{ "name", shopNameEntry.Text},
-			//		{ "building", shopBuildingEntry.Text},
-			//		{ "floor", shopFloorEntry.Text},
-			//		{ "location", shopLocationEntry.Text},
-			//		{ "number", phoneNumberEntry.Text},
-			//	};
-			//try
-			//{
-			//	await App.Client.InvokeApiAsync("upload", System.Net.Http.HttpMethod.Post, postParam);
-			//}
-			//catch (Exception ex)
-			//{
-			//	Debug.WriteLine(ex.GetType());
-
-			//}
-
-            //shopName.Text = "Shop Name : " + shopNameEntry.Text;
-            //shopNameEntry.IsVisible = false;
-            //shopNameEntry.Text = "";
-
-            //shopBuilding.Text = "Shop Location : " + shopLocationEntry.Text;
-            //shopBuildingEntry.IsVisible = false;
-            //shopBuildingEntry.Text = "";
-
-            //shopFloor.Text = "Shop Location : " + shopLocationEntry.Text;
-            //shopFloorEntry.IsVisible = false;
-            //shopFloorEntry.Text = "";
-
-            //shopLocation.Text = "Shop Location : " + shopLocationEntry.Text;
-            //shopLocationEntry.IsVisible = false;
-            //shopLocationEntry.Text = "";
-
-            //phoneNumber.Text = "Phone Number : " + phoneNumberEntry.Text;
-            //phoneNumberEntry.IsVisible = false;
-            //phoneNumberEntry.Text = "";
-
-            //editProperty.IsVisible = true;
-            //confirmProperty.IsVisible = false;
-
-		}
     }
 }
