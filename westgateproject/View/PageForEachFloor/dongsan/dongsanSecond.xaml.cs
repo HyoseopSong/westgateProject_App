@@ -40,7 +40,7 @@ namespace westgateproject.View.PageForEachFloor.dongsan
 				var temp = sender as Label;
 				//infoFromSQLite = await App.Database.GetShopAsync("동산상가", "2층", temp.Text);
 				//await Navigation.PushAsync(new ShopInfoPage(infoFromSQLite));
-				await Navigation.PushAsync(new ShopInfoPage("Dongsan", "2층", temp.Text));
+				await Navigation.PushAsync(new ShopInfoPage("동산상가", "2층", temp.Text));
 				onProcessing = false;
 			}
 		}

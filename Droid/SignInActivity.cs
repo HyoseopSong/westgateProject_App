@@ -38,7 +38,6 @@ namespace westgateproject.Droid
         {
             base.OnCreate(savedInstanceState);
 
-			Console.WriteLine("SignInActivity Start!!");
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
                                                              .RequestIdToken(Constants.WebClientID)
                                                              .RequestEmail()
@@ -78,38 +77,43 @@ namespace westgateproject.Droid
             {
                 GoogleSignInAccount acct = result.SignInAccount;
                 var googleToken = acct.IdToken;
-				Console.WriteLine("acct value : " + acct);
-				Console.WriteLine("Account value : " + acct.Account);
-				Console.WriteLine("DisplayName value : " + acct.DisplayName);
-				Console.WriteLine("Email value : " + acct.Email);
-				Console.WriteLine("FamilyName value : " + acct.FamilyName);
-				Console.WriteLine("acGivenNamect value : " + acct.GivenName);
-				Console.WriteLine("Id value : " + acct.Id);
-				Console.WriteLine("IdToken value : " + acct.IdToken);
-				Console.WriteLine("PhotoUrl value : " + acct.PhotoUrl);
-				Console.WriteLine("ServerAuthCode value : " + acct.ServerAuthCode);
+				//Console.WriteLine("acct value : " + acct);
+				//Console.WriteLine("Account value : " + acct.Account);
+				//Console.WriteLine("DisplayName value : " + acct.DisplayName);
+				//Console.WriteLine("Email value : " + acct.Email);
+				//Console.WriteLine("FamilyName value : " + acct.FamilyName);
+				//Console.WriteLine("acGivenNamect value : " + acct.GivenName);
+				//Console.WriteLine("Id value : " + acct.Id);
+				//Console.WriteLine("IdToken value : " + acct.IdToken);
+				//Console.WriteLine("PhotoUrl value : " + acct.PhotoUrl);
+				//Console.WriteLine("ServerAuthCode value : " + acct.ServerAuthCode);
+
+     //           foreach (var temp in result.SignInAccount.GrantedScopes)
+     //           {
+					//Console.WriteLine("ServerAuthCode value : " + temp);
+                //}
 
                 App.userEmail = acct.Email;
 
-				var token = new JObject();
-				token.Add("id_token", googleToken);
-
-
-				App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token);
-				IDictionary<string, string> resultOfInvoke = new Dictionary<string, string>();
-				try
-				{
-					resultOfInvoke = await App.Client.InvokeApiAsync<IDictionary<string, string>>("notice", System.Net.Http.HttpMethod.Get, null);
-					foreach (var temp in resultOfInvoke)
-					{
-						Console.WriteLine("Key : " + temp.Key + ", Value : " + temp.Value);
-					}
-				}
-				catch (System.Exception ex)
-				{
-					Console.WriteLine(ex.GetType());
-					Console.WriteLine("서버에서 정보를 불러올 수 없습니다.");
-				}
+                var token = new JObject
+                {
+                    { "id_token", googleToken }
+                };
+                App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token);
+				//IDictionary<string, string> resultOfInvoke = new Dictionary<string, string>();
+				//try
+				//{
+				//	resultOfInvoke = await App.Client.InvokeApiAsync<IDictionary<string, string>>("notice", System.Net.Http.HttpMethod.Get, null);
+				//	foreach (var temp in resultOfInvoke)
+				//	{
+				//		Console.WriteLine("Key : " + temp.Key + ", Value : " + temp.Value);
+				//	}
+				//}
+				//catch (System.Exception ex)
+				//{
+				//	Console.WriteLine(ex.GetType());
+				//	Console.WriteLine("서버에서 정보를 불러올 수 없습니다.");
+				//}
 
             }
             else

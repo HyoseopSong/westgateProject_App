@@ -7,7 +7,7 @@
         <ScrollView>
 			<StackLayout>
 				<Label x:Name="myIdLabel"/>
-
+                <BoxView x:Name="referenceBoxView" HeightRequest="10" BackgroundColor="Color.LightGray" />
                 <StackLayout x:Name="MyInformation">
 
                 </StackLayout>

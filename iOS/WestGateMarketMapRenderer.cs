@@ -20,7 +20,7 @@ namespace westgateproject.iOS
 		private IMKAnnotation[] annotations;
 
         WestGateMarketMap formsMap;
-		UIView customPinView;
+		//UIView customPinView;
         List<AdvertisementPin> advertisementPins;
 		//public WestGateMarketMapRenderer()
 		//{

@@ -1,29 +1,17 @@
 ﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/PageForEachFloor/second/secondBaseFirst_west.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/WritingPage.xaml.cs">
     <Files>
-      <File FileName="westgateproject/View/PageForEachFloor/fifth/fifthSecond.xaml.cs" Line="40" Column="32" NotebookId="1" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondBaseFirst_east.xaml.cs" Line="41" Column="84" NotebookId="1" />
-      <File FileName="iOS/Main.cs" Line="20" Column="3" NotebookId="1" />
-      <File FileName="westgateproject/View/ShopInfoPage.xaml" Line="8" Column="1" NotebookId="1" />
-      <File FileName="Droid/ImageScaleHelper.cs" Line="139" Column="1" NotebookId="1" />
-      <File FileName="westgateproject/View/PageForEachFloor/dongsan/dongsanSecond.xaml.cs" Line="43" Column="57" NotebookId="2" />
-      <File FileName="westgateproject/View/PageForEachFloor/fifth/fifthFirst.xaml.cs" Line="41" Column="63" NotebookId="2" />
-      <File FileName="westgateproject/View/PageForEachFloor/dongsan/dongsanFirst.xaml.cs" Line="44" Column="57" NotebookId="2" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondBaseFirst_west.xaml.cs" Line="40" Column="64" NotebookId="2" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondFirst_east.xaml.cs" Line="38" Column="45" NotebookId="2" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondFirst_west.xaml.cs" Line="38" Column="49" NotebookId="2" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondForth_east.xaml.cs" Line="39" Column="48" NotebookId="2" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondForth_west.xaml.cs" Line="39" Column="56" NotebookId="2" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondSecond_east.xaml.cs" Line="40" Column="39" NotebookId="2" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondSecond_west.xaml.cs" Line="39" Column="64" NotebookId="2" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondThird_east.xaml.cs" Line="39" Column="59" NotebookId="2" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondThird_west.xaml.cs" Line="39" Column="68" NotebookId="2" />
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="45" Column="13" NotebookId="2" />
+      <File FileName="westgateproject/View/ShopInfoPage.xaml.cs" Line="43" Column="36" NotebookId="1" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="207" Column="38" NotebookId="1" />
+      <File FileName="westgateproject/View/WritingPage.xaml" Line="10" Column="50" NotebookId="1" />
+      <File FileName="westgateproject/View/Register.xaml" Line="51" Column="42" NotebookId="1" />
+      <File FileName="Droid/SignInActivity.cs" Line="99" Column="18" NotebookId="1" />
     </Files>
     <FloatingWindows>
-      <FloatingWindow WindowId="1" X="719" Y="159" Width="1300" Height="1306">
+      <FloatingWindow WindowId="1" X="1578" Y="23" Width="982" Height="1315">
         <Files>
-          <File FileName="westgateproject/View/ShopInfoPage.xaml.cs" Line="28" Column="10" />
+          <File FileName="westgateproject/Helper/SyncData.cs" Line="89" Column="36" />
+          <File FileName="westgateproject/View/Register.xaml.cs" Line="28" Column="4" />
         </Files>
       </FloatingWindow>
     </FloatingWindows>

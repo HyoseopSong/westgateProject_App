@@ -37,7 +37,7 @@ namespace westgateproject.View.PageForEachFloor.second
 				ShopInformation infoFromSQLite = new ShopInformation();
 				var temp = sender as Label;
 				//infoFromSQLite = await App.Database.GetShopAsync("2지구", "지하1층", temp.Text);
-				await Navigation.PushAsync(new ShopInfoPage("SecondBuilding", "4층", temp.Text));
+				await Navigation.PushAsync(new ShopInfoPage("2지구", "4층", temp.Text));
 				onProcessing = false;
 			}
 		}

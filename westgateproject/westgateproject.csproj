@@ -29,4 +29,6 @@
     <EmbeddedResource Include="**\*.xaml" SubType="Designer" Generator="MSBuild:UpdateDesignTimeXaml" />
   </ItemGroup>
 
+  <ItemGroup>
+  </ItemGroup>
 </Project>

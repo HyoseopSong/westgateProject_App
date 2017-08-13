@@ -182,7 +182,7 @@ namespace westgateproject.iOS
 					{ "id_token", token }
 				};
 			App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token1);
-		    App.userEmail = SignIn.SharedInstance.CurrentUser.Profile.Email;
+			App.userEmail = SignIn.SharedInstance.CurrentUser.Profile.Email;
 
 			loginStatus.Text = "Successfully signed in!";
 

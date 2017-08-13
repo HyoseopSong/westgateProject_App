@@ -38,7 +38,7 @@ namespace westgateproject.View.PageForEachFloor.fifth
 	            ShopInformation infoFromSQLite = new ShopInformation();
 	            var temp = sender as Label;
 	            //infoFromSQLite = await App.Database.GetShopAsync("5지구", "2층", temp.Text);
-				await Navigation.PushAsync(new ShopInfoPage("FifthBuilding", "2층", temp.Text));
+				await Navigation.PushAsync(new ShopInfoPage("5지구", "2층", temp.Text));
 				onProcessing = false;
 			}
 		}

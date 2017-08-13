@@ -30,10 +30,25 @@ namespace westgateproject.View
 		protected override async void OnAppearing()
 		{
 			IDictionary<string, string> imageSource = new Dictionary<string, string>();
-
+            string _building_Converted;
+            switch(_building)
+            {
+                case "동산상가":
+                    _building_Converted = "Dongsan";
+					break;
+				case "2지구":
+					_building_Converted = "SecondBuilding";
+					break;
+				case "5지구":
+					_building_Converted = "FifthBuilding";
+					break;
+				default:
+					_building_Converted = "Empty";
+                    break;
+            }
 			Dictionary<string, string> getParam = new Dictionary<string, string>
 			{
-				{ "building", _building},
+				{ "building", _building_Converted},
 				{ "floor", _floor},
 				{ "location", _location},
 			};
@@ -123,8 +138,23 @@ namespace westgateproject.View
             }
             else
             {
-                await DisplayAlert("No Shop Info", "This position is empty", "OK");
-                await Navigation.PopAsync(true);
+                var answer = await DisplayAlert("Empty shop", "Would you register here as your shop?", "Register", "Dismiss");
+                if(answer)
+                {
+
+					await Navigation.PushAsync(new Register(_building, _floor, _location));
+					Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                    // Register process
+                    // 1. Input relational information - Shop Name, Phone Number, if it doens't exist, additional information about shop location.
+                    // 2. Touch Register button
+                    // 3. Display Info window that indicate the process is done and you need to pay the money.
+                    // 4. Touch OK button and then return to shop map.
+                }
+                else
+                {
+                    await Navigation.PopAsync(true);
+                }
+
             }
 		}
     }

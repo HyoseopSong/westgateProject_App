@@ -31,6 +31,19 @@ namespace westgateproject.Helper
         }
 
 
+		static async public Task<bool> DeleteUserInfo(string id, string building, string floor, string location)
+		{
+            var shopLocation = building + ":" + floor + ":" + location;
+			Dictionary<string, string> getParam = new Dictionary<string, string>
+			{
+				{ "id", App.userEmail},
+				{ "shopLocation", shopLocation},
+			};
+			await App.Client.InvokeApiAsync<Dictionary<string, string>>("userInformation", System.Net.Http.HttpMethod.Delete, getParam);
+
+			return true;
+		}
+
         static async public Task<bool> DeleteContents(string blobName)
         {
 
@@ -60,7 +73,7 @@ namespace westgateproject.Helper
         }
 
 
-		static async public Task<string> UploadContents(MediaFile img, string text)
+		static async public Task<string> UploadContents(MediaFile img, string text, string shopName)
 		{
             var blobName = DateTime.Now.ToFileTime().ToString();
             if (img != null && text != null)
@@ -76,13 +89,15 @@ namespace westgateproject.Helper
 				//await blockBlob.UploadFromFileAsync(img.Path);
                 await blockBlob.UploadFromStreamAsync(img.GetStream());
 
-
+                var ShopName = shopName;
 
 				IDictionary<string, string> postDictionary = new Dictionary<string, string>
 				{
 					{ "content", text },
 					{ "id", App.userEmail},
-					{ "blobName", blobName + ".jpg"}
+					{ "blobName", blobName + ".jpg"},
+					{ "shopName", ShopName},
+
 				};
 				await App.Client.InvokeApiAsync("upload", System.Net.Http.HttpMethod.Post, postDictionary);
 

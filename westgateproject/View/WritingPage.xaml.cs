@@ -14,6 +14,7 @@ namespace westgateproject.View
 	{
         private MediaFile photoStream;
         String imageURL;
+        string _shopName;
 
         public WritingPage()
 		{
@@ -25,7 +26,7 @@ namespace westgateproject.View
 
             CameraButton.WidthRequest = App.ScreenWidth / 2;
             PictureButton.WidthRequest = App.ScreenWidth / 2;
-
+            UploadTextEditor.BackgroundColor = Color.Lime;
             switch (Device.RuntimePlatform)
             {
 				case Device.iOS:
@@ -48,82 +49,131 @@ namespace westgateproject.View
 		}
         protected override async void OnAppearing()
 		{
+
 			Dictionary<string, UserInfoEntity> userInfo = new Dictionary<string, UserInfoEntity>();
 			Dictionary<string, string> getParamUserInfo = new Dictionary<string, string>
 			{
 				{ "id", App.userEmail},
 			};
-            try
-            {
-                userInfo = await App.Client.InvokeApiAsync<Dictionary<string, UserInfoEntity>>("userInformation", System.Net.Http.HttpMethod.Get, getParamUserInfo);
-            }
-            catch
-            {
-                var myLabel = new Label()
-                {
-                    Text = "내 매장 정보가 없습니다."
-                };
-                MyInformation.Children.Add(myLabel);
-            }
+
+            userInfo = await App.Client.InvokeApiAsync<Dictionary<string, UserInfoEntity>>("userInformation", System.Net.Http.HttpMethod.Get, getParamUserInfo);
+
+			Picker shopPicker = new Picker
+			{
+				Title = "게시 할 매장",
+				VerticalOptions = LayoutOptions.CenterAndExpand
+			};
+
             if (userInfo.Count > 0)
-            {
+			{
+                int paidCount = 0;
+                int unpaidCount = 0;
+
+				BoxView myBoxView = new BoxView()
+				{
+					HeightRequest = 10,
+					BackgroundColor = Color.LightGray
+				};
+				MyInformation.Children.Add(myBoxView);
                 foreach (var UserInfo in userInfo)
                 {
-                    Label shopName = new Label()
-                    {
-                        Text = "Shop Name : " + UserInfo.Value.RowKey,
-                        VerticalTextAlignment = TextAlignment.Center
-                    };
-                    Label shopBuilding = new Label()
-                    {
-                        Text = "Shop Building : " + UserInfo.Value.ShopBuilding,
-                        VerticalTextAlignment = TextAlignment.Center
-                    };
-                    Label shopFloor = new Label()
-                    {
-                        Text = "Shop Floor : " + UserInfo.Value.ShopFloor,
-                        VerticalTextAlignment = TextAlignment.Center
-                    };
-                    Label shopLocation = new Label()
-                    {
-                        Text = "Shop Location : " + UserInfo.Value.ShopLocation,
-                        VerticalTextAlignment = TextAlignment.Center
-                    };
-                    Label phoneNumber = new Label()
-                    {
-                        Text = "Phone Number : " + UserInfo.Value.PhoneNumber,
-                        VerticalTextAlignment = TextAlignment.Center
-                    };
-                    BoxView myBox = new BoxView()
-                    {
-                        HeightRequest = 10,
-                        BackgroundColor = Color.LightGray
-                    };
+                    if (UserInfo.Value.Paid)
+					{
+                        paidCount++;
+                        _shopName = UserInfo.Key;
+						shopPicker.Items.Add(UserInfo.Key);
 
-                    switch (Device.RuntimePlatform)
-                    {
-                        case Device.iOS:
-                            shopName.HeightRequest = 30;
-                            shopBuilding.HeightRequest = 30;
-                            shopFloor.HeightRequest = 30;
-                            shopLocation.HeightRequest = 30;
-                            phoneNumber.HeightRequest = 30;
-                            break;
-                        case Device.Android:
-                            shopName.HeightRequest = 40;
-                            shopBuilding.HeightRequest = 40;
-                            shopFloor.HeightRequest = 40;
-                            shopLocation.HeightRequest = 40;
-                            phoneNumber.HeightRequest = 40;
-                            break;
+                        var temp = UserInfo.Value;
+                        var shopInfo = temp.RowKey.Split(':');
+
+                        Label shopName = new Label()
+                        {
+                            Text = "Shop Name : " + UserInfo.Key,
+                            VerticalTextAlignment = TextAlignment.Center
+                        };
+                        Label shopBuilding = new Label()
+                        {
+                            Text = "Shop Building : " + shopInfo[0],
+                            VerticalTextAlignment = TextAlignment.Center
+                        };
+                        Label shopFloor = new Label()
+                        {
+                            Text = "Shop Floor : " + shopInfo[1],
+                            VerticalTextAlignment = TextAlignment.Center
+                        };
+                        Label shopLocation = new Label()
+                        {
+                            Text = "Shop Location : " + shopInfo[2],
+                            VerticalTextAlignment = TextAlignment.Center
+                        };
+                        Label phoneNumber = new Label()
+                        {
+                            Text = "Phone Number : " + UserInfo.Value.PhoneNumber,
+                            VerticalTextAlignment = TextAlignment.Center
+						};
+						BoxView myBox = new BoxView()
+						{
+							HeightRequest = 10,
+							BackgroundColor = Color.LightGray
+						};
+
+                        switch (Device.RuntimePlatform)
+                        {
+                            case Device.iOS:
+                                shopName.HeightRequest = 30;
+                                shopBuilding.HeightRequest = 30;
+                                shopFloor.HeightRequest = 30;
+                                shopLocation.HeightRequest = 30;
+                                phoneNumber.HeightRequest = 30;
+                                break;
+                            case Device.Android:
+                                shopName.HeightRequest = 40;
+                                shopBuilding.HeightRequest = 40;
+                                shopFloor.HeightRequest = 40;
+                                shopLocation.HeightRequest = 40;
+                                phoneNumber.HeightRequest = 40;
+                                break;
+                        }
+
+                        MyInformation.Children.Add(shopName);
+                        MyInformation.Children.Add(shopBuilding);
+                        MyInformation.Children.Add(shopFloor);
+                        MyInformation.Children.Add(shopLocation);
+                        MyInformation.Children.Add(phoneNumber);
+                        MyInformation.Children.Add(myBox);
                     }
+                    else
+					{
+                        unpaidCount++;
+						var temp = UserInfo.Value;
+						var rawShopInfo = temp.RowKey.Split(':');
+						Label shopInfo = new Label()
+						{
+							Text = rawShopInfo[0] + " " + rawShopInfo[1] + " " + rawShopInfo[2] + " " + UserInfo.Value.ShopName + " 등록 대기 중",
+							VerticalTextAlignment = TextAlignment.Center
+						};
 
-                    MyInformation.Children.Add(shopName);
-                    MyInformation.Children.Add(shopBuilding);
-                    MyInformation.Children.Add(shopFloor);
-                    MyInformation.Children.Add(shopLocation);
-                    MyInformation.Children.Add(phoneNumber);
-                    MyInformation.Children.Add(myBox);
+						BoxView myBox = new BoxView()
+						{
+							HeightRequest = 10,
+							BackgroundColor = Color.LightGray
+						};
+
+						MyInformation.Children.Insert(0, shopInfo);
+                    }
+                }
+                if (paidCount > 1)
+                {
+					shopPicker.SelectedIndexChanged += (sender, args) =>
+					{
+						_shopName = shopPicker.Items[shopPicker.SelectedIndex];
+				    };
+                    MyInformation.Children.Add(shopPicker);
+                }
+
+                if (unpaidCount < 1)
+                {
+                    referenceBoxView.IsVisible = false;
                 }
             }
             else
@@ -147,7 +197,7 @@ namespace westgateproject.View
 			}
 			catch (Exception ex)
 			{
-				Debug.WriteLine(ex.GetType());
+				Debug.WriteLine(ex.GetType() + "내 활동 내역이 없습니다.");
                 IsSuccess = false;
 
                 var myLabel = new Label()
@@ -325,7 +375,7 @@ namespace westgateproject.View
 
 		async void UploadButton_Clicked(object sender, EventArgs e)
 		{
-            var result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text);
+            var result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text, _shopName);
             switch(result)
             {
 				case null:
