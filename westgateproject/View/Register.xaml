@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.Register" Title="Register">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.Register" Title="내 매장으로 등록">
     <StackLayout>
 	    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-		    <Label Text="Shop Name : " VerticalTextAlignment="Center">
+		    <Label Text="매장 이름 : " VerticalTextAlignment="Center">
 				<Label.HeightRequest>
 					<OnPlatform x:TypeArguments="x:Double"
 						iOS="30"
@@ -20,7 +20,7 @@
 	    </StackLayout>
 	    
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-            <Label Text="Phone Number : " VerticalTextAlignment="Center">
+            <Label Text="전화 번호 : " VerticalTextAlignment="Center">
                 <Label.HeightRequest>
                     <OnPlatform x:TypeArguments="x:Double"
                         iOS="30"
@@ -37,7 +37,7 @@
             </Entry>
         </StackLayout>
 		
-		    <Label Text="Additional Information : " VerticalTextAlignment="Center">
+		    <Label Text="추가 요청 사항 : " VerticalTextAlignment="Center">
                 <Label.HeightRequest>
                     <OnPlatform x:TypeArguments="x:Double"
                         iOS="30"
@@ -58,8 +58,8 @@
             </Editor>
 
 	    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-    	    <Button x:Name="RegisterRequest" Text="Register" Clicked="RegisterClicked" HorizontalOptions="FillAndExpand"/>
-    	    <Button x:Name="CancelRequest" Text="Cancel" Clicked="CancelClicked" IsVisible="false" HorizontalOptions="FillAndExpand"/>
+    	    <Button x:Name="RegisterRequest" Text="신청" Clicked="RegisterClicked" HorizontalOptions="FillAndExpand"/>
+    	    <Button x:Name="CancelRequest" Text="취소" Clicked="CancelClicked" IsVisible="false" HorizontalOptions="FillAndExpand"/>
         </StackLayout>
 	    <!--<BoxView HeightRequest="10" BackgroundColor="Color.LightGray" />-->
     </StackLayout> 

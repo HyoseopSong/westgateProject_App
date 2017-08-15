@@ -160,7 +160,7 @@ namespace westgateproject.View
             }
             else
             {
-                var answer = await DisplayAlert("Empty shop", "Would you register here as your shop?", "Register", "Dismiss");
+                var answer = await DisplayAlert("비어있는 매장", "내 매장으로 등록하시겠습니까?", "등록", "무시");
                 if(answer)
                 {
 
