@@ -153,23 +153,23 @@ namespace westgateproject.View.PageForEachFloor
                     case "아진상가":
                         if (sender == firstFloor)
                         {
-                            await Navigation.PushAsync(new Preparing());
+                            //await Navigation.PushAsync(new Preparing());
                         }
                         break;
                     case "건해산물상가":
                         if (sender == firstFloor)
                         {
-                            await Navigation.PushAsync(new Preparing());
+                            //await Navigation.PushAsync(new Preparing());
                         }
                         break;
                     case "명품프라자":
                         if (sender == secondFloor)
                         {
-                            await Navigation.PushAsync(new Preparing());
+                            //await Navigation.PushAsync(new Preparing());
                         }
                         else if (sender == firstFloor)
                         {
-                            await Navigation.PushAsync(new Preparing());
+                            //await Navigation.PushAsync(new Preparing());
                         }
                         break;
                     case "상가연합회":

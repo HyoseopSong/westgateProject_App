@@ -103,27 +103,17 @@ namespace westgateproject.View
 
                         Label shopName = new Label()
                         {
-                            Text = "Shop Name : " + UserInfo.Key,
-                            VerticalTextAlignment = TextAlignment.Center
-                        };
-                        Label shopBuilding = new Label()
-                        {
-                            Text = "Shop Building : " + shopInfo[0],
-                            VerticalTextAlignment = TextAlignment.Center
-                        };
-                        Label shopFloor = new Label()
-                        {
-                            Text = "Shop Floor : " + shopInfo[1],
+                            Text = "매장 이름 : " + UserInfo.Key,
                             VerticalTextAlignment = TextAlignment.Center
                         };
                         Label shopLocation = new Label()
                         {
-                            Text = "Shop Location : " + shopInfo[2],
+                            Text = "위치 : " + shopInfo[0] + " " + shopInfo[1] + " " + shopInfo[2],
                             VerticalTextAlignment = TextAlignment.Center
                         };
                         Label phoneNumber = new Label()
                         {
-                            Text = "Phone Number : " + UserInfo.Value.PhoneNumber,
+                            Text = "전화 번호 : " + UserInfo.Value.PhoneNumber,
                             VerticalTextAlignment = TextAlignment.Center
 						};
 						BoxView myBox = new BoxView()
@@ -136,23 +126,17 @@ namespace westgateproject.View
                         {
                             case Device.iOS:
                                 shopName.HeightRequest = 30;
-                                shopBuilding.HeightRequest = 30;
-                                shopFloor.HeightRequest = 30;
                                 shopLocation.HeightRequest = 30;
                                 phoneNumber.HeightRequest = 30;
                                 break;
                             case Device.Android:
                                 shopName.HeightRequest = 40;
-                                shopBuilding.HeightRequest = 40;
-                                shopFloor.HeightRequest = 40;
                                 shopLocation.HeightRequest = 40;
                                 phoneNumber.HeightRequest = 40;
                                 break;
                         }
 
                         MyInformation.Children.Add(shopName);
-                        MyInformation.Children.Add(shopBuilding);
-                        MyInformation.Children.Add(shopFloor);
                         MyInformation.Children.Add(shopLocation);
                         MyInformation.Children.Add(phoneNumber);
                         MyInformation.Children.Add(myBox);
@@ -483,19 +467,19 @@ namespace westgateproject.View
 
 		async void UploadButton_Clicked(object sender, EventArgs e)
 		{
-            var senderButton = sender as Button;
-            senderButton.IsEnabled = false;
             if(_shopName == null)
             {
-                await DisplayAlert("Shop Name is null", "When you pay, you can use this feature", "OK");
+                await DisplayAlert("등록된 매장 없음", "내 매장을 등록하시면 게시 하실 수 있습니다.", "확인");
                 return;
-            }
+			}
+			var senderButton = sender as Button;
+			senderButton.IsEnabled = false;
 
             var result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text, _shopName);
             switch(result)
             {
 				case null:
-					await DisplayAlert("No blank", "You must fill both text and picture", "OK");
+					await DisplayAlert("빈 칸 있음", "사진과 글 모두 채워주세요.", "확인");
                     break;
 				default:
                     statusLabel.IsVisible = false;

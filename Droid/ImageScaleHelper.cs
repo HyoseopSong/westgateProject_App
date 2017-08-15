@@ -102,10 +102,10 @@ namespace westgateproject.Droid
 					inSampleSize *= 2;
 				}
 
-                if (inSampleSize != 1)
-                {
-                    inSampleSize /= 2;
-                }
+                //if (inSampleSize != 1)
+                //{
+                //    inSampleSize /= 2;
+                //}
 
 			}
 			return (int)inSampleSize;

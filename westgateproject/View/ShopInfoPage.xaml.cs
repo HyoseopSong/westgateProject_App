@@ -131,7 +131,7 @@ namespace westgateproject.View
 											myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
 											break;
 									}
-									myActivity.Children.Insert(1, myImage_Android);
+									myActivity.Children.Insert(2, myImage_Android);
 									break;
 								case Device.iOS:
 									var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
@@ -154,9 +154,9 @@ namespace westgateproject.View
 							};
 							myActivity.Children.Insert(4, myBoxView);
                             break;
-                    }
+			    }
 
-                }
+			}
             }
             else
             {

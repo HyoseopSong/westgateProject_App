@@ -18,8 +18,8 @@ namespace westgateproject.iOS
 {
     public class InitialPageRenderer : PageRenderer, ISignInDelegate, ISignInUIDelegate
     {
-        UILabel loginStatus;
-        Button guestButton;
+        Label loginStatus;
+        Button startButton;
         SignInButton signInButton;
         public override void ViewDidAppear(bool animated)
         {
@@ -32,13 +32,13 @@ namespace westgateproject.iOS
 			var height = (float)App.ScreenHeight;
 			var width = (float)App.ScreenWidth;
 
-            loginStatus = new UILabel(new CGRect(0 * width, 0.75 * height, 1 * width, 0.07 * height))
-            {
-                Text = "로그인 중 입니다...",
-                TextAlignment = UITextAlignment.Center,
-                TextColor = UIColor.Blue
-			};
-			View.AddSubview(loginStatus);
+   //         loginStatus = new UILabel(new CGRect(0 * width, 0.75 * height, 1 * width, 0.07 * height))
+   //         {
+   //             Text = "로그인 중 입니다...",
+   //             TextAlignment = UITextAlignment.Center,
+   //             TextColor = UIColor.Blue
+			//};
+			//View.AddSubview(loginStatus);
 
 			signInButton = new SignInButton()
 			{
@@ -102,7 +102,7 @@ namespace westgateproject.iOS
 
             signInButton.TouchUpInside += (sender, eo) =>
             {
-                loginStatus.Text = "Logging in...";
+                loginStatus.Text = "로그인 중 입니다...";
 
                 //if (SignIn.SharedInstance.CurrentUser != null)
                 //{
@@ -152,9 +152,10 @@ namespace westgateproject.iOS
 			}
 
             var currentView = e.NewElement as InitialPage;
-            guestButton = currentView.getGuest();
-            guestButton.IsVisible = false;
+            startButton = currentView.GetStartButton();
+            startButton.IsVisible = false;
 
+            loginStatus = currentView.GetLoginStatus() as Label;
         }
 
 
@@ -167,7 +168,7 @@ namespace westgateproject.iOS
 
 				//SignIn.SharedInstance.SignInUser();
 				
-                loginStatus.Text = "Please touch Sign in Button";
+                loginStatus.Text = "로그인 버튼을 눌러주세요.";
 
                 signInButton.Hidden = false;
 
@@ -184,9 +185,9 @@ namespace westgateproject.iOS
 			App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token1);
 			App.userEmail = SignIn.SharedInstance.CurrentUser.Profile.Email;
 
-			loginStatus.Text = "Successfully signed in!";
+			loginStatus.Text = "로그인 되었습니다!";
 
-            guestButton.IsVisible = true;
+            startButton.IsVisible = true;
         }
 
     }

@@ -1,9 +1,11 @@
 ﻿using System;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Plugin.Permissions;
 using westgateproject.Helper;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 namespace westgateproject.Droid
@@ -35,12 +37,27 @@ namespace westgateproject.Droid
 
 			// Load the main application
 			LoadApplication (new App ());
+
+
 		}
 
 		//public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
 		//{
 		//	PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 		//}
+
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult(requestCode, resultCode, data);
+
+			System.Diagnostics.Debug.WriteLine("OnActivityResult of MainActivity");
+			System.Diagnostics.Debug.WriteLine("requestCode : " + requestCode);
+			System.Diagnostics.Debug.WriteLine("resultCode : " + resultCode);
+			System.Diagnostics.Debug.WriteLine("data : " + data.GetStringExtra("result"));
+
+            MessagingCenter.Send<object>(this,"hi");
+
+		}
 	}
 }
 

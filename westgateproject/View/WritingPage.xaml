@@ -40,11 +40,11 @@
                 <BoxView HeightRequest="10" BackgroundColor="Color.LightGray" />-->
                 <StackLayout Orientation="Horizontal" Spacing="0">
                     <Button x:Name="CameraButton" Text="사진 촬영" Clicked="CameraButton_Clicked"/>
-                    <Button x:Name="PictureButton" Text="Gallery" Clicked="PicturePicker_Clicked"/>
+                    <Button x:Name="PictureButton" Text="사진첩" Clicked="PicturePicker_Clicked"/>
                 </StackLayout>
 		        <Image x:Name="PhotoImage"/>
                 <Editor x:Name="UploadTextEditor" Keyboard="Chat" BackgroundColor="Lime" HeightRequest="200"/>
-                <Button x:Name="Upload" Text="등록" Clicked="UploadButton_Clicked" />
+                <Button x:Name="Upload" Text="게시" Clicked="UploadButton_Clicked" />
             </StackLayout>
         </ScrollView>
     </ContentPage>

@@ -120,6 +120,12 @@ namespace westgateproject.Droid
             {
                 
             }
+
+			Intent intent = new Intent();
+			intent.PutExtra("result", "ok");
+			SetResult(Result.Ok, intent);
+
+
             Finish();
         }
 
