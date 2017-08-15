@@ -278,19 +278,19 @@
     <AndroidResource Include="Resources\values\style.xml" />
     <AndroidResource Include="Resources\values-v21\style.xml" />
     <AndroidResource Include="Resources\drawable\xamarin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\monkey.png" />
     <AndroidResource Include="Resources\drawable-hdpi\pin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\info.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\info.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\monkey.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\pin.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\info.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\monkey.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\pin.png" />
     <AndroidResource Include="Resources\layout\MapInfoWindow.axml" />
     <AndroidResource Include="Resources\layout\XamarinMapInfoWindow.axml" />
     <AndroidResource Include="Resources\layout\MapInfoWindow_Preparing.axml" />
     <AndroidResource Include="Resources\xml\file_paths.xml" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\arrows.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\arrows.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\arrows.png" />
   </ItemGroup>
   <ItemGroup>
     <GoogleServicesJson Include="google-services.json" />

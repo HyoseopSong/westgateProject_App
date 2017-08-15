@@ -53,9 +53,14 @@ namespace westgateproject.Droid
 			System.Diagnostics.Debug.WriteLine("OnActivityResult of MainActivity");
 			System.Diagnostics.Debug.WriteLine("requestCode : " + requestCode);
 			System.Diagnostics.Debug.WriteLine("resultCode : " + resultCode);
-			System.Diagnostics.Debug.WriteLine("data : " + data.GetStringExtra("result"));
-
-            MessagingCenter.Send<object>(this,"hi");
+            if (resultCode == Result.Ok)
+            {
+				MessagingCenter.Send<object>(this, "OK");
+            }
+            else if(resultCode == Result.Canceled)
+            {
+                MessagingCenter.Send<object>(this, "Canceled");
+            }
 
 		}
 	}

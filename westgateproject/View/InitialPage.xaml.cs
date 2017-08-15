@@ -39,21 +39,28 @@ namespace westgateproject
 			{
 				case Device.Android:
                     
-					MessagingCenter.Subscribe<object>(this, "hi", (sender) =>
+					MessagingCenter.Subscribe<object>(this, "OK", async (sender) =>
 					{
-						Debug.WriteLine("Messaging Center is Executed!");
 						login.IsVisible = false;
 						start.IsVisible = true;
 						loginStatus.Text = "로그인 되었습니다!";
+						await Navigation.PushAsync(new FirstPage());
+						Navigation.RemovePage((Navigation.NavigationStack[0]));
+
 					});
 
+					MessagingCenter.Subscribe<object>(this, "Canceled", (sender) =>
+					{
+						login.IsVisible = true;
+                        login.IsEnabled = true;
+                        start.IsVisible = false;
+						loginStatus.Text = "로그인 버튼을 눌러주세요.";
+
+					});
 
 					if (CrossConnectivity.Current.IsConnected)
 					{
 						DependencyService.Get<ILoginHelper>().StartLogin();
-						login.IsVisible = false;
-						start.IsVisible = true;
-						loginStatus.Text = "로그인 되었습니다!";
 					}
 					else
 					{
@@ -64,6 +71,14 @@ namespace westgateproject
 					}
 					break;
 				case Device.iOS:
+					if (CrossConnectivity.Current.IsConnected)
+					{
+                        
+					}
+					else
+					{
+                        
+					}
 					break;
 			}
 
@@ -114,6 +129,7 @@ namespace westgateproject
 
         async void LoginClicked(object sender, EventArgs e)
         {
+            login.IsEnabled = false;
             if (App.userEmail == null)
             {
 				if (CrossConnectivity.Current.IsConnected)
@@ -125,8 +141,10 @@ namespace westgateproject
 				{
 					await DisplayAlert("네트워크 연결 없음", "네트워크에 연결한 후 다시 시도해주세요.", "확인");
 					loginStatus.Text = "로그인 버튼을 눌러주세요.";
+                    login.IsEnabled = true;
 				}
             }
+
     //        else
     //        {
 				//await DisplayAlert("로그인 완료", "시작 버튼을 눌러 주세요.", "확인");

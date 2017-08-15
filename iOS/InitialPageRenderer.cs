@@ -6,6 +6,7 @@ using CoreGraphics;
 using Foundation;
 using Google.SignIn;
 using Newtonsoft.Json.Linq;
+using Plugin.Connectivity;
 using UIKit;
 using westgateproject;
 using westgateproject.Helper;
@@ -21,12 +22,14 @@ namespace westgateproject.iOS
         Label loginStatus;
         Button startButton;
         SignInButton signInButton;
+        InitialPage currentView;
+
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
         }
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 			var height = (float)App.ScreenHeight;
@@ -46,7 +49,6 @@ namespace westgateproject.iOS
 			};
 
 			View.AddSubview(signInButton);
-            signInButton.Hidden = true;
 
 
 			//var signOutButton = UIButton.FromType(UIButtonType.System);
@@ -136,8 +138,17 @@ namespace westgateproject.iOS
 			SignIn.SharedInstance.UIDelegate = this;
 			SignIn.SharedInstance.Delegate = this;
 
+			if (CrossConnectivity.Current.IsConnected)
+			{
+				SignIn.SharedInstance.SignInUserSilently();
+                signInButton.Hidden = true;
+			}
+			else
+			{
+				await currentView.DisplayAlert("네트워크 연결 없음", "네트워크에 연결한 후 다시 시도해주세요.", "확인");
+				loginStatus.Text = "로그인 버튼을 눌러주세요.";
 
-			SignIn.SharedInstance.SignInUserSilently();
+			}
 
 			
         }
@@ -151,7 +162,7 @@ namespace westgateproject.iOS
 				return;
 			}
 
-            var currentView = e.NewElement as InitialPage;
+            currentView = e.NewElement as InitialPage;
             startButton = currentView.GetStartButton();
             startButton.IsVisible = false;
 
@@ -187,7 +198,11 @@ namespace westgateproject.iOS
 
 			loginStatus.Text = "로그인 되었습니다!";
 
-            startButton.IsVisible = true;
+            //startButton.IsVisible = true;
+
+
+            await currentView.Navigation.PushAsync(new FirstPage());
+            currentView.Navigation.RemovePage((currentView.Navigation.NavigationStack[0]));
         }
 
     }

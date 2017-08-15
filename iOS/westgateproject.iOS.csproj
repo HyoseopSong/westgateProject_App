@@ -180,7 +180,6 @@
   <ItemGroup>
     <BundleResource Include="Resources\unionParking.png" />
     <BundleResource Include="GoogleService-Info.plist" />
-    <BundleResource Include="Resources\monkey.png" />
     <BundleResource Include="Resources\xamarin.png" />
     <BundleResource Include="Resources\save%403x.png" />
     <BundleResource Include="Resources\save%402x.png" />
@@ -191,6 +190,9 @@
     <BundleResource Include="Resources\advertisement%403x.png" />
     <BundleResource Include="Resources\advertisement%402x.png" />
     <BundleResource Include="Resources\advertisement.png" />
+    <BundleResource Include="Resources\arrows%402x.png" />
+    <BundleResource Include="Resources\arrows%403x.png" />
+    <BundleResource Include="Resources\arrows.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -205,7 +207,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="FileHelper.cs" />
-    <Compile Include="LoginHelper.cs" />
     <Compile Include="MainViewController.cs" />
     <Compile Include="MainViewController.designer.cs">
       <DependentUpon>MainViewController.cs</DependentUpon>

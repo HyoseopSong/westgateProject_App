@@ -51,7 +51,11 @@ namespace westgateproject.View
                 await DisplayAlert("빈 칸 있음", "매장 이름과 전화 번호를 입력해 주세요.", "확인");
             }
             else
-            {
+			{
+				if (addInfo.Text == null)
+				{
+                    addInfo.Text = " ";
+				}
 				IDictionary<string, string> postDictionary = new Dictionary<string, string>
 					{
 					{ "id", App.userEmail},

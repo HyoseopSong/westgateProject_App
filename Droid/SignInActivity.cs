@@ -114,6 +114,9 @@ namespace westgateproject.Droid
 				//	Console.WriteLine(ex.GetType());
 				//	Console.WriteLine("서버에서 정보를 불러올 수 없습니다.");
 				//}
+				Intent intent = new Intent();
+				intent.PutExtra("result", "ok");
+				SetResult(Result.Ok, intent);
 
             }
             else
@@ -121,9 +124,6 @@ namespace westgateproject.Droid
                 
             }
 
-			Intent intent = new Intent();
-			intent.PutExtra("result", "ok");
-			SetResult(Result.Ok, intent);
 
 
             Finish();
