@@ -4055,21 +4055,6 @@ namespace westgateproject.Droid
 			// aapt resource value: 0x7f090010
 			public const int common_signin_button_text_long = 2131296272;
 			
-			// aapt resource value: 0x7f090054
-			public const int default_web_client_id = 2131296340;
-			
-			// aapt resource value: 0x7f090052
-			public const int gcm_defaultSenderId = 2131296338;
-			
-			// aapt resource value: 0x7f090055
-			public const int google_api_key = 2131296341;
-			
-			// aapt resource value: 0x7f090053
-			public const int google_app_id = 2131296339;
-			
-			// aapt resource value: 0x7f090056
-			public const int google_crash_reporting_api_key = 2131296342;
-			
 			// aapt resource value: 0x7f090011
 			public const int mr_button_content_description = 2131296273;
 			

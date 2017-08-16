@@ -140,6 +140,7 @@ namespace westgateproject.iOS
 
 			if (CrossConnectivity.Current.IsConnected)
 			{
+				signInButton.Hidden = true;
 				SignIn.SharedInstance.SignInUserSilently();
 			}
 			else
