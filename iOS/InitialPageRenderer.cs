@@ -141,7 +141,6 @@ namespace westgateproject.iOS
 			if (CrossConnectivity.Current.IsConnected)
 			{
 				SignIn.SharedInstance.SignInUserSilently();
-                signInButton.Hidden = true;
 			}
 			else
 			{
@@ -174,35 +173,35 @@ namespace westgateproject.iOS
 		{
             if (SignIn.SharedInstance.CurrentUser == null)
             {
-				var height = (float)App.ScreenHeight;
-				var width = (float)App.ScreenWidth;
+                var height = (float)App.ScreenHeight;
+                var width = (float)App.ScreenWidth;
 
-				//SignIn.SharedInstance.SignInUser();
-				
+                //SignIn.SharedInstance.SignInUser();
+
                 loginStatus.Text = "로그인 버튼을 눌러주세요.";
 
                 signInButton.Hidden = false;
 
-
-                return;
             }
+            else
+            {
+                signInButton.Hidden = true;
+                var token = SignIn.SharedInstance.CurrentUser.Authentication.IdToken;
+                var token1 = new JObject
+                {
+                    { "id_token", token }
+                };
+                App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token1);
+                App.userEmail = SignIn.SharedInstance.CurrentUser.Profile.Email;
 
-            signInButton.Hidden = true;
-			var token = SignIn.SharedInstance.CurrentUser.Authentication.IdToken;
-			var token1 = new JObject
-				{
-					{ "id_token", token }
-				};
-			App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token1);
-			App.userEmail = SignIn.SharedInstance.CurrentUser.Profile.Email;
+                loginStatus.Text = "로그인 되었습니다!";
 
-			loginStatus.Text = "로그인 되었습니다!";
-
-            //startButton.IsVisible = true;
+                //startButton.IsVisible = true;
 
 
-            await currentView.Navigation.PushAsync(new FirstPage());
-            currentView.Navigation.RemovePage((currentView.Navigation.NavigationStack[0]));
+                await currentView.Navigation.PushAsync(new FirstPage());
+                currentView.Navigation.RemovePage((currentView.Navigation.NavigationStack[0]));
+            }
         }
 
     }

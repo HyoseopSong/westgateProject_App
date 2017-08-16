@@ -12,7 +12,9 @@ namespace westgateproject.Droid
 {
     [Activity (Label = "서문시장",	Icon = "@drawable/icon", MainLauncher = true,
 		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
-	           Theme = "@android:style/Theme.Holo.Light", ScreenOrientation = ScreenOrientation.Portrait)]
+	           Theme = "@android:style/Theme.Holo.Light",
+                //ScreenOrientation = ScreenOrientation.User),
+               ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
 	{
 
