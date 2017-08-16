@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="hyoseop.metal.chopsticks.westgateproject">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="hyoseop.metal.chopsticks.westgateproject1">
 	<uses-sdk android:minSdkVersion="15" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -11,7 +11,7 @@
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<application android:icon="@drawable/icon" android:label="서문시장.net">
-		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCTUW4nWmuzRKMxyz11OM7SGdPGURG-29c" />
+		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCmGRGRXPKHHSOXSa0YAth2BnUekms64Ds" />
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="YOUR_APP_PACKAGE_NAME.fileprovider" android:exported="false" android:grantUriPermissions="true">
 			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
 		</provider>

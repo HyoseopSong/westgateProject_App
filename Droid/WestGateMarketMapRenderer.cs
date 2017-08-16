@@ -76,7 +76,7 @@ namespace westgateproject.Droid
 			//NativeMap.AddPolygon(polygonOptions);
 
 
-			NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8687925, 128.5801115), 17.3f));
+			//NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8687925, 128.5801115), 17.3f));
 
 			foreach (var pin in advertisementPins)
 			{
@@ -197,28 +197,27 @@ namespace westgateproject.Droid
 		public void OnCameraIdle()
 		{
 			var mapspan = NativeMap.Projection.VisibleRegion.FarRight.Longitude - NativeMap.Projection.VisibleRegion.FarLeft.Longitude;
-			if (mapspan < 0.007 && isRemoved == true)
-			{
-				//add marker
-				foreach (var mark in markerList)
-				mark.Visible = true;
-				isRemoved = false;
-			}
-			else if (mapspan >= 0.007 && isRemoved == false)
-			{
-				//remove marker
-				foreach (var mark in markerList)
-				mark.Visible = false;
-				isRemoved = true;
-			}
+			//if (mapspan < 0.007 && isRemoved == true)
+			//{
+			//	//add marker
+			//	foreach (var mark in markerList)
+			//	mark.Visible = true;
+			//	isRemoved = false;
+			//}
+			//else if (mapspan >= 0.007 && isRemoved == false)
+			//{
+			//	//remove marker
+			//	foreach (var mark in markerList)
+			//	mark.Visible = false;
+			//	isRemoved = true;
+			//}
 
 			if (mapspan > 0.00418324023488026)
 			{
 				//Console.WriteLine("map.Projection.VisibleRegion.FarRight.Longitude : " + NativeMap.Projection.VisibleRegion.FarRight.Longitude);
 				//Console.WriteLine("map.Projection.VisibleRegion.FarLeft.Longitude : " + NativeMap.Projection.VisibleRegion.FarLeft.Longitude);
 				//Console.WriteLine("mapspan : " + mapspan);
-				LatLng currentCenter = NativeMap.CameraPosition.Target;
-				NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8687925, 128.5801115), 17.3f));
+				NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8687925, 128.5801115), 17.4f));
 			}
 			else
 			{

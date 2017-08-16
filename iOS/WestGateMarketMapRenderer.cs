@@ -90,40 +90,45 @@ namespace westgateproject.iOS
 				};
 				nativeMap.OverlayRenderer = (view, overlay) => renderer;
 				annotations = nativeMap.Annotations;
-				var isRemoved = false;
+				//var isRemoved = false;
 
 				nativeMap.RegionChanged += (sender, _e) =>
 				{
-					if ((nativeMap.Region.Span.LongitudeDelta < 0.007) && (isRemoved == true))
-					{
-						foreach (var _an in annotations)
-						{
+					//if ((nativeMap.Region.Span.LongitudeDelta < 0.007) && (isRemoved == true))
+					//{
+					//	foreach (var _an in annotations)
+					//	{
 
-							nativeMap.AddAnnotation(_an);
-						}
-						isRemoved = false;
-					}
-					else if ((nativeMap.Region.Span.LongitudeDelta >= 0.007) && (isRemoved == false))
+					//		nativeMap.AddAnnotation(_an);
+					//	}
+					//	isRemoved = false;
+					//}
+					//else if ((nativeMap.Region.Span.LongitudeDelta >= 0.007) && (isRemoved == false))
+					//{
+					//	annotations = nativeMap.Annotations;
+					//	nativeMap.RemoveAnnotations(nativeMap.Annotations);
+					//	isRemoved = true;
+					//}
+
+				//	var currentRegion = nativeMap.Region;
+                    //Debug.WriteLine("LongitudeDelta Region changed : " + nativeMap.Region.Span.LongitudeDelta);
+					if (nativeMap.Region.Span.LongitudeDelta > 0.007)
 					{
-						annotations = nativeMap.Annotations;
-						nativeMap.RemoveAnnotations(nativeMap.Annotations);
-						isRemoved = true;
-					}
-					var currentRegion = nativeMap.Region;
-					if (currentRegion.Span.LongitudeDelta > 0.007)
-					{
-						nativeMap.SetRegion(new MKCoordinateRegion(new CLLocationCoordinate2D(35.8687925, 128.5801115), new MKCoordinateSpan(0, 0.00453209582661884)), true);
+    //                    Debug.WriteLine("LongitudeDelta if : " + nativeMap.Region.Span.LongitudeDelta);
+						nativeMap.SetRegion(new MKCoordinateRegion(new CLLocationCoordinate2D(35.8687925, 128.5801115), new MKCoordinateSpan(0, 0.004)), true);
+						//Debug.WriteLine("LongitudeDelta if : " + nativeMap.Region.Span.LongitudeDelta);
 					}
 					else
 					{
-						var halfLatDel = currentRegion.Span.LatitudeDelta / 2;
-						var halfLonDel = currentRegion.Span.LongitudeDelta / 2;
-						var currentSpan = currentRegion.Span;
+                        //Debug.WriteLine("LongitudeDelta else : " + nativeMap.Region.Span.LongitudeDelta);
+						var halfLatDel = nativeMap.Region.Span.LatitudeDelta / 2;
+						var halfLonDel = nativeMap.Region.Span.LongitudeDelta / 2;
+						var currentSpan = nativeMap.Region.Span;
 
-						var up = currentRegion.Center.Latitude + halfLatDel;
-						var down = currentRegion.Center.Latitude - halfLatDel;
-						var left = currentRegion.Center.Longitude - halfLonDel;
-						var right = currentRegion.Center.Longitude + halfLonDel;
+						var up = nativeMap.Region.Center.Latitude + halfLatDel;
+						var down = nativeMap.Region.Center.Latitude - halfLatDel;
+						var left = nativeMap.Region.Center.Longitude - halfLonDel;
+						var right = nativeMap.Region.Center.Longitude + halfLonDel;
 
 						if (up > 35.8717059984586 || down < 35.8657124078645 || left < 128.576082 || right > 128.583764)
 							nativeMap.SetRegion(new MKCoordinateRegion(new CLLocationCoordinate2D(35.8687925, 128.5801115), currentSpan), true);
@@ -139,6 +144,7 @@ namespace westgateproject.iOS
 				nativeMap.ShowsScale = false;
 				nativeMap.ShowsTraffic = false;
 
+				//Debug.WriteLine("LongitudeDelta OnElement : " + nativeMap.Region.Span.LongitudeDelta);
 			}
 		}
 		MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)

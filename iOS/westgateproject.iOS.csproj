@@ -194,6 +194,9 @@
     <BundleResource Include="Resources\arrows%402x.png" />
     <BundleResource Include="Resources\arrows%403x.png" />
     <BundleResource Include="Resources\arrows.png" />
+    <BundleResource Include="Resources\globe%403x.png" />
+    <BundleResource Include="Resources\globe%402x.png" />
+    <BundleResource Include="Resources\globe.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

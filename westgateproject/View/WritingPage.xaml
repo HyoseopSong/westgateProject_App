@@ -57,10 +57,4 @@
             </StackLayout>
         </ScrollView>     
     </ContentPage>
-    <ContentPage Title="최근 소식" Icon="advertisement.png">
-        <ScrollView>
-            <StackLayout x:Name="myRecent">
-            </StackLayout>  
-        </ScrollView>
-    </ContentPage>
 </TabbedPage>

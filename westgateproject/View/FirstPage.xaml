@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:westgateproject" x:Class="westgateproject.FirstPage" Title="서문시장.net" >
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:westgateproject" x:Class="westgateproject.FirstPage" Title="서문시장.net" >
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="내 계정" Clicked="OnItemClicked"/>
     </ContentPage.ToolbarItems>
-    <local:WestGateMarketMap x:Name="WGMarketMap" MapType="Street"
-          WidthRequest="{x:Static local:App.ScreenWidth}"
-          HeightRequest="{x:Static local:App.ScreenHeight}"/>
-</ContentPage>
+    <ContentPage Title="서문시장" Icon="globe.png">
+        <local:WestGateMarketMap x:Name="WGMarketMap" MapType="Street"
+              WidthRequest="{x:Static local:App.ScreenWidth}"
+              HeightRequest="{x:Static local:App.ScreenHeight}"/>
+    </ContentPage>
+    <ContentPage Title="최근 소식" Icon="advertisement.png">
+        <ScrollView>
+            <StackLayout x:Name="myRecent">
+            </StackLayout>  
+        </ScrollView>
+    </ContentPage>
+</TabbedPage>
