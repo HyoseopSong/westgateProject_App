@@ -18,6 +18,7 @@ namespace westgateproject
 		string[] recentKeyArray;
 		int moreButtonCount;
 		String imageURL;
+		bool isInitial;
 
 		public FirstPage()
 		{
@@ -254,13 +255,21 @@ namespace westgateproject
 			WGMarketMap.AdvertisementPins.Add(pin);
 			WGMarketMap.Pins.Add(pin.Pin);
 
-            onProcessing = false;
+			onProcessing = false;
+			isInitial = true;
 
 		}
 
         protected override async void OnAppearing()
         {
-
+			if (!isInitial)
+			{
+				return;
+			}
+			else
+			{
+				isInitial = false;
+			}
 			//imageSource = new Dictionary<string, string>
 			//{
 			//{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-08%20PM%208%3A22%3A37.jpg" },

@@ -1,17 +1,17 @@
-﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/Helper/SyncData.cs">
+﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/WritingPage.xaml.cs">
     <Files>
-      <File FileName="westgateproject/View/Register.xaml" Line="90" Column="1" />
-      <File FileName="westgateproject/View/Register.xaml.cs" Line="57" Column="14" />
-      <File FileName="westgateproject/View/WritingPage.xaml" Line="60" Column="14" />
-      <File FileName="Droid/WestGateMarketMapRenderer.cs" Line="103" Column="44" />
-      <File FileName="Droid/MainActivity.cs" Line="40" Column="1" />
-      <File FileName="iOS/Info.plist" />
-      <File FileName="Droid/Properties/AndroidManifest.xml" Line="1" Column="1" />
-      <File FileName="westgateproject/Helper/SyncData.cs" Line="52" Column="55" />
+      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="329" Column="18" NotebookId="1" />
     </Files>
+    <FloatingWindows>
+      <FloatingWindow WindowId="1" X="1498" Y="23" Width="925" Height="1313">
+        <Files>
+          <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="16" Column="26" />
+        </Files>
+      </FloatingWindow>
+    </FloatingWindows>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
