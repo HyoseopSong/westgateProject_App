@@ -100,7 +100,7 @@ namespace westgateproject.Droid
 			NativeMap.UiSettings.RotateGesturesEnabled = false;
 			NativeMap.UiSettings.TiltGesturesEnabled = false;
 
-			NativeMap.SetMinZoomPreference(16.8f);
+			//NativeMap.SetMinZoomPreference(16.8f);
 
 			isRemoved = false;
 

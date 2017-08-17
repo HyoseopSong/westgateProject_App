@@ -11,6 +11,8 @@ namespace westgateproject.View
 		string _building;
 		string _floor;
 		string _location;
+
+        string _payment;
 		public Register()
 		{
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace westgateproject.View
 			_building = building;
 			_floor = floor;
 			_location = location;
+            Title = location + " 등록";
 		}
 
         protected override async void OnAppearing()
@@ -40,15 +43,24 @@ namespace westgateproject.View
             {
                 shopNameEntry.Text = userInfo["shopName"];
                 phoneNumberEntry.Text = userInfo["phoneNumber"];
-                addInfo.Text = userInfo["addInfo"];
+				addInfo.Text = userInfo["addInfo"];
+                switch(userInfo["payment"])
+                {
+                    case "계좌 이체":
+                        paymentPicker.SelectedIndex = 0;
+                        break;
+					case "현장 결제":
+						paymentPicker.SelectedIndex = 1;
+                        break;
+                }
                 CancelRequest.IsVisible = true;
             }
         }
 		private async void RegisterClicked(object sender, EventArgs e)
 		{
-            if(shopNameEntry.Text == null || phoneNumberEntry.Text == null)
+            if(shopNameEntry.Text == null || phoneNumberEntry.Text == null || _payment == null)
             {
-                await DisplayAlert("빈 칸 있음", "매장 이름과 전화 번호를 입력해 주세요.", "확인");
+                await DisplayAlert("빈 칸 있음", "매장 이름과 전화 번호, 결제 방법를 입력해 주세요.", "확인");
             }
             else
 			{
@@ -64,7 +76,8 @@ namespace westgateproject.View
 					{ "floor", _floor},
 					{ "location", _location },
 					{ "number", phoneNumberEntry.Text},
-					{ "addInfo", addInfo.Text}
+					{ "addInfo", addInfo.Text},
+					{ "payment", _payment}
 				};
 				await App.Client.InvokeApiAsync("userInformation", System.Net.Http.HttpMethod.Post, postDictionary);
 
@@ -84,5 +97,18 @@ namespace westgateproject.View
                 await Navigation.PopAsync();
             }
 		}
+
+
+		void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+		{
+			var picker = (Picker)sender;
+			int selectedIndex = picker.SelectedIndex;
+
+			if (selectedIndex != -1)
+			{
+				_payment = picker.Items[selectedIndex];
+			}
+		}
+
 	}
 }

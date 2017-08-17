@@ -7,6 +7,7 @@ using Plugin.Permissions;
 using westgateproject.Helper;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace westgateproject.Droid
 {

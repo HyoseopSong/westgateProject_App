@@ -368,7 +368,22 @@ namespace westgateproject.View
 
 			}
 			senderButton.IsEnabled = true;
+
 		}
+
+  //      private void uploadEditorFocused(object sender, EventArgs e)
+  //      {
+  //          var editor = (Editor)sender;
+  //          Debug.WriteLine("editor.Height : " + editor.Height);
+
+  //      }
+
+  //      private void uploadEditorUnfocused(object sender, EventArgs e)
+		//{
+
+		//	var editor = (Editor)sender;
+		//	Debug.WriteLine("Unfocuseditor.Height : " + editor.Height);
+		//}
 
 		private async void CameraButton_Clicked(object sender, EventArgs e)
 		{
