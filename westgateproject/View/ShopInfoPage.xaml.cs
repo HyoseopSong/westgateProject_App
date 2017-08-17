@@ -55,7 +55,9 @@ namespace westgateproject.View
 				{ "floor", _floor},
 				{ "location", _location},
 			};
-			imageSource = await App.Client.InvokeApiAsync<IDictionary<string, string>>("getShopInformation", System.Net.Http.HttpMethod.Get, getParam);
+
+            imageSource = await App.Client.InvokeApiAsync<IDictionary<string, string>>("getShopInformation", System.Net.Http.HttpMethod.Get, getParam);
+            
 
             if (imageSource != null)
             {
@@ -154,9 +156,9 @@ namespace westgateproject.View
 							};
 							myActivity.Children.Insert(4, myBoxView);
                             break;
-			    }
+    			    }
 
-			}
+    			}
             }
             else
             {

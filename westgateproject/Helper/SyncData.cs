@@ -69,6 +69,7 @@ namespace westgateproject.Helper
                 var containerName = App.userEmail.Split('@');
                 CloudBlobContainer container = blobClient.GetContainerReference(containerName[0]);
 				await container.CreateIfNotExistsAsync();
+				await container.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Container });
 				CloudBlockBlob blockBlob = container.GetBlockBlobReference(blobName + ".jpg");
                 blockBlob.Properties.ContentType = "image/jpeg";
 				//await blockBlob.UploadFromFileAsync(img.Path);
