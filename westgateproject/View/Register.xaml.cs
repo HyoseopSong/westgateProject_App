@@ -13,6 +13,7 @@ namespace westgateproject.View
 		string _location;
 
         string _payment;
+        string _phoneNumber;
 		public Register()
 		{
             InitializeComponent();
@@ -21,7 +22,21 @@ namespace westgateproject.View
 		public Register(string building, string floor, string location)
 		{
 			InitializeComponent();
-			_building = building;
+			switch (building)
+			{
+				case "동산상가":
+					_building = "Dongsan";
+					break;
+				case "2지구":
+					_building = "SecondBuilding";
+					break;
+				case "5지구":
+					_building = "FifthBuilding";
+					break;
+				default:
+					_building = "Empty";
+					break;
+			}
 			_floor = floor;
 			_location = location;
             Title = location + " 등록";
@@ -75,7 +90,7 @@ namespace westgateproject.View
 					{ "building", _building},
 					{ "floor", _floor},
 					{ "location", _location },
-					{ "number", phoneNumberEntry.Text},
+					{ "number", _phoneNumber},
 					{ "addInfo", addInfo.Text},
 					{ "payment", _payment}
 				};
@@ -98,6 +113,29 @@ namespace westgateproject.View
             }
 		}
 
+		private void PhoneNumberEntryUnfocused(object sender, EventArgs e)
+		{
+            var phone = (Entry)sender;
+            var number = phone.Text;
+            if(phone.Text.Length == 10)
+            {
+                number = number.Insert(3, "-");
+                number = number.Insert(7, "-");
+            }
+            else if(phone.Text.Length == 11)
+            {
+				number = number.Insert(3, "-");
+				number = number.Insert(8, "-");
+            }
+            else
+            {
+                
+            }
+            _phoneNumber = number;
+            phone.Text = number;
+
+
+		}
 
 		void OnPickerSelectedIndexChanged(object sender, EventArgs e)
 		{

@@ -264,7 +264,7 @@ namespace westgateproject
         {
 			if (!isInitial)
 			{
-				return;
+				myRecent.Children.Clear();
 			}
 			else
 			{
@@ -383,6 +383,10 @@ namespace westgateproject
 						Text = recentEnt.Text
 					};
 					labelButton.Clicked += LabelButton_Clicked;
+                    if(labelButton.Text.Length > 20)
+					{
+						labelButton.Text = labelButton.Text.Substring(0, 30) + "...";
+                    }
 					myRecent.Children.Insert(1, labelButton);
 
 					var shopInfo = new Label()
@@ -492,7 +496,20 @@ namespace westgateproject
 			shopInfo = await App.Client.InvokeApiAsync<Dictionary<string, string>>("recent", System.Net.Http.HttpMethod.Get, getParam);
 
 			Debug.WriteLine("building : " + shopInfo["building"] + "floor : " + shopInfo["floor"] + "location : " + shopInfo["location"]);
-			await Navigation.PushAsync(new ShopInfoPage(shopInfo["building"], shopInfo["floor"], shopInfo["location"]));
+            string _building = "";
+            switch (shopInfo["building"])
+            {
+                case "Dongsan":
+                    _building = "동산상가";
+                    break;
+                case "SecondBuilding":
+                    _building = "2지구";
+                    break;
+                case "FifthBuilding":
+                    _building = "5지구";
+                    break;
+            }
+			await Navigation.PushAsync(new ShopInfoPage(_building, shopInfo["floor"], shopInfo["location"]));
 			senderButton.IsEnabled = true;
 		}
 

@@ -25,7 +25,7 @@ namespace westgateproject.View
             _floor = floor;
 			_location = location;
 
-			shopLabel.Text = "매장 위치 : " + _building + " " + _floor + " " + _location;
+			shopLabel.Text += _building + " " + _floor + " " + _location;
 			Debug.WriteLine("shopLabel.Text = " + shopLabel.Text);
 
         }
@@ -85,6 +85,10 @@ namespace westgateproject.View
 							Debug.WriteLine("temp.Value : " + temp.Value);
 							shopOwner = temp.Value;
 							break;
+						case "phoneNumber":
+							Debug.WriteLine("temp.Value : " + temp.Value);
+							shopPhoneNumber.Text += temp.Value;
+							break;
 						default:
 							var imageURL = "https://westgateproject.blob.core.windows.net/" + shopOwner + "/" + temp.Key;
 							switch (Device.RuntimePlatform)
@@ -133,12 +137,12 @@ namespace westgateproject.View
 											myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
 											break;
 									}
-									myActivity.Children.Insert(2, myImage_Android);
+									myActivity.Children.Insert(3, myImage_Android);
 									break;
 								case Device.iOS:
 									var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
 									myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
-									myActivity.Children.Insert(2, myImage_iOS);
+									myActivity.Children.Insert(3, myImage_iOS);
 									break;
 							}
 
@@ -147,14 +151,14 @@ namespace westgateproject.View
 							{
 								Text = temp.Value
 							};
-							myActivity.Children.Insert(3, myLabel);
+							myActivity.Children.Insert(4, myLabel);
 
 							var myBoxView = new BoxView()
 							{
 								HeightRequest = 10,
 								BackgroundColor = Color.LightGray
 							};
-							myActivity.Children.Insert(4, myBoxView);
+							myActivity.Children.Insert(5, myBoxView);
                             break;
     			    }
 

@@ -1,15 +1,15 @@
-﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/WritingPage.xaml.cs">
+﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/FirstPage.xaml.cs">
     <Files>
-      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="329" Column="18" NotebookId="1" />
+      <File FileName="westgateproject/View/ShopInfoPage.xaml" Line="3" Column="17" />
+      <File FileName="westgateproject/View/Register.xaml.cs" Line="24" Column="26" />
+      <File FileName="westgateproject/View/Register.xaml" Line="31" Column="145" />
+      <File FileName="iOS/Main.cs" Line="17" Column="1" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="385" Column="49" />
+      <File FileName="westgateproject/Models/RecentEntity.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/FirstPage.xaml" Line="18" Column="1" />
     </Files>
-    <FloatingWindows>
-      <FloatingWindow WindowId="1" X="1498" Y="23" Width="925" Height="1313">
-        <Files>
-          <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="16" Column="26" />
-        </Files>
-      </FloatingWindow>
-    </FloatingWindows>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
@@ -17,7 +17,7 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" identitySerialNumber="324052336659C8A6">
+  <MonoDevelop.Ide.ItemProperties.westgateproject.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.2deb974fe6e9e3c56fb34a6716a06cba67c6f003" identitySerialNumber="324052336659C8A6">
     <MonoDevelop.MacDev.AppleDevelopmentTeam DeveloperId="YL4U44UKWX" TeamId="MG5825XPXJ" />
   </MonoDevelop.Ide.ItemProperties.westgateproject.iOS>
   <MultiItemStartupConfigurations />

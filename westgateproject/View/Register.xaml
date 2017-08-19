@@ -28,7 +28,7 @@
                             Android="40" />
                     </Label.HeightRequest>
     			</Label>
-                <Entry x:Name="phoneNumberEntry" HorizontalOptions="FillAndExpand" Keyboard="Telephone">
+                <Entry x:Name="phoneNumberEntry" HorizontalOptions="FillAndExpand" Keyboard="Telephone" Placeholder="(-)가 없는 전화 번호" Unfocused="PhoneNumberEntryUnfocused">
                     <Entry.Margin>            
                         <OnPlatform x:TypeArguments="Thickness">
                             <OnPlatform.iOS>0,5,5,0</OnPlatform.iOS>
