@@ -115,9 +115,33 @@ namespace westgateproject.View
 
 		private void PhoneNumberEntryUnfocused(object sender, EventArgs e)
 		{
+            
             var phone = (Entry)sender;
+            switch(Device.RuntimePlatform)
+            {
+				case Device.Android:
+					if (phone.Text == null)
+					{
+						return;
+					}
+                    break;
+				case Device.iOS:
+					if (phone.Text.Length == 0)
+					{
+						return;
+					}
+                    break;
+            }
+
             var number = phone.Text;
-            if(phone.Text.Length == 10)
+
+            if(phone.Text.Substring(0,2) == "02" && phone.Text.Length == 10)
+            {
+
+				number = number.Insert(2, "-");
+				number = number.Insert(7, "-");
+            }
+            else if(phone.Text.Length == 10)
             {
                 number = number.Insert(3, "-");
                 number = number.Insert(7, "-");

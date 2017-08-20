@@ -25,6 +25,7 @@ namespace westgateproject.View
             _floor = floor;
 			_location = location;
 
+			NavigationPage.SetHasBackButton(this, false);
 			shopLabel.Text += _building + " " + _floor + " " + _location;
 			Debug.WriteLine("shopLabel.Text = " + shopLabel.Text);
 
@@ -61,9 +62,12 @@ namespace westgateproject.View
 
             if (imageSource != null)
             {
-                if(imageSource.Count < 3)
+
+				NavigationPage.SetHasBackButton(this, true);
+                if(imageSource.Count == 3)
 				{
 					this.Title = imageSource["shopName"];
+                    shopPhoneNumber.Text += imageSource["phoneNumber"];
 					var myLabel = new Label()
 					{
 						Text = "게시물이 없습니다."
@@ -163,6 +167,7 @@ namespace westgateproject.View
     			    }
 
     			}
+
             }
             else
             {
@@ -184,6 +189,7 @@ namespace westgateproject.View
                 }
 
             }
+
 		}
     }
 }

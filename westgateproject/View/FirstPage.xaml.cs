@@ -14,8 +14,8 @@ namespace westgateproject
 	public partial class FirstPage : TabbedPage
 	{
 		public bool onProcessing;
-		Dictionary<string, RecentEntity> recentSource;
-		string[] recentKeyArray;
+		List<ContentsEntity> recentSource;
+		ContentsEntity[] recentEntityArray;
 		int moreButtonCount;
 		String imageURL;
 		bool isInitial;
@@ -295,30 +295,30 @@ namespace westgateproject
 			//};
 
 
-			recentSource = new Dictionary<string, RecentEntity>();
-			recentSource = await App.Client.InvokeApiAsync<Dictionary<string, RecentEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
+			recentSource = new List<ContentsEntity>();
+			recentSource = await App.Client.InvokeApiAsync<List<ContentsEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
 			Debug.WriteLine("recentSource.Count : " + recentSource.Count);
 			if (recentSource.Count > 0)
 			{
 				// imageSource에 있는 키값 배열에 다 넣고 앞에 10개만 보여주기
-				recentKeyArray = new string[recentSource.Count];
-				Debug.WriteLine("recentKeyArray.Length : " + recentKeyArray.Length);
-				recentSource.Keys.CopyTo(recentKeyArray, 0);
+				recentEntityArray = new ContentsEntity[recentSource.Count];
+				Debug.WriteLine("recentEntityArray.Length : " + recentEntityArray.Length);
+                recentSource.CopyTo(recentEntityArray, 0);
 				int startIndex = 0;
-				if (recentKeyArray.Length > 10)
+				if (recentEntityArray.Length > 10)
 				{
-					startIndex = recentKeyArray.Length - 10;
+					startIndex = recentEntityArray.Length - 10;
 				}
 				else
 				{
 					startIndex = 0;
 				}
-				for (int i = startIndex; i < startIndex + 10 && i < recentKeyArray.Length; i++)
+				for (int i = startIndex; i < startIndex + 10 && i < recentEntityArray.Length; i++)
 				{
-					var blobName = recentKeyArray[i];
-					var recentEnt = recentSource[recentKeyArray[i]];
+                    var ownerID = recentEntityArray[i].PartitionKey;
+					var blobName = recentEntityArray[i].RowKey;
 
-					imageURL = "https://westgateproject.blob.core.windows.net/" + recentEnt.PartitionKey.Split('@')[0] + "/" + blobName;
+					imageURL = "https://westgateproject.blob.core.windows.net/" + ownerID.Split('@')[0] + "/" + blobName;
 
 					switch (Device.RuntimePlatform)
 					{
@@ -378,9 +378,10 @@ namespace westgateproject
 							break;
 					}
 
+                    Debug.WriteLine("recentEntityArray[i].Context : " + recentEntityArray[i].Context);
 					var labelButton = new Button()
 					{
-						Text = recentEnt.Text
+						Text = recentEntityArray[i].Context
 					};
 					labelButton.Clicked += LabelButton_Clicked;
                     if(labelButton.Text.Length > 20)
@@ -391,7 +392,7 @@ namespace westgateproject
 
 					var shopInfo = new Label()
 					{
-						Text = recentEnt.PartitionKey + ":" + recentEnt.ShopName,
+						Text = ownerID + ":" + recentEntityArray[i].ShopName,
 						IsVisible = false
 					};
 					myRecent.Children.Insert(2, shopInfo);
@@ -403,7 +404,7 @@ namespace westgateproject
 					};
 					myRecent.Children.Insert(3, myBoxView);
 				}
-				if (recentKeyArray.Length > 10)
+				if (recentEntityArray.Length > 10)
 				{
 
 					var labelButton = new Button()
@@ -520,7 +521,7 @@ namespace westgateproject
 			senderButton.IsEnabled = false;
 
 			moreButtonCount++;
-			int startIndex = recentKeyArray.Length - (moreButtonCount * 10) - 1;
+			int startIndex = recentEntityArray.Length - (moreButtonCount * 10) - 1;
 			if (startIndex < 0)
 			{
 				startIndex = 0;
@@ -532,10 +533,10 @@ namespace westgateproject
 				Debug.WriteLine("for statement i : " + i);
 
 
-				var blobName = recentKeyArray[i];
-				var recentEnt = recentSource[recentKeyArray[i]];
+				var ownerID = recentEntityArray[i].PartitionKey;
+				var blobName = recentEntityArray[i].RowKey;
 
-				imageURL = "https://westgateproject.blob.core.windows.net/" + recentEnt.PartitionKey.Split('@')[0] + "/" + blobName;
+				imageURL = "https://westgateproject.blob.core.windows.net/" + ownerID.Split('@')[0] + "/" + blobName;
 
 				switch (Device.RuntimePlatform)
 				{
@@ -601,14 +602,14 @@ namespace westgateproject
 
 				var labelButton = new Button()
 				{
-					Text = recentEnt.Text
+					Text = recentEntityArray[i].Context
 				};
 				labelButton.Clicked += LabelButton_Clicked;
 				myRecent.Children.Insert(myRecent.Children.Count - 1, labelButton);
 
 				var shopInfo = new Label()
 				{
-					Text = recentEnt.PartitionKey + ":" + recentEnt.ShopName,
+					Text = ownerID + ":" + recentEntityArray[i].ShopName,
 					IsVisible = false
 				};
 				myRecent.Children.Insert(myRecent.Children.Count - 1, shopInfo);
@@ -621,7 +622,7 @@ namespace westgateproject
 				myRecent.Children.Insert(myRecent.Children.Count - 1, myBoxView);
 			}
 
-			if (recentKeyArray.Length > (moreButtonCount + 1) * 10)
+			if (recentEntityArray.Length > (moreButtonCount + 1) * 10)
 			{
 				senderButton.IsVisible = true;
 			}

@@ -179,14 +179,14 @@ namespace westgateproject.View
 				MyInformation.Children.Add(myLabel);
             }
 
-			Dictionary<string, string> imageSource = new Dictionary<string, string>();
+			List<MyEntity> imageSource = new List<MyEntity>();
 			try
 			{
 				Dictionary<string, string> getParam = new Dictionary<string, string>
 				{
 					{ "id", App.userEmail},
 				};
-				imageSource = await App.Client.InvokeApiAsync<Dictionary<string, string>>("upload", System.Net.Http.HttpMethod.Get, getParam);
+				imageSource = await App.Client.InvokeApiAsync<List<MyEntity>>("upload", System.Net.Http.HttpMethod.Get, getParam);
 			}
 			catch (Exception ex)
 			{
@@ -200,7 +200,7 @@ namespace westgateproject.View
             {
                 foreach (var temp in imageSource)
                 {
-                    string imageURL = "https://westgateproject.blob.core.windows.net/" + App.userEmail.Split('@')[0] + "/" + temp.Key;
+                    string imageURL = "https://westgateproject.blob.core.windows.net/" + App.userEmail.Split('@')[0] + "/" + temp.PartitionKey;
 
                     switch (Device.RuntimePlatform)
                     {
@@ -263,13 +263,13 @@ namespace westgateproject.View
 
                     var myLabel = new Label()
                     {
-                        Text = temp.Value
+                        Text = temp.RowKey + " : " + temp.Text
                     };
                     myActivity.Children.Insert(1, myLabel);
 
                     var imageName = new Label()
                     {
-                        Text = temp.Key,
+                        Text = temp.PartitionKey,
                         IsVisible = false
                     };
                     myActivity.Children.Insert(2, imageName);
