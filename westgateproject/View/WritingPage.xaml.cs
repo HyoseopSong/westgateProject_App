@@ -60,13 +60,13 @@ namespace westgateproject.View
 				Debug.WriteLine("OnAppearing else");
                 isInitial = false;
             }
-			Dictionary<string, UserInfoEntity> userInfo = new Dictionary<string, UserInfoEntity>();
+			List<UserInfoEntity> userInfo = new List<UserInfoEntity>();
 			Dictionary<string, string> getParamUserInfo = new Dictionary<string, string>
 			{
 				{ "id", App.userEmail},
 			};
 
-            userInfo = await App.Client.InvokeApiAsync<Dictionary<string, UserInfoEntity>>("userInformation", System.Net.Http.HttpMethod.Get, getParamUserInfo);
+            userInfo = await App.Client.InvokeApiAsync<List<UserInfoEntity>>("userInformation", System.Net.Http.HttpMethod.Get, getParamUserInfo);
 
 			Picker shopPicker = new Picker
 			{
@@ -88,14 +88,14 @@ namespace westgateproject.View
 				MyInformation.Children.Add(myBoxView);
                 foreach (var UserInfo in userInfo)
                 {
-                    if (UserInfo.Value.Paid)
+                    if (UserInfo.Paid)
 					{
                         paidCount++;
-                        _shopName = UserInfo.Key;
-						shopPicker.Items.Add(UserInfo.Key);
+                        _shopName = UserInfo.ShopName;
+						shopPicker.Items.Add(UserInfo.ShopName);
 
-                        var temp = UserInfo.Value;
-                        var shopInfo = temp.RowKey.Split(':');
+                        var temp = UserInfo.RowKey;
+                        var shopInfo = temp.Split(':');
 
 						switch (shopInfo[0])
 						{
@@ -112,7 +112,7 @@ namespace westgateproject.View
 
                         Label shopName = new Label()
                         {
-                            Text = "매장 이름 : " + UserInfo.Key,
+                            Text = "매장 이름 : " + UserInfo.ShopName,
                             VerticalTextAlignment = TextAlignment.Center
                         };
                         Label shopLocation = new Label()
@@ -122,8 +122,13 @@ namespace westgateproject.View
                         };
                         Label phoneNumber = new Label()
                         {
-                            Text = "전화 번호 : " + UserInfo.Value.PhoneNumber,
+                            Text = "전화 번호 : " + UserInfo.PhoneNumber,
                             VerticalTextAlignment = TextAlignment.Center
+						};
+						Label servicePeriod = new Label()
+						{
+							Text = "만료 날짜 : " + UserInfo.Period,
+							VerticalTextAlignment = TextAlignment.Center
 						};
 						BoxView myBox = new BoxView()
 						{
@@ -136,28 +141,30 @@ namespace westgateproject.View
                             case Device.iOS:
                                 shopName.HeightRequest = 30;
                                 shopLocation.HeightRequest = 30;
-                                phoneNumber.HeightRequest = 30;
+								phoneNumber.HeightRequest = 30;
+								servicePeriod.HeightRequest = 30;
                                 break;
                             case Device.Android:
                                 shopName.HeightRequest = 40;
                                 shopLocation.HeightRequest = 40;
-                                phoneNumber.HeightRequest = 40;
+								phoneNumber.HeightRequest = 40;
+								servicePeriod.HeightRequest = 30;
                                 break;
                         }
 
                         MyInformation.Children.Add(shopName);
                         MyInformation.Children.Add(shopLocation);
-                        MyInformation.Children.Add(phoneNumber);
+						MyInformation.Children.Add(phoneNumber);
+						MyInformation.Children.Add(servicePeriod);
                         MyInformation.Children.Add(myBox);
                     }
                     else
 					{
                         unpaidCount++;
-						var temp = UserInfo.Value;
-						var rawShopInfo = temp.RowKey.Split(':');
+						var rawShopInfo = UserInfo.RowKey.Split(':');
 						Label shopInfo = new Label()
 						{
-							Text = rawShopInfo[0] + " " + rawShopInfo[1] + " " + rawShopInfo[2] + " " + UserInfo.Value.ShopName + " 등록 대기 중",
+							Text = rawShopInfo[0] + " " + rawShopInfo[1] + " " + rawShopInfo[2] + " " + UserInfo.ShopName + " 등록 대기 중",
 							VerticalTextAlignment = TextAlignment.Center
 						};
 

@@ -21,5 +21,6 @@ namespace westgateproject.Models
 		public string PhoneNumber { get; set; }
 		public bool Paid { get; set; }
 		public string AddInfo { get; set; }
+        public DateTime Period { get; set; }
     }
 }

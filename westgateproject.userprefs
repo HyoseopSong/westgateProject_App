@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/WritingPage.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/Models/UserInfoEntity.cs">
     <Files>
       <File FileName="westgateproject/View/ShopInfoPage.xaml.cs" Line="32" Column="10" />
       <File FileName="westgateproject/View/ShopInfoPage.xaml" Line="11" Column="1" />
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="146" Column="35" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="125" Column="54" />
       <File FileName="westgateproject/Models/MyEntity.cs" Line="13" Column="22" />
       <File FileName="iOS/Main.cs" Line="17" Column="1" />
       <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="299" Column="1" />
@@ -12,6 +12,7 @@
       <File FileName="westgateproject/View/Register.xaml.cs" Line="56" Column="1" />
       <File FileName="westgateproject/Helper/SyncData.cs" Line="61" Column="91" />
       <File FileName="westgateproject/View/WritingPage.xaml" Line="60" Column="14" />
+      <File FileName="westgateproject/Models/UserInfoEntity.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
