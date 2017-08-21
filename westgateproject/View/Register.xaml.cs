@@ -13,7 +13,9 @@ namespace westgateproject.View
 		string _location;
 
         string _payment;
-        string _phoneNumber;
+		string _phoneNumber;
+		string _homepage;
+
 		public Register()
 		{
             InitializeComponent();
@@ -67,7 +69,16 @@ namespace westgateproject.View
 					case "현장 결제":
 						paymentPicker.SelectedIndex = 1;
                         break;
-                }
+				}
+				switch (userInfo["payment"])
+				{
+					case "계좌 이체":
+						paymentPicker.SelectedIndex = 0;
+						break;
+					case "현장 결제":
+						paymentPicker.SelectedIndex = 1;
+						break;
+				}
                 CancelRequest.IsVisible = true;
             }
         }
@@ -92,7 +103,8 @@ namespace westgateproject.View
 					{ "location", _location },
 					{ "number", _phoneNumber},
 					{ "addInfo", addInfo.Text},
-					{ "payment", _payment}
+					{ "payment", _payment},
+                    { "homepage", _homepage }
 				};
 				await App.Client.InvokeApiAsync("userInformation", System.Net.Http.HttpMethod.Post, postDictionary);
 
@@ -171,6 +183,15 @@ namespace westgateproject.View
 				_payment = picker.Items[selectedIndex];
 			}
 		}
+		void HomepageChanged(object sender, EventArgs e)
+		{
+			var picker = (Picker)sender;
+			int selectedIndex = picker.SelectedIndex;
 
+			if (selectedIndex != -1)
+			{
+				_homepage = picker.Items[selectedIndex];
+			}
+		}
 	}
 }

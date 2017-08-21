@@ -14,8 +14,8 @@ namespace westgateproject
 	public partial class FirstPage : TabbedPage
 	{
 		public bool onProcessing;
-		List<ContentsEntity> recentSource;
-		ContentsEntity[] recentEntityArray;
+		List<RecentEntity> recentSource;
+		RecentEntity[] recentEntityArray;
 		int moreButtonCount;
 		String imageURL;
 		bool isInitial;
@@ -295,13 +295,13 @@ namespace westgateproject
 			//};
 
 
-			recentSource = new List<ContentsEntity>();
-			recentSource = await App.Client.InvokeApiAsync<List<ContentsEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
+			recentSource = new List<RecentEntity>();
+			recentSource = await App.Client.InvokeApiAsync<List<RecentEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
 			Debug.WriteLine("recentSource.Count : " + recentSource.Count);
 			if (recentSource.Count > 0)
 			{
 				// imageSource에 있는 키값 배열에 다 넣고 앞에 10개만 보여주기
-				recentEntityArray = new ContentsEntity[recentSource.Count];
+				recentEntityArray = new RecentEntity[recentSource.Count];
 				Debug.WriteLine("recentEntityArray.Length : " + recentEntityArray.Length);
                 recentSource.CopyTo(recentEntityArray, 0);
 				int startIndex = 0;
@@ -315,7 +315,7 @@ namespace westgateproject
 				}
 				for (int i = startIndex; i < startIndex + 10 && i < recentEntityArray.Length; i++)
 				{
-                    var ownerID = recentEntityArray[i].PartitionKey;
+                    var ownerID = recentEntityArray[i].ID;
 					var blobName = recentEntityArray[i].RowKey;
 
 					imageURL = "https://westgateproject.blob.core.windows.net/" + ownerID.Split('@')[0] + "/" + blobName;

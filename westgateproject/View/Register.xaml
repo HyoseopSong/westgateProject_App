@@ -59,6 +59,29 @@
                     </Picker.Margin>
                 </Picker>
             </StackLayout>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="홈페이지 주소 : " VerticalTextAlignment="Center" >
+                    <Label.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double"
+                            iOS="30"
+                            Android="40" />
+                    </Label.HeightRequest>
+                </Label>
+                <Picker x:Name="homepagePicker" Title="신청 여부" SelectedIndexChanged="HomepageChanged"  HorizontalOptions="FillAndExpand">
+                    <Picker.Items>
+                        <x:String>신청 함</x:String>
+                        <x:String>신청 안함</x:String>
+                    </Picker.Items>
+                    <Picker.Margin>            
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <OnPlatform.iOS>0,5,5,0</OnPlatform.iOS>
+                            <OnPlatform.Android>0,0,0,0</OnPlatform.Android>
+                        </OnPlatform>               
+                    </Picker.Margin>
+                </Picker>
+            </StackLayout>
+            
     	    <Label Text="추가 요청 사항 : " VerticalTextAlignment="Center">
                 <Label.HeightRequest>
                     <OnPlatform x:TypeArguments="x:Double"

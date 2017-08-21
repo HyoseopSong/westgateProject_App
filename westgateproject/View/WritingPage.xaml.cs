@@ -356,7 +356,7 @@ namespace westgateproject.View
 
 					var mySubLabel = new Label()
 					{
-						Text = _shopName + UploadTextEditor.Text
+                        Text = _shopName + " : " + UploadTextEditor.Text
 					};
 					myActivity.Children.Insert(1, mySubLabel);
 

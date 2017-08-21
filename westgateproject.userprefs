@@ -1,27 +1,23 @@
-﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/Models/UserInfoEntity.cs">
+﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/Models/RecentEntity.cs">
     <Files>
-      <File FileName="westgateproject/View/ShopInfoPage.xaml.cs" Line="32" Column="10" />
-      <File FileName="westgateproject/View/ShopInfoPage.xaml" Line="11" Column="1" />
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="125" Column="54" />
-      <File FileName="westgateproject/Models/MyEntity.cs" Line="13" Column="22" />
+      <File FileName="westgateproject/View/Register.xaml" Line="47" Column="43" />
+      <File FileName="westgateproject/View/Register.xaml.cs" Line="110" Column="17" />
+      <File FileName="westgateproject/Models/UserInfoEntity.cs" Line="19" Column="9" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="357" Column="34" />
       <File FileName="iOS/Main.cs" Line="17" Column="1" />
-      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="299" Column="1" />
-      <File FileName="westgateproject/Models/ContentsEntity.cs" Line="22" Column="1" />
-      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="1" Column="1" />
-      <File FileName="westgateproject/View/Register.xaml.cs" Line="56" Column="1" />
-      <File FileName="westgateproject/Helper/SyncData.cs" Line="61" Column="91" />
-      <File FileName="westgateproject/View/WritingPage.xaml" Line="60" Column="14" />
-      <File FileName="westgateproject/Models/UserInfoEntity.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="298" Column="37" />
+      <File FileName="westgateproject/Helper/SyncData.cs" Line="83" Column="29" />
+      <File FileName="westgateproject/Models/RecentEntity.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.Android_Accelerated_x86" />
+  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" identitySerialNumber="324052336659C8A6">
+  <MonoDevelop.Ide.ItemProperties.westgateproject.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.2deb974fe6e9e3c56fb34a6716a06cba67c6f003" identitySerialNumber="324052336659C8A6">
     <MonoDevelop.MacDev.AppleDevelopmentTeam DeveloperId="YL4U44UKWX" TeamId="MG5825XPXJ" />
   </MonoDevelop.Ide.ItemProperties.westgateproject.iOS>
   <MultiItemStartupConfigurations />
