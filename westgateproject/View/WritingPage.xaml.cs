@@ -76,6 +76,7 @@ namespace westgateproject.View
 
             if (userInfo.Count > 0)
 			{
+
                 int paidCount = 0;
                 int unpaidCount = 0;
 
@@ -95,6 +96,19 @@ namespace westgateproject.View
 
                         var temp = UserInfo.Value;
                         var shopInfo = temp.RowKey.Split(':');
+
+						switch (shopInfo[0])
+						{
+							case "Dongsan":
+                                shopInfo[0] = "동산상가";
+								break;
+							case "FifthBuilding":
+								shopInfo[0] = "5지구";
+								break;
+							case "SecondBuilding":
+								shopInfo[0] = "2지구";
+								break;
+						}
 
                         Label shopName = new Label()
                         {
@@ -335,7 +349,7 @@ namespace westgateproject.View
 
 					var mySubLabel = new Label()
 					{
-						Text = UploadTextEditor.Text
+						Text = _shopName + UploadTextEditor.Text
 					};
 					myActivity.Children.Insert(1, mySubLabel);
 
