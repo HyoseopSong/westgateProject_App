@@ -85,7 +85,7 @@ namespace westgateproject.View
                             Debug.WriteLine("temp.Value : " + temp.Value);
                             this.Title = temp.Value;
 							break;
-						case "shopOwner":
+ 						case "shopOwner":
 							Debug.WriteLine("temp.Value : " + temp.Value);
 							shopOwner = temp.Value;
 							break;
@@ -93,6 +93,10 @@ namespace westgateproject.View
 							Debug.WriteLine("temp.Value : " + temp.Value);
 							shopPhoneNumber.Text += temp.Value;
 							break;
+                        case "notOnService":
+							await DisplayAlert("등록 진행 중", "이미 등록 신청 된 매장입니다.", "확인");
+							await Navigation.PopAsync(true);
+                            return;
 						default:
 							var imageURL = "https://westgateproject.blob.core.windows.net/" + shopOwner + "/" + temp.Key;
 							switch (Device.RuntimePlatform)
