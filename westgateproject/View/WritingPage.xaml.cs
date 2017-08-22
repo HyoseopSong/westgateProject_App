@@ -13,6 +13,7 @@ namespace westgateproject.View
     public partial class WritingPage : TabbedPage
 	{
         private MediaFile photoStream;
+        Dictionary<string, string> _shopLocation;
         string _shopName;
         bool isInitial;
 		int deleteCount;
@@ -21,7 +22,7 @@ namespace westgateproject.View
 		{
 			InitializeComponent();
             deleteCount = 0;
-
+            _shopLocation = new Dictionary<string, string>();
             myIdLabel.Text = "내 계정 : " + App.userEmail;
             myIdLabel.VerticalTextAlignment = TextAlignment.Center;
 
@@ -95,7 +96,8 @@ namespace westgateproject.View
 						shopPicker.Items.Add(UserInfo.ShopName);
 
                         var temp = UserInfo.RowKey;
-                        var shopInfo = temp.Split(':');
+						var shopInfo = temp.Split(':');
+						_shopLocation.Add(UserInfo.ShopName, shopInfo[0] + ":" + shopInfo[1] + ":" + shopInfo[2]);
 
 						switch (shopInfo[0])
 						{
@@ -341,7 +343,7 @@ namespace westgateproject.View
 			var senderButton = sender as Button;
 			senderButton.IsEnabled = false;
 
-            var result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text, _shopName);
+            var result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text, _shopName, _shopLocation[_shopName]);
             switch(result)
             {
 				case null:

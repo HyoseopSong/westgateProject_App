@@ -58,7 +58,7 @@ namespace westgateproject.Helper
         }
 
 
-		static async public Task<string> UploadContents(MediaFile img, string text, string shopName)
+		static async public Task<string> UploadContents(MediaFile img, string text, string shopName, string shopLocation)
 		{
             var blobName = DateTime.Now.ToFileTime().ToString();
             if (img != null && text != null)
@@ -75,14 +75,14 @@ namespace westgateproject.Helper
 				//await blockBlob.UploadFromFileAsync(img.Path);
                 await blockBlob.UploadFromStreamAsync(img.GetStream());
 
-                var ShopName = shopName;
 
 				IDictionary<string, string> postDictionary = new Dictionary<string, string>
 				{
 					{ "content", text },
 					{ "id", App.userEmail},
 					{ "blobName", blobName + ".jpg"},
-					{ "shopName", ShopName},
+					{ "shopName", shopName},
+                    { "shopLocation", shopLocation }
 
 				};
 				await App.Client.InvokeApiAsync("upload", System.Net.Http.HttpMethod.Post, postDictionary);
