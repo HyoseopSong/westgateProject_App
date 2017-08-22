@@ -60,6 +60,7 @@ namespace westgateproject.View
             {
                 shopNameEntry.Text = userInfo["shopName"];
                 phoneNumberEntry.Text = userInfo["phoneNumber"];
+                _phoneNumber = userInfo["phoneNumber"];
 				addInfo.Text = userInfo["addInfo"];
                 switch(userInfo["payment"])
                 {
@@ -84,9 +85,9 @@ namespace westgateproject.View
         }
 		private async void RegisterClicked(object sender, EventArgs e)
 		{
-            if(shopNameEntry.Text == null || phoneNumberEntry.Text == null || _payment == null)
+            if(shopNameEntry.Text == null || phoneNumberEntry.Text == null || _payment == null || _homepage == null)
             {
-                await DisplayAlert("빈 칸 있음", "매장 이름과 전화 번호, 결제 방법를 입력해 주세요.", "확인");
+                await DisplayAlert("빈 칸 있음", "매장 이름과 전화 번호, 결제 방법, 홈페이지 신청여부를 입력해 주세요.", "확인");
             }
             else
 			{
@@ -95,7 +96,7 @@ namespace westgateproject.View
                     addInfo.Text = " ";
 				}
 				IDictionary<string, string> postDictionary = new Dictionary<string, string>
-					{
+				{
 					{ "id", App.userEmail},
 					{ "name", shopNameEntry.Text },
 					{ "building", _building},
@@ -106,6 +107,8 @@ namespace westgateproject.View
 					{ "payment", _payment},
                     { "homepage", _homepage }
 				};
+
+
 				await App.Client.InvokeApiAsync("userInformation", System.Net.Http.HttpMethod.Post, postDictionary);
 
 				await DisplayAlert("신청 완료", "내 매장으로 등록 신청이 완료 되었습니다.", "확인");

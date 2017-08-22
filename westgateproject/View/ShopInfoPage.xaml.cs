@@ -94,11 +94,20 @@ namespace westgateproject.View
 							shopPhoneNumber.Text += temp.Value;
 							break;
                         case "notOnService":
-							await DisplayAlert("등록 진행 중", "이미 등록 신청 된 매장입니다.", "확인");
-							await Navigation.PopAsync(true);
-                            return;
+                            if (App.userEmail == shopOwner)
+                            {
+                                await Navigation.PushAsync(new Register(_building, _floor, _location));
+                                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                                break;
+                            }
+                            else
+                            {
+                                await DisplayAlert("등록 진행 중", "이미 등록 신청 된 매장입니다.", "확인");
+                                await Navigation.PopAsync(true);
+                                return;
+                            }
 						default:
-							var imageURL = "https://westgateproject.blob.core.windows.net/" + shopOwner + "/" + temp.Key;
+							var imageURL = "https://westgateproject.blob.core.windows.net/" + shopOwner.Split('@')[0] + "/" + temp.Key;
 							switch (Device.RuntimePlatform)
 							{
 								case Device.Android:
