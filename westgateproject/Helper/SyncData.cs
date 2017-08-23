@@ -96,7 +96,36 @@ namespace westgateproject.Helper
             }
 
 		}
+		static async public Task<string> UploadByteArrayContents(System.IO.Stream stream, string text, string shopName, string shopLocation)
+		{
+			var blobName = DateTime.Now.ToFileTime().ToString();
+			CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Constants.StorageConnectionString);
+			CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+			var containerName = App.userEmail.Split('@');
+			CloudBlobContainer container = blobClient.GetContainerReference(containerName[0]);
+			await container.CreateIfNotExistsAsync();
+			await container.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Container });
+			CloudBlockBlob blockBlob = container.GetBlockBlobReference(blobName + ".jpg");
+			blockBlob.Properties.ContentType = "image/jpeg";
+			//await blockBlob.UploadFromFileAsync(img.Path);
+			await blockBlob.UploadFromStreamAsync(stream);
 
+
+			IDictionary<string, string> postDictionary = new Dictionary<string, string>
+			{
+				{ "content", text },
+				{ "id", App.userEmail},
+				{ "blobName", blobName + ".jpg"},
+				{ "shopName", shopName},
+				{ "shopLocation", shopLocation }
+
+			};
+			await App.Client.InvokeApiAsync("upload", System.Net.Http.HttpMethod.Post, postDictionary);
+
+			return blobName;
+
+
+		}
 
 
 		static async public Task<bool> SyncShopInfo()

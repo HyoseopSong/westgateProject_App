@@ -17,6 +17,7 @@ namespace westgateproject.View
         string _shopName;
         bool isInitial;
 		int deleteCount;
+        Stream stream;
 
         public WritingPage()
 		{
@@ -342,54 +343,65 @@ namespace westgateproject.View
 			}
 			var senderButton = sender as Button;
 			senderButton.IsEnabled = false;
+            string result = "";
 
-            var result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text, _shopName, _shopLocation[_shopName]);
-            switch(result)
+            if(PhotoImage != null && UploadTextEditor.Text != null)
             {
-				case null:
-					await DisplayAlert("빈 칸 있음", "사진과 글 모두 채워주세요.", "확인");
-                    break;
-				default:
-                    statusLabel.IsVisible = false;
-					result += ".jpg";
-					var myImage = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
-					myImage.Source = ImageSource.FromStream(photoStream.GetStream);
-					myActivity.Children.Insert(0, myImage);
 
-					var mySubLabel = new Label()
-					{
-                        Text = _shopName + " : " + UploadTextEditor.Text
-					};
-					myActivity.Children.Insert(1, mySubLabel);
+				switch (Device.RuntimePlatform)
+				{
+					case Device.Android:
+						result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text, _shopName, _shopLocation[_shopName]);
+						break;
+					case Device.iOS:
+						result = await SyncData.UploadByteArrayContents(stream, UploadTextEditor.Text, _shopName, _shopLocation[_shopName]);
+						break;
+				}
+
+				statusLabel.IsVisible = false;
+				result += ".jpg";
+				var myImage = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+				myImage.Source = ImageSource.FromStream(photoStream.GetStream);
+				myActivity.Children.Insert(0, myImage);
+
+				var mySubLabel = new Label()
+				{
+					Text = _shopName + " : " + UploadTextEditor.Text
+				};
+				myActivity.Children.Insert(1, mySubLabel);
 
 
-					var imageName = new Label()
-					{
-						Text = result,
-						IsVisible = false
-					};
-					myActivity.Children.Insert(2, imageName);
+				var imageName = new Label()
+				{
+					Text = result,
+					IsVisible = false
+				};
+				myActivity.Children.Insert(2, imageName);
 
 
-					var myButton = new Button()
-					{
-						Text = "삭제"
-					};
-					myButton.Clicked += DeleteButton_Clicked;
-					myActivity.Children.Insert(3, myButton);
+				var myButton = new Button()
+				{
+					Text = "삭제"
+				};
+				myButton.Clicked += DeleteButton_Clicked;
+				myActivity.Children.Insert(3, myButton);
 
-					var myBoxView = new BoxView()
-					{
-						HeightRequest = 10,
-						BackgroundColor = Color.LightGray
-					};
-					myActivity.Children.Insert(4, myBoxView);
+				var myBoxView = new BoxView()
+				{
+					HeightRequest = 10,
+					BackgroundColor = Color.LightGray
+				};
+				myActivity.Children.Insert(4, myBoxView);
 
-					PhotoImage.IsVisible = false;
-					UploadTextEditor.Text = "";
-                    break;
+				PhotoImage.IsVisible = false;
+				UploadTextEditor.Text = "";
+            }
+            else
+            {
 
-			}
+				await DisplayAlert("빈 칸 있음", "사진과 글 모두 채워주세요.", "확인");
+            }
+
 			senderButton.IsEnabled = true;
 
 		}
@@ -410,9 +422,10 @@ namespace westgateproject.View
 
 		private async void CameraButton_Clicked(object sender, EventArgs e)
 		{
-            photoStream = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
+            photoStream = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
 			{
-                PhotoSize = PhotoSize.Small,
+				PhotoSize = PhotoSize.Custom,
+				CustomPhotoSize = 15,
                 RotateImage = true
 
 			});
@@ -495,17 +508,31 @@ namespace westgateproject.View
 
         private async void PicturePicker_Clicked(object sender, EventArgs e)
         {
-            photoStream = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new PickMediaOptions()
+            photoStream = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
             {
-                PhotoSize = PhotoSize.Small
+				PhotoSize = PhotoSize.Custom,
+				CustomPhotoSize = 15,
             });
 
 			PhotoImage.IsVisible = true;
 
 			if (photoStream != null)
 			{
-				PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
 				PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
+
+                switch(Device.RuntimePlatform)
+                {
+                    case Device.Android:
+						PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
+                        break;
+                    case Device.iOS:
+                        byte[] resizedImageByteArray = DependencyService.Get<IImageResizeHelper>().ResizeImageIOS(photoStream.Path);
+						stream = new MemoryStream(resizedImageByteArray);
+                        var thisStream = new MemoryStream(resizedImageByteArray);
+						PhotoImage.Source = ImageSource.FromStream(() => thisStream);
+
+                        break;
+                }
 			}
         }
 

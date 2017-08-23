@@ -218,6 +218,7 @@
     <Compile Include="InitialPageRenderer.cs" />
     <Compile Include="WestGateMarketMapRenderer.cs" />
     <Compile Include="CustomMKAnnotationView.cs" />
+    <Compile Include="ImageResizeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />
