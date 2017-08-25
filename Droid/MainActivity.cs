@@ -11,7 +11,7 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace westgateproject.Droid
 {
-    [Activity (Label = "서문시장",	Icon = "@drawable/icon", MainLauncher = true,
+    [Activity (Label = "서문시장.net",	Icon = "@drawable/icon", MainLauncher = true,
 		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
 	           Theme = "@android:style/Theme.Holo.Light",
                 //ScreenOrientation = ScreenOrientation.User),

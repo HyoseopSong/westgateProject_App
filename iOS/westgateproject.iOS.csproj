@@ -219,6 +219,7 @@
     <Compile Include="WestGateMarketMapRenderer.cs" />
     <Compile Include="CustomMKAnnotationView.cs" />
     <Compile Include="ImageResizeHelper.cs" />
+    <Compile Include="Dialer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />

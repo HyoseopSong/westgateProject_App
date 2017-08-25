@@ -511,7 +511,8 @@ namespace westgateproject.View
             photoStream = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
             {
 				PhotoSize = PhotoSize.Custom,
-				CustomPhotoSize = 15,
+				CustomPhotoSize = 25,
+                CompressionQuality = 50
             });
 
 			PhotoImage.IsVisible = true;

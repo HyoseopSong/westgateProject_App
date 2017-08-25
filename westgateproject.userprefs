@@ -1,18 +1,8 @@
 ﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/ImageResizeHelper.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/WritingPage.xaml.cs">
     <Files>
-      <File FileName="westgateproject/View/ShopInfoPage.xaml.cs" Line="105" Column="43" />
-      <File FileName="westgateproject/View/Register.xaml.cs" Line="110" Column="1" />
-      <File FileName="iOS/Main.cs" Line="17" Column="1" />
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="288" Column="21" />
-      <File FileName="westgateproject/View/WritingPage.xaml" Line="32" Column="17" />
-      <File FileName="westgateproject/Helper/SyncData.cs" Line="123" Column="1" />
-      <File FileName="Droid/ImageScaleHelper.cs" Line="1" Column="14" />
-      <File FileName="iOS/ImageResizeHelper.cs" Line="31" Column="62" />
-      <File FileName="westgateproject/Helper/IImageResizeHelper.cs" Line="6" Column="47" />
-      <File FileName="../../../.nuget/packages/xamarin.forms/2.3.4.247/build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.targets" Line="62" Column="3" />
-      <File FileName="westgateproject/obj/Debug/netstandard1.6/westgateproject.AssemblyInfo.cs" Line="16" Column="35" />
-      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="387" Column="1" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="483" Column="17" />
+      <File FileName="iOS/ImageResizeHelper.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
@@ -21,7 +11,7 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.2deb974fe6e9e3c56fb34a6716a06cba67c6f003" identitySerialNumber="324052336659C8A6">
+  <MonoDevelop.Ide.ItemProperties.westgateproject.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" identitySerialNumber="324052336659C8A6">
     <MonoDevelop.MacDev.AppleDevelopmentTeam DeveloperId="YL4U44UKWX" TeamId="MG5825XPXJ" />
   </MonoDevelop.Ide.ItemProperties.westgateproject.iOS>
   <MultiItemStartupConfigurations />

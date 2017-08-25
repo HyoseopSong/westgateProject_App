@@ -112,10 +112,11 @@ namespace westgateproject.iOS
 
 				//	var currentRegion = nativeMap.Region;
                     //Debug.WriteLine("LongitudeDelta Region changed : " + nativeMap.Region.Span.LongitudeDelta);
-					if (nativeMap.Region.Span.LongitudeDelta > 0.007)
+					if (nativeMap.Region.Span.LongitudeDelta > 0.008)
 					{
-    //                    Debug.WriteLine("LongitudeDelta if : " + nativeMap.Region.Span.LongitudeDelta);
-						nativeMap.SetRegion(new MKCoordinateRegion(new CLLocationCoordinate2D(35.8687925, 128.5801115), new MKCoordinateSpan(0, 0.004)), true);
+						System.Diagnostics.Debug.WriteLine("LongitudeDelta : " + nativeMap.Region.Span.LongitudeDelta);
+						//                    Debug.WriteLine("LongitudeDelta if : " + nativeMap.Region.Span.LongitudeDelta);
+						nativeMap.SetRegion(new MKCoordinateRegion(new CLLocationCoordinate2D(35.8680838081858, 128.580841355511), new MKCoordinateSpan(0, 0.00583032772880188)), true);
 						//Debug.WriteLine("LongitudeDelta if : " + nativeMap.Region.Span.LongitudeDelta);
 					}
 					else
@@ -130,9 +131,17 @@ namespace westgateproject.iOS
 						var left = nativeMap.Region.Center.Longitude - halfLonDel;
 						var right = nativeMap.Region.Center.Longitude + halfLonDel;
 
-						if (up > 35.8717059984586 || down < 35.8657124078645 || left < 128.576082 || right > 128.583764)
-							nativeMap.SetRegion(new MKCoordinateRegion(new CLLocationCoordinate2D(35.8687925, 128.5801115), currentSpan), true);
+						System.Diagnostics.Debug.WriteLine("Center : " + nativeMap.Region.Center.Latitude + ", " + nativeMap.Region.Center.Longitude);
+						System.Diagnostics.Debug.WriteLine("right : " + right);
+						System.Diagnostics.Debug.WriteLine("left : " + left);
+						System.Diagnostics.Debug.WriteLine("up : " + up);
+						System.Diagnostics.Debug.WriteLine("down : " + down);
+						System.Diagnostics.Debug.WriteLine("currentSpan : " + currentSpan);
 
+                        if (up > 35.8759735915404 || down < 35.8608966567384 || left < 128.574169621781 || right > 128.587380839745)
+                        {
+                            nativeMap.SetRegion(new MKCoordinateRegion(new CLLocationCoordinate2D(35.8680838081858, 128.580841355511), currentSpan), true);
+                        }
 					}
 				};
 
@@ -193,7 +202,8 @@ namespace westgateproject.iOS
                     case "4지구":
                     case "명품프라자":
                     case "건해산물상가":
-                    case "아진상가":
+					case "아진상가":
+					case "4지구 대체상가":
                         customLabel.BackgroundColor = UIColor.Gray;
                         customLabel.TextColor = UIColor.Black;
                         break;

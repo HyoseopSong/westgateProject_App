@@ -179,6 +179,7 @@ namespace westgateproject.Droid
 				case "명품프라자":
 				case "건해산물상가":
 				case "아진상가":
+				case "4지구 대체상가":
 					textPaint.Color = Android.Graphics.Color.Black;
 					canvas.DrawColor(Android.Graphics.Color.LightGray);
 					break;
@@ -196,28 +197,27 @@ namespace westgateproject.Droid
 
 		public void OnCameraIdle()
 		{
-			var mapspan = NativeMap.Projection.VisibleRegion.FarRight.Longitude - NativeMap.Projection.VisibleRegion.FarLeft.Longitude;
-			//if (mapspan < 0.007 && isRemoved == true)
+			//if (NativeMap.CameraPosition.Zoom >= 16f && isRemoved == true)
 			//{
 			//	//add marker
 			//	foreach (var mark in markerList)
 			//	mark.Visible = true;
 			//	isRemoved = false;
 			//}
-			//else if (mapspan >= 0.007 && isRemoved == false)
+			//else if (NativeMap.CameraPosition.Zoom < 16f && isRemoved == false)
 			//{
 			//	//remove marker
 			//	foreach (var mark in markerList)
 			//	mark.Visible = false;
 			//	isRemoved = true;
 			//}
-
-			if (mapspan > 0.00418324023488026)
+			System.Diagnostics.Debug.WriteLine("Zoom : " + NativeMap.CameraPosition.Zoom);
+            if (NativeMap.CameraPosition.Zoom < 16f)
 			{
 				//Console.WriteLine("map.Projection.VisibleRegion.FarRight.Longitude : " + NativeMap.Projection.VisibleRegion.FarRight.Longitude);
 				//Console.WriteLine("map.Projection.VisibleRegion.FarLeft.Longitude : " + NativeMap.Projection.VisibleRegion.FarLeft.Longitude);
 				//Console.WriteLine("mapspan : " + mapspan);
-				NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8687925, 128.5801115), 17.4f));
+				NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8680505, 128.580742087216), 16.8350f));
 			}
 			else
 			{
@@ -226,12 +226,17 @@ namespace westgateproject.Droid
 				var up = NativeMap.Projection.VisibleRegion.FarRight.Latitude;
 				var down = NativeMap.Projection.VisibleRegion.NearLeft.Latitude;
 
-                //Console.WriteLine("mapspan in else : " + mapspan);
-                if (up > 35.872842 || down < 35.865047 || left < 128.576132 || right > 128.584099)
+				System.Diagnostics.Debug.WriteLine("right : " + right);
+				System.Diagnostics.Debug.WriteLine("left : " + left);
+				System.Diagnostics.Debug.WriteLine("up : " + up);
+				System.Diagnostics.Debug.WriteLine("down : " + down);
+
+				//Console.WriteLine("mapspan in else : " + mapspan);
+				if (up > 35.8741546545933 || down < 35.8623184652325 || left < 128.575300723314 || right > 128.586008436978)
 				{
 					LatLng currentCenter = NativeMap.CameraPosition.Target;
 					float currentZoom = NativeMap.CameraPosition.Zoom;
-                    NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8687925, 128.5801115), currentZoom));
+                    NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8680505, 128.580742087216), currentZoom));
                 }
 			}
 
@@ -292,6 +297,7 @@ namespace westgateproject.Droid
 	                case "명품프라자":
 	                case "건해산물상가":
 					case "아진상가":
+					case "4지구 대체상가":
 						view = inflater.Inflate(Resource.Layout.MapInfoWindow_Preparing, null);
 						break;
                     default:

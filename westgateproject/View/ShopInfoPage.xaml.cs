@@ -29,6 +29,7 @@ namespace westgateproject.View
 			shopLabel.Text += _building + " " + _floor + " " + _location;
 			Debug.WriteLine("shopLabel.Text = " + shopLabel.Text);
 
+
         }
 
 		protected override async void OnAppearing()
@@ -67,7 +68,7 @@ namespace westgateproject.View
                 if(imageSource.Count == 3)
 				{
 					this.Title = imageSource["shopName"];
-                    shopPhoneNumber.Text += imageSource["phoneNumber"];
+                    shopPhoneNumber.Text = imageSource["phoneNumber"];
 					var myLabel = new Label()
 					{
 						Text = "게시물이 없습니다."
@@ -91,7 +92,7 @@ namespace westgateproject.View
 							break;
 						case "phoneNumber":
 							Debug.WriteLine("temp.Value : " + temp.Value);
-							shopPhoneNumber.Text += temp.Value;
+							shopPhoneNumber.Text = temp.Value;
 							break;
                         case "notOnService":
                             if (App.userEmail == shopOwner)
@@ -202,6 +203,33 @@ namespace westgateproject.View
                 }
 
             }
+
+		}
+
+		async void OnCall(object sender, EventArgs e)
+		{
+            switch(Device.RuntimePlatform)
+            {
+				case Device.Android:
+					if (await this.DisplayAlert(
+							shopPhoneNumber.Text,
+							"전화를 거시겠습니까?",
+							"네",
+							"아니오"))
+					{
+						var dialerAnd = DependencyService.Get<IDialer>();
+						if (dialerAnd != null)
+							dialerAnd.Dial(shopPhoneNumber.Text);
+					}
+                    break;
+				case Device.iOS:
+					var button = (Button)sender;
+					var dialerIOS = DependencyService.Get<IDialer>();
+					if (dialerIOS != null)
+						dialerIOS.Dial(shopPhoneNumber.Text);
+                    break;
+            }
+
 
 		}
     }

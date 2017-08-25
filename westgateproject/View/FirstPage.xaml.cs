@@ -30,12 +30,14 @@ namespace westgateproject
             switch(Device.RuntimePlatform)
             {
 				case Device.Android:
-					WGMarketMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(35.8687915, 128.580085), Distance.FromKilometers(0.185)));
+					WGMarketMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(35.8680505, 128.5805485), Distance.FromKilometers(0.3)));
                     break;
 				case Device.iOS:
-					//WGMarketMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(35.8687915, 128.580085), Distance.FromKilometers(0.16)));
+					WGMarketMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(35.8680838081858, 128.580841355511), Distance.FromKilometers(0.25)));
                     break;
             }
+
+            //(35.866364, 128.582999) (35.869737, 128.578098) => 
 			WGMarketMap.ShapeCoordinates.Add(new Position(35.868344, 128.578239)); //     5지구
 			WGMarketMap.ShapeCoordinates.Add(new Position(35.868150, 128.578100)); //     5지구
 			WGMarketMap.ShapeCoordinates.Add(new Position(35.867876, 128.578124)); //     5지구
@@ -55,7 +57,24 @@ namespace westgateproject
 
 
             WGMarketMap.ShapeCoordinates.Add(new Position(35.868555, 128.581540)); //건해산물상가OK
-            WGMarketMap.ShapeCoordinates.Add(new Position(35.868422, 128.579632)); //건해산물상가
+
+
+
+			
+
+			WGMarketMap.ShapeCoordinates.Add(new Position(35.866887, 128.58244)); //4지구 대체 상가
+			WGMarketMap.ShapeCoordinates.Add(new Position(35.866476, 128.582440)); //4지구 대체 상가
+			WGMarketMap.ShapeCoordinates.Add(new Position(35.866472, 128.582837)); //4지구 대체 상가
+			WGMarketMap.ShapeCoordinates.Add(new Position(35.866887, 128.582818)); //4지구 대체 상가
+			WGMarketMap.ShapeCoordinates.Add(new Position(35.866887, 128.58244)); //4지구 대체 상가
+
+
+
+
+
+
+			WGMarketMap.ShapeCoordinates.Add(new Position(35.868555, 128.581540)); //건해산물상가OK
+			WGMarketMap.ShapeCoordinates.Add(new Position(35.868422, 128.579632)); //건해산물상가
 
             WGMarketMap.ShapeCoordinates.Add(new Position(35.868671, 128.580183)); //  2지구
 			WGMarketMap.ShapeCoordinates.Add(new Position(35.869008, 128.580153)); //  2지구
@@ -255,6 +274,24 @@ namespace westgateproject
 			WGMarketMap.AdvertisementPins.Add(pin);
 			WGMarketMap.Pins.Add(pin.Pin);
 
+
+			pin = new AdvertisementPin
+			{
+				Pin = new Pin
+				{
+					Type = PinType.Place,
+					Position = new Position(35.8666795, 128.5826385),
+					Label = "4지구 대체상가",
+					Address = "상가 정보 없음"
+				},
+				Id = "4지구 대체상가",
+				width = 120
+			};
+
+			WGMarketMap.AdvertisementPins.Add(pin);
+			WGMarketMap.Pins.Add(pin.Pin);
+
+
 			onProcessing = false;
 			isInitial = true;
 
@@ -378,17 +415,33 @@ namespace westgateproject
 							break;
 					}
 
-                    Debug.WriteLine("recentEntityArray[i].Context : " + recentEntityArray[i].Context);
-					var labelButton = new Button()
-					{
-						Text = recentEntityArray[i].Context
-					};
-					labelButton.Clicked += LabelButton_Clicked;
+                    var labelButton = new Label()
+                    {
+                        Text = recentEntityArray[i].ShopName + " : " + recentEntityArray[i].Context,
+                        TextColor = Color.Blue
+                    };
+                    var tapLabelButton = new TapGestureRecognizer();
+                    tapLabelButton.Tapped += LabelButton_Clicked;
+                    labelButton.GestureRecognizers.Add(tapLabelButton);
+
+
+
+
+
+					//var labelButton = new Button()
+					//{
+					//	Text = recentEntityArray[i].ShopName + " : " + recentEntityArray[i].Context,
+
+					//};
+					//labelButton.Clicked += LabelButton_Clicked;
                     if(labelButton.Text.Length > 20)
 					{
-						labelButton.Text = labelButton.Text.Substring(0, 30) + "...";
+                        labelButton.Text = labelButton.Text.Substring(0, 20) + "...";
                     }
 					myRecent.Children.Insert(1, labelButton);
+
+
+
 
 					var shopInfo = new Label()
 					{
@@ -480,9 +533,9 @@ namespace westgateproject
 
 		private async void LabelButton_Clicked(object sender, EventArgs e)
 		{
-			var senderButton = sender as Button;
+			var senderButton = sender as Label;
 			senderButton.IsEnabled = false;
-			int senderIndex = myRecent.Children.IndexOf(sender as Button);
+			int senderIndex = myRecent.Children.IndexOf(senderButton);
 			var imageName = myRecent.Children[senderIndex + 1] as Label;
 			Debug.WriteLine("imageName.text : " + imageName.Text);
 			var id = imageName.Text.Split(':')[0];
@@ -600,11 +653,29 @@ namespace westgateproject
 						break;
 				}
 
-				var labelButton = new Button()
+				var labelButton = new Label()
 				{
-					Text = recentEntityArray[i].Context
+					Text = recentEntityArray[i].ShopName + " : " + recentEntityArray[i].Context,
+					TextColor = Color.Blue
 				};
-				labelButton.Clicked += LabelButton_Clicked;
+				var tapLabelButton = new TapGestureRecognizer();
+				tapLabelButton.Tapped += LabelButton_Clicked;
+				labelButton.GestureRecognizers.Add(tapLabelButton);
+
+
+
+
+
+				//var labelButton = new Button()
+				//{
+				//  Text = recentEntityArray[i].ShopName + " : " + recentEntityArray[i].Context,
+
+				//};
+				//labelButton.Clicked += LabelButton_Clicked;
+				if (labelButton.Text.Length > 20)
+				{
+					labelButton.Text = labelButton.Text.Substring(0, 20) + "...";
+				}
 				myRecent.Children.Insert(myRecent.Children.Count - 1, labelButton);
 
 				var shopInfo = new Label()

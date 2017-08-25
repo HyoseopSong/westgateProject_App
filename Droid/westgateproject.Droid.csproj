@@ -253,6 +253,7 @@
     <Compile Include="WestGateMarketMapRenderer.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="ImageScaleHelper.cs" />
+    <Compile Include="Dialer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
