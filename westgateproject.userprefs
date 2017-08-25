@@ -1,11 +1,10 @@
-﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/WritingPage.xaml.cs">
+﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/WestGateMarketMapRenderer.cs">
     <Files>
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="483" Column="17" />
-      <File FileName="iOS/ImageResizeHelper.cs" Line="1" Column="1" />
+      <File FileName="Droid/WestGateMarketMapRenderer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

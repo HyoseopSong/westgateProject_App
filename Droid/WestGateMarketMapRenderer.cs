@@ -226,13 +226,10 @@ namespace westgateproject.Droid
 				var up = NativeMap.Projection.VisibleRegion.FarRight.Latitude;
 				var down = NativeMap.Projection.VisibleRegion.NearLeft.Latitude;
 
-				System.Diagnostics.Debug.WriteLine("right : " + right);
-				System.Diagnostics.Debug.WriteLine("left : " + left);
-				System.Diagnostics.Debug.WriteLine("up : " + up);
-				System.Diagnostics.Debug.WriteLine("down : " + down);
+				System.Diagnostics.Debug.WriteLine(" up : " + up + " down : " + down + " left : " + left + " right : " + right);
 
 				//Console.WriteLine("mapspan in else : " + mapspan);
-				if (up > 35.8741546545933 || down < 35.8623184652325 || left < 128.575300723314 || right > 128.586008436978)
+				if (up > 35.8770726757578 || down < 35.8599352008226 || left < 128.573250509799 || right > 128.586412109435)
 				{
 					LatLng currentCenter = NativeMap.CameraPosition.Target;
 					float currentZoom = NativeMap.CameraPosition.Zoom;

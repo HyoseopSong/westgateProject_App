@@ -292,6 +292,9 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\arrows.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\arrows.png" />
     <AndroidResource Include="Resources\drawable-hdpi\arrows.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\smLogo.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\smLogo.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\smLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <GoogleServicesJson Include="google-services.json" />

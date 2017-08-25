@@ -147,7 +147,7 @@ namespace westgateproject
 					Type = PinType.Place,
 					Position = new Position(35.868801, 128.5795285),
 					Label = "2지구",
-					Address = "화살 5개"
+					Address = "서문시장"
 				},
 				Id = "2지구",
 				width = 40
@@ -180,7 +180,7 @@ namespace westgateproject
 					Type = PinType.Place,
 					Position = new Position(35.86807, 128.578472),
 					Label = "5지구",
-					Address = "화살 5개"
+					Address = "서문시장"
 				},
 				Id = "5지구",
 				width = 40
@@ -197,7 +197,7 @@ namespace westgateproject
 					Type = PinType.Place,
 					Position = new Position(35.868947, 128.581711),
 					Label = "동산상가",
-					Address = "화살 5개"
+					Address = "서문시장"
 				},
 				Id = "동산상가",
 				width = 60
@@ -231,7 +231,7 @@ namespace westgateproject
 					Type = PinType.Place,
 					Position = new Position(35.868888, 128.580771),
 					Label = "상가연합회",
-					Address = "화살 5개"
+					Address = "서문시장"
 				},
 				Id = "상가연합회",
 				width = 80

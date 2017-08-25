@@ -218,7 +218,7 @@ namespace westgateproject.iOS
 
 				annotationView.Image = img;
 				annotationView.CalloutOffset = new CGPoint(0, 0);
-				annotationView.LeftCalloutAccessoryView = new UIImageView(UIImage.FromFile("arrows.png"));
+				annotationView.LeftCalloutAccessoryView = new UIImageView(UIImage.FromFile("smLogo.png"));
 				((CustomMKAnnotationView)annotationView).Id = customPin.Id;
 				((CustomMKAnnotationView)annotationView).width = customPin.width;
 			}
