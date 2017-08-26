@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/Helper/SyncData.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/WritingPage.xaml.cs">
     <Files>
       <File FileName="westgateproject/View/Register.xaml.cs" Line="119" Column="18" />
-      <File FileName="westgateproject/View/Register.xaml" Line="73" Column="37" />
+      <File FileName="westgateproject/View/Register.xaml" Line="135" Column="1" />
       <File FileName="iOS/Main.cs" Line="17" Column="1" />
       <File FileName="westgateproject/View/ShopInfoPage.xaml.cs" Line="67" Column="41" />
-      <File FileName="westgateproject/Helper/SyncData.cs" Line="27" Column="113" />
+      <File FileName="westgateproject/Helper/SyncData.cs" Line="111" Column="46" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

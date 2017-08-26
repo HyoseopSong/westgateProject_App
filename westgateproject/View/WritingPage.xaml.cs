@@ -432,11 +432,32 @@ namespace westgateproject.View
 
             PhotoImage.IsVisible = true;
 
-            if (photoStream != null)
-            {
-                PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
-                PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
-            }
+            //if (photoStream != null)
+            //{
+            //    PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
+            //    PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
+            //}
+
+			if (photoStream != null)
+			{
+				PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
+
+				switch (Device.RuntimePlatform)
+				{
+					case Device.Android:
+						PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
+						break;
+					case Device.iOS:
+						byte[] resizedImageByteArray = DependencyService.Get<IImageResizeHelper>().ResizeImageIOS(photoStream.Path);
+						stream = new MemoryStream(resizedImageByteArray);
+						var thisStream = new MemoryStream(resizedImageByteArray);
+						PhotoImage.Source = ImageSource.FromStream(() => thisStream);
+
+						break;
+				}
+			}
+
+
 		}
 
 		//async protected void syncLabel()
