@@ -71,13 +71,13 @@ namespace westgateproject.View
 						paymentPicker.SelectedIndex = 1;
                         break;
 				}
-				switch (userInfo["payment"])
+				switch (userInfo["homepage"])
 				{
-					case "계좌 이체":
-						paymentPicker.SelectedIndex = 0;
+					case "신청 함":
+						homepagePicker.SelectedIndex = 0;
 						break;
-					case "현장 결제":
-						paymentPicker.SelectedIndex = 1;
+					case "신청 안함":
+						homepagePicker.SelectedIndex = 1;
 						break;
 				}
                 CancelRequest.IsVisible = true;
@@ -111,7 +111,25 @@ namespace westgateproject.View
 
 				await App.Client.InvokeApiAsync("userInformation", System.Net.Http.HttpMethod.Post, postDictionary);
 
-				await DisplayAlert("신청 완료", "내 매장으로 등록 신청이 완료 되었습니다.", "확인");
+				switch (_payment)
+				{
+					case "계좌 이체":
+						switch (_homepage)
+						{
+							case "신청 함":
+                                await DisplayAlert("신청 완료", "2만원 입금 확인 후 서비스가 개시됩니다.", "확인");
+								break;
+							case "신청 안함":
+								await DisplayAlert("신청 완료", "1만원 입금 확인 후 서비스가 개시됩니다.", "확인");
+								break;
+						}
+						break;
+					case "현장 결제":
+						await DisplayAlert("신청 완료", "방문 일정 확인 후 연락 드리겠습니다.", "확인");
+						break;
+				}
+
+
 
 				await Navigation.PopAsync();
             }
@@ -184,6 +202,15 @@ namespace westgateproject.View
 			if (selectedIndex != -1)
 			{
 				_payment = picker.Items[selectedIndex];
+			}
+			switch (_payment)
+			{
+				case "계좌 이체":
+                    bankAccouont.IsVisible = true;
+					break;
+				case "현장 결제":
+                    bankAccouont.IsVisible = false;
+					break;
 			}
 		}
 		void HomepageChanged(object sender, EventArgs e)

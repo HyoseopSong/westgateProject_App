@@ -59,7 +59,29 @@
                     </Picker.Margin>
                 </Picker>
             </StackLayout>
-            
+            <StackLayout x:Name="bankAccouont" IsVisible="false" >
+                <Label Text="국민은행 623902-04-079218 예금주:송효섭" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" >
+                    <Label.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double"
+                            iOS="30"
+                            Android="40" />
+                    </Label.HeightRequest>
+                </Label>
+                <Label Text="신한은행 110-220-864246 예금주:송효섭" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" >
+                    <Label.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double"
+                            iOS="30"
+                            Android="40" />
+                    </Label.HeightRequest>
+                </Label>
+                <Label Text="새마을금고 3827-10-180647-1 예금주:송효섭" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" >
+                    <Label.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double"
+                            iOS="30"
+                            Android="40" />
+                    </Label.HeightRequest>
+                </Label>
+            </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <Label Text="홈페이지 주소 : " VerticalTextAlignment="Center" >
                     <Label.HeightRequest>
