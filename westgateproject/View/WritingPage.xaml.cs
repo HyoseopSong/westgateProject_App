@@ -424,8 +424,10 @@ namespace westgateproject.View
 		{
             photoStream = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
 			{
+
 				PhotoSize = PhotoSize.Custom,
-				CustomPhotoSize = 15,
+				CustomPhotoSize = 25,
+				CompressionQuality = 50,
                 RotateImage = true
 
 			});
