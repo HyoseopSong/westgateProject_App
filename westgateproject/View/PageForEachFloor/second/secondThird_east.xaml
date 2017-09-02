@@ -857,7 +857,7 @@
                 </Label.GestureRecognizers>
             </Label>
             <Label Text="406" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
-            AbsoluteLayout.LayoutBounds="240, 118, 14, 12">
+            AbsoluteLayout.LayoutBounds="240, 122, 14, 12">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                         Tapped="OnTapped"
@@ -865,7 +865,7 @@
                 </Label.GestureRecognizers>
             </Label>
             <Label Text="405" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
-            AbsoluteLayout.LayoutBounds="255, 118, 14, 12">
+            AbsoluteLayout.LayoutBounds="255, 122, 14, 12">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                         Tapped="OnTapped"

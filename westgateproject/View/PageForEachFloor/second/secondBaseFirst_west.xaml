@@ -912,14 +912,6 @@
                         NumberOfTapsRequired="1"/>
                 </Label.GestureRecognizers>
             </Label>
-            <Label Text="서217" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
-            AbsoluteLayout.LayoutBounds="225, 235, 24, 19">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Tapped="OnTapped"
-                        NumberOfTapsRequired="1"/>
-                </Label.GestureRecognizers>
-            </Label>
             <Label Text="서216" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="{Binding Path=FontSize}" BindingContext="{x:Reference Name=standardButton}"
             AbsoluteLayout.LayoutBounds="225, 235, 24, 19">
                 <Label.GestureRecognizers>
