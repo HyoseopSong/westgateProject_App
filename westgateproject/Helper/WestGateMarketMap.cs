@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms.Maps;
-using westgateproject.View.PageForEachFloor.first;
-using westgateproject.View.PageForEachFloor.second;
 using westgateproject.View.PageForEachFloor;
-using westgateproject.View.PageForEachFloor.fifth;
-using westgateproject.View.PageForEachFloor.forth;
-using westgateproject.View.PageForEachFloor.myungpoom;
-using westgateproject.View.PageForEachFloor.office;
-using westgateproject;
 
 namespace westgateproject
 {

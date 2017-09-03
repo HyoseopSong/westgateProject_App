@@ -286,9 +286,6 @@ namespace westgateproject.Droid
 
 	            switch (customPin.Id)
 				{
-					case "Xamarin":
-                        view = inflater.Inflate(Resource.Layout.XamarinMapInfoWindow, null);
-						break;
 	                case "1지구":
 	                case "4지구":
 	                case "명품프라자":

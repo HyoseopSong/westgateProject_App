@@ -1,13 +1,12 @@
-﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/PageForEachFloor/fifth/fifthFirst.xaml">
+﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/PageForEachFloor/office/unionParking.xaml.cs">
     <Files>
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondForth_east.xaml" Line="1239" Column="21" />
-      <File FileName="westgateproject/View/PageForEachFloor/second/secondForth_west.xaml" Line="1154" Column="21" />
-      <File FileName="westgateproject/View/PageForEachFloor/fifth/fifthFirst.xaml" Line="2178" Column="15" />
+      <File FileName="westgateproject/View/PageForEachFloor/office/unionParking.xaml" Line="13" Column="170" />
+      <File FileName="westgateproject/View/PageForEachFloor/office/unionParking.xaml.cs" Line="28" Column="73" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.Android_Accelerated_x86" />
+  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

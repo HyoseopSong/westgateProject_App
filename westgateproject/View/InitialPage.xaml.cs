@@ -1,22 +1,11 @@
-﻿﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.WindowsAzure.MobileServices;
-using Newtonsoft.Json.Linq;
+﻿using System;
 using Plugin.Connectivity;
 using westgateproject.Helper;
-using westgateproject.Models;
-using westgateproject.View;
-using westgateproject.View.PageForEachFloor.myungpoom;
-using westgateproject.View.PageForEachFloor.second;
 using Xamarin.Forms;
 
 namespace westgateproject
 {
-	public partial class InitialPage : ContentPage
+    public partial class InitialPage : ContentPage
 	{
 		public InitialPage()
 		{

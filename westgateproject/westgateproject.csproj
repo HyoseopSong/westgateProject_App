@@ -21,6 +21,11 @@
 
   <ItemGroup>
     <Compile Remove="TodoList.xaml.cs" />
+    <Compile Remove="View\PageForEachFloor\office\ajin.xaml.cs" />
+    <Compile Remove="View\PageForEachFloor\office\seafood.xaml.cs" />
+    <Compile Remove="View\PageForEachFloor\forth\forthFIrst.xaml.cs" />
+    <Compile Remove="View\PageForEachFloor\myungpoom\myungpoomFirst.xaml.cs" />
+    <Compile Remove="View\PageForEachFloor\first\firstFirst.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <!-- https://bugzilla.xamarin.com/show_bug.cgi?id=55591 -->
@@ -28,12 +33,6 @@
 
     <Compile Update="**\*.xaml.cs" DependentUpon="%(Filename)" />
     <EmbeddedResource Include="**\*.xaml" SubType="Designer" Generator="MSBuild:UpdateDesignTimeXaml" />
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Redundant\MainPage.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Redundant\SQLiteViewer.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\AboutPage.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
@@ -52,9 +51,6 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\WritingPage.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\marketMap.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\buildingInfo.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
@@ -68,24 +64,6 @@
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\fifth\fifthSecond.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\first\firstFirst.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\forth\forthFIrst.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\myungpoom\myungpoomFirst.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\office\MyPage.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\office\ajin.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\office\seafood.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\office\shopUnion.xaml.cs">
@@ -130,5 +108,17 @@
   </ItemGroup>
 
   <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="View\PageForEachFloor\office\ajin.xaml" />
+    <EmbeddedResource Remove="View\PageForEachFloor\office\seafood.xaml" />
+    <EmbeddedResource Remove="View\PageForEachFloor\forth\forthFirst.xaml" />
+    <EmbeddedResource Remove="View\PageForEachFloor\myungpoom\myungpoomFirst.xaml" />
+    <EmbeddedResource Remove="View\PageForEachFloor\first\firstFirst.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\PageForEachFloor\forth\" />
+    <Folder Include="View\PageForEachFloor\myungpoom\" />
+    <Folder Include="View\PageForEachFloor\first\" />
   </ItemGroup>
 </Project>
