@@ -1,4 +1,5 @@
 ﻿﻿using System;
+using westgateproject.Helper;
 using westgateproject.Models;
 using Xamarin.Forms;
 
@@ -28,6 +29,48 @@ namespace westgateproject.View.PageForEachFloor.second
 			AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(465 * absL.Scale, App.ScreenWidth, 0, 30));
 			absL.Children.Add(boundaryBox);
 		}
+
+        protected async override void OnAppearing()
+        {
+            var MapInfo = await SyncData.DownloadShopMapInfo();
+
+
+            foreach (var shopInfo in MapInfo)
+            {
+                Label shopLocation = new Label()
+                {
+                    Text = shopInfo.RowKey,
+                    VerticalTextAlignment = TextAlignment.Center,
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    FontSize = shopInfo.FontSize
+                };
+                switch(shopInfo.BackgroundColor)
+                {
+                    case "Aqua":
+                        shopLocation.BackgroundColor = Color.Aqua;
+                        break;
+                    default:
+                        shopLocation.BackgroundColor = Color.Default;
+                        break;
+				}
+				switch (shopInfo.TextColor)
+				{
+					case "Blue":
+						shopLocation.TextColor = Color.Blue;
+						break;
+					default:
+						shopLocation.TextColor = Color.Default;
+						break;
+				}
+
+                var tapGestureRecognizer = new TapGestureRecognizer();
+                tapGestureRecognizer.Tapped += OnTappedWest;
+                shopLocation.GestureRecognizers.Add(tapGestureRecognizer);
+
+                AbsoluteLayout.SetLayoutBounds(shopLocation, new Rectangle(shopInfo.XPosition, shopInfo.YPosition, shopInfo.Width, shopInfo.Height));
+                absL.Children.Add(shopLocation);
+            }
+        }
 		async void OnTapped(object sender, EventArgs args)
 		{
 			if (!onProcessing)

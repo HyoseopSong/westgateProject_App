@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.PageForEachFloor.first.firstFirst" xmlns:local="clr-namespace:westgateproject" Title="1지구">
-	<ContentPage.Content>
-	</ContentPage.Content>
+    <ScrollView Orientation="Horizontal" BackgroundColor="Gainsboro" x:Name="sv">
+        <AbsoluteLayout  x:Name="absL" >
+        </AbsoluteLayout>
+    </ScrollView>
 </ContentPage>

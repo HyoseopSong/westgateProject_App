@@ -21,8 +21,8 @@ namespace westgateproject.Droid
 		// We use a native google map for Android
 		List<AdvertisementPin> advertisementPins;
 		List<Position> shapeCoordinates;
-		bool isRemoved;
         bool isDrawn;
+        bool isRemoved;
 		List<Marker> markerList;
         WestGateMarketMap formsMap;
 
@@ -264,6 +264,7 @@ namespace westgateproject.Droid
 				case "5지구":
 				case "동산상가":
 				case "상가연합회":
+				//case "1지구":
 					formsMap.OnTap(customPin.Id);
 					break;
 			}

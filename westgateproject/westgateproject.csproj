@@ -25,7 +25,6 @@
     <Compile Remove="View\PageForEachFloor\office\seafood.xaml.cs" />
     <Compile Remove="View\PageForEachFloor\forth\forthFIrst.xaml.cs" />
     <Compile Remove="View\PageForEachFloor\myungpoom\myungpoomFirst.xaml.cs" />
-    <Compile Remove="View\PageForEachFloor\first\firstFirst.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <!-- https://bugzilla.xamarin.com/show_bug.cgi?id=55591 -->
@@ -105,6 +104,9 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondThird_west.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\first\firstFirst.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -114,7 +116,6 @@
     <EmbeddedResource Remove="View\PageForEachFloor\office\seafood.xaml" />
     <EmbeddedResource Remove="View\PageForEachFloor\forth\forthFirst.xaml" />
     <EmbeddedResource Remove="View\PageForEachFloor\myungpoom\myungpoomFirst.xaml" />
-    <EmbeddedResource Remove="View\PageForEachFloor\first\firstFirst.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\PageForEachFloor\forth\" />

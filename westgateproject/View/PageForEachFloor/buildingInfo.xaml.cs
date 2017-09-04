@@ -3,6 +3,7 @@ using System.Diagnostics;
 using westgateproject.Models;
 using westgateproject.View.PageForEachFloor.dongsan;
 using westgateproject.View.PageForEachFloor.fifth;
+using westgateproject.View.PageForEachFloor.first;
 using westgateproject.View.PageForEachFloor.office;
 using westgateproject.View.PageForEachFloor.second;
 using Xamarin.Forms;
@@ -14,85 +15,85 @@ namespace westgateproject.View.PageForEachFloor
         bool onProcessing;
         public buildingInfo(string building)
         {
-			InitializeComponent();
-			syncText(building);
+            InitializeComponent();
+            syncText(building);
             Title = building;
             onProcessing = false;
         }
         async void syncText(string building)
         {
-			BuildingInformation infoFromSQLite = new BuildingInformation();
-			infoFromSQLite = await App.Database.GetBuildingAsync(building);
+            BuildingInformation infoFromSQLite = new BuildingInformation();
+            infoFromSQLite = await App.Database.GetBuildingAsync(building);
                 
-			baseFirstFloor.Text = infoFromSQLite.BaseFirst;
+            baseFirstFloor.Text = infoFromSQLite.BaseFirst;
             
-			firstFloor.Text = infoFromSQLite.First;
+            firstFloor.Text = infoFromSQLite.First;
 
-			secondFloor.Text = infoFromSQLite.Second;
+            secondFloor.Text = infoFromSQLite.Second;
 
-			thirdFloor.Text = infoFromSQLite.Third;
+            thirdFloor.Text = infoFromSQLite.Third;
 
-			forthFloor.Text = infoFromSQLite.Forth;
-			switch (Title)
-			{
-				case "1지구":
-					break;
-				case "2지구":
-					break;
-				case "5지구":
+            forthFloor.Text = infoFromSQLite.Forth;
+            switch (Title)
+            {
+                case "2지구":
+                    break;
+                case "1지구":
+                case "5지구":
                     forthFloor.BackgroundColor = Color.LightGray;
-					thirdFloor.BackgroundColor = Color.LightGray;
-					//secondFloor.BackgroundColor = infoFromSQLite.Second;
-					//firstFloor.BackgroundColor = infoFromSQLite.First;
-					baseFirstFloor.BackgroundColor = Color.LightGray;
-					break;
-				case "동산상가":
-					forthFloor.BackgroundColor = Color.LightGray;
-					thirdFloor.BackgroundColor = Color.YellowGreen;
-					//secondFloor.BackgroundColor = infoFromSQLite.Second;
-					//firstFloor.BackgroundColor = infoFromSQLite.First;
-					baseFirstFloor.BackgroundColor = Color.YellowGreen;
-					break;
-				case "아진상가":
-					break;
-				case "건해산물상가":
-					break;
-				case "명품프라자":
-					break;
-				case "상가연합회":
-					forthFloor.BackgroundColor = Color.LightGray;
-					thirdFloor.BackgroundColor = Color.LightGray;
-					secondFloor.BackgroundColor = Color.LightGray;
-					//firstFloor.BackgroundColor = infoFromSQLite.First;
-					baseFirstFloor.BackgroundColor = Color.LightGray;
-					break;
-				default:
-					break;
-			}
+                    thirdFloor.BackgroundColor = Color.LightGray;
+                    //secondFloor.BackgroundColor = infoFromSQLite.Second;
+                    //firstFloor.BackgroundColor = infoFromSQLite.First;
+                    baseFirstFloor.BackgroundColor = Color.LightGray;
+                    break;
+                case "동산상가":
+                    forthFloor.BackgroundColor = Color.LightGray;
+                    thirdFloor.BackgroundColor = Color.YellowGreen;
+                    //secondFloor.BackgroundColor = infoFromSQLite.Second;
+                    //firstFloor.BackgroundColor = infoFromSQLite.First;
+                    baseFirstFloor.BackgroundColor = Color.YellowGreen;
+                    break;
+                case "아진상가":
+                    break;
+                case "건해산물상가":
+                    break;
+                case "명품프라자":
+                    break;
+                case "상가연합회":
+                    forthFloor.BackgroundColor = Color.LightGray;
+                    thirdFloor.BackgroundColor = Color.LightGray;
+                    secondFloor.BackgroundColor = Color.LightGray;
+                    //firstFloor.BackgroundColor = infoFromSQLite.First;
+                    baseFirstFloor.BackgroundColor = Color.LightGray;
+                    break;
+                default:
+                    break;
+            }
 
         }
 
         async void OnTapped(Label sender, EventArgs args)
         {
             var bc= sender.BackgroundColor;
-			sender.BackgroundColor = new Color(255, 182, 193);
+            sender.BackgroundColor = new Color(255, 182, 193);
             if (!onProcessing)
-			{
+            {
                 onProcessing = true;
                 switch (Title)
                 {
                     case "1지구":
                         if (sender == thirdFloor)
-						{
-							await DisplayAlert(sender.Text, "지도 정보가 아직 준비되지 않았습니다.", "확인");
+                        {
+                            await DisplayAlert(sender.Text, "지도 정보가 아직 준비되지 않았습니다.", "확인");
                         }
                         else if (sender == secondFloor)
-						{
-							await DisplayAlert(sender.Text, "지도 정보가 아직 준비되지 않았습니다.", "확인");
+                        {
+                            await DisplayAlert(sender.Text, "지도 정보가 아직 준비되지 않았습니다.", "확인");
                         }
                         else if (sender == firstFloor)
-						{
-							await DisplayAlert(sender.Text, "지도 정보가 아직 준비되지 않았습니다.", "확인");
+                        {
+                            await Navigation.PushAsync(new firstFirst());
+                            //await DisplayAlert(sender.Text, "지도 정보가 아직 준비되지 않았습니다.", "확인");
                         }
                         break;
                     case "2지구":
@@ -134,8 +135,8 @@ namespace westgateproject.View.PageForEachFloor
                         break;
                     case "동산상가":
                         if (sender == thirdFloor)
-						{
-							await DisplayAlert("3층", "지도 정보가 아직 준비되지 않았습니다.", "확인");
+                        {
+                            await DisplayAlert("3층", "지도 정보가 아직 준비되지 않았습니다.", "확인");
                         }
                         else if (sender == secondFloor)
                         {
@@ -146,8 +147,8 @@ namespace westgateproject.View.PageForEachFloor
                             await Navigation.PushAsync(new dongsanFirst());
                         }
                         else if (sender == baseFirstFloor)
-						{
-							await DisplayAlert("지하1층", "지도 정보가 아직 준비되지 않았습니다.", "확인");
+                        {
+                            await DisplayAlert("지하1층", "지도 정보가 아직 준비되지 않았습니다.", "확인");
                         }
                         break;
                     case "아진상가":
@@ -180,7 +181,7 @@ namespace westgateproject.View.PageForEachFloor
                         break;
                     default:
                         break;
-				}
+                }
                 onProcessing = false;
                 sender.BackgroundColor = bc;
             }

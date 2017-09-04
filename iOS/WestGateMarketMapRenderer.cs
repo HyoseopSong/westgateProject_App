@@ -193,12 +193,12 @@ namespace westgateproject.iOS
                     case "2지구":
                     case "5지구":
                     case "동산상가":
-                    case "상가연합회":
+					case "상가연합회":
                         customLabel.BackgroundColor = UIColor.Green;
                         customLabel.TextColor = UIColor.Magenta;
                         annotationView.RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure);
-                        break;
-                    case "1지구":
+						break;
+					case "1지구":
                     case "4지구":
                     case "명품프라자":
                     case "건해산물상가":
@@ -236,6 +236,7 @@ namespace westgateproject.iOS
 				case "5지구":
 				case "동산상가":
 				case "상가연합회":
+				//case "1지구":
                     formsMap.OnTap(customView.Id);
 					break;
 			}

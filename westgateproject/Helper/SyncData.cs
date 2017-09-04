@@ -127,6 +127,39 @@ namespace westgateproject.Helper
 
 		}
 
+        static async public Task<List<ShopMapInfoEntity>> DownloadShopMapInfo()
+        {
+			List<ShopMapInfoEntity> getResult = new List<ShopMapInfoEntity>();
+			//try
+			//{
+				Dictionary<string, string> getDictionary = new Dictionary<string, string>
+    			{
+    				{ "buildingFloor", "2지구1층" }
+    			};
+				getResult = await App.Client.InvokeApiAsync<List<ShopMapInfoEntity>>("getShopMapInfo", System.Net.Http.HttpMethod.Get, getDictionary);
+			//}
+			//catch (Exception ex)
+			//{
+			//	Debug.WriteLine(ex.GetType());
+			//	return null;
+			//}
+			//foreach (var shopInfo in getResult)
+			//{
+			//	string[] building = shopInfo.Key.Split(':');
+			//	string[] shop = shopInfo.Value.Split(':');
+			//	ShopInformation result = new ShopInformation(building[0], building[1], building[2], shop[0], shop[1]);
+
+			//	var res = await App.Database.GetShopAsync(building[0], building[1], building[2]);
+
+			//	if (res != null)
+			//	{
+			//		result.ID = res.ID;
+			//	}
+
+			//	await App.Database.SaveShopAsync(result);
+			//}
+			return getResult;
+        }
 
 		static async public Task<bool> SyncShopInfo()
 		{
