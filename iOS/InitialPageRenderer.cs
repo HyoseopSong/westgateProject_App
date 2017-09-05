@@ -200,7 +200,7 @@ namespace westgateproject.iOS
                 //startButton.IsVisible = true;
 
 
-                await currentView.Navigation.PushAsync(new FirstPage());
+                await currentView.Navigation.PushAsync(new NavigationPage(new InitialPage()));
                 currentView.Navigation.RemovePage((currentView.Navigation.NavigationStack[0]));
             }
         }

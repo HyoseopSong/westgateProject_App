@@ -13,6 +13,7 @@ namespace westgateproject.View
         string _building;
         string _floor;
         string _location;
+        bool gotoRegister;
         public ShopInfoPage()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace westgateproject.View
             _building = building;
             _floor = floor;
 			_location = location;
-
+            gotoRegister = false;
 			NavigationPage.SetHasBackButton(this, false);
 			shopLabel.Text += _building + " " + _floor + " " + _location;
 			Debug.WriteLine("shopLabel.Text = " + shopLabel.Text);
@@ -34,6 +35,11 @@ namespace westgateproject.View
 
 		protected override async void OnAppearing()
 		{
+            if(gotoRegister)
+            {
+                await Navigation.PopAsync();
+                return;
+            }
 			IDictionary<string, string> imageSource = new Dictionary<string, string>();
             string _building_Converted;
             switch(_building)
@@ -188,9 +194,9 @@ namespace westgateproject.View
                 var answer = await DisplayAlert("비어있는 매장", "내 매장으로 등록하시겠습니까?", "등록", "무시");
                 if(answer)
                 {
-
+                    gotoRegister = true;
 					await Navigation.PushAsync(new Register(_building, _floor, _location));
-					Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+					//Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
                     // Register process
                     // 1. Input relational information - Shop Name, Phone Number, if it doens't exist, additional information about shop location.
                     // 2. Touch Register button

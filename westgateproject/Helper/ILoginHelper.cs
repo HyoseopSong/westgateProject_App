@@ -3,6 +3,7 @@ namespace westgateproject.Helper
 {
     public interface ILoginHelper
     {
-        void StartLogin();
+		void StartLogin();
+		void StartLogout();
     }
 }

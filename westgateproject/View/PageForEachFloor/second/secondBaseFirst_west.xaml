@@ -1011,11 +1011,6 @@
 
             <Label Text="⇒동관" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="15" BindingContext="{x:Reference Name=standardButton}"
                     AbsoluteLayout.LayoutBounds="470, 97.5, 60, 60">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Tapped="OnTappedEast"
-                        NumberOfTapsRequired="1"/>
-                </Label.GestureRecognizers>
             </Label>
         </AbsoluteLayout>
     </ScrollView>

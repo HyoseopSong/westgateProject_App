@@ -42,7 +42,6 @@ namespace westgateproject.View.PageForEachFloor.second
 					await Navigation.PushAsync(new secondForth_east());
 				}
             
-                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
                 onProcessing = false;
             }
 		}
@@ -72,7 +71,6 @@ namespace westgateproject.View.PageForEachFloor.second
 					await Navigation.PushAsync(new secondForth_west());
 				}
 
-				Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
                 onProcessing = false;
             }
 		}

@@ -96,8 +96,7 @@ namespace westgateproject.View
                         _shopName = UserInfo.ShopName;
 						shopPicker.Items.Add(UserInfo.ShopName);
 
-                        var temp = UserInfo.RowKey;
-						var shopInfo = temp.Split(':');
+						var shopInfo = UserInfo.RowKey.Split(':');
 						_shopLocation.Add(UserInfo.ShopName, shopInfo[0] + ":" + shopInfo[1] + ":" + shopInfo[2]);
 
 						switch (shopInfo[0])
@@ -165,6 +164,18 @@ namespace westgateproject.View
 					{
                         unpaidCount++;
 						var rawShopInfo = UserInfo.RowKey.Split(':');
+						switch (rawShopInfo[0])
+						{
+							case "Dongsan":
+								rawShopInfo[0] = "동산상가";
+								break;
+							case "FifthBuilding":
+								rawShopInfo[0] = "5지구";
+								break;
+							case "SecondBuilding":
+								rawShopInfo[0] = "2지구";
+								break;
+						}
 						Label shopInfo = new Label()
 						{
 							Text = rawShopInfo[0] + " " + rawShopInfo[1] + " " + rawShopInfo[2] + " " + UserInfo.ShopName + " 등록 대기 중",

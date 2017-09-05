@@ -12,11 +12,6 @@
             </Label>
             <Label Text="⇐서관" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding Path=BackgroundColor}" TextColor="{Binding Path=TextColor}" FontSize="15" BindingContext="{x:Reference Name=standardButton}"
                     AbsoluteLayout.LayoutBounds="0, 90, 60, 60">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Tapped="OnTappedWest"
-                        NumberOfTapsRequired="1"/>
-                </Label.GestureRecognizers>
             </Label>
                 
             <Label Text="동마8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" x:Name="standardButton" BackgroundColor="Aqua" TextColor="Fuchsia" FontSize="5"

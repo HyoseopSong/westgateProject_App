@@ -78,19 +78,32 @@ namespace westgateproject.Droid
 
 			//NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8687925, 128.5801115), 17.3f));
 
+
+			NativeMap.Clear();
 			foreach (var pin in advertisementPins)
 			{
-
 				var marker = new MarkerOptions();
-				//marker.SetPosition(new LatLng(35.868084, 128.578505));
-                marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
+				marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
 				marker.SetTitle(pin.Pin.Label);
 				marker.SetSnippet(pin.Pin.Address);
 				marker.SetIcon(createPureTextIcon(pin.Id));
 				//marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
-				markerList.Add(NativeMap.AddMarker(marker));
+				NativeMap.AddMarker(marker);
 
 			}
+
+			var polygonOptions = new PolygonOptions();
+			polygonOptions.InvokeFillColor(0x40FF0000);
+			polygonOptions.InvokeStrokeColor(0x660000ff);
+			polygonOptions.InvokeStrokeWidth(0);
+
+			foreach (var position in shapeCoordinates)
+			{
+				polygonOptions.Add(new LatLng(position.Latitude, position.Longitude));
+			}
+
+			NativeMap.AddPolygon(polygonOptions);
+
 
 			NativeMap.UiSettings.ZoomControlsEnabled = false;
 			NativeMap.UiSettings.ZoomGesturesEnabled = true;
@@ -117,46 +130,47 @@ namespace westgateproject.Droid
 			//Console.WriteLine("e.Propertyname is " + e.PropertyName);
 
 
-			if (e.PropertyName.Equals("VisibleRegion") && !isDrawn)
-			{
-				NativeMap.Clear();
-				foreach (var pin in advertisementPins)
-				{
-					var marker = new MarkerOptions();
-					marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
-					marker.SetTitle(pin.Pin.Label);
-					marker.SetSnippet(pin.Pin.Address);
-					marker.SetIcon(createPureTextIcon(pin.Id));
-					//marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
-					NativeMap.AddMarker(marker);
+			//if (e.PropertyName.Equals("Width") || e.PropertyName.Equals("Height") && !isDrawn)
+			//{
+			//	NativeMap.Clear();
+			//	foreach (var pin in advertisementPins)
+			//	{
+			//		var marker = new MarkerOptions();
+			//		marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
+			//		marker.SetTitle(pin.Pin.Label);
+			//		marker.SetSnippet(pin.Pin.Address);
+			//		marker.SetIcon(createPureTextIcon(pin.Id));
+			//		//marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
+			//		NativeMap.AddMarker(marker);
 
-				}
+			//	}
 
-				var polygonOptions = new PolygonOptions();
-				polygonOptions.InvokeFillColor(0x40FF0000);
-				polygonOptions.InvokeStrokeColor(0x660000ff);
-				polygonOptions.InvokeStrokeWidth(0);
+			//	var polygonOptions = new PolygonOptions();
+			//	polygonOptions.InvokeFillColor(0x40FF0000);
+			//	polygonOptions.InvokeStrokeColor(0x660000ff);
+			//	polygonOptions.InvokeStrokeWidth(0);
 
-				foreach (var position in shapeCoordinates)
-				{
-					polygonOptions.Add(new LatLng(position.Latitude, position.Longitude));
-				}
+			//	foreach (var position in shapeCoordinates)
+			//	{
+			//		polygonOptions.Add(new LatLng(position.Latitude, position.Longitude));
+			//	}
 
-				NativeMap.AddPolygon(polygonOptions);
+			//	NativeMap.AddPolygon(polygonOptions);
 
-				isDrawn = true;
-			}
-
+			//	isDrawn = true;
+			//}
+			//Console.WriteLine("isDrawn value : " + isDrawn);
+			//Console.WriteLine("e.PropertyName value : " + e.PropertyName);
 		}
 
 
 		private BitmapDescriptor createPureTextIcon(String text)
 		{
-			Paint textPaint = new Paint();
-
-			textPaint.TextSize = 75;
-
-			float textWidth = textPaint.MeasureText(text);
+            Paint textPaint = new Paint()
+            {
+                TextSize = 75
+            };
+            float textWidth = textPaint.MeasureText(text);
 			float textHeight = textPaint.TextSize;
 			int width = (int)(textWidth);
 			int height = (int)(textHeight);

@@ -22,7 +22,7 @@ namespace westgateproject
 		{
 			return loginStatus;
 		}
-		async protected override void OnAppearing()
+		protected override void OnAppearing()
 		{
 			switch (Device.RuntimePlatform)
 			{
@@ -33,8 +33,9 @@ namespace westgateproject
 						login.IsVisible = false;
 						start.IsVisible = true;
 						loginStatus.Text = "로그인 되었습니다!";
+                        //await Navigation.PopAsync();
 						await Navigation.PushAsync(new FirstPage());
-						Navigation.RemovePage((Navigation.NavigationStack[0]));
+						//Navigation.RemovePage((Navigation.NavigationStack[0]));
 
 					});
 
@@ -47,17 +48,23 @@ namespace westgateproject
 
 					});
 
-					if (CrossConnectivity.Current.IsConnected)
+					MessagingCenter.Subscribe<object>(this, "NotDefined", (sender) =>
 					{
-						DependencyService.Get<ILoginHelper>().StartLogin();
-					}
-					else
-					{
-						await DisplayAlert("네트워크 연결 없음", "네트워크에 연결한 후 다시 시도해주세요.", "확인");
-						login.IsVisible = true;
-                        start.IsVisible = false;
-                        loginStatus.Text = "로그인 버튼을 눌러주세요.";
-					}
+						loginStatus.Text = "뭘 해야 될지 모르겠네...";
+
+					});
+
+					//if (CrossConnectivity.Current.IsConnected)
+					//{
+					//	DependencyService.Get<ILoginHelper>().StartLogin();
+					//}
+					//else
+					//{
+					//	await DisplayAlert("네트워크 연결 없음", "네트워크에 연결한 후 다시 시도해주세요.", "확인");
+					//	login.IsVisible = true;
+     //                   start.IsVisible = false;
+     //                   loginStatus.Text = "로그인 버튼을 눌러주세요.";
+					//}
 					break;
 				case Device.iOS:
 					if (CrossConnectivity.Current.IsConnected)
@@ -73,8 +80,8 @@ namespace westgateproject
 
 
             // Handle when your app starts
-            var shopSync = await SyncData.SyncShopInfo();
-            var buildingSync = await SyncData.SyncBuildingInfo();
+            //var shopSync = await SyncData.SyncShopInfo();
+            //var buildingSync = await SyncData.SyncBuildingInfo();
 
     //        if(!shopSync || !buildingSync)
 				//syncStatus.Text="서버에서 데이터를 가져올 수 없습니다. 앱정보 페이지에서 REFRESH를 눌러 다시 시도할 수 있습니다.";

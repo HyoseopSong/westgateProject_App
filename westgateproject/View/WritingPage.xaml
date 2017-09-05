@@ -3,7 +3,12 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="westgateproject.View.WritingPage"
             Title="내 계정" Icon="settings.png">
-    <ContentPage Title="새 게시물" Icon="save.png">
+    <ContentPage Title="새 게시물">
+        <ContentPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <OnPlatform.iOS>save.png</OnPlatform.iOS>
+            </OnPlatform>
+        </ContentPage.Icon>
         <ScrollView>
 			<StackLayout>
 				<Label x:Name="myIdLabel"/>
@@ -48,7 +53,12 @@
             </StackLayout>
         </ScrollView>
     </ContentPage>
-    <ContentPage Title="내 활동" Icon="list.png">
+    <ContentPage Title="내 활동">
+        <ContentPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <OnPlatform.iOS>list.png</OnPlatform.iOS>
+            </OnPlatform>
+        </ContentPage.Icon>
         <ScrollView>
             <StackLayout>
                 <Label x:Name="statusLabel" Text="내 활동 내역이 없습니다." IsVisible="false"/>

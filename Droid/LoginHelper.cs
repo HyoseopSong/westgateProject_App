@@ -25,5 +25,13 @@ namespace westgateproject.Droid
 			activity.StartActivityForResult(intent, 1);
         }
 
+		public void StartLogout()
+		{
+			var intent = new Intent(Forms.Context, typeof(SignInActivity));
+			intent.PutExtra("action", "logout");
+			//Forms.Context.StartActivity(intent);
+			Activity activity = Forms.Context as Activity;
+			activity.StartActivityForResult(intent, 1);
+		}
     }
 }

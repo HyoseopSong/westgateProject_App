@@ -42,13 +42,13 @@ namespace westgateproject.View.PageForEachFloor.second
         }
 		async void OnTappedEast(object sender, EventArgs args)
 		{
-			if (!onProcessing)
-			{
-				onProcessing = true;
-		    	await Navigation.PushAsync(new secondFirst_east());
-				Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
-				onProcessing = false;
-			}
+			//if (!onProcessing)
+			//{
+			//	onProcessing = true;
+		 //   	await Navigation.PushAsync(new secondFirst_east());
+			//	Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+			//	onProcessing = false;
+			//}
 
 		}
 		async void goBack(object sender, EventArgs args)

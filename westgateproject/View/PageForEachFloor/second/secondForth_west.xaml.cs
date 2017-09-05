@@ -41,17 +41,17 @@ namespace westgateproject.View.PageForEachFloor.second
 				onProcessing = false;
 			}
 		}
-		async void OnTappedEast(object sender, EventArgs args)
-		{
-			if (!onProcessing)
-			{
-				onProcessing = true;
-			    await Navigation.PushAsync(new secondForth_east());
-				Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
-				onProcessing = false;
-			}
+		//async void OnTappedEast(object sender, EventArgs args)
+		//{
+		//	if (!onProcessing)
+		//	{
+		//		onProcessing = true;
+		//	    await Navigation.PushAsync(new secondForth_east());
+		//		Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+		//		onProcessing = false;
+		//	}
 
-		}
+		//}
         async void goBack(object sender, EventArgs args)
         {
             await Navigation.PopAsync();

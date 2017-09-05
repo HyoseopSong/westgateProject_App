@@ -86,13 +86,13 @@ namespace westgateproject.View.PageForEachFloor.second
 
 		async void OnTappedWest(object sender, EventArgs args)
 		{
-			if (!onProcessing)
-			{
-				onProcessing = true;
-	            await Navigation.PushAsync(new secondFirst_west());
-				Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
-				onProcessing = false;
-			}
+			//if (!onProcessing)
+			//{
+			//	onProcessing = true;
+	  //          await Navigation.PushAsync(new secondFirst_west());
+			//	Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+			//	onProcessing = false;
+			//}
 		}
 		async void goBack(object sender, EventArgs args)
 		{

@@ -55,7 +55,11 @@ namespace westgateproject.Droid
             }
             else
             {
-                Auth.GoogleSignInApi.SignOut(mGoogleApiClient).SetResultCallback(this);
+                if (mGoogleApiClient.IsConnected)
+                {
+                    Auth.GoogleSignInApi.SignOut(mGoogleApiClient).SetResultCallback(this);
+				}
+				Finish();
             }
         }
 
@@ -121,7 +125,10 @@ namespace westgateproject.Droid
             }
             else
             {
-                
+
+				Intent intent = new Intent();
+				intent.PutExtra("result", "notok");
+				SetResult(Result.Canceled, intent); 
             }
 
 

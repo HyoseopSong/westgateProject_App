@@ -352,11 +352,20 @@ namespace westgateproject
 				}
 				for (int i = startIndex; i < startIndex + 10 && i < recentEntityArray.Length; i++)
 				{
-                    var ownerID = recentEntityArray[i].ID;
+
+					var ownerID = recentEntityArray[0].ID;
+					Debug.WriteLine("i0 : " + i);
+					ownerID = recentEntityArray[1].ID;
+					Debug.WriteLine("i1 : " + i);
+					ownerID = recentEntityArray[2].ID;
+					Debug.WriteLine("i2 : " + i);
+					ownerID = recentEntityArray[i].ID;
+					Debug.WriteLine("i3 : " + i);
 					var blobName = recentEntityArray[i].RowKey;
 
 					imageURL = "https://westgateproject.blob.core.windows.net/" + ownerID.Split('@')[0] + "/" + blobName;
 
+					Debug.WriteLine("ix : " + i);
 					switch (Device.RuntimePlatform)
 					{
 						case Device.Android:
@@ -415,8 +424,9 @@ namespace westgateproject
 							break;
 					}
 
+					Debug.WriteLine("ii : " + i);
                     var labelButton = new Label()
-                    {
+					{
                         Text = recentEntityArray[i].ShopName + " : " + recentEntityArray[i].Context,
                         TextColor = Color.Blue
                     };
@@ -443,6 +453,7 @@ namespace westgateproject
 
 
 
+					Debug.WriteLine("iii : " + i);
 					var shopInfo = new Label()
 					{
 						Text = ownerID + ":" + recentEntityArray[i].ShopName,
@@ -704,18 +715,22 @@ namespace westgateproject
 
 			senderButton.IsEnabled = true;
 		}
-        //protected override void OnSizeAllocated(double width, double height)
-        //{
-        //	base.OnSizeAllocated(width, height);
-        //	if (this.Width > this.Height)
-        //	{
-        //		layout.Orientation = StackOrientation.Horizontal;
-        //	}
-        //	else
-        //	{
-        //		layout.Orientation = StackOrientation.Vertical;
-        //	}
-        //}
+		//protected override void OnSizeAllocated(double width, double height)
+		//{
+		//	base.OnSizeAllocated(width, height);
+		//	if (this.Width > this.Height)
+		//	{
+		//		layout.Orientation = StackOrientation.Horizontal;
+		//	}
+		//	else
+		//	{
+		//		layout.Orientation = StackOrientation.Vertical;
+		//	}
+		//}
 
+		protected override bool OnBackButtonPressed()
+		{
+			return true;
+		}
 	}
 }
