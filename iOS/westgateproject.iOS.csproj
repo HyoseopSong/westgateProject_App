@@ -180,7 +180,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\unionParking.png" />
-    <BundleResource Include="GoogleService-Info.plist" />
     <BundleResource Include="Resources\save%403x.png" />
     <BundleResource Include="Resources\save%402x.png" />
     <BundleResource Include="Resources\save.png" />
@@ -199,6 +198,7 @@
     <BundleResource Include="Resources\smLogo.png" />
     <BundleResource Include="Resources\smLogo%402x.png" />
     <BundleResource Include="Resources\smLogo%403x.png" />
+    <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

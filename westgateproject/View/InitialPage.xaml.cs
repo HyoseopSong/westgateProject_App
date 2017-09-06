@@ -22,7 +22,7 @@ namespace westgateproject
 		{
 			return loginStatus;
 		}
-		protected override void OnAppearing()
+		protected async override void OnAppearing()
 		{
 			switch (Device.RuntimePlatform)
 			{
@@ -31,7 +31,7 @@ namespace westgateproject
 					MessagingCenter.Subscribe<object>(this, "OK", async (sender) =>
 					{
 						login.IsVisible = false;
-						start.IsVisible = true;
+						start.IsVisible = false;
 						loginStatus.Text = "로그인 되었습니다!";
                         //await Navigation.PopAsync();
 						await Navigation.PushAsync(new FirstPage());
@@ -41,10 +41,10 @@ namespace westgateproject
 
 					MessagingCenter.Subscribe<object>(this, "Canceled", (sender) =>
 					{
-						login.IsVisible = true;
-                        login.IsEnabled = true;
+                        login.IsVisible = false;
+                        login.IsEnabled = false;
                         start.IsVisible = false;
-						loginStatus.Text = "로그인 버튼을 눌러주세요.";
+						loginStatus.Text = "로그인 절차에 문제가 있습니다. 잠시 후 다시 시도해 주세요.";
 
 					});
 
@@ -80,8 +80,8 @@ namespace westgateproject
 
 
             // Handle when your app starts
-            //var shopSync = await SyncData.SyncShopInfo();
-            //var buildingSync = await SyncData.SyncBuildingInfo();
+            var shopSync = await SyncData.SyncShopInfo();
+            var buildingSync = await SyncData.SyncBuildingInfo();
 
     //        if(!shopSync || !buildingSync)
 				//syncStatus.Text="서버에서 데이터를 가져올 수 없습니다. 앱정보 페이지에서 REFRESH를 눌러 다시 시도할 수 있습니다.";

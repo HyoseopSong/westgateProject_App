@@ -260,6 +260,8 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
+    <None Include="Resources\google-services_Backup.json" />
+    <None Include="google-services.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\layout\" />
@@ -293,9 +295,6 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\smLogo.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\smLogo.png" />
     <AndroidResource Include="Resources\drawable-hdpi\smLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <GoogleServicesJson Include="google-services.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

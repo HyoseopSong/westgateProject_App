@@ -42,35 +42,37 @@ namespace westgateproject.Droid
 
         bool mShouldResolve = false;
 
+        bool isOnStart = false;
+
         public void OnConnectionFailed(ConnectionResult result)
         {
-            Log.Debug(TAG, "onConnectionFailed:" + result);
+            //Log.Debug(TAG, "onConnectionFailed:" + result);
 
-            if (!mIsResolving && mShouldResolve)
-            {
-                if (result.HasResolution)
-                {
-                    try
-                    {
-                        result.StartResolutionForResult(this, RC_SIGN_IN);
-                        mIsResolving = true;
-                    }
-                    catch (IntentSender.SendIntentException e)
-                    {
-                        Log.Error(TAG, "Could not resolve ConnectionResult.", e);
-                        mIsResolving = false;
-                        mGoogleApiClient.Connect();
-                    }
-                }
-                else
-                {
-                    ShowErrorDialog(result, "OnConnectionFailed inner else");
-                }
-            }
-            else
-            {
-                ShowErrorDialog(result, "OnConnectionFailed outer else");
-            }
+            //if (!mIsResolving && mShouldResolve)
+            //{
+            //    if (result.HasResolution)
+            //    {
+            //        try
+            //        {
+            //            result.StartResolutionForResult(this, RC_SIGN_IN);
+            //            mIsResolving = true;
+            //        }
+            //        catch (IntentSender.SendIntentException e)
+            //        {
+            //            Log.Error(TAG, "Could not resolve ConnectionResult.", e);
+            //            mIsResolving = false;
+            //            mGoogleApiClient.Connect();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        ShowErrorDialog(result, "OnConnectionFailed inner else");
+            //    }
+            //}
+            //else
+            //{
+            //    ShowErrorDialog(result, "OnConnectionFailed outer else");
+            //}
         }
 
         void ShowErrorDialog(ConnectionResult connectionResult, string text)
@@ -81,26 +83,6 @@ namespace westgateproject.Droid
 
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.SetTitle("ErrorCode : " + errorCode);
-            alert.SetMessage(text);
-            alert.SetPositiveButton("Delete", (senderAlert, args) => {
-                Toast.MakeText(this, "Deleted!", ToastLength.Short).Show();
-            });
-
-            alert.SetNegativeButton("Cancel", (senderAlert, args) => {
-                Toast.MakeText(this, "Cancelled!", ToastLength.Short).Show();
-            });
-
-            Dialog dialog = alert.Create();
-            dialog.Show();
-
-        }
-
-        void ShowDialog(string title, string text)
-        {
-
-
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetTitle(title);
             alert.SetMessage(text);
             alert.SetPositiveButton("Delete", (senderAlert, args) => {
                 Toast.MakeText(this, "Deleted!", ToastLength.Short).Show();
@@ -136,8 +118,6 @@ namespace westgateproject.Droid
             App.ScreenHeight = (height - 0.5f) / density;
 
 
-
-
             // Load the main application
             LoadApplication (new App ());
 
@@ -152,37 +132,43 @@ namespace westgateproject.Droid
                                                   .AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
                                                   .Build();
 
+			if (CrossConnectivity.Current.IsConnected && !mGoogleApiClient.IsConnected)
+			{
+				isOnStart = true;
+				Auth.GoogleSignInApi.SilentSignIn(mGoogleApiClient).SetResultCallback(this);
+			}
 
+			MessagingCenter.Subscribe<object>(this, "GoogleDisconnect", (sender) =>
+			{
 
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(mGoogleApiClient);
-                StartActivityForResult(signInIntent, RC_SIGN_IN);
-            }
-            else
-            {
-                ShowDialog("No network", "Please connect to network");
-            }
+				if (mGoogleApiClient.IsConnected)
+				{
+					Auth.GoogleSignInApi.RevokeAccess(mGoogleApiClient).SetResultCallback(this);
+				}
 
-
+			});
         }
 
         protected override void OnStart()
         {
-            base.OnStart();
-            Auth.GoogleSignInApi.SilentSignIn(mGoogleApiClient).SetResultCallback(this);
+			base.OnStart();
         }
 
         protected override void OnStop()
         {
             base.OnStop();
 
-            if (mGoogleApiClient.IsConnected)
-            {
-                Auth.GoogleSignInApi.RevokeAccess(mGoogleApiClient).SetResultCallback(this);
-            }
         }
 
+        protected override void OnDestroy()
+        {
+			base.OnDestroy();
+
+			if (mGoogleApiClient.IsConnected)
+			{
+				Auth.GoogleSignInApi.SignOut(mGoogleApiClient).SetResultCallback(this);
+			}
+        }
 
         //public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         //{
@@ -192,48 +178,26 @@ namespace westgateproject.Droid
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
+            System.Diagnostics.Debug.WriteLine("ResultCode : " + resultCode);
             if (requestCode == RC_SIGN_IN)
             {
                 GoogleSignInResult result = Auth.GoogleSignInApi.GetSignInResultFromIntent(data);
-                handleSignInResult(result);
+				handleSignInResult(result);
+
+
+				if (resultCode == Result.Ok)
+				{
+					MessagingCenter.Send<object>(this, "OK");
+				}
+				else
+				{
+					if (mGoogleApiClient.IsConnected)
+					{
+						Auth.GoogleSignInApi.RevokeAccess(mGoogleApiClient).SetResultCallback(this);
+					}
+					MessagingCenter.Send<object>(this, "Canceled");
+				}
             }
-            System.Diagnostics.Debug.WriteLine("OnActivityResult of MainActivity");
-            System.Diagnostics.Debug.WriteLine("requestCode : " + requestCode);
-            System.Diagnostics.Debug.WriteLine("resultCode : " + resultCode);
-            //if (data != null)
-            //Toast.MakeText(ApplicationContext, "Intent Extra result value : " + data.GetStringExtra("result"), ToastLength.Long).Show();
-
-            //AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            //alert.SetTitle(resultCode.ToString());
-            //if (data == null)
-            //alert.SetMessage("Intent Extra result value : null");
-            //else
-            //    alert.SetMessage("Intent Extra result value : " + data.GetStringExtra("result"));
-                
-            //alert.SetPositiveButton("Delete", (senderAlert, args) => {
-            //    Toast.MakeText(this, "Deleted!", ToastLength.Short).Show();
-            //});
-
-            //alert.SetNegativeButton("Cancel", (senderAlert, args) => {
-            //    Toast.MakeText(this, "Cancelled!", ToastLength.Short).Show();
-            //});
-
-            //Dialog dialog = alert.Create();
-            //dialog.Show();
-
-            if (resultCode == Result.Ok)
-            {
-                MessagingCenter.Send<object>(this, "OK");
-            }
-            else if(resultCode == Result.Canceled)
-            {
-                MessagingCenter.Send<object>(this, "Canceled");
-            }
-            else
-            {
-                MessagingCenter.Send<object>(this, "NotDefined");
-            }
-
             
 
         }
@@ -244,21 +208,6 @@ namespace westgateproject.Droid
             {
                 GoogleSignInAccount acct = result.SignInAccount;
                 var googleToken = acct.IdToken;
-                //Console.WriteLine("acct value : " + acct);
-                //Console.WriteLine("Account value : " + acct.Account);
-                //Console.WriteLine("DisplayName value : " + acct.DisplayName);
-                //Console.WriteLine("Email value : " + acct.Email);
-                //Console.WriteLine("FamilyName value : " + acct.FamilyName);
-                //Console.WriteLine("acGivenNamect value : " + acct.GivenName);
-                //Console.WriteLine("Id value : " + acct.Id);
-                //Console.WriteLine("IdToken value : " + acct.IdToken);
-                //Console.WriteLine("PhotoUrl value : " + acct.PhotoUrl);
-                //Console.WriteLine("ServerAuthCode value : " + acct.ServerAuthCode);
-
-                //           foreach (var temp in result.SignInAccount.GrantedScopes)
-                //           {
-                //Console.WriteLine("ServerAuthCode value : " + temp);
-                //}
 
                 App.userEmail = acct.Email;
 
@@ -267,30 +216,8 @@ namespace westgateproject.Droid
                     { "id_token", googleToken }
                 };
                 App.Client.CurrentUser = await App.Client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Google, token);
-                //IDictionary<string, string> resultOfInvoke = new Dictionary<string, string>();
-                //try
-                //{
-                //  resultOfInvoke = await App.Client.InvokeApiAsync<IDictionary<string, string>>("notice", System.Net.Http.HttpMethod.Get, null);
-                //  foreach (var temp in resultOfInvoke)
-                //  {
-                //      Console.WriteLine("Key : " + temp.Key + ", Value : " + temp.Value);
-                //  }
-                //}
-                //catch (System.Exception ex)
-                //{
-                //  Console.WriteLine(ex.GetType());
-                //  Console.WriteLine("서버에서 정보를 불러올 수 없습니다.");
-                //}
-                Intent intent = new Intent();
-                intent.PutExtra("result", "ok");
-                SetResult(Result.Ok, intent);
 
-            }
-            else
-            {
-                Intent intent = new Intent();
-                intent.PutExtra("result", "notok");
-                SetResult(Result.Canceled, intent);
+
             }
 
         }
@@ -307,7 +234,23 @@ namespace westgateproject.Droid
 
         public void OnResult(Java.Lang.Object result)
         {
-            Console.WriteLine("You are loged out. param : " + result);
+            if(isOnStart)
+            {
+				var res = (GoogleSignInResult)result;
+                if(!res.IsSuccess)
+                {
+				    Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(mGoogleApiClient);
+				    StartActivityForResult(signInIntent, RC_SIGN_IN);
+				}
+                else
+				{
+
+					handleSignInResult(res);
+                    MessagingCenter.Send<object>(this, "OK");
+                }
+				isOnStart = false;
+            }
+
         }
     }
 }

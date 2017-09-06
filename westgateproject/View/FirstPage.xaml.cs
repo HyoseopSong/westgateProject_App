@@ -307,39 +307,15 @@ namespace westgateproject
 			{
 				isInitial = false;
 			}
-			//imageSource = new Dictionary<string, string>
-			//{
-			//{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-08%20PM%208%3A22%3A37.jpg" },
-
-
-
-			//    //{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%84%9C%EB%AC%B8%EC%8B%9C%EC%9E%A5%20%EC%9E%85%EA%B5%AC" },
-			//    //{ "동산상가 2층 동쪽 출입구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EB%8F%99%EC%82%B0%EC%83%81%EA%B0%80" },
-			//    //{ "건해산물상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EA%B1%B4%ED%95%B4%EC%82%B0%EB%AC%BC%EC%83%81%EA%B0%80" },
-			//    //{ "2지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2%EC%A7%80%EA%B5%AC" },
-			//    //{ "1지구 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/1%EC%A7%80%EA%B5%AC" },
-			//    //{ "아진상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/%EC%95%84%EC%A7%84%EC%83%81%EA%B0%80" },
-			//    //{ "5지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/5%EC%A7%80%EA%B5%AC" },
-
-
-			//    //{ "서문시장 동쪽 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-			//    { "동산상가 2층 동쪽 출입구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-			//    //{ "건해산물상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-			//    //{ "2지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-			//    //{ "1지구 입구입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-			//    //{ "아진상가 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" },
-			//    //{ "5지구 입니다.", "https://westgateproject.blob.core.windows.net/blob1/2017-08-06%20PM%206%3A39%3A15.jpg" }
-			//};
 
 
 			recentSource = new List<RecentEntity>();
 			recentSource = await App.Client.InvokeApiAsync<List<RecentEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
-			Debug.WriteLine("recentSource.Count : " + recentSource.Count);
+			//userInfo = await App.Client.InvokeApiAsync<List<UserInfoEntity>>("userInformation", System.Net.Http.HttpMethod.Get, getParamUserInfo);
 			if (recentSource.Count > 0)
 			{
 				// imageSource에 있는 키값 배열에 다 넣고 앞에 10개만 보여주기
 				recentEntityArray = new RecentEntity[recentSource.Count];
-				Debug.WriteLine("recentEntityArray.Length : " + recentEntityArray.Length);
                 recentSource.CopyTo(recentEntityArray, 0);
 				int startIndex = 0;
 				if (recentEntityArray.Length > 10)
@@ -353,19 +329,11 @@ namespace westgateproject
 				for (int i = startIndex; i < startIndex + 10 && i < recentEntityArray.Length; i++)
 				{
 
-					var ownerID = recentEntityArray[0].ID;
-					Debug.WriteLine("i0 : " + i);
-					ownerID = recentEntityArray[1].ID;
-					Debug.WriteLine("i1 : " + i);
-					ownerID = recentEntityArray[2].ID;
-					Debug.WriteLine("i2 : " + i);
-					ownerID = recentEntityArray[i].ID;
-					Debug.WriteLine("i3 : " + i);
+					var ownerID = recentEntityArray[i].ID;
 					var blobName = recentEntityArray[i].RowKey;
 
 					imageURL = "https://westgateproject.blob.core.windows.net/" + ownerID.Split('@')[0] + "/" + blobName;
 
-					Debug.WriteLine("ix : " + i);
 					switch (Device.RuntimePlatform)
 					{
 						case Device.Android:
@@ -424,7 +392,6 @@ namespace westgateproject
 							break;
 					}
 
-					Debug.WriteLine("ii : " + i);
                     var labelButton = new Label()
 					{
                         Text = recentEntityArray[i].ShopName + " : " + recentEntityArray[i].Context,
@@ -453,7 +420,6 @@ namespace westgateproject
 
 
 
-					Debug.WriteLine("iii : " + i);
 					var shopInfo = new Label()
 					{
 						Text = ownerID + ":" + recentEntityArray[i].ShopName,
