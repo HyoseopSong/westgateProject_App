@@ -32,9 +32,6 @@
 
     <Compile Update="**\*.xaml.cs" DependentUpon="%(Filename)" />
     <EmbeddedResource Include="**\*.xaml" SubType="Designer" Generator="MSBuild:UpdateDesignTimeXaml" />
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\AboutPage.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\FirstPage.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>

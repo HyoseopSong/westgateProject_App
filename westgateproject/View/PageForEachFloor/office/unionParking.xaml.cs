@@ -7,9 +7,20 @@ namespace westgateproject.View.PageForEachFloor.office
 {
     public partial class unionParking : ContentPage
 	{
+		bool backTouched;
+		protected override bool OnBackButtonPressed()
+		{
+			if (!backTouched)
+			{
+				backTouched = true;
+				Navigation.PopAsync();
+			}
+			return true;
+		}
         public unionParking()
         {
 			InitializeComponent();
+            backTouched = false;
 			absL.AnchorX = 0;
 			absL.AnchorY = 0;
 			switch (Device.RuntimePlatform)

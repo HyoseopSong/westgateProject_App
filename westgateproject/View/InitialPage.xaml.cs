@@ -115,7 +115,7 @@ namespace westgateproject
 				start.IsEnabled = false;
 
                 await Navigation.PushAsync(new FirstPage());
-                Navigation.RemovePage((Navigation.NavigationStack[0]));
+                //Navigation.RemovePage((Navigation.NavigationStack[0]));
             //}
             //else
             //{

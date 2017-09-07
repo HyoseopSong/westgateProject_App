@@ -16,6 +16,7 @@ namespace westgateproject.View
         Dictionary<string, string> _shopLocation;
         string _shopName;
         bool isInitial;
+        bool backTouched;
 		int deleteCount;
         Stream stream;
 
@@ -23,6 +24,7 @@ namespace westgateproject.View
 		{
 			InitializeComponent();
             deleteCount = 0;
+            backTouched = false;
             _shopLocation = new Dictionary<string, string>();
             myIdLabel.Text = "내 계정 : " + App.userEmail;
             myIdLabel.VerticalTextAlignment = TextAlignment.Center;
@@ -570,6 +572,17 @@ namespace westgateproject.View
                 }
 			}
         }
+
+
+		protected override bool OnBackButtonPressed()
+		{
+            if(!backTouched)
+            {
+                backTouched = true;
+                Navigation.PopAsync();
+            }
+			return true;
+		}
 
     }
 }

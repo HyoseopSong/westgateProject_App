@@ -12,13 +12,15 @@ namespace westgateproject.View.PageForEachFloor
 {
     public partial class buildingInfo : ContentPage
     {
-        bool onProcessing;
+		bool onProcessing;
+		bool backTouched;
         public buildingInfo(string building)
         {
             InitializeComponent();
             syncText(building);
             Title = building;
-            onProcessing = false;
+			onProcessing = false;
+			backTouched = false;
         }
         async void syncText(string building)
         {
@@ -186,5 +188,17 @@ namespace westgateproject.View.PageForEachFloor
                 sender.BackgroundColor = bc;
             }
         }
+
+
+		protected override bool OnBackButtonPressed()
+		{
+			if (!backTouched)
+			{
+				backTouched = true;
+				Navigation.PopAsync();
+			}
+			return true;
+		}
+
     }
 }

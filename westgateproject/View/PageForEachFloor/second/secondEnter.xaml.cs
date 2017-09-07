@@ -8,10 +8,21 @@ namespace westgateproject.View.PageForEachFloor.second
     public partial class secondEnter : ContentPage
     {
         bool onProcessing;
-        int floorNum;
+		int floorNum;
+		bool backTouched;
+		protected override bool OnBackButtonPressed()
+		{
+			if (!backTouched)
+			{
+				backTouched = true;
+				Navigation.PopAsync();
+			}
+			return true;
+		}
         public secondEnter(int floor)
         {
 			InitializeComponent();
+            backTouched = false;
 			onProcessing = false;
             floorNum = floor;
         }

@@ -9,9 +9,20 @@ namespace westgateproject.View.PageForEachFloor.first
     public partial class firstFirst : ContentPage
 	{
 		public bool onProcessing;
+		bool backTouched;
+		protected override bool OnBackButtonPressed()
+		{
+			if (!backTouched)
+			{
+				backTouched = true;
+				Navigation.PopAsync();
+			}
+			return true;
+		}
         public firstFirst()
         {
 			InitializeComponent();
+            backTouched = false;
 			onProcessing = false;
 
 			//switch (Device.RuntimePlatform)

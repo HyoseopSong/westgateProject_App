@@ -8,9 +8,20 @@ namespace westgateproject.View.PageForEachFloor.fifth
     public partial class fifthFirst : ContentPage
 	{
 		public bool onProcessing;
+		bool backTouched;
+		protected override bool OnBackButtonPressed()
+		{
+			if (!backTouched)
+			{
+				backTouched = true;
+				Navigation.PopAsync();
+			}
+			return true;
+		}
         public fifthFirst()
         {
 			InitializeComponent();
+            backTouched = false;
 			absL.AnchorX = 0;
 			absL.AnchorY = 0;
             switch (Device.RuntimePlatform)

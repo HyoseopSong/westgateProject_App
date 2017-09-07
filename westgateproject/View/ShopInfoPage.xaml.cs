@@ -12,11 +12,22 @@ namespace westgateproject.View
     {
         string _building;
         string _floor;
-        string _location;
-        bool gotoRegister;
+		string _location;
+		bool gotoRegister;
+		bool backTouched;
+		protected override bool OnBackButtonPressed()
+		{
+			if (!backTouched)
+			{
+				backTouched = true;
+				Navigation.PopAsync();
+			}
+			return true;
+		}
         public ShopInfoPage()
         {
-            InitializeComponent();
+			InitializeComponent();
+			backTouched = false;
         }
 
         public ShopInfoPage(string building, string floor, string location)
@@ -238,5 +249,8 @@ namespace westgateproject.View
 
 
 		}
+
+
+
     }
 }

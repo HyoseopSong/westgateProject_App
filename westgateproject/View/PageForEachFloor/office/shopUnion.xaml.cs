@@ -8,9 +8,20 @@ namespace westgateproject.View.PageForEachFloor.office
     public partial class shopUnion : ContentPage
 	{
 		public bool onProcessing;
+		bool backTouched;
+		protected override bool OnBackButtonPressed()
+		{
+			if (!backTouched)
+			{
+				backTouched = true;
+				Navigation.PopAsync();
+			}
+			return true;
+		}
         public shopUnion()
         {
 			InitializeComponent();
+            backTouched = false;
 			absL.AnchorX = 0;
 			absL.AnchorY = 0;
 
