@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/Properties/AndroidManifest.xml">
     <Files>
-      <File FileName="Droid/MainActivity.cs" Line="200" Column="14" />
-      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="1" Column="1" />
-      <File FileName="Droid/Properties/AndroidManifest.xml" Line="1" Column="1" />
+      <File FileName="Droid/WestGateMarketMapRenderer.cs" Line="243" Column="19" />
+      <File FileName="Droid/MainActivity.cs" Line="91" Column="71" />
+      <File FileName="Droid/Properties/AndroidManifest.xml" Line="21" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />

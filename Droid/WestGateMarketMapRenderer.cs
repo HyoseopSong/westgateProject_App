@@ -79,6 +79,7 @@ namespace westgateproject.Droid
 			//NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8687925, 128.5801115), 17.3f));
 
 
+			Toast.MakeText(this.Context, "OnMapReady", ToastLength.Short).Show();
 			NativeMap.Clear();
 			foreach (var pin in advertisementPins)
 			{
@@ -88,7 +89,7 @@ namespace westgateproject.Droid
 				marker.SetSnippet(pin.Pin.Address);
 				marker.SetIcon(createPureTextIcon(pin.Id));
 				//marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
-				NativeMap.AddMarker(marker);
+				//NativeMap.AddMarker(marker);
 
 			}
 
@@ -102,7 +103,7 @@ namespace westgateproject.Droid
 				polygonOptions.Add(new LatLng(position.Latitude, position.Longitude));
 			}
 
-			NativeMap.AddPolygon(polygonOptions);
+			//NativeMap.AddPolygon(polygonOptions);
 
 
 			NativeMap.UiSettings.ZoomControlsEnabled = false;
@@ -129,36 +130,38 @@ namespace westgateproject.Droid
 
 			//Console.WriteLine("e.Propertyname is " + e.PropertyName);
 
+            Toast.MakeText(this.Context, "PropertyName is " + e.PropertyName, ToastLength.Short).Show();
 
-			//if (e.PropertyName.Equals("Width") || e.PropertyName.Equals("Height") && !isDrawn)
-			//{
-			//	NativeMap.Clear();
-			//	foreach (var pin in advertisementPins)
-			//	{
-			//		var marker = new MarkerOptions();
-			//		marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
-			//		marker.SetTitle(pin.Pin.Label);
-			//		marker.SetSnippet(pin.Pin.Address);
-			//		marker.SetIcon(createPureTextIcon(pin.Id));
-			//		//marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
-			//		NativeMap.AddMarker(marker);
+			if (e.PropertyName.Equals("VisibleRegion") && !isDrawn)
+			{
+				Toast.MakeText(this.Context, "OnElementPropertyChanged!", ToastLength.Short).Show();
+				NativeMap.Clear();
+				foreach (var pin in advertisementPins)
+				{
+					var marker = new MarkerOptions();
+					marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
+					marker.SetTitle(pin.Pin.Label);
+					marker.SetSnippet(pin.Pin.Address);
+					marker.SetIcon(createPureTextIcon(pin.Id));
+					//marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
+					NativeMap.AddMarker(marker);
 
-			//	}
+				}
 
-			//	var polygonOptions = new PolygonOptions();
-			//	polygonOptions.InvokeFillColor(0x40FF0000);
-			//	polygonOptions.InvokeStrokeColor(0x660000ff);
-			//	polygonOptions.InvokeStrokeWidth(0);
+				var polygonOptions = new PolygonOptions();
+				polygonOptions.InvokeFillColor(0x40FF0000);
+				polygonOptions.InvokeStrokeColor(0x660000ff);
+				polygonOptions.InvokeStrokeWidth(0);
 
-			//	foreach (var position in shapeCoordinates)
-			//	{
-			//		polygonOptions.Add(new LatLng(position.Latitude, position.Longitude));
-			//	}
+				foreach (var position in shapeCoordinates)
+				{
+					polygonOptions.Add(new LatLng(position.Latitude, position.Longitude));
+				}
 
-			//	NativeMap.AddPolygon(polygonOptions);
+				NativeMap.AddPolygon(polygonOptions);
 
-			//	isDrawn = true;
-			//}
+				isDrawn = true;
+			}
 			//Console.WriteLine("isDrawn value : " + isDrawn);
 			//Console.WriteLine("e.PropertyName value : " + e.PropertyName);
 		}
@@ -211,6 +214,35 @@ namespace westgateproject.Droid
 
 		public void OnCameraIdle()
 		{
+            if (!isDrawn)
+            {
+				NativeMap.Clear();
+
+                foreach (var pin in advertisementPins)
+				{
+					var marker = new MarkerOptions();
+					marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
+					marker.SetTitle(pin.Pin.Label);
+					marker.SetSnippet(pin.Pin.Address);
+					marker.SetIcon(createPureTextIcon(pin.Id));
+					//marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
+					NativeMap.AddMarker(marker);
+
+				}
+
+				var polygonOptions = new PolygonOptions();
+				polygonOptions.InvokeFillColor(0x40FF0000);
+				polygonOptions.InvokeStrokeColor(0x660000ff);
+				polygonOptions.InvokeStrokeWidth(0);
+
+				foreach (var position in shapeCoordinates)
+				{
+					polygonOptions.Add(new LatLng(position.Latitude, position.Longitude));
+				}
+
+				NativeMap.AddPolygon(polygonOptions);
+				isDrawn = true;
+            }
 			//if (NativeMap.CameraPosition.Zoom >= 16f && isRemoved == true)
 			//{
 			//	//add marker
