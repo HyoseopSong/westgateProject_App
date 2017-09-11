@@ -15,6 +15,7 @@ namespace westgateproject.View
 		string _location;
 		bool gotoRegister;
 		bool backTouched;
+		bool isInitial;
 		protected override bool OnBackButtonPressed()
 		{
 			if (!backTouched)
@@ -28,6 +29,7 @@ namespace westgateproject.View
         {
 			InitializeComponent();
 			backTouched = false;
+			isInitial = true;
         }
 
         public ShopInfoPage(string building, string floor, string location)
@@ -41,6 +43,8 @@ namespace westgateproject.View
 			shopLabel.Text += _building + " " + _floor + " " + _location;
 			Debug.WriteLine("shopLabel.Text = " + shopLabel.Text);
 
+			backTouched = false;
+			isInitial = true;
 
         }
 
@@ -51,6 +55,18 @@ namespace westgateproject.View
                 await Navigation.PopAsync();
                 return;
             }
+
+			if (!isInitial)
+			{
+				Debug.WriteLine("OnAppearing if");
+				return;
+			}
+			else
+			{
+				Debug.WriteLine("OnAppearing else");
+				isInitial = false;
+			}
+
 			IDictionary<string, string> imageSource = new Dictionary<string, string>();
             string _building_Converted;
             switch(_building)
