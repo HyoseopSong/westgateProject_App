@@ -280,21 +280,21 @@
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\style.xml" />
     <AndroidResource Include="Resources\values-v21\style.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\pin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\info.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\info.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\pin.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\info.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\pin.png" />
     <AndroidResource Include="Resources\layout\MapInfoWindow.axml" />
     <AndroidResource Include="Resources\layout\MapInfoWindow_Preparing.axml" />
     <AndroidResource Include="Resources\xml\file_paths.xml" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\arrows.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\arrows.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\arrows.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\smLogo.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\smLogo.png" />
     <AndroidResource Include="Resources\drawable-hdpi\smLogo.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\HeartEmpty.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\HeartEmpty.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\HeartEmpty.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\HeartFilled.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\HeartFilled.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\HeartFilled.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

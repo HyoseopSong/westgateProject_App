@@ -198,18 +198,63 @@ namespace westgateproject.View
 							}
 
 
+
+							var layout = new StackLayout();
+							var heartEmtpyIcon = new Image { Source = "HeartEmpty.png" };
+                            var heartFilledIcon = new Image { Source = "HeartFilled.png", IsVisible = false };
+
+							var shopInfo = new Label()
+							{
+								Text = "HeartEmpty",
+								IsVisible = false
+							};
+
+							layout.Children.Add(heartEmtpyIcon);
+							layout.Children.Add(heartFilledIcon);
+							layout.Children.Add(shopInfo);
+							var heartTapGestureRecognizer = new TapGestureRecognizer();
+							heartTapGestureRecognizer.Tapped += (s, e) => {
+								var thisLayout = s as StackLayout;
+								var heartEmpty = thisLayout.Children[0] as Image;
+								var heartFilled = thisLayout.Children[1] as Image;
+                                var imgSource = thisLayout.Children[2] as Label;
+                                switch(imgSource.Text)
+                                {
+                                    case "HeartFilled":
+                                        heartEmpty.IsVisible = true;
+                                        heartFilled.IsVisible = false;
+                                        imgSource.Text = "HeartEmpty";
+										Debug.WriteLine("imgSource.Text : " + imgSource.Text);
+                                        break;
+									default:
+										heartEmpty.IsVisible = false;
+										heartFilled.IsVisible = true;
+										imgSource.Text = "HeartFilled";
+										Debug.WriteLine("imgSource.Text : " + imgSource.Text);
+                                        break;
+
+                                }
+							};
+							layout.GestureRecognizers.Add(heartTapGestureRecognizer);
+
+                            myActivity.Children.Insert(4, layout);
+
+
+
+
+
 							var myLabel = new Label()
 							{
 								Text = temp.Value
 							};
-							myActivity.Children.Insert(4, myLabel);
+							myActivity.Children.Insert(5, myLabel);
 
 							var myBoxView = new BoxView()
 							{
 								HeightRequest = 10,
 								BackgroundColor = Color.LightGray
 							};
-							myActivity.Children.Insert(5, myBoxView);
+							myActivity.Children.Insert(6, myBoxView);
                             break;
     			    }
 

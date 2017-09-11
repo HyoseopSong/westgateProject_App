@@ -199,6 +199,12 @@
     <BundleResource Include="Resources\smLogo%402x.png" />
     <BundleResource Include="Resources\smLogo%403x.png" />
     <BundleResource Include="GoogleService-Info.plist" />
+    <BundleResource Include="Resources\HeartEmpty%403x.png" />
+    <BundleResource Include="Resources\HeartEmpty%402x.png" />
+    <BundleResource Include="Resources\HeartEmpty.png" />
+    <BundleResource Include="Resources\HeartFilled.png" />
+    <BundleResource Include="Resources\HeartFilled%402x.png" />
+    <BundleResource Include="Resources\HeartFilled%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
