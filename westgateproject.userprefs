@@ -1,19 +1,12 @@
 ﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/obj/Debug/netstandard1.6/westgateproject.AssemblyInfo.cs">
     <Files>
-      <File FileName="westgateproject/View/PageForEachFloor/office/shopUnion.xaml.cs" Line="24" Column="33" />
-      <File FileName="westgateproject/View/PageForEachFloor/office/unionParking.xaml.cs" Line="23" Column="33" />
-      <File FileName="westgateproject/View/PageForEachFloor/first/firstFirst.xaml.cs" Line="25" Column="33" />
-      <File FileName="westgateproject/View/PageForEachFloor/fifth/fifthFirst.xaml.cs" Line="24" Column="33" />
-      <File FileName="westgateproject/View/PageForEachFloor/fifth/fifthSecond.xaml.cs" Line="24" Column="33" />
-      <File FileName="westgateproject/View/PageForEachFloor/dongsan/dongsanFirst.xaml.cs" Line="24" Column="33" />
-      <File FileName="westgateproject/View/PageForEachFloor/dongsan/dongsanSecond.xaml.cs" Line="25" Column="33" />
-      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="301" Column="10" />
-      <File FileName="westgateproject/obj/Release/netstandard1.6/westgateproject.AssemblyInfo.cs" Line="16" Column="40" />
-      <File FileName="Droid/Properties/AndroidManifest.xml" Line="21" Column="12" />
+      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="710" Column="45" />
+      <File FileName="Droid/MainActivity.cs" Line="153" Column="26" />
+      <File FileName="westgateproject/obj/Debug/netstandard1.6/westgateproject.AssemblyInfo.cs" Line="16" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

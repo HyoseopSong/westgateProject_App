@@ -147,6 +147,12 @@ namespace westgateproject.Droid
 				}
 
 			});
+
+			MessagingCenter.Subscribe<object>(this, "ActivityFinish", (sender) =>
+			{
+                Finish();
+			});
+
         }
 
         protected override void OnStart()

@@ -694,9 +694,12 @@ namespace westgateproject
 		//	}
 		//}
 
+
 		protected override bool OnBackButtonPressed()
 		{
+			MessagingCenter.Send<object>(this, "ActivityFinish");
 			return true;
 		}
+
 	}
 }
