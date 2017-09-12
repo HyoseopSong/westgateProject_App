@@ -197,11 +197,8 @@ namespace westgateproject.Droid
 				}
 				else
 				{
-					if (mGoogleApiClient.IsConnected)
-					{
-						Auth.GoogleSignInApi.RevokeAccess(mGoogleApiClient).SetResultCallback(this);
-					}
-					MessagingCenter.Send<object>(this, "Canceled");
+					Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(mGoogleApiClient);
+					StartActivityForResult(signInIntent, RC_SIGN_IN);
 				}
             }
             

@@ -87,7 +87,7 @@ namespace westgateproject.View.PageForEachFloor.second
 			if (!onProcessing)
 			{
 				onProcessing = true;
-	            ShopInformation infoFromSQLite = new ShopInformation();
+	            ShopInforSQLDb infoFromSQLite = new ShopInforSQLDb();
 	            var temp = sender as Label;
 				//infoFromSQLite = await App.Database.GetShopAsync("2지구", "1층", temp.Text);
 				await Navigation.PushAsync(new ShopInfoPage("2지구", "1층", temp.Text));

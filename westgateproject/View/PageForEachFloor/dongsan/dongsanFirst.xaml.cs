@@ -49,7 +49,7 @@ namespace westgateproject.View.PageForEachFloor.dongsan
 			if (!onProcessing)
 			{
 				onProcessing = true;
-	            ShopInformation infoFromSQLite = new ShopInformation();
+	            ShopInforSQLDb infoFromSQLite = new ShopInforSQLDb();
 	            var temp = sender as Label;
 				//infoFromSQLite = await App.Database.GetShopAsync("동산상가", "1층", temp.Text);
 				await Navigation.PushAsync(new ShopInfoPage("동산상가", "1층", temp.Text));

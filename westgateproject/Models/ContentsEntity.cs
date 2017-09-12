@@ -11,11 +11,15 @@ namespace westgateproject.Models
 			RowKey = blobName;
 			ShopName = shopName;
 			Context = text;
+            LikeMember = "";
+            Like = 0;
 		}
 
 		public ContentsEntity() { }
 
 		public string ShopName { get; set; }
 		public string Context { get; set; }
+        public string LikeMember { get; set; }
+		public int Like { get; set; }
 	}
 }

@@ -37,7 +37,7 @@ namespace westgateproject.Helper
 	            { "id", App.userEmail},
 	            { "blobName", blobName},
 	        };
-	        await App.Client.InvokeApiAsync<Dictionary<string, string>>("upload", System.Net.Http.HttpMethod.Delete, getParam);
+	        await App.Client.InvokeApiAsync("upload", System.Net.Http.HttpMethod.Delete, getParam);
 
 			// Retrieve storage account from connection string.
 			CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Constants.StorageConnectionString);
@@ -130,37 +130,27 @@ namespace westgateproject.Helper
         static async public Task<List<ShopMapInfoEntity>> DownloadShopMapInfo()
         {
 			List<ShopMapInfoEntity> getResult = new List<ShopMapInfoEntity>();
-			//try
-			//{
-				Dictionary<string, string> getDictionary = new Dictionary<string, string>
-    			{
-    				{ "buildingFloor", "2지구1층" }
-    			};
-				getResult = await App.Client.InvokeApiAsync<List<ShopMapInfoEntity>>("getShopMapInfo", System.Net.Http.HttpMethod.Get, getDictionary);
-			//}
-			//catch (Exception ex)
-			//{
-			//	Debug.WriteLine(ex.GetType());
-			//	return null;
-			//}
-			//foreach (var shopInfo in getResult)
-			//{
-			//	string[] building = shopInfo.Key.Split(':');
-			//	string[] shop = shopInfo.Value.Split(':');
-			//	ShopInformation result = new ShopInformation(building[0], building[1], building[2], shop[0], shop[1]);
-
-			//	var res = await App.Database.GetShopAsync(building[0], building[1], building[2]);
-
-			//	if (res != null)
-			//	{
-			//		result.ID = res.ID;
-			//	}
-
-			//	await App.Database.SaveShopAsync(result);
-			//}
+			Dictionary<string, string> getDictionary = new Dictionary<string, string>
+			{
+				{ "buildingFloor", "2지구1층" }
+			};
+			getResult = await App.Client.InvokeApiAsync<List<ShopMapInfoEntity>>("getShopMapInfo", System.Net.Http.HttpMethod.Get, getDictionary);
+			
 			return getResult;
         }
 
+		static async public void UpdateLikeNum(string shopOwner, string blobName, string likeMember, string change )
+		{
+			Dictionary<string, string> getDictionary = new Dictionary<string, string>
+			{
+				{ "shopOwner", shopOwner },
+				{ "blobName", blobName },
+				{ "likeMember", likeMember },
+                { "change", change },
+			};
+			await App.Client.InvokeApiAsync("getShopContents", System.Net.Http.HttpMethod.Put, getDictionary);
+
+		}
 		static async public Task<bool> SyncShopInfo()
 		{
 			IDictionary<string, string> getResult = new Dictionary<string, string>();
@@ -177,7 +167,7 @@ namespace westgateproject.Helper
 			{
 				string[] building = shopInfo.Key.Split(':');
 				string[] shop = shopInfo.Value.Split(':');
-				ShopInformation result = new ShopInformation(building[0], building[1], building[2], shop[0], shop[1]);
+				ShopInforSQLDb result = new ShopInforSQLDb(building[0], building[1], building[2], shop[0], shop[1]);
 
 				var res = await App.Database.GetShopAsync(building[0], building[1], building[2]);
 

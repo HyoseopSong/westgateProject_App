@@ -3,12 +3,12 @@ using SQLite;
 
 namespace westgateproject.Models
 {
-    public class ShopInformation
+    public class ShopInforSQLDb
     {
-        public ShopInformation()
+        public ShopInforSQLDb()
         {}
 
-        public ShopInformation(string building, string floor, string location, string shopname, string phonenumber)
+        public ShopInforSQLDb(string building, string floor, string location, string shopname, string phonenumber)
         {
             Building = building;
             Floor = floor;

@@ -14,12 +14,12 @@ namespace westgateproject.Data
         public MarketInformationDatabase(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTablesAsync<ShopInformation, BuildingInformation>().Wait();
+            database.CreateTablesAsync<ShopInforSQLDb, BuildingInformation>().Wait();
         }
 
-        public Task<List<ShopInformation>> GetShopAsync()
+        public Task<List<ShopInforSQLDb>> GetShopAsync()
         {
-            return database.Table<ShopInformation>().ToListAsync();
+            return database.Table<ShopInforSQLDb>().ToListAsync();
         }
 
 		public Task<List<BuildingInformation>> GetBuildingAsync()
@@ -27,9 +27,9 @@ namespace westgateproject.Data
 			return database.Table<BuildingInformation>().ToListAsync();
 		}
 
-        public Task<List<ShopInformation>> GetShopInfo(string building, string location)
+        public Task<List<ShopInforSQLDb>> GetShopInfo(string building, string location)
         {
-            return database.QueryAsync<ShopInformation>("SELECT * FROM [ShopInformation] WHERE [Building] = '" + building + "' AND [Location] = '" + location + "'");
+            return database.QueryAsync<ShopInforSQLDb>("SELECT * FROM [ShopInformation] WHERE [Building] = '" + building + "' AND [Location] = '" + location + "'");
         }
 
 		public Task<List<BuildingInformation>> GetBuilding(string building)
@@ -37,9 +37,9 @@ namespace westgateproject.Data
 			return database.QueryAsync<BuildingInformation>("SELECT * FROM [BuildingInformation] WHERE [Building] = '" + building +"'");
 		}
 
-        public Task<ShopInformation> GetShopAsync(string building, string floor, string location)
+        public Task<ShopInforSQLDb> GetShopAsync(string building, string floor, string location)
         {
-            return database.Table<ShopInformation>().Where(i => i.Location == location && i.Building == building && i.Floor == floor).FirstOrDefaultAsync();
+            return database.Table<ShopInforSQLDb>().Where(i => i.Location == location && i.Building == building && i.Floor == floor).FirstOrDefaultAsync();
         }
 
         public Task<BuildingInformation> GetBuildingAsync(string building)
@@ -47,7 +47,7 @@ namespace westgateproject.Data
             return database.Table<BuildingInformation>().Where(i => i.Building == building).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveShopAsync(ShopInformation item)
+        public Task<int> SaveShopAsync(ShopInforSQLDb item)
         {
             if(item.ID != 0)
             {
@@ -73,7 +73,7 @@ namespace westgateproject.Data
 		}
 
 
-		public Task<int> DeleteShopAsync(ShopInformation item)
+		public Task<int> DeleteShopAsync(ShopInforSQLDb item)
         {
             return database.DeleteAsync(item);
         }

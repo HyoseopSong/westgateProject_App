@@ -25,6 +25,7 @@
     <Compile Remove="View\PageForEachFloor\office\seafood.xaml.cs" />
     <Compile Remove="View\PageForEachFloor\forth\forthFIrst.xaml.cs" />
     <Compile Remove="View\PageForEachFloor\myungpoom\myungpoomFirst.xaml.cs" />
+    <Compile Remove="Models\ShopInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <!-- https://bugzilla.xamarin.com/show_bug.cgi?id=55591 -->

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace westgateproject
 {
-	public class ShopInfo
+	public class ShopInfo1
 	{
 		string partitionkey;
 		string rowkey;
