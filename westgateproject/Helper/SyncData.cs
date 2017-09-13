@@ -139,7 +139,7 @@ namespace westgateproject.Helper
 			return getResult;
         }
 
-		static async public void UpdateLikeNum(string shopOwner, string blobName, string likeMember, string change )
+		static async public Task UpdateLikeNum(string shopOwner, string blobName, string likeMember, string change )
 		{
 			Dictionary<string, string> getDictionary = new Dictionary<string, string>
 			{

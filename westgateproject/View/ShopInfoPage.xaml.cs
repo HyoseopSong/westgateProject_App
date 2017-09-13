@@ -255,7 +255,7 @@ namespace westgateproject.View
 					layout.Children.Add(likeNumber);
 					layout.Children.Add(shopInfoLabel);
 					var heartTapGestureRecognizer = new TapGestureRecognizer();
-					heartTapGestureRecognizer.Tapped += (s, e) => {
+					heartTapGestureRecognizer.Tapped += async (s, e) => {
 						var thisLayout = s as StackLayout;
 						var indexOfThisLayout = (myActivity.Children.IndexOf(thisLayout) - 3) / 4;
 						var heartEmpty = thisLayout.Children[0] as Image;
@@ -269,14 +269,14 @@ namespace westgateproject.View
 								heartFilled.IsVisible = false;
 								likeNum.Text = (--likeNumList[indexOfThisLayout]).ToString();
 								imgSource.Text = "HeartEmpty";
-                                SyncData.UpdateLikeNum(shopOwner, contentsOfShop.RowKey, App.userEmail.Split('@')[0], "down");
+                                await SyncData.UpdateLikeNum(shopOwner, contentsOfShop.RowKey, App.userEmail.Split('@')[0], "down");
 								break;
 							default:
 								heartEmpty.IsVisible = false;
 								heartFilled.IsVisible = true;
 								likeNum.Text = (++likeNumList[indexOfThisLayout]).ToString();
 								imgSource.Text = "HeartFilled";
-								SyncData.UpdateLikeNum(shopOwner, contentsOfShop.RowKey, App.userEmail.Split('@')[0], "up");
+								await SyncData.UpdateLikeNum(shopOwner, contentsOfShop.RowKey, App.userEmail.Split('@')[0], "up");
 								break;
 
 						}

@@ -200,28 +200,24 @@ namespace westgateproject.View
             {
                 referenceBoxView.IsVisible = false;
             }
-			List<MyEntity> imageSource = new List<MyEntity>();
-			try
-			{
-				Dictionary<string, string> getParam = new Dictionary<string, string>
-				{
-					{ "id", App.userEmail},
-				};
-				imageSource = await App.Client.InvokeApiAsync<List<MyEntity>>("upload", System.Net.Http.HttpMethod.Get, getParam);
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine(ex.GetType() + "내 활동 내역이 없습니다.");
 
-                statusLabel.IsVisible = true;
-
-			}
+            //From Here
+			List<ContentsEntity> imageSource = new List<ContentsEntity>();
+			Dictionary<string, string> getParam = new Dictionary<string, string>
+			{
+				{ "id", App.userEmail},
+			};
+			imageSource = await App.Client.InvokeApiAsync<List<ContentsEntity>>("upload", System.Net.Http.HttpMethod.Get, getParam);
+			
 
             if (imageSource.Count > 0)
             {
+
+				List<int> likeNumList = new List<int>();
+
                 foreach (var temp in imageSource)
                 {
-                    string imageURL = "https://westgateproject.blob.core.windows.net/" + App.userEmail.Split('@')[0] + "/" + temp.PartitionKey;
+                    string imageURL = "https://westgateproject.blob.core.windows.net/" + App.userEmail.Split('@')[0] + "/" + temp.RowKey;
 
                     switch (Device.RuntimePlatform)
                     {
@@ -281,63 +277,125 @@ namespace westgateproject.View
                             break;
                     }
 
+					//좋아요 추갸
+					var layout = new StackLayout()
+					{
+						Orientation = StackOrientation.Horizontal
+					};
+					var heartEmtpyIcon = new Image { Source = "HeartEmpty.png" };
+					var heartFilledIcon = new Image { Source = "HeartFilled.png" };
+					var likeNumber = new Label
+					{
+						Text = temp.Like.ToString(),
+						VerticalTextAlignment = TextAlignment.Center
+					};
+					likeNumList.Add(temp.Like);
+					var shopInfoLabel = new Label()
+					{
+						Text = "HeartEmpty",
+						IsVisible = false
+					};
 
-                    var myLabel = new Label()
+					switch (temp.LikeMember)
+					{
+						case "True":
+							heartFilledIcon.IsVisible = true;
+							heartEmtpyIcon.IsVisible = false;
+							shopInfoLabel.Text = "HeartFilled";
+							break;
+						case "False":
+							heartFilledIcon.IsVisible = false;
+							heartEmtpyIcon.IsVisible = true;
+							shopInfoLabel.Text = "HeartEmpty";
+							break;
+
+					}
+					layout.Children.Add(heartEmtpyIcon);
+					layout.Children.Add(heartFilledIcon);
+					layout.Children.Add(likeNumber);
+					layout.Children.Add(shopInfoLabel);
+					var heartTapGestureRecognizer = new TapGestureRecognizer();
+					heartTapGestureRecognizer.Tapped += async (s, e) => {
+						var thisLayout = s as StackLayout;
+						var indexOfThisLayout = myActivity.Children.IndexOf(thisLayout) / 6;
+						var heartEmpty = thisLayout.Children[0] as Image;
+						var heartFilled = thisLayout.Children[1] as Image;
+						var likeNum = thisLayout.Children[2] as Label;
+						var imgSource = thisLayout.Children[3] as Label;
+						switch (imgSource.Text)
+						{
+							case "HeartFilled":
+								heartEmpty.IsVisible = true;
+								heartFilled.IsVisible = false;
+								likeNum.Text = (--likeNumList[indexOfThisLayout]).ToString();
+								imgSource.Text = "HeartEmpty";
+								await SyncData.UpdateLikeNum(temp.PartitionKey, temp.RowKey, App.userEmail.Split('@')[0], "down");
+								break;
+							default:
+								heartEmpty.IsVisible = false;
+								heartFilled.IsVisible = true;
+								likeNum.Text = (++likeNumList[indexOfThisLayout]).ToString();
+								imgSource.Text = "HeartFilled";
+								await SyncData.UpdateLikeNum(temp.PartitionKey, temp.RowKey, App.userEmail.Split('@')[0], "up");
+								break;
+
+						}
+					};
+					layout.GestureRecognizers.Add(heartTapGestureRecognizer);
+
+					myActivity.Children.Insert(1, layout);
+
+					//좋아요 추갸
+
+
+
+
+					var myLabel = new Label()
                     {
-                        Text = temp.RowKey + " : " + temp.Text
+                        Text = temp.ShopName + " : " + temp.Context
                     };
-                    myActivity.Children.Insert(1, myLabel);
+                    myActivity.Children.Insert(2, myLabel);
 
                     var imageName = new Label()
                     {
                         Text = temp.PartitionKey,
                         IsVisible = false
                     };
-                    myActivity.Children.Insert(2, imageName);
+                    myActivity.Children.Insert(3, imageName);
 
                     var myButton = new Button()
                     {
                         Text = "삭제"
                     };
                     myButton.Clicked += DeleteButton_Clicked;
-                    myActivity.Children.Insert(3, myButton);
+                    myActivity.Children.Insert(4, myButton);
 
                     var myInsideBoxView = new BoxView()
                     {
                         HeightRequest = 10,
                         BackgroundColor = Color.LightGray
                     };
-                    myActivity.Children.Insert(4, myInsideBoxView);
+                    myActivity.Children.Insert(5, myInsideBoxView);
                 }
             }
             else
             {
-				Debug.WriteLine("내 활동 내역이 없습니다.");
-
-                statusLabel.IsVisible = true;
+				var myLabel = new Label()
+				{
+					Text = "게시물이 없습니다."
+				};
+				myActivity.Children.Add(myLabel);
             }
 
         }
 
 
-		//async void OnItemClicked(object sender, EventArgs e)
-		//{
-		//	var shopSync = await SyncData.SyncShopInfo();
-		//	var buildingSync = await SyncData.SyncBuildingInfo();
-		//	refresh.IsVisible = true;
-		//	if (!shopSync || !buildingSync)
-		//		refresh.Text = "서버에서 데이터를 가져올 수 없습니다. 마지막에 저장된 데이터를 사용합니다." + Environment.NewLine + System.DateTime.Now.ToString("G");
-		//	else
-		//		refresh.Text = "서버에서 지도 정보를 가져왔습니다." + Environment.NewLine + System.DateTime.Now.ToString("G");
-		//}
-
 		async void UploadButton_Clicked(object sender, EventArgs e)
 		{
-            if(_shopName == null)
+            if(myActivity.Children.Count == 1)
             {
-                await DisplayAlert("등록된 매장 없음", "내 매장을 등록하시면 게시 하실 수 있습니다.", "확인");
-                return;
-			}
+                myActivity.Children.Clear();
+            }
 			var senderButton = sender as Button;
 			senderButton.IsEnabled = false;
             string result = "";
@@ -355,17 +413,74 @@ namespace westgateproject.View
 						break;
 				}
 
-				statusLabel.IsVisible = false;
 				result += ".jpg";
 				var myImage = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
 				myImage.Source = ImageSource.FromStream(photoStream.GetStream);
 				myActivity.Children.Insert(0, myImage);
 
-				var mySubLabel = new Label()
+				//좋아요 추갸
+				var layout = new StackLayout()
+				{
+					Orientation = StackOrientation.Horizontal
+				};
+				var heartEmtpyIcon = new Image { Source = "HeartEmpty.png" };
+				var heartFilledIcon = new Image { Source = "HeartFilled.png" };
+				var likeNumber = new Label
+				{
+					Text = "0",
+					VerticalTextAlignment = TextAlignment.Center
+				};
+				var shopInfoLabel = new Label()
+				{
+					Text = "HeartEmpty",
+					IsVisible = false
+				};
+
+				heartFilledIcon.IsVisible = false;
+				heartEmtpyIcon.IsVisible = true;
+				shopInfoLabel.Text = "HeartEmpty";
+
+				layout.Children.Add(heartEmtpyIcon);
+				layout.Children.Add(heartFilledIcon);
+				layout.Children.Add(likeNumber);
+				layout.Children.Add(shopInfoLabel);
+				var heartTapGestureRecognizer = new TapGestureRecognizer();
+				heartTapGestureRecognizer.Tapped += async (s, es) => {
+					var thisLayout = s as StackLayout;
+					var heartEmpty = thisLayout.Children[0] as Image;
+					var heartFilled = thisLayout.Children[1] as Image;
+					var likeNum = thisLayout.Children[2] as Label;
+					var imgSource = thisLayout.Children[3] as Label;
+					switch (imgSource.Text)
+					{
+						case "HeartFilled":
+							heartEmpty.IsVisible = true;
+							heartFilled.IsVisible = false;
+							likeNum.Text = "0";
+							imgSource.Text = "HeartEmpty";
+							await SyncData.UpdateLikeNum(App.userEmail, result, App.userEmail.Split('@')[0], "down");
+							break;
+						default:
+							heartEmpty.IsVisible = false;
+							heartFilled.IsVisible = true;
+							likeNum.Text = "1";
+							imgSource.Text = "HeartFilled";
+							await SyncData.UpdateLikeNum(App.userEmail, result, App.userEmail.Split('@')[0], "up");
+							break;
+
+					}
+				};
+				layout.GestureRecognizers.Add(heartTapGestureRecognizer);
+
+				myActivity.Children.Insert(1, layout);
+
+				//좋아요 추갸
+				
+                var mySubLabel = new Label()
 				{
 					Text = _shopName + " : " + UploadTextEditor.Text
 				};
-				myActivity.Children.Insert(1, mySubLabel);
+				myActivity.Children.Insert(2, mySubLabel);
 
 
 				var imageName = new Label()
@@ -373,7 +488,7 @@ namespace westgateproject.View
 					Text = result,
 					IsVisible = false
 				};
-				myActivity.Children.Insert(2, imageName);
+				myActivity.Children.Insert(3, imageName);
 
 
 				var myButton = new Button()
@@ -381,14 +496,14 @@ namespace westgateproject.View
 					Text = "삭제"
 				};
 				myButton.Clicked += DeleteButton_Clicked;
-				myActivity.Children.Insert(3, myButton);
+				myActivity.Children.Insert(4, myButton);
 
 				var myBoxView = new BoxView()
 				{
 					HeightRequest = 10,
 					BackgroundColor = Color.LightGray
 				};
-				myActivity.Children.Insert(4, myBoxView);
+				myActivity.Children.Insert(5, myBoxView);
 
 				PhotoImage.IsVisible = false;
 				UploadTextEditor.Text = "";
@@ -403,20 +518,6 @@ namespace westgateproject.View
 
 		}
 
-  //      private void uploadEditorFocused(object sender, EventArgs e)
-  //      {
-  //          var editor = (Editor)sender;
-  //          Debug.WriteLine("editor.Height : " + editor.Height);
-
-  //      }
-
-  //      private void uploadEditorUnfocused(object sender, EventArgs e)
-		//{
-
-		//	var editor = (Editor)sender;
-		//	Debug.WriteLine("Unfocuseditor.Height : " + editor.Height);
-		//}
-
 		private async void CameraButton_Clicked(object sender, EventArgs e)
 		{
             photoStream = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
@@ -430,12 +531,6 @@ namespace westgateproject.View
 			});
 
             PhotoImage.IsVisible = true;
-
-            //if (photoStream != null)
-            //{
-            //    PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
-            //    PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
-            //}
 
 			if (photoStream != null)
 			{
@@ -459,50 +554,6 @@ namespace westgateproject.View
 
 		}
 
-		//async protected void syncLabel()
-		//{
-		//	IDictionary<string, string> result = new Dictionary<string, string>();
-		//	try
-		//	{
-		//		result = await App.Client.InvokeApiAsync<IDictionary<string, string>>("notice", System.Net.Http.HttpMethod.Get, null);
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		Debug.WriteLine(ex.GetType());
-		//		appState.Text = "서버에서 정보를 불러올 수 없습니다.";
-		//		return;
-		//	}
-		//	string[] state = result["개발현황"].Split(':');
-		//	appState.Text = "";
-		//	for (int i = 0; i < state.Length; i++)
-		//	{
-		//		appState.Text += state[i] + Environment.NewLine;
-		//	}
-
-		//}
-
-		void EditorTextChanged(object sender, TextChangedEventArgs e)
-		{
-			//var oldText = e.OldTextValue;
-			//var newText = e.NewTextValue;
-
-			//Debug.WriteLine("newText : " + newText);
-			//Debug.WriteLine("oldText : " + oldText);
-
-
-   //         if(newText.Length > oldText.Length)
-   //         {
-			//	if (newText.EndsWith(System.Environment.NewLine))
-			//		UploadTextEditor.HeightRequest += 10;
-                
-   //         }
-   //         else
-			//{
-				//if (oldText.EndsWith(System.Environment.NewLine))
-					//UploadTextEditor.HeightRequest -= 10;
-                
-            //}
-		}
 
         private async void DeleteButton_Clicked(object sender, EventArgs e)
 		{
@@ -513,14 +564,18 @@ namespace westgateproject.View
 			var imageName = myActivity.Children[senderIndex - 1] as Label;
 			var result = await SyncData.DeleteContents(imageName.Text);
 
-			int indexNumber = senderIndex - 3;
-			for (int ii = indexNumber; ii < indexNumber + 5; ii++)
+			int indexNumber = senderIndex - 4;
+			for (int ii = indexNumber; ii < indexNumber + 6; ii++)
 			{
 				myActivity.Children[ii].IsVisible = false;
 			}
-            if(deleteCount == myActivity.Children.Count / 5)
+            if(deleteCount == myActivity.Children.Count / 6)
             {
-                statusLabel.IsVisible = true;
+				var myLabel = new Label()
+				{
+					Text = "게시물이 없습니다."
+				};
+				myActivity.Children.Add(myLabel);
 			}
 			senderButton.IsEnabled = true;
         }

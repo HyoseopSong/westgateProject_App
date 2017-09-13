@@ -16,33 +16,6 @@
                 <StackLayout x:Name="MyInformation">
 
                 </StackLayout>
-                
-                <!--<StackLayout Orientation="Horizontal">
-                <Label x:Name="shopName" Text="Shop Name : example Name"/>
-                <Entry x:Name="shopNameEntry" IsVisible="false"/>
-                </StackLayout>
-                
-                <StackLayout Orientation="Horizontal">
-                <Label x:Name="shopBuilding" Text="Shop Location : example Name"/>
-                <Entry x:Name="shopBuildingEntry" IsVisible="false"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                <Label x:Name="shopFloor" Text="Shop Location : example Name"/>
-                <Entry x:Name="shopFloorEntry" IsVisible="false"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                <Label x:Name="shopLocation" Text="Shop Location : example Name"/>
-                <Entry x:Name="shopLocationEntry" IsVisible="false"/>
-                </StackLayout>
-                
-                <StackLayout Orientation="Horizontal">
-                <Label x:Name="phoneNumber" Text="Phone Number : example Name"/>
-                <Entry x:Name="phoneNumberEntry" IsVisible="false"/>
-                </StackLayout>-->
-                
-                <!--<Button x:Name="editProperty" Text="Edit" Clicked="EditPropertyClicked"/>
-                <Button x:Name="confirmProperty" Text="Confirm" Clicked="ConfirmPropertyClicked" IsVisible="false"/>
-                <BoxView HeightRequest="10" BackgroundColor="Color.LightGray" />-->
                 <StackLayout Orientation="Horizontal" Spacing="0">
                     <Button x:Name="CameraButton" Text="사진 촬영" Clicked="CameraButton_Clicked"/>
                     <Button x:Name="PictureButton" Text="사진첩" Clicked="PicturePicker_Clicked"/>
@@ -60,10 +33,7 @@
             </OnPlatform>
         </ContentPage.Icon>
         <ScrollView>
-            <StackLayout>
-                <Label x:Name="statusLabel" Text="내 활동 내역이 없습니다." IsVisible="false"/>
-                <StackLayout x:Name="myActivity">
-                </StackLayout>
+            <StackLayout x:Name="myActivity">
             </StackLayout>
         </ScrollView>     
     </ContentPage>
