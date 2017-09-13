@@ -18,6 +18,9 @@ namespace westgateproject.View
 		bool gotoRegister;
 		bool backTouched;
 		bool isInitial;
+        int moreButtonCount;
+        List<ContentsEntity> shopContents;
+        List<int> likeNumList;
 
 		protected override bool OnBackButtonPressed()
 		{
@@ -31,13 +34,14 @@ namespace westgateproject.View
         public ShopInfoPage()
         {
 			InitializeComponent();
+			moreButtonCount = 0;
 			backTouched = false;
 			isInitial = true;
         }
 
         public ShopInfoPage(string building, string floor, string location)
         {
-            InitializeComponent();
+			InitializeComponent();
             _building = building;
             _floor = floor;
 			_location = location;
@@ -46,6 +50,7 @@ namespace westgateproject.View
 			shopLabel.Text += _building + " " + _floor + " " + _location;
 			Debug.WriteLine("shopLabel.Text = " + shopLabel.Text);
 
+			moreButtonCount = 0;
 			backTouched = false;
 			isInitial = true;
 
@@ -143,7 +148,7 @@ namespace westgateproject.View
     				{ "shopName", this.Title},
                     { "userID", App.userEmail.Split('@')[0] }
     			};
-				List<ContentsEntity> shopContents = new List<ContentsEntity>();
+				
 				shopContents = await App.Client.InvokeApiAsync<List<ContentsEntity>>("getShopContents", System.Net.Http.HttpMethod.Get, getShopContentsParam);
 
                 if(shopContents.Count == 0)
@@ -156,17 +161,20 @@ namespace westgateproject.View
 					return;
                 }
 
-                List<int> likeNumList = new List<int>();
+                likeNumList = new List<int>();
+                shopContents.Reverse();
+				//foreach (var contentsOfShop in shopContents)
 
-                foreach (var contentsOfShop in shopContents)
+				for (int i = 0; i < 10 && i < shopContents.Count; i++)
                 {
-					var imageURL = "https://westgateproject.blob.core.windows.net/" + _shopOwnerID + "/" + contentsOfShop.RowKey;
+					var imageURL = "https://westgateproject.blob.core.windows.net/" + _shopOwnerID + "/" + shopContents[i].RowKey;
 					switch (Device.RuntimePlatform)
 					{
 						case Device.Android:
 							var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
-							var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
-							myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+							//var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
+							//myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+							myImage_Android.Source = ImageSource.FromUri(new Uri(imageURL));
 							string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageURL);
 							switch (OrientationOfImage)
 							{
@@ -207,12 +215,12 @@ namespace westgateproject.View
 									myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
 									break;
 							}
-							myActivity.Children.Insert(3, myImage_Android);
+							myActivity.Children.Add(myImage_Android);
 							break;
 						case Device.iOS:
 							var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
 							myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
-							myActivity.Children.Insert(3, myImage_iOS);
+							myActivity.Children.Add(myImage_iOS);
 							break;
 					}
 
@@ -226,17 +234,17 @@ namespace westgateproject.View
 					var heartFilledIcon = new Image { Source = "HeartFilled.png" };
 					var likeNumber = new Label
 					{
-						Text = contentsOfShop.Like.ToString(),
+						Text = shopContents[i].Like.ToString(),
                         VerticalTextAlignment = TextAlignment.Center
 					};
-                    likeNumList.Add(contentsOfShop.Like);
+                    likeNumList.Add(shopContents[i].Like);
 					var shopInfoLabel = new Label()
 					{
 						Text = "HeartEmpty",
 						IsVisible = false
 					};
 
-                    switch (contentsOfShop.LikeMember)
+                    switch (shopContents[i].LikeMember)
                     {
                         case "True":
                             heartFilledIcon.IsVisible = true;
@@ -257,7 +265,7 @@ namespace westgateproject.View
 					var heartTapGestureRecognizer = new TapGestureRecognizer();
 					heartTapGestureRecognizer.Tapped += async (s, e) => {
 						var thisLayout = s as StackLayout;
-						var indexOfThisLayout = (myActivity.Children.IndexOf(thisLayout) - 3) / 4;
+						var indexOfThisLayout = myActivity.Children.IndexOf(thisLayout) / 4;
 						var heartEmpty = thisLayout.Children[0] as Image;
 						var heartFilled = thisLayout.Children[1] as Image;
 						var likeNum = thisLayout.Children[2] as Label;
@@ -269,21 +277,21 @@ namespace westgateproject.View
 								heartFilled.IsVisible = false;
 								likeNum.Text = (--likeNumList[indexOfThisLayout]).ToString();
 								imgSource.Text = "HeartEmpty";
-                                await SyncData.UpdateLikeNum(shopOwner, contentsOfShop.RowKey, App.userEmail.Split('@')[0], "down");
+                                await SyncData.UpdateLikeNum(shopOwner, shopContents[indexOfThisLayout].RowKey, App.userEmail.Split('@')[0], "down");
 								break;
 							default:
 								heartEmpty.IsVisible = false;
 								heartFilled.IsVisible = true;
 								likeNum.Text = (++likeNumList[indexOfThisLayout]).ToString();
 								imgSource.Text = "HeartFilled";
-								await SyncData.UpdateLikeNum(shopOwner, contentsOfShop.RowKey, App.userEmail.Split('@')[0], "up");
+								await SyncData.UpdateLikeNum(shopOwner, shopContents[indexOfThisLayout].RowKey, App.userEmail.Split('@')[0], "up");
 								break;
 
 						}
 					};
 					layout.GestureRecognizers.Add(heartTapGestureRecognizer);
 
-					myActivity.Children.Insert(4, layout);
+					myActivity.Children.Add(layout);
 
 
 
@@ -291,19 +299,28 @@ namespace westgateproject.View
 
 					var myLabel = new Label()
 					{
-						Text = contentsOfShop.Context
+						Text = shopContents[i].Context
 					};
-					myActivity.Children.Insert(5, myLabel);
+					myActivity.Children.Add(myLabel);
 
 					var myBoxView = new BoxView()
 					{
 						HeightRequest = 10,
 						BackgroundColor = Color.LightGray
 					};
-					myActivity.Children.Insert(6, myBoxView);
+					myActivity.Children.Add(myBoxView);
                 }
-				
-                likeNumList.Reverse();
+
+				if (shopContents.Count > 10)
+				{
+
+					var labelButton = new Button()
+					{
+						Text = "더 불러오기"
+					};
+					labelButton.Clicked += MoreButton_Clicked;
+					myActivity.Children.Add(labelButton);
+				}
 
             }
             else
@@ -328,6 +345,173 @@ namespace westgateproject.View
             }
 
 		}
+
+
+		private async void MoreButton_Clicked(object sender, EventArgs e)
+		{
+			var senderButton = sender as Button;
+			senderButton.IsEnabled = false;
+
+			moreButtonCount++;
+			int startIndex = moreButtonCount * 10;
+			for (int i = startIndex; (i < startIndex + 10) && (i < shopContents.Count); i++)
+			{
+				var imageURL = "https://westgateproject.blob.core.windows.net/" + _shopOwnerID + "/" + shopContents[i].RowKey;
+				switch (Device.RuntimePlatform)
+				{
+					case Device.Android:
+						var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+						//var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
+						//myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+						myImage_Android.Source = ImageSource.FromUri(new Uri(imageURL));
+						string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageURL);
+						switch (OrientationOfImage)
+						{
+
+							case "1":
+								break;
+							case "2":
+								myImage_Android.RotationY = 180;
+								break;
+							case "3":
+								myImage_Android.RotationX = 180;
+								myImage_Android.RotationY = 180;
+								break;
+							case "4":
+								myImage_Android.RotationX = 180;
+								break;
+							case "5":
+								myImage_Android.Rotation = 90;
+								myImage_Android.RotationY = 180;
+								break;
+							case "6":
+								myImage_Android.Rotation = 90;
+								break;
+							case "7":
+								myImage_Android.Rotation = 90;
+								myImage_Android.RotationX = 180;
+								break;
+							case "8":
+								myImage_Android.Rotation = 270;
+								break;
+							default:
+								var tapGestureRecognizer = new TapGestureRecognizer();
+								tapGestureRecognizer.Tapped += (s, ee) =>
+								{
+									var img = s as Image;
+									img.Rotation += 90;
+								};
+								myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
+								break;
+						}
+						myActivity.Children.Add(myImage_Android);
+						break;
+					case Device.iOS:
+						var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+						myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
+						myActivity.Children.Add(myImage_iOS);
+						break;
+				}
+
+
+
+				var layout = new StackLayout()
+				{
+					Orientation = StackOrientation.Horizontal
+				};
+				var heartEmtpyIcon = new Image { Source = "HeartEmpty.png" };
+				var heartFilledIcon = new Image { Source = "HeartFilled.png" };
+				var likeNumber = new Label
+				{
+					Text = shopContents[i].Like.ToString(),
+					VerticalTextAlignment = TextAlignment.Center
+				};
+				likeNumList.Add(shopContents[i].Like);
+				var shopInfoLabel = new Label()
+				{
+					Text = "HeartEmpty",
+					IsVisible = false
+				};
+
+				switch (shopContents[i].LikeMember)
+				{
+					case "True":
+						heartFilledIcon.IsVisible = true;
+						heartEmtpyIcon.IsVisible = false;
+						shopInfoLabel.Text = "HeartFilled";
+						break;
+					case "False":
+						heartFilledIcon.IsVisible = false;
+						heartEmtpyIcon.IsVisible = true;
+						shopInfoLabel.Text = "HeartEmpty";
+						break;
+
+				}
+				layout.Children.Add(heartEmtpyIcon);
+				layout.Children.Add(heartFilledIcon);
+				layout.Children.Add(likeNumber);
+				layout.Children.Add(shopInfoLabel);
+				var heartTapGestureRecognizer = new TapGestureRecognizer();
+				heartTapGestureRecognizer.Tapped += async (s, ee) => {
+					var thisLayout = s as StackLayout;
+					var indexOfThisLayout = myActivity.Children.IndexOf(thisLayout) / 4;
+					var heartEmpty = thisLayout.Children[0] as Image;
+					var heartFilled = thisLayout.Children[1] as Image;
+					var likeNum = thisLayout.Children[2] as Label;
+					var imgSource = thisLayout.Children[3] as Label;
+					switch (imgSource.Text)
+					{
+						case "HeartFilled":
+							heartEmpty.IsVisible = true;
+							heartFilled.IsVisible = false;
+							likeNum.Text = (--likeNumList[indexOfThisLayout]).ToString();
+							imgSource.Text = "HeartEmpty";
+							await SyncData.UpdateLikeNum(shopOwner, shopContents[indexOfThisLayout].RowKey, App.userEmail.Split('@')[0], "down");
+							break;
+						default:
+							heartEmpty.IsVisible = false;
+							heartFilled.IsVisible = true;
+							likeNum.Text = (++likeNumList[indexOfThisLayout]).ToString();
+							imgSource.Text = "HeartFilled";
+							await SyncData.UpdateLikeNum(shopOwner, shopContents[indexOfThisLayout].RowKey, App.userEmail.Split('@')[0], "up");
+							break;
+
+					}
+				};
+				layout.GestureRecognizers.Add(heartTapGestureRecognizer);
+
+				myActivity.Children.Add(layout);
+
+
+
+
+
+				var myLabel = new Label()
+				{
+					Text = shopContents[i].Context
+				};
+				myActivity.Children.Add(myLabel);
+
+				var myBoxView = new BoxView()
+				{
+					HeightRequest = 10,
+					BackgroundColor = Color.LightGray
+				};
+				myActivity.Children.Add(myBoxView);
+			}
+
+			if (shopContents.Count > (moreButtonCount + 1) * 10)
+			{
+				senderButton.IsVisible = true;
+			}
+			else
+			{
+				senderButton.IsVisible = false;
+			}
+
+			senderButton.IsEnabled = true;
+		}
+
 
 		async void OnCall(object sender, EventArgs e)
 		{

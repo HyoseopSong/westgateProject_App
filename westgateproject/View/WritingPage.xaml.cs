@@ -11,21 +11,27 @@ using Xamarin.Forms;
 namespace westgateproject.View
 {
     public partial class WritingPage : TabbedPage
-	{
+    {
         private MediaFile photoStream;
         Dictionary<string, string> _shopLocation;
         string _shopName;
         bool isInitial;
         bool backTouched;
-		int deleteCount;
+        int deleteCount;
         List<UserInfoEntity> userInfo;
         Stream stream;
+        List<string> blobNameList;
+        int moreButtonCount;
+        List<ContentsEntity> imageSource;
+        List<int> likeNumList;
+
 
         public WritingPage(){}
 
         public WritingPage(List<UserInfoEntity> userInfoParam)
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
+            moreButtonCount = 0;
             deleteCount = 0;
             backTouched = false;
             _shopLocation = new Dictionary<string, string>();
@@ -37,17 +43,17 @@ namespace westgateproject.View
             UploadTextEditor.BackgroundColor = Color.Lime;
             switch (Device.RuntimePlatform)
             {
-				case Device.iOS:
+                case Device.iOS:
                     //shopName.HeightRequest = 30;
                     //shopLocation.HeightRequest = 30;
                     //phoneNumber.HeightRequest = 30;
                     myIdLabel.HeightRequest = 30;
                     break;
-				case Device.Android:
-					//shopName.HeightRequest = 40;
-					//shopLocation.HeightRequest = 40;
-					//phoneNumber.HeightRequest = 40;
-					myIdLabel.HeightRequest = 40;
+                case Device.Android:
+                    //shopName.HeightRequest = 40;
+                    //shopLocation.HeightRequest = 40;
+                    //phoneNumber.HeightRequest = 40;
+                    myIdLabel.HeightRequest = 40;
                     break;
             }
 
@@ -55,58 +61,58 @@ namespace westgateproject.View
             isInitial = true;
 
             //syncLabel();
-		}
+        }
         protected override async void OnAppearing()
-		{
+        {
             if(!isInitial)
             {
                 Debug.WriteLine("OnAppearing if");
                 return;
             }
             else
-			{
-				Debug.WriteLine("OnAppearing else");
+            {
+                Debug.WriteLine("OnAppearing else");
                 isInitial = false;
             }
 
-			Picker shopPicker = new Picker
-			{
-				Title = "게시 할 매장",
-				VerticalOptions = LayoutOptions.CenterAndExpand
-			};
+            Picker shopPicker = new Picker
+            {
+                Title = "게시 할 매장",
+                VerticalOptions = LayoutOptions.CenterAndExpand
+            };
 
             int paidCount = 0;
             int unpaidCount = 0;
 
-			BoxView myBoxView = new BoxView()
-			{
-				HeightRequest = 10,
-				BackgroundColor = Color.LightGray
-			};
-			MyInformation.Children.Add(myBoxView);
+            BoxView myBoxView = new BoxView()
+            {
+                HeightRequest = 10,
+                BackgroundColor = Color.LightGray
+            };
+            MyInformation.Children.Add(myBoxView);
             foreach (var UserInfo in userInfo)
             {
                 if (UserInfo.Paid)
-				{
+                {
                     paidCount++;
                     _shopName = UserInfo.ShopName;
-					shopPicker.Items.Add(UserInfo.ShopName);
+                    shopPicker.Items.Add(UserInfo.ShopName);
 
-					var shopInfo = UserInfo.RowKey.Split(':');
-					_shopLocation.Add(UserInfo.ShopName, shopInfo[0] + ":" + shopInfo[1] + ":" + shopInfo[2]);
+                    var shopInfo = UserInfo.RowKey.Split(':');
+                    _shopLocation.Add(UserInfo.ShopName, shopInfo[0] + ":" + shopInfo[1] + ":" + shopInfo[2]);
 
-					switch (shopInfo[0])
-					{
-						case "Dongsan":
+                    switch (shopInfo[0])
+                    {
+                        case "Dongsan":
                             shopInfo[0] = "동산상가";
-							break;
-						case "FifthBuilding":
-							shopInfo[0] = "5지구";
-							break;
-						case "SecondBuilding":
-							shopInfo[0] = "2지구";
-							break;
-					}
+                            break;
+                        case "FifthBuilding":
+                            shopInfo[0] = "5지구";
+                            break;
+                        case "SecondBuilding":
+                            shopInfo[0] = "2지구";
+                            break;
+                    }
 
                     Label shopName = new Label()
                     {
@@ -122,77 +128,77 @@ namespace westgateproject.View
                     {
                         Text = "전화 번호 : " + UserInfo.PhoneNumber,
                         VerticalTextAlignment = TextAlignment.Center
-					};
-					Label servicePeriod = new Label()
-					{
-						Text = "만료 날짜 : " + UserInfo.Period,
-						VerticalTextAlignment = TextAlignment.Center
-					};
-					BoxView myBox = new BoxView()
-					{
-						HeightRequest = 10,
-						BackgroundColor = Color.LightGray
-					};
+                    };
+                    Label servicePeriod = new Label()
+                    {
+                        Text = "만료 날짜 : " + UserInfo.Period,
+                        VerticalTextAlignment = TextAlignment.Center
+                    };
+                    BoxView myBox = new BoxView()
+                    {
+                        HeightRequest = 10,
+                        BackgroundColor = Color.LightGray
+                    };
 
                     switch (Device.RuntimePlatform)
                     {
                         case Device.iOS:
                             shopName.HeightRequest = 30;
                             shopLocation.HeightRequest = 30;
-							phoneNumber.HeightRequest = 30;
-							servicePeriod.HeightRequest = 30;
+                            phoneNumber.HeightRequest = 30;
+                            servicePeriod.HeightRequest = 30;
                             break;
                         case Device.Android:
                             shopName.HeightRequest = 40;
                             shopLocation.HeightRequest = 40;
-							phoneNumber.HeightRequest = 40;
-							servicePeriod.HeightRequest = 30;
+                            phoneNumber.HeightRequest = 40;
+                            servicePeriod.HeightRequest = 30;
                             break;
                     }
 
                     MyInformation.Children.Add(shopName);
                     MyInformation.Children.Add(shopLocation);
-					MyInformation.Children.Add(phoneNumber);
-					MyInformation.Children.Add(servicePeriod);
+                    MyInformation.Children.Add(phoneNumber);
+                    MyInformation.Children.Add(servicePeriod);
                     MyInformation.Children.Add(myBox);
                 }
                 else
-				{
+                {
                     unpaidCount++;
-					var rawShopInfo = UserInfo.RowKey.Split(':');
-					switch (rawShopInfo[0])
-					{
-						case "Dongsan":
-							rawShopInfo[0] = "동산상가";
-							break;
-						case "FifthBuilding":
-							rawShopInfo[0] = "5지구";
-							break;
-						case "SecondBuilding":
-							rawShopInfo[0] = "2지구";
-							break;
-					}
-					Label shopInfo = new Label()
-					{
-						Text = rawShopInfo[0] + " " + rawShopInfo[1] + " " + rawShopInfo[2] + " " + UserInfo.ShopName + " 등록 대기 중",
-						VerticalTextAlignment = TextAlignment.Center
-					};
+                    var rawShopInfo = UserInfo.RowKey.Split(':');
+                    switch (rawShopInfo[0])
+                    {
+                        case "Dongsan":
+                            rawShopInfo[0] = "동산상가";
+                            break;
+                        case "FifthBuilding":
+                            rawShopInfo[0] = "5지구";
+                            break;
+                        case "SecondBuilding":
+                            rawShopInfo[0] = "2지구";
+                            break;
+                    }
+                    Label shopInfo = new Label()
+                    {
+                        Text = rawShopInfo[0] + " " + rawShopInfo[1] + " " + rawShopInfo[2] + " " + UserInfo.ShopName + " 등록 대기 중",
+                        VerticalTextAlignment = TextAlignment.Center
+                    };
 
-					BoxView myBox = new BoxView()
-					{
-						HeightRequest = 10,
-						BackgroundColor = Color.LightGray
-					};
+                    BoxView myBox = new BoxView()
+                    {
+                        HeightRequest = 10,
+                        BackgroundColor = Color.LightGray
+                    };
 
-					MyInformation.Children.Insert(0, shopInfo);
+                    MyInformation.Children.Insert(0, shopInfo);
                 }
             }
             if (paidCount > 1)
             {
-				shopPicker.SelectedIndexChanged += (sender, args) =>
-				{
-					_shopName = shopPicker.Items[shopPicker.SelectedIndex];
-			    };
+                shopPicker.SelectedIndexChanged += (sender, args) =>
+                {
+                    _shopName = shopPicker.Items[shopPicker.SelectedIndex];
+                };
                 MyInformation.Children.Add(shopPicker);
             }
 
@@ -201,36 +207,37 @@ namespace westgateproject.View
                 referenceBoxView.IsVisible = false;
             }
 
-            //From Here
-			List<ContentsEntity> imageSource = new List<ContentsEntity>();
-			Dictionary<string, string> getParam = new Dictionary<string, string>
-			{
-				{ "id", App.userEmail},
-			};
-			imageSource = await App.Client.InvokeApiAsync<List<ContentsEntity>>("upload", System.Net.Http.HttpMethod.Get, getParam);
-			
+
+            blobNameList = new List<string>();
+
+            Dictionary<string, string> getParam = new Dictionary<string, string>
+            {
+                { "id", App.userEmail},
+            };
+            imageSource = await App.Client.InvokeApiAsync<List<ContentsEntity>>("upload", System.Net.Http.HttpMethod.Get, getParam);
+            
 
             if (imageSource.Count > 0)
             {
+                imageSource.Reverse();
 
-				List<int> likeNumList = new List<int>();
+                likeNumList = new List<int>();
 
-                foreach (var temp in imageSource)
+                for (int i = 0; i < 10 && i < imageSource.Count; i++)
                 {
-                    string imageURL = "https://westgateproject.blob.core.windows.net/" + App.userEmail.Split('@')[0] + "/" + temp.RowKey;
+					string imageURL = "https://westgateproject.blob.core.windows.net/" + App.userEmail.Split('@')[0] + "/" + imageSource[i].RowKey;
 
-                    switch (Device.RuntimePlatform)
-                    {
-                        case Device.Android:
-                            var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
-                            var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
-                            //Debug.WriteLine("imageURL : " + imageURL);
-                            //Debug.WriteLine("Orientation value : " + DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageByte));
-                            myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+					switch (Device.RuntimePlatform)
+					{
+						case Device.Android:
+							var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+							//var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
+							//myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+							myImage_Android.Source = ImageSource.FromUri(new Uri(imageURL));
 
-                            string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageURL);
-                            switch (OrientationOfImage)
-                            {
+							string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageURL);
+							switch (OrientationOfImage)
+							{
 
 								case "1":
 									break;
@@ -258,26 +265,25 @@ namespace westgateproject.View
 								case "8":
 									myImage_Android.Rotation = 270;
 									break;
-                                default:
-                                    var tapGestureRecognizer = new TapGestureRecognizer();
-                                    tapGestureRecognizer.Tapped += (s, e) =>
-                                    {
-                                        var img = s as Image;
-                                        img.Rotation += 90;
-                                    };
-                                    myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
-                                    break;
-                            }
-                            myActivity.Children.Insert(0, myImage_Android);
-                            break;
-                        case Device.iOS:
-                            var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
-                            myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
-                            myActivity.Children.Insert(0, myImage_iOS);
-                            break;
-                    }
+								default:
+									var tapGestureRecognizer = new TapGestureRecognizer();
+									tapGestureRecognizer.Tapped += (s, e) =>
+									{
+										var img = s as Image;
+										img.Rotation += 90;
+									};
+									myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
+									break;
+							}
+							myActivity.Children.Add(myImage_Android);
+							break;
+						case Device.iOS:
+							var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+							myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
+							myActivity.Children.Add(myImage_iOS);
+							break;
+					}
 
-					//좋아요 추갸
 					var layout = new StackLayout()
 					{
 						Orientation = StackOrientation.Horizontal
@@ -286,17 +292,17 @@ namespace westgateproject.View
 					var heartFilledIcon = new Image { Source = "HeartFilled.png" };
 					var likeNumber = new Label
 					{
-						Text = temp.Like.ToString(),
+						Text = imageSource[i].Like.ToString(),
 						VerticalTextAlignment = TextAlignment.Center
 					};
-					likeNumList.Add(temp.Like);
+					likeNumList.Add(imageSource[i].Like);
 					var shopInfoLabel = new Label()
 					{
 						Text = "HeartEmpty",
 						IsVisible = false
 					};
 
-					switch (temp.LikeMember)
+					switch (imageSource[i].LikeMember)
 					{
 						case "True":
 							heartFilledIcon.IsVisible = true;
@@ -317,7 +323,7 @@ namespace westgateproject.View
 					var heartTapGestureRecognizer = new TapGestureRecognizer();
 					heartTapGestureRecognizer.Tapped += async (s, e) => {
 						var thisLayout = s as StackLayout;
-						var indexOfThisLayout = myActivity.Children.IndexOf(thisLayout) / 6;
+						var indexOfThisLayout = myActivity.Children.IndexOf(thisLayout) / 5;
 						var heartEmpty = thisLayout.Children[0] as Image;
 						var heartFilled = thisLayout.Children[1] as Image;
 						var likeNum = thisLayout.Children[2] as Label;
@@ -329,96 +335,138 @@ namespace westgateproject.View
 								heartFilled.IsVisible = false;
 								likeNum.Text = (--likeNumList[indexOfThisLayout]).ToString();
 								imgSource.Text = "HeartEmpty";
-								await SyncData.UpdateLikeNum(temp.PartitionKey, temp.RowKey, App.userEmail.Split('@')[0], "down");
+								await SyncData.UpdateLikeNum(imageSource[i].PartitionKey, imageSource[i].RowKey, App.userEmail.Split('@')[0], "down");
 								break;
 							default:
 								heartEmpty.IsVisible = false;
 								heartFilled.IsVisible = true;
 								likeNum.Text = (++likeNumList[indexOfThisLayout]).ToString();
 								imgSource.Text = "HeartFilled";
-								await SyncData.UpdateLikeNum(temp.PartitionKey, temp.RowKey, App.userEmail.Split('@')[0], "up");
+								await SyncData.UpdateLikeNum(imageSource[i].PartitionKey, imageSource[i].RowKey, App.userEmail.Split('@')[0], "up");
 								break;
 
 						}
 					};
 					layout.GestureRecognizers.Add(heartTapGestureRecognizer);
 
-					myActivity.Children.Insert(1, layout);
-
-					//좋아요 추갸
-
+					myActivity.Children.Add(layout);
 
 
 
 					var myLabel = new Label()
-                    {
-                        Text = temp.ShopName + " : " + temp.Context
-                    };
-                    myActivity.Children.Insert(2, myLabel);
+					{
+						Text = imageSource[i].ShopName + " : " + imageSource[i].Context
+					};
+					myActivity.Children.Add(myLabel);
 
-                    var imageName = new Label()
-                    {
-                        Text = temp.PartitionKey,
-                        IsVisible = false
-                    };
-                    myActivity.Children.Insert(3, imageName);
+                    blobNameList.Add(imageSource[i].RowKey);
 
-                    var myButton = new Button()
-                    {
-                        Text = "삭제"
-                    };
-                    myButton.Clicked += DeleteButton_Clicked;
-                    myActivity.Children.Insert(4, myButton);
+					var myButton = new Button()
+					{
+						Text = "삭제"
+					};
+					myButton.Clicked += DeleteButton_Clicked;
+					myActivity.Children.Add(myButton);
 
-                    var myInsideBoxView = new BoxView()
-                    {
-                        HeightRequest = 10,
-                        BackgroundColor = Color.LightGray
-                    };
-                    myActivity.Children.Insert(5, myInsideBoxView);
+					var myInsideBoxView = new BoxView()
+					{
+						HeightRequest = 10,
+						BackgroundColor = Color.LightGray
+					};
+					myActivity.Children.Add(myInsideBoxView);
                 }
+				if (imageSource.Count > 10)
+				{
+
+					var labelButton = new Button()
+					{
+						Text = "더 불러오기"
+					};
+					labelButton.Clicked += MoreButton_Clicked;
+					myActivity.Children.Add(labelButton);
+				}
+
             }
             else
             {
-				var myLabel = new Label()
-				{
-					Text = "게시물이 없습니다."
-				};
-				myActivity.Children.Add(myLabel);
+                var myLabel = new Label()
+                {
+                    Text = "게시물이 없습니다."
+                };
+                myActivity.Children.Add(myLabel);
             }
 
         }
 
 
-		async void UploadButton_Clicked(object sender, EventArgs e)
+		private async void MoreButton_Clicked(object sender, EventArgs e)
 		{
-            if(myActivity.Children.Count == 1)
-            {
-                myActivity.Children.Clear();
-            }
 			var senderButton = sender as Button;
 			senderButton.IsEnabled = false;
-            string result = "";
 
-            if(PhotoImage != null && UploadTextEditor.Text != null)
-            {
+			moreButtonCount++;
+			int startIndex = moreButtonCount * 10;
+			for (int i = startIndex; (i < startIndex + 10) && (i < imageSource.Count); i++)
+			{
+				string imageURL = "https://westgateproject.blob.core.windows.net/" + App.userEmail.Split('@')[0] + "/" + imageSource[i].RowKey;
 
 				switch (Device.RuntimePlatform)
 				{
 					case Device.Android:
-						result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text, _shopName, _shopLocation[_shopName]);
+						var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+						//var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
+						//myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+						myImage_Android.Source = ImageSource.FromUri(new Uri(imageURL));
+
+						string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageURL);
+						switch (OrientationOfImage)
+						{
+
+							case "1":
+								break;
+							case "2":
+								myImage_Android.RotationY = 180;
+								break;
+							case "3":
+								myImage_Android.RotationX = 180;
+								myImage_Android.RotationY = 180;
+								break;
+							case "4":
+								myImage_Android.RotationX = 180;
+								break;
+							case "5":
+								myImage_Android.Rotation = 90;
+								myImage_Android.RotationY = 180;
+								break;
+							case "6":
+								myImage_Android.Rotation = 90;
+								break;
+							case "7":
+								myImage_Android.Rotation = 90;
+								myImage_Android.RotationX = 180;
+								break;
+							case "8":
+								myImage_Android.Rotation = 270;
+								break;
+							default:
+								var tapGestureRecognizer = new TapGestureRecognizer();
+								tapGestureRecognizer.Tapped += (s, ee) =>
+								{
+									var img = s as Image;
+									img.Rotation += 90;
+								};
+								myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
+								break;
+						}
+						myActivity.Children.Add(myImage_Android);
 						break;
 					case Device.iOS:
-						result = await SyncData.UploadByteArrayContents(stream, UploadTextEditor.Text, _shopName, _shopLocation[_shopName]);
+						var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+						myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
+						myActivity.Children.Add(myImage_iOS);
 						break;
 				}
 
-				result += ".jpg";
-				var myImage = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
-				myImage.Source = ImageSource.FromStream(photoStream.GetStream);
-				myActivity.Children.Insert(0, myImage);
-
-				//좋아요 추갸
 				var layout = new StackLayout()
 				{
 					Orientation = StackOrientation.Horizontal
@@ -427,26 +475,38 @@ namespace westgateproject.View
 				var heartFilledIcon = new Image { Source = "HeartFilled.png" };
 				var likeNumber = new Label
 				{
-					Text = "0",
+					Text = imageSource[i].Like.ToString(),
 					VerticalTextAlignment = TextAlignment.Center
 				};
+				likeNumList.Add(imageSource[i].Like);
 				var shopInfoLabel = new Label()
 				{
 					Text = "HeartEmpty",
 					IsVisible = false
 				};
 
-				heartFilledIcon.IsVisible = false;
-				heartEmtpyIcon.IsVisible = true;
-				shopInfoLabel.Text = "HeartEmpty";
+				switch (imageSource[i].LikeMember)
+				{
+					case "True":
+						heartFilledIcon.IsVisible = true;
+						heartEmtpyIcon.IsVisible = false;
+						shopInfoLabel.Text = "HeartFilled";
+						break;
+					case "False":
+						heartFilledIcon.IsVisible = false;
+						heartEmtpyIcon.IsVisible = true;
+						shopInfoLabel.Text = "HeartEmpty";
+						break;
 
+				}
 				layout.Children.Add(heartEmtpyIcon);
 				layout.Children.Add(heartFilledIcon);
 				layout.Children.Add(likeNumber);
 				layout.Children.Add(shopInfoLabel);
 				var heartTapGestureRecognizer = new TapGestureRecognizer();
-				heartTapGestureRecognizer.Tapped += async (s, es) => {
+				heartTapGestureRecognizer.Tapped += async (s, ee) => {
 					var thisLayout = s as StackLayout;
+					var indexOfThisLayout = myActivity.Children.IndexOf(thisLayout) / 5;
 					var heartEmpty = thisLayout.Children[0] as Image;
 					var heartFilled = thisLayout.Children[1] as Image;
 					var likeNum = thisLayout.Children[2] as Label;
@@ -456,128 +516,240 @@ namespace westgateproject.View
 						case "HeartFilled":
 							heartEmpty.IsVisible = true;
 							heartFilled.IsVisible = false;
-							likeNum.Text = "0";
+							likeNum.Text = (--likeNumList[indexOfThisLayout]).ToString();
 							imgSource.Text = "HeartEmpty";
-							await SyncData.UpdateLikeNum(App.userEmail, result, App.userEmail.Split('@')[0], "down");
+							await SyncData.UpdateLikeNum(imageSource[indexOfThisLayout].PartitionKey, imageSource[indexOfThisLayout].RowKey, App.userEmail.Split('@')[0], "down");
 							break;
 						default:
 							heartEmpty.IsVisible = false;
 							heartFilled.IsVisible = true;
-							likeNum.Text = "1";
+							likeNum.Text = (++likeNumList[indexOfThisLayout]).ToString();
 							imgSource.Text = "HeartFilled";
-							await SyncData.UpdateLikeNum(App.userEmail, result, App.userEmail.Split('@')[0], "up");
+							await SyncData.UpdateLikeNum(imageSource[indexOfThisLayout].PartitionKey, imageSource[indexOfThisLayout].RowKey, App.userEmail.Split('@')[0], "up");
 							break;
 
 					}
 				};
 				layout.GestureRecognizers.Add(heartTapGestureRecognizer);
 
-				myActivity.Children.Insert(1, layout);
+				myActivity.Children.Add(layout);
 
-				//좋아요 추갸
-				
-                var mySubLabel = new Label()
+
+
+				var myLabel = new Label()
 				{
-					Text = _shopName + " : " + UploadTextEditor.Text
+					Text = imageSource[i].ShopName + " : " + imageSource[i].Context
 				};
-				myActivity.Children.Insert(2, mySubLabel);
+				myActivity.Children.Add(myLabel);
 
-
-				var imageName = new Label()
-				{
-					Text = result,
-					IsVisible = false
-				};
-				myActivity.Children.Insert(3, imageName);
-
+				blobNameList.Add(imageSource[i].RowKey);
 
 				var myButton = new Button()
 				{
 					Text = "삭제"
 				};
 				myButton.Clicked += DeleteButton_Clicked;
-				myActivity.Children.Insert(4, myButton);
+				myActivity.Children.Add(myButton);
 
-				var myBoxView = new BoxView()
+				var myInsideBoxView = new BoxView()
 				{
 					HeightRequest = 10,
 					BackgroundColor = Color.LightGray
 				};
-				myActivity.Children.Insert(5, myBoxView);
+				myActivity.Children.Add(myInsideBoxView);
+			}
 
-				PhotoImage.IsVisible = false;
-				UploadTextEditor.Text = "";
+			if (imageSource.Count > (moreButtonCount + 1) * 10)
+			{
+				senderButton.IsVisible = true;
+			}
+			else
+			{
+				senderButton.IsVisible = false;
+			}
+
+			senderButton.IsEnabled = true;
+		}
+
+
+        async void UploadButton_Clicked(object sender, EventArgs e)
+        {
+            if(myActivity.Children.Count == 1)
+            {
+                myActivity.Children.Clear();
+            }
+            var senderButton = sender as Button;
+            senderButton.IsEnabled = false;
+            string result = "";
+
+            if(PhotoImage != null && UploadTextEditor.Text != null)
+            {
+
+                switch (Device.RuntimePlatform)
+                {
+                    case Device.Android:
+                        result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text, _shopName, _shopLocation[_shopName]);
+                        break;
+                    case Device.iOS:
+                        result = await SyncData.UploadByteArrayContents(stream, UploadTextEditor.Text, _shopName, _shopLocation[_shopName]);
+                        break;
+                }
+
+                result += ".jpg";
+                var myImage = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+                myImage.Source = ImageSource.FromStream(photoStream.GetStream);
+                myActivity.Children.Insert(0, myImage);
+
+                var layout = new StackLayout()
+                {
+                    Orientation = StackOrientation.Horizontal
+                };
+                var heartEmtpyIcon = new Image { Source = "HeartEmpty.png" };
+                var heartFilledIcon = new Image { Source = "HeartFilled.png" };
+                var likeNumber = new Label
+                {
+                    Text = "0",
+                    VerticalTextAlignment = TextAlignment.Center
+                };
+                var shopInfoLabel = new Label()
+                {
+                    Text = "HeartEmpty",
+                    IsVisible = false
+                };
+
+                heartFilledIcon.IsVisible = false;
+                heartEmtpyIcon.IsVisible = true;
+                shopInfoLabel.Text = "HeartEmpty";
+
+                layout.Children.Add(heartEmtpyIcon);
+                layout.Children.Add(heartFilledIcon);
+                layout.Children.Add(likeNumber);
+                layout.Children.Add(shopInfoLabel);
+                var heartTapGestureRecognizer = new TapGestureRecognizer();
+                heartTapGestureRecognizer.Tapped += async (s, es) => {
+                    var thisLayout = s as StackLayout;
+                    var heartEmpty = thisLayout.Children[0] as Image;
+                    var heartFilled = thisLayout.Children[1] as Image;
+                    var likeNum = thisLayout.Children[2] as Label;
+                    var imgSource = thisLayout.Children[3] as Label;
+                    switch (imgSource.Text)
+                    {
+                        case "HeartFilled":
+                            heartEmpty.IsVisible = true;
+                            heartFilled.IsVisible = false;
+                            likeNum.Text = "0";
+                            imgSource.Text = "HeartEmpty";
+                            await SyncData.UpdateLikeNum(App.userEmail, result, App.userEmail.Split('@')[0], "down");
+                            break;
+                        default:
+                            heartEmpty.IsVisible = false;
+                            heartFilled.IsVisible = true;
+                            likeNum.Text = "1";
+                            imgSource.Text = "HeartFilled";
+                            await SyncData.UpdateLikeNum(App.userEmail, result, App.userEmail.Split('@')[0], "up");
+                            break;
+
+                    }
+                };
+                layout.GestureRecognizers.Add(heartTapGestureRecognizer);
+
+                myActivity.Children.Insert(1, layout);
+
+                
+                var mySubLabel = new Label()
+                {
+                    Text = _shopName + " : " + UploadTextEditor.Text
+                };
+                myActivity.Children.Insert(2, mySubLabel);
+
+                blobNameList.Insert(0, result);
+
+
+                var myButton = new Button()
+                {
+                    Text = "삭제"
+                };
+                myButton.Clicked += DeleteButton_Clicked;
+                myActivity.Children.Insert(3, myButton);
+
+                var myBoxView = new BoxView()
+                {
+                    HeightRequest = 10,
+                    BackgroundColor = Color.LightGray
+                };
+                myActivity.Children.Insert(4, myBoxView);
+
+                PhotoImage.IsVisible = false;
+                UploadTextEditor.Text = "";
             }
             else
             {
-
-				await DisplayAlert("빈 칸 있음", "사진과 글 모두 채워주세요.", "확인");
+                await DisplayAlert("빈 칸 있음", "사진과 글 모두 채워주세요.", "확인");
             }
 
-			senderButton.IsEnabled = true;
+            senderButton.IsEnabled = true;
 
-		}
+        }
 
-		private async void CameraButton_Clicked(object sender, EventArgs e)
-		{
+        private async void CameraButton_Clicked(object sender, EventArgs e)
+        {
             photoStream = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-			{
+            {
 
-				PhotoSize = PhotoSize.Custom,
-				CustomPhotoSize = 25,
-				CompressionQuality = 50,
+                PhotoSize = PhotoSize.Custom,
+                CustomPhotoSize = 25,
+                CompressionQuality = 50,
                 RotateImage = true
 
-			});
+            });
 
-            PhotoImage.IsVisible = true;
 
-			if (photoStream != null)
+            if (photoStream != null)
 			{
-				PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
+				PhotoImage.IsVisible = true;
+                PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
 
-				switch (Device.RuntimePlatform)
-				{
-					case Device.Android:
-						PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
-						break;
-					case Device.iOS:
-						byte[] resizedImageByteArray = DependencyService.Get<IImageResizeHelper>().ResizeImageIOS(photoStream.Path);
-						stream = new MemoryStream(resizedImageByteArray);
-						var thisStream = new MemoryStream(resizedImageByteArray);
-						PhotoImage.Source = ImageSource.FromStream(() => thisStream);
+                switch (Device.RuntimePlatform)
+                {
+                    case Device.Android:
+                        PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
+                        break;
+                    case Device.iOS:
+                        byte[] resizedImageByteArray = DependencyService.Get<IImageResizeHelper>().ResizeImageIOS(photoStream.Path);
+                        stream = new MemoryStream(resizedImageByteArray);
+                        var thisStream = new MemoryStream(resizedImageByteArray);
+                        PhotoImage.Source = ImageSource.FromStream(() => thisStream);
 
-						break;
-				}
-			}
+                        break;
+                }
+            }
 
 
-		}
+        }
 
 
         private async void DeleteButton_Clicked(object sender, EventArgs e)
-		{
-			var senderButton = sender as Button;
-			senderButton.IsEnabled = false;
+        {
+            var senderButton = sender as Button;
+            senderButton.IsEnabled = false;
             deleteCount++;
             int senderIndex = myActivity.Children.IndexOf(sender as Button);
-			var imageName = myActivity.Children[senderIndex - 1] as Label;
-			var result = await SyncData.DeleteContents(imageName.Text);
+            var result = await SyncData.DeleteContents(blobNameList[senderIndex / 5]);
 
-			int indexNumber = senderIndex - 4;
-			for (int ii = indexNumber; ii < indexNumber + 6; ii++)
-			{
-				myActivity.Children[ii].IsVisible = false;
-			}
-            if(deleteCount == myActivity.Children.Count / 6)
+            int indexNumber = senderIndex - 3;
+            for (int ii = indexNumber; ii < indexNumber + 5; ii++)
             {
-				var myLabel = new Label()
-				{
-					Text = "게시물이 없습니다."
-				};
-				myActivity.Children.Add(myLabel);
-			}
-			senderButton.IsEnabled = true;
+                myActivity.Children[ii].IsVisible = false;
+            }
+            if(deleteCount == myActivity.Children.Count / 5)
+            {
+                var myLabel = new Label()
+                {
+                    Text = "게시물이 없습니다."
+                };
+                myActivity.Children.Add(myLabel);
+            }
+            senderButton.IsEnabled = true;
         }
 
 
@@ -585,43 +757,43 @@ namespace westgateproject.View
         {
             photoStream = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
             {
-				PhotoSize = PhotoSize.Custom,
-				CustomPhotoSize = 25,
+                PhotoSize = PhotoSize.Custom,
+                CustomPhotoSize = 25,
                 CompressionQuality = 50
             });
 
-			PhotoImage.IsVisible = true;
+            PhotoImage.IsVisible = true;
 
-			if (photoStream != null)
-			{
-				PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
+            if (photoStream != null)
+            {
+                PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
 
                 switch(Device.RuntimePlatform)
                 {
                     case Device.Android:
-						PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
+                        PhotoImage.Source = ImageSource.FromStream(photoStream.GetStream);
                         break;
                     case Device.iOS:
                         byte[] resizedImageByteArray = DependencyService.Get<IImageResizeHelper>().ResizeImageIOS(photoStream.Path);
-						stream = new MemoryStream(resizedImageByteArray);
+                        stream = new MemoryStream(resizedImageByteArray);
                         var thisStream = new MemoryStream(resizedImageByteArray);
-						PhotoImage.Source = ImageSource.FromStream(() => thisStream);
+                        PhotoImage.Source = ImageSource.FromStream(() => thisStream);
 
                         break;
                 }
-			}
+            }
         }
 
 
-		protected override bool OnBackButtonPressed()
-		{
+        protected override bool OnBackButtonPressed()
+        {
             if(!backTouched)
             {
                 backTouched = true;
                 Navigation.PopAsync();
             }
-			return true;
-		}
+            return true;
+        }
 
     }
 }

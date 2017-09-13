@@ -2,7 +2,7 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="westgateproject.View.WritingPage"
-            Title="내 계정" Icon="settings.png">
+            Title="내 매장" Icon="settings.png">
     <ContentPage Title="새 게시물">
         <ContentPage.Icon>
             <OnPlatform x:TypeArguments="FileImageSource">

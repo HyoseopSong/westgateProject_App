@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.ShopInfoPage">
     <ScrollView>
-        <StackLayout x:Name="myActivity">
+        <StackLayout>
             <Label x:Name="shopLabel" Text="매장 위치 : "/>
             <StackLayout Orientation="Horizontal">
                 <Label Text = "전화 번호 :" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
@@ -17,15 +17,10 @@
                             Android="15" />
                     </Button.FontSize>
                 </Button>
-                <!--<Label x:Name="shopPhoneNumber" TextColor="Blue" BackgroundColor="Aqua" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="OnCall"
-                            NumberOfTapsRequired="1"/>
-                    </Label.GestureRecognizers>
-                </Label>-->
             </StackLayout>
             <BoxView HeightRequest="10" BackgroundColor="Color.LightGray" />
+            <StackLayout x:Name="myActivity">
+            </StackLayout>
         </StackLayout>
     </ScrollView> 
 </ContentPage>

@@ -14,17 +14,20 @@ namespace westgateproject
 	public partial class FirstPage : TabbedPage
 	{
 		public bool onProcessing;
-		RecentEntity[] recentEntityArray;
+		//RecentEntity[] recentEntityArray;
 		int moreButtonCount;
+        int likeMoreButtonCount;
 		String imageURL;
-		bool isInitial;
         List<string> likeInfoList;
+        List<string> recentShopInfo;
+        List<RecentEntity> recentSource;
+        List<LikeEntity> likeEntity;
+        List<int> likeNumList;
+
 
 		public FirstPage()
 		{
             InitializeComponent();
-
-			moreButtonCount = 0;
 
             NavigationPage.SetHasBackButton(this, false);
             switch(Device.RuntimePlatform)
@@ -293,44 +296,33 @@ namespace westgateproject
 
 
 			onProcessing = false;
-			isInitial = true;
 		}
 
         protected override async void OnAppearing()
-        {
-			if (!isInitial)
-			{
-                myRecent.Children.Clear();
-                myLike.Children.Clear();
-			}
-			else
-			{
-				isInitial = false;
-			}
+		{
+			moreButtonCount = 0;
+			likeMoreButtonCount = 0;
+            myRecent.Children.Clear();
+            myLike.Children.Clear();
 
-
-			List<RecentEntity> recentSource = new List<RecentEntity>();
+            recentShopInfo = new List<string>();
 			recentSource = await App.Client.InvokeApiAsync<List<RecentEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
-			//userInfo = await App.Client.InvokeApiAsync<List<UserInfoEntity>>("userInformation", System.Net.Http.HttpMethod.Get, getParamUserInfo);
+
+			var LoadingLabel = new Label()
+			{
+				Text = "찜한 소식을 불러오고 있습니다..."
+			};
+			myLike.Children.Add(LoadingLabel);
+
 			if (recentSource.Count > 0)
 			{
-				// imageSource에 있는 키값 배열에 다 넣고 앞에 10개만 보여주기
-				recentEntityArray = new RecentEntity[recentSource.Count];
-                recentSource.CopyTo(recentEntityArray, 0);
-				int startIndex = 0;
-				if (recentEntityArray.Length > 10)
-				{
-					startIndex = recentEntityArray.Length - 10;
-				}
-				else
-				{
-					startIndex = 0;
-				}
-				for (int i = startIndex; i < startIndex + 10 && i < recentEntityArray.Length; i++)
+                recentSource.Reverse();
+
+				for (int i = 0; i < 10 && i < recentSource.Count; i++)
 				{
 
-					var ownerID = recentEntityArray[i].ID;
-					var blobName = recentEntityArray[i].RowKey;
+					var ownerID = recentSource[i].ID;
+					var blobName = recentSource[i].RowKey;
 
 					imageURL = "https://westgateproject.blob.core.windows.net/" + ownerID.Split('@')[0] + "/" + blobName;
 
@@ -338,11 +330,10 @@ namespace westgateproject
 					{
 						case Device.Android:
 							var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
-							var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
-							//Debug.WriteLine("imageURL : " + imageURL);
-							//Debug.WriteLine("Orientation value : " + DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageByte));
-							myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+							//var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
+							//myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
 
+							myImage_Android.Source = ImageSource.FromUri(new Uri(imageURL));
 							string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageURL);
 							switch (OrientationOfImage)
 							{
@@ -383,18 +374,18 @@ namespace westgateproject
 									myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
 									break;
 							}
-							myRecent.Children.Insert(0, myImage_Android);
+							myRecent.Children.Add(myImage_Android);
 							break;
 						case Device.iOS:
 							var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
 							myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
-							myRecent.Children.Insert(0, myImage_iOS);
+							myRecent.Children.Add(myImage_iOS);
 							break;
 					}
 
                     var labelButton = new Label()
 					{
-                        Text = recentEntityArray[i].ShopName + " : " + recentEntityArray[i].Context,
+                        Text = recentSource[i].ShopName + " : " + recentSource[i].Context,
                         TextColor = Color.Blue
                     };
                     var tapLabelButton = new TapGestureRecognizer();
@@ -406,24 +397,18 @@ namespace westgateproject
 					{
                         labelButton.Text = labelButton.Text.Substring(0, 20) + "...";
                     }
-					myRecent.Children.Insert(1, labelButton);
+					myRecent.Children.Add(labelButton);
 
-
-					var shopInfo = new Label()
-					{
-						Text = ownerID + ":" + recentEntityArray[i].ShopName,
-						IsVisible = false
-					};
-					myRecent.Children.Insert(2, shopInfo);
+                    recentShopInfo.Add(ownerID + ":" + recentSource[i].ShopName);
 
 					var myBoxView = new BoxView()
 					{
 						HeightRequest = 10,
 						BackgroundColor = Color.LightGray
 					};
-					myRecent.Children.Insert(3, myBoxView);
+					myRecent.Children.Add(myBoxView);
 				}
-				if (recentEntityArray.Length > 10)
+				if (recentSource.Count > 10)
 				{
 
 					var labelButton = new Button()
@@ -447,185 +432,186 @@ namespace westgateproject
 
 
 
-
-
-
-
-
-
-
-
-			List<LikeEntity> likeEntity = new List<LikeEntity>();
+            likeInfoList = new List<string>();
 			Dictionary<string, string> getParamUserInfo = new Dictionary<string, string>
 			{
 				{ "userId", App.userEmail},
 			};
             likeEntity = await App.Client.InvokeApiAsync<List<LikeEntity>>("likeContents", System.Net.Http.HttpMethod.Get, getParamUserInfo);
-
+            LoadingLabel.IsVisible = false;
             if (likeEntity.Count > 0)
             {
-                List<int> likeNumList = new List<int>();
-                likeInfoList = new List<string>();
-
-                foreach (var itemOfLikeEntity in likeEntity)
+                likeEntity.Reverse();
+                likeNumList = new List<int>();
+                for (int i = 0; i < 10 && i < likeEntity.Count; i++)
                 {
-
-                    getParamUserInfo = new Dictionary<string, string>
-                {
-                    { "shopOwner", itemOfLikeEntity.PartitionKey },
-                    { "blobName", itemOfLikeEntity.RowKey },
-                    { "userID", App.userEmail.Split('@')[0] },
-                };
-                    var content = await App.Client.InvokeApiAsync<ContentsEntity>("getShopContent", System.Net.Http.HttpMethod.Get, getParamUserInfo);
-
-
-                    var contentImageURL = "https://westgateproject.blob.core.windows.net/" + content.PartitionKey.Split('@')[0] + "/" + content.RowKey;
-                    switch (Device.RuntimePlatform)
-                    {
-                        case Device.Android:
-                            var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
-                            var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(contentImageURL);
-                            myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
-                            string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(contentImageURL);
-                            switch (OrientationOfImage)
-                            {
-
-                                case "1":
-                                    break;
-                                case "2":
-                                    myImage_Android.RotationY = 180;
-                                    break;
-                                case "3":
-                                    myImage_Android.RotationX = 180;
-                                    myImage_Android.RotationY = 180;
-                                    break;
-                                case "4":
-                                    myImage_Android.RotationX = 180;
-                                    break;
-                                case "5":
-                                    myImage_Android.Rotation = 90;
-                                    myImage_Android.RotationY = 180;
-                                    break;
-                                case "6":
-                                    myImage_Android.Rotation = 90;
-                                    break;
-                                case "7":
-                                    myImage_Android.Rotation = 90;
-                                    myImage_Android.RotationX = 180;
-                                    break;
-                                case "8":
-                                    myImage_Android.Rotation = 270;
-                                    break;
-                                default:
-                                    var tapGestureRecognizer = new TapGestureRecognizer();
-                                    tapGestureRecognizer.Tapped += (s, e) =>
-                                    {
-                                        var img = s as Image;
-                                        img.Rotation += 90;
-                                    };
-                                    myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
-                                    break;
-                            }
-                            myLike.Children.Insert(0, myImage_Android);
-                            break;
-                        case Device.iOS:
-                            var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
-                            myImage_iOS.Source = ImageSource.FromUri(new Uri(contentImageURL));
-                            myLike.Children.Insert(0, myImage_iOS);
-                            break;
-                    }
+					getParamUserInfo = new Dictionary<string, string>
+					{
+						{ "shopOwner", likeEntity[i].PartitionKey },
+						{ "blobName", likeEntity[i].RowKey },
+						{ "userID", App.userEmail.Split('@')[0] },
+					};
+					var content = await App.Client.InvokeApiAsync<ContentsEntity>("getShopContent", System.Net.Http.HttpMethod.Get, getParamUserInfo);
 
 
+					var contentImageURL = "https://westgateproject.blob.core.windows.net/" + content.PartitionKey.Split('@')[0] + "/" + content.RowKey;
+					switch (Device.RuntimePlatform)
+					{
+						case Device.Android:
+							var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+							//var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(contentImageURL);
+							//myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+							myImage_Android.Source = ImageSource.FromUri(new Uri(contentImageURL));
+							string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(contentImageURL);
+							switch (OrientationOfImage)
+							{
 
-                    var layout = new StackLayout()
-                    {
-                        Orientation = StackOrientation.Horizontal
-                    };
-                    var heartEmtpyIcon = new Image { Source = "HeartEmpty.png" };
-                    var heartFilledIcon = new Image { Source = "HeartFilled.png" };
-                    var likeNumber = new Label
-                    {
-                        Text = content.Like.ToString(),
-                        VerticalTextAlignment = TextAlignment.Center
-                    };
-                    likeNumList.Add(content.Like);
-                    likeInfoList.Add(content.PartitionKey + ":" + content.RowKey + ":" + content.ShopName);
-                    var shopInfoLabel = new Label()
-                    {
-                        Text = "HeartEmpty",
-                        IsVisible = false
-                    };
+								case "1":
+									break;
+								case "2":
+									myImage_Android.RotationY = 180;
+									break;
+								case "3":
+									myImage_Android.RotationX = 180;
+									myImage_Android.RotationY = 180;
+									break;
+								case "4":
+									myImage_Android.RotationX = 180;
+									break;
+								case "5":
+									myImage_Android.Rotation = 90;
+									myImage_Android.RotationY = 180;
+									break;
+								case "6":
+									myImage_Android.Rotation = 90;
+									break;
+								case "7":
+									myImage_Android.Rotation = 90;
+									myImage_Android.RotationX = 180;
+									break;
+								case "8":
+									myImage_Android.Rotation = 270;
+									break;
+								default:
+									var tapGestureRecognizer = new TapGestureRecognizer();
+									tapGestureRecognizer.Tapped += (s, e) =>
+									{
+										var img = s as Image;
+										img.Rotation += 90;
+									};
+									myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
+									break;
+							}
+							myLike.Children.Add(myImage_Android);
+							break;
+						case Device.iOS:
+							var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+							myImage_iOS.Source = ImageSource.FromUri(new Uri(contentImageURL));
+							myLike.Children.Add(myImage_iOS);
+							break;
+					}
 
-                    switch (content.LikeMember)
-                    {
-                        case "True":
-                            heartFilledIcon.IsVisible = true;
-                            heartEmtpyIcon.IsVisible = false;
-                            shopInfoLabel.Text = "HeartFilled";
-                            break;
-                        case "False":
-                            heartFilledIcon.IsVisible = false;
-                            heartEmtpyIcon.IsVisible = true;
-                            shopInfoLabel.Text = "HeartEmpty";
-                            break;
 
-                    }
-                    layout.Children.Add(heartEmtpyIcon);
-                    layout.Children.Add(heartFilledIcon);
-                    layout.Children.Add(likeNumber);
-                    layout.Children.Add(shopInfoLabel);
-                    var heartTapGestureRecognizer = new TapGestureRecognizer();
-                    heartTapGestureRecognizer.Tapped += (s, e) =>
-                    {
-                        var thisLayout = s as StackLayout;
-                        var indexOfThisLayout = (myLike.Children.IndexOf(thisLayout) - 3) / 4;
-                        var heartEmpty = thisLayout.Children[0] as Image;
-                        var heartFilled = thisLayout.Children[1] as Image;
-                        var likeNum = thisLayout.Children[2] as Label;
-                        var imgSource = thisLayout.Children[3] as Label;
-                        var likeInfo = likeInfoList[indexOfThisLayout].Split(':');
-                        switch (imgSource.Text)
-                        {
-                            case "HeartFilled":
-                                heartEmpty.IsVisible = true;
-                                heartFilled.IsVisible = false;
-                                likeNum.Text = (--likeNumList[indexOfThisLayout]).ToString();
-                                imgSource.Text = "HeartEmpty";
-                                SyncData.UpdateLikeNum(likeInfo[0], likeInfo[1], App.userEmail.Split('@')[0], "down");
-                                break;
-                            default:
-                                heartEmpty.IsVisible = false;
-                                heartFilled.IsVisible = true;
-                                likeNum.Text = (++likeNumList[indexOfThisLayout]).ToString();
-                                imgSource.Text = "HeartFilled";
-                                SyncData.UpdateLikeNum(likeInfo[0], likeInfo[1], App.userEmail.Split('@')[0], "up");
-                                break;
 
-                        }
-                    };
-                    layout.GestureRecognizers.Add(heartTapGestureRecognizer);
+					var layout = new StackLayout()
+					{
+						Orientation = StackOrientation.Horizontal
+					};
+					var heartEmtpyIcon = new Image { Source = "HeartEmpty.png" };
+					var heartFilledIcon = new Image { Source = "HeartFilled.png" };
+					var likeNumber = new Label
+					{
+						Text = content.Like.ToString(),
+						VerticalTextAlignment = TextAlignment.Center
+					};
+					likeNumList.Add(content.Like);
+					likeInfoList.Add(content.PartitionKey + ":" + content.RowKey + ":" + content.ShopName);
+					var shopInfoLabel = new Label()
+					{
+						Text = "HeartEmpty",
+						IsVisible = false
+					};
 
-                    myLike.Children.Insert(1, layout);
+					switch (content.LikeMember)
+					{
+						case "True":
+							heartFilledIcon.IsVisible = true;
+							heartEmtpyIcon.IsVisible = false;
+							shopInfoLabel.Text = "HeartFilled";
+							break;
+						case "False":
+							heartFilledIcon.IsVisible = false;
+							heartEmtpyIcon.IsVisible = true;
+							shopInfoLabel.Text = "HeartEmpty";
+							break;
 
-                    var myLabel = new Label()
-                    {
-                        Text = content.ShopName + ":" + content.Context,
-                        TextColor = Color.Blue
-                    };
-                    var tapLabelButton = new TapGestureRecognizer();
-                    tapLabelButton.Tapped += LikeLabel_Clicked;
-                    myLabel.GestureRecognizers.Add(tapLabelButton);
-                    myLike.Children.Insert(2, myLabel);
+					}
+					layout.Children.Add(heartEmtpyIcon);
+					layout.Children.Add(heartFilledIcon);
+					layout.Children.Add(likeNumber);
+					layout.Children.Add(shopInfoLabel);
+					var heartTapGestureRecognizer = new TapGestureRecognizer();
+					heartTapGestureRecognizer.Tapped += async (s, e) =>
+					{
+						var thisLayout = s as StackLayout;
+						var indexOfThisLayout = myLike.Children.IndexOf(thisLayout) / 4;
+						var heartEmpty = thisLayout.Children[0] as Image;
+						var heartFilled = thisLayout.Children[1] as Image;
+						var likeNum = thisLayout.Children[2] as Label;
+						var imgSource = thisLayout.Children[3] as Label;
+						var likeInfo = likeInfoList[indexOfThisLayout].Split(':');
+						switch (imgSource.Text)
+						{
+							case "HeartFilled":
+								heartEmpty.IsVisible = true;
+								heartFilled.IsVisible = false;
+								likeNum.Text = (--likeNumList[indexOfThisLayout]).ToString();
+								imgSource.Text = "HeartEmpty";
+								await SyncData.UpdateLikeNum(likeInfo[0], likeInfo[1], App.userEmail.Split('@')[0], "down");
+								break;
+							default:
+								heartEmpty.IsVisible = false;
+								heartFilled.IsVisible = true;
+								likeNum.Text = (++likeNumList[indexOfThisLayout]).ToString();
+								imgSource.Text = "HeartFilled";
+								await SyncData.UpdateLikeNum(likeInfo[0], likeInfo[1], App.userEmail.Split('@')[0], "up");
+								break;
 
-                    var myBoxView = new BoxView()
-                    {
-                        HeightRequest = 10,
-                        BackgroundColor = Color.LightGray
-                    };
-                    myLike.Children.Insert(3, myBoxView);
+						}
+					};
+					layout.GestureRecognizers.Add(heartTapGestureRecognizer);
+
+					myLike.Children.Add(layout);
+
+					var myLabel = new Label()
+					{
+						Text = content.ShopName + ":" + content.Context,
+						TextColor = Color.Blue
+					};
+					var tapLabelButton = new TapGestureRecognizer();
+					tapLabelButton.Tapped += LikeLabel_Clicked;
+					myLabel.GestureRecognizers.Add(tapLabelButton);
+					myLike.Children.Add(myLabel);
+
+					var myBoxView = new BoxView()
+					{
+						HeightRequest = 10,
+						BackgroundColor = Color.LightGray
+					};
+					myLike.Children.Add(myBoxView);
                 }
 
-                likeNumList.Reverse();
+				if (likeEntity.Count > 10)
+				{
+
+					var labelButton = new Button()
+					{
+						Text = "더 불러오기"
+					};
+					labelButton.Clicked += LikeMoreButton_Clicked;
+					myLike.Children.Add(labelButton);
+				}
+
             }
             else
             {
@@ -711,7 +697,7 @@ namespace westgateproject
 		{
 			var senderButton = sender as Label;
 			senderButton.IsEnabled = false;
-			int senderIndex = myLike.Children.IndexOf(senderButton) / 4;
+			int senderIndex = myLike.Children.IndexOf(senderButton) / 3;
             var likeInfo = likeInfoList[senderIndex].Split(':');
 
 			var id = likeInfo[0];
@@ -747,11 +733,12 @@ namespace westgateproject
 		{
 			var senderButton = sender as Label;
 			senderButton.IsEnabled = false;
-			int senderIndex = myRecent.Children.IndexOf(senderButton);
-			var imageName = myRecent.Children[senderIndex + 1] as Label;
-			Debug.WriteLine("imageName.text : " + imageName.Text);
-			var id = imageName.Text.Split(':')[0];
-			var shopName = imageName.Text.Split(':')[1];
+			int senderIndex = myRecent.Children.IndexOf(senderButton) / 3;
+			Debug.WriteLine("senderIndex : " + senderIndex);
+            Debug.WriteLine("recentShopInfo[senderIndex] : " + recentShopInfo[senderIndex]);
+            var id = recentShopInfo[senderIndex].Split(':')[0];
+            var shopName = recentShopInfo[senderIndex].Split(':')[1];
+
 
 			IDictionary<string, string> getParam = new Dictionary<string, string>
 			{
@@ -783,23 +770,14 @@ namespace westgateproject
 		private async void MoreButton_Clicked(object sender, EventArgs e)
 		{
 			var senderButton = sender as Button;
-			senderButton.IsEnabled = false;
+			senderButton.IsVisible = false;
 
 			moreButtonCount++;
-			int startIndex = recentEntityArray.Length - (moreButtonCount * 10) - 1;
-			if (startIndex < 0)
+			int startIndex = moreButtonCount * 10;
+            for (int i = startIndex; (i < startIndex + 10) && (i < recentSource.Count); i++)
 			{
-				startIndex = 0;
-			}
-			Debug.WriteLine("startIndex : " + startIndex);
-
-			for (int i = startIndex; (i > startIndex - 10) && i >= 0; i--)
-			{
-				Debug.WriteLine("for statement i : " + i);
-
-
-				var ownerID = recentEntityArray[i].PartitionKey;
-				var blobName = recentEntityArray[i].RowKey;
+				var ownerID = recentSource[i].ID;
+				var blobName = recentSource[i].RowKey;
 
 				imageURL = "https://westgateproject.blob.core.windows.net/" + ownerID.Split('@')[0] + "/" + blobName;
 
@@ -807,10 +785,9 @@ namespace westgateproject
 				{
 					case Device.Android:
 						var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
-						var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
-						//Debug.WriteLine("imageURL : " + imageURL);
-						//Debug.WriteLine("Orientation value : " + DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageByte));
-						myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+						//var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(imageURL);
+						//myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+						myImage_Android.Source = ImageSource.FromUri(new Uri(imageURL));
 
 						string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(imageURL);
 						switch (OrientationOfImage)
@@ -854,81 +831,230 @@ namespace westgateproject
 						}
 
 
-						myRecent.Children.Insert(myRecent.Children.Count - 1, myImage_Android);
+						myRecent.Children.Add(myImage_Android);
 
 
 						break;
 					case Device.iOS:
 						var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
 						myImage_iOS.Source = ImageSource.FromUri(new Uri(imageURL));
-						myRecent.Children.Insert(myRecent.Children.Count - 1, myImage_iOS);
+						myRecent.Children.Add(myImage_iOS);
 						break;
 				}
 
 				var labelButton = new Label()
 				{
-					Text = recentEntityArray[i].ShopName + " : " + recentEntityArray[i].Context,
+					Text = recentSource[i].ShopName + " : " + recentSource[i].Context,
 					TextColor = Color.Blue
 				};
 				var tapLabelButton = new TapGestureRecognizer();
 				tapLabelButton.Tapped += LabelButton_Clicked;
 				labelButton.GestureRecognizers.Add(tapLabelButton);
 
-
-
-
-
-				//var labelButton = new Button()
-				//{
-				//  Text = recentEntityArray[i].ShopName + " : " + recentEntityArray[i].Context,
-
-				//};
-				//labelButton.Clicked += LabelButton_Clicked;
 				if (labelButton.Text.Length > 20)
 				{
 					labelButton.Text = labelButton.Text.Substring(0, 20) + "...";
 				}
-				myRecent.Children.Insert(myRecent.Children.Count - 1, labelButton);
+				myRecent.Children.Add(labelButton);
 
-				var shopInfo = new Label()
-				{
-					Text = ownerID + ":" + recentEntityArray[i].ShopName,
-					IsVisible = false
-				};
-				myRecent.Children.Insert(myRecent.Children.Count - 1, shopInfo);
+
+				recentShopInfo.Add(ownerID + ":" + recentSource[i].ShopName);
 
 				var myBoxView = new BoxView()
 				{
 					HeightRequest = 10,
 					BackgroundColor = Color.LightGray
 				};
-				myRecent.Children.Insert(myRecent.Children.Count - 1, myBoxView);
+				myRecent.Children.Add(myBoxView);
 			}
 
-			if (recentEntityArray.Length > (moreButtonCount + 1) * 10)
+			if (recentSource.Count > (moreButtonCount + 1) * 10)
 			{
-				senderButton.IsVisible = true;
+				var labelButton = new Button()
+				{
+					Text = "더 불러오기"
+				};
+				labelButton.Clicked += MoreButton_Clicked;
+				myRecent.Children.Add(labelButton);
 			}
-			else
-			{
-				senderButton.IsVisible = false;
-			}
-
-			senderButton.IsEnabled = true;
 		}
-		//protected override void OnSizeAllocated(double width, double height)
-		//{
-		//	base.OnSizeAllocated(width, height);
-		//	if (this.Width > this.Height)
-		//	{
-		//		layout.Orientation = StackOrientation.Horizontal;
-		//	}
-		//	else
-		//	{
-		//		layout.Orientation = StackOrientation.Vertical;
-		//	}
-		//}
 
+        private async void LikeMoreButton_Clicked(object sender, EventArgs e)
+        {
+            var senderButton = sender as Button;
+            senderButton.IsVisible = false;
+
+            likeMoreButtonCount++;
+            int startIndex = likeMoreButtonCount * 10;
+
+            for (int i = startIndex; (i < startIndex + 10) && i < likeEntity.Count; i++)
+            {
+                var getParamUserInfo = new Dictionary<string, string>
+                    {
+                        { "shopOwner", likeEntity[i].PartitionKey },
+                        { "blobName", likeEntity[i].RowKey },
+                        { "userID", App.userEmail.Split('@')[0] },
+                    };
+                var content = await App.Client.InvokeApiAsync<ContentsEntity>("getShopContent", System.Net.Http.HttpMethod.Get, getParamUserInfo);
+
+
+                var contentImageURL = "https://westgateproject.blob.core.windows.net/" + content.PartitionKey.Split('@')[0] + "/" + content.RowKey;
+                switch (Device.RuntimePlatform)
+                {
+                    case Device.Android:
+                        var myImage_Android = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+      //                  var imageByte = await DependencyService.Get<IImageScaleHelper>().GetImageStream(contentImageURL);
+						//myImage_Android.Source = ImageSource.FromStream(() => new MemoryStream(imageByte));
+						myImage_Android.Source = ImageSource.FromUri(new Uri(contentImageURL));
+                        string OrientationOfImage = await DependencyService.Get<IImageScaleHelper>().OrientationOfImage(contentImageURL);
+                        switch (OrientationOfImage)
+                        {
+
+                            case "1":
+                                break;
+                            case "2":
+                                myImage_Android.RotationY = 180;
+                                break;
+                            case "3":
+                                myImage_Android.RotationX = 180;
+                                myImage_Android.RotationY = 180;
+                                break;
+                            case "4":
+                                myImage_Android.RotationX = 180;
+                                break;
+                            case "5":
+                                myImage_Android.Rotation = 90;
+                                myImage_Android.RotationY = 180;
+                                break;
+                            case "6":
+                                myImage_Android.Rotation = 90;
+                                break;
+                            case "7":
+                                myImage_Android.Rotation = 90;
+                                myImage_Android.RotationX = 180;
+                                break;
+                            case "8":
+                                myImage_Android.Rotation = 270;
+                                break;
+                            default:
+                                var tapGestureRecognizer = new TapGestureRecognizer();
+                                tapGestureRecognizer.Tapped += (s, ee) =>
+                                {
+                                    var img = s as Image;
+                                    img.Rotation += 90;
+                                };
+                                myImage_Android.GestureRecognizers.Add(tapGestureRecognizer);
+                                break;
+                        }
+                        myLike.Children.Add(myImage_Android);
+                        break;
+                    case Device.iOS:
+                        var myImage_iOS = new Image { Aspect = Aspect.AspectFit, HeightRequest = App.ScreenWidth };
+                        myImage_iOS.Source = ImageSource.FromUri(new Uri(contentImageURL));
+                        myLike.Children.Add(myImage_iOS);
+                        break;
+                }
+
+
+
+                var layout = new StackLayout()
+                {
+                    Orientation = StackOrientation.Horizontal
+                };
+                var heartEmtpyIcon = new Image { Source = "HeartEmpty.png" };
+                var heartFilledIcon = new Image { Source = "HeartFilled.png" };
+                var likeNumber = new Label
+                {
+                    Text = content.Like.ToString(),
+                    VerticalTextAlignment = TextAlignment.Center
+                };
+                likeNumList.Add(content.Like);
+                likeInfoList.Add(content.PartitionKey + ":" + content.RowKey + ":" + content.ShopName);
+                var shopInfoLabel = new Label()
+                {
+                    Text = "HeartEmpty",
+                    IsVisible = false
+                };
+
+                switch (content.LikeMember)
+                {
+                    case "True":
+                        heartFilledIcon.IsVisible = true;
+                        heartEmtpyIcon.IsVisible = false;
+                        shopInfoLabel.Text = "HeartFilled";
+                        break;
+                    case "False":
+                        heartFilledIcon.IsVisible = false;
+                        heartEmtpyIcon.IsVisible = true;
+                        shopInfoLabel.Text = "HeartEmpty";
+                        break;
+
+                }
+                layout.Children.Add(heartEmtpyIcon);
+                layout.Children.Add(heartFilledIcon);
+                layout.Children.Add(likeNumber);
+                layout.Children.Add(shopInfoLabel);
+                var heartTapGestureRecognizer = new TapGestureRecognizer();
+                heartTapGestureRecognizer.Tapped += async (s, ee) =>
+                {
+                    var thisLayout = s as StackLayout;
+                    var indexOfThisLayout = myLike.Children.IndexOf(thisLayout) / 4;
+                    var heartEmpty = thisLayout.Children[0] as Image;
+                    var heartFilled = thisLayout.Children[1] as Image;
+                    var likeNum = thisLayout.Children[2] as Label;
+                    var imgSource = thisLayout.Children[3] as Label;
+                    var likeInfo = likeInfoList[indexOfThisLayout].Split(':');
+                    switch (imgSource.Text)
+                    {
+                        case "HeartFilled":
+                            heartEmpty.IsVisible = true;
+                            heartFilled.IsVisible = false;
+                            likeNum.Text = (--likeNumList[indexOfThisLayout]).ToString();
+                            imgSource.Text = "HeartEmpty";
+                            await SyncData.UpdateLikeNum(likeInfo[0], likeInfo[1], App.userEmail.Split('@')[0], "down");
+                            break;
+                        default:
+                            heartEmpty.IsVisible = false;
+                            heartFilled.IsVisible = true;
+                            likeNum.Text = (++likeNumList[indexOfThisLayout]).ToString();
+                            imgSource.Text = "HeartFilled";
+                            await SyncData.UpdateLikeNum(likeInfo[0], likeInfo[1], App.userEmail.Split('@')[0], "up");
+                            break;
+
+                    }
+                };
+                layout.GestureRecognizers.Add(heartTapGestureRecognizer);
+
+                myLike.Children.Add(layout);
+
+                var myLabel = new Label()
+                {
+                    Text = content.ShopName + ":" + content.Context,
+                    TextColor = Color.Blue
+                };
+                var tapLabelButton = new TapGestureRecognizer();
+                tapLabelButton.Tapped += LikeLabel_Clicked;
+                myLabel.GestureRecognizers.Add(tapLabelButton);
+                myLike.Children.Add(myLabel);
+
+                var myBoxView = new BoxView()
+                {
+                    HeightRequest = 10,
+                    BackgroundColor = Color.LightGray
+                };
+                myLike.Children.Add(myBoxView);
+            }
+
+            if (likeEntity.Count > (likeMoreButtonCount + 1) * 10)
+            {
+                var labelButton = new Button()
+                {
+                    Text = "더 불러오기"
+                };
+                labelButton.Clicked += LikeMoreButton_Clicked;
+                myLike.Children.Add(labelButton);
+            }
+        }
 
 		protected override bool OnBackButtonPressed()
 		{
