@@ -21,7 +21,7 @@ namespace westgateproject.iOS
     {
         Label loginStatus;
         Button startButton;
-        SignInButton signInButton;
+        SignInButton signInButton; 
         InitialPage currentView;
 
         public override void ViewDidAppear(bool animated)

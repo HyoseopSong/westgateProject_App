@@ -109,7 +109,11 @@ namespace westgateproject.View
 				};
 
 
-				await App.Client.InvokeApiAsync("userInformation", System.Net.Http.HttpMethod.Post, postDictionary);
+                if(!(await App.Client.InvokeApiAsync<bool>("userInformation", System.Net.Http.HttpMethod.Post, postDictionary)))
+                {
+					await DisplayAlert("동일한 매장 이름이 이미 있습니다.", "다른 이름을 입력해 주세요.", "확인");
+                    return;
+                }
 
 				switch (_payment)
 				{

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:westgateproject" x:Class="westgateproject.FirstPage" Title="서문시장.net" >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="내 계정" Clicked="OnItemClicked"/>
+        <ToolbarItem Text="내 매장" Clicked="OnItemClicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage Title="서문시장">
         <ContentPage.Icon>
@@ -23,6 +23,19 @@
         
         <ScrollView>
             <StackLayout x:Name="myRecent">
+            </StackLayout>  
+        </ScrollView>
+    </ContentPage>
+    <ContentPage Title="찜한 소식">
+
+        <ContentPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <OnPlatform.iOS>HeartEmpty.png</OnPlatform.iOS>
+            </OnPlatform>
+        </ContentPage.Icon>
+        
+        <ScrollView>
+            <StackLayout x:Name="myLike">
             </StackLayout>  
         </ScrollView>
     </ContentPage>

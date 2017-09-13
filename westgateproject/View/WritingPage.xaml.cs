@@ -18,9 +18,12 @@ namespace westgateproject.View
         bool isInitial;
         bool backTouched;
 		int deleteCount;
+        List<UserInfoEntity> userInfo;
         Stream stream;
 
-        public WritingPage()
+        public WritingPage(){}
+
+        public WritingPage(List<UserInfoEntity> userInfoParam)
 		{
 			InitializeComponent();
             deleteCount = 0;
@@ -48,6 +51,7 @@ namespace westgateproject.View
                     break;
             }
 
+            userInfo = userInfoParam;
             isInitial = true;
 
             //syncLabel();
@@ -64,13 +68,6 @@ namespace westgateproject.View
 				Debug.WriteLine("OnAppearing else");
                 isInitial = false;
             }
-			List<UserInfoEntity> userInfo = new List<UserInfoEntity>();
-			Dictionary<string, string> getParamUserInfo = new Dictionary<string, string>
-			{
-				{ "id", App.userEmail},
-			};
-
-            userInfo = await App.Client.InvokeApiAsync<List<UserInfoEntity>>("userInformation", System.Net.Http.HttpMethod.Get, getParamUserInfo);
 
 			Picker shopPicker = new Picker
 			{
@@ -78,144 +75,131 @@ namespace westgateproject.View
 				VerticalOptions = LayoutOptions.CenterAndExpand
 			};
 
-            if (userInfo.Count > 0)
+            int paidCount = 0;
+            int unpaidCount = 0;
+
+			BoxView myBoxView = new BoxView()
 			{
-
-                int paidCount = 0;
-                int unpaidCount = 0;
-
-				BoxView myBoxView = new BoxView()
-				{
-					HeightRequest = 10,
-					BackgroundColor = Color.LightGray
-				};
-				MyInformation.Children.Add(myBoxView);
-                foreach (var UserInfo in userInfo)
-                {
-                    if (UserInfo.Paid)
-					{
-                        paidCount++;
-                        _shopName = UserInfo.ShopName;
-						shopPicker.Items.Add(UserInfo.ShopName);
-
-						var shopInfo = UserInfo.RowKey.Split(':');
-						_shopLocation.Add(UserInfo.ShopName, shopInfo[0] + ":" + shopInfo[1] + ":" + shopInfo[2]);
-
-						switch (shopInfo[0])
-						{
-							case "Dongsan":
-                                shopInfo[0] = "동산상가";
-								break;
-							case "FifthBuilding":
-								shopInfo[0] = "5지구";
-								break;
-							case "SecondBuilding":
-								shopInfo[0] = "2지구";
-								break;
-						}
-
-                        Label shopName = new Label()
-                        {
-                            Text = "매장 이름 : " + UserInfo.ShopName,
-                            VerticalTextAlignment = TextAlignment.Center
-                        };
-                        Label shopLocation = new Label()
-                        {
-                            Text = "위치 : " + shopInfo[0] + " " + shopInfo[1] + " " + shopInfo[2],
-                            VerticalTextAlignment = TextAlignment.Center
-                        };
-                        Label phoneNumber = new Label()
-                        {
-                            Text = "전화 번호 : " + UserInfo.PhoneNumber,
-                            VerticalTextAlignment = TextAlignment.Center
-						};
-						Label servicePeriod = new Label()
-						{
-							Text = "만료 날짜 : " + UserInfo.Period,
-							VerticalTextAlignment = TextAlignment.Center
-						};
-						BoxView myBox = new BoxView()
-						{
-							HeightRequest = 10,
-							BackgroundColor = Color.LightGray
-						};
-
-                        switch (Device.RuntimePlatform)
-                        {
-                            case Device.iOS:
-                                shopName.HeightRequest = 30;
-                                shopLocation.HeightRequest = 30;
-								phoneNumber.HeightRequest = 30;
-								servicePeriod.HeightRequest = 30;
-                                break;
-                            case Device.Android:
-                                shopName.HeightRequest = 40;
-                                shopLocation.HeightRequest = 40;
-								phoneNumber.HeightRequest = 40;
-								servicePeriod.HeightRequest = 30;
-                                break;
-                        }
-
-                        MyInformation.Children.Add(shopName);
-                        MyInformation.Children.Add(shopLocation);
-						MyInformation.Children.Add(phoneNumber);
-						MyInformation.Children.Add(servicePeriod);
-                        MyInformation.Children.Add(myBox);
-                    }
-                    else
-					{
-                        unpaidCount++;
-						var rawShopInfo = UserInfo.RowKey.Split(':');
-						switch (rawShopInfo[0])
-						{
-							case "Dongsan":
-								rawShopInfo[0] = "동산상가";
-								break;
-							case "FifthBuilding":
-								rawShopInfo[0] = "5지구";
-								break;
-							case "SecondBuilding":
-								rawShopInfo[0] = "2지구";
-								break;
-						}
-						Label shopInfo = new Label()
-						{
-							Text = rawShopInfo[0] + " " + rawShopInfo[1] + " " + rawShopInfo[2] + " " + UserInfo.ShopName + " 등록 대기 중",
-							VerticalTextAlignment = TextAlignment.Center
-						};
-
-						BoxView myBox = new BoxView()
-						{
-							HeightRequest = 10,
-							BackgroundColor = Color.LightGray
-						};
-
-						MyInformation.Children.Insert(0, shopInfo);
-                    }
-                }
-                if (paidCount > 1)
-                {
-					shopPicker.SelectedIndexChanged += (sender, args) =>
-					{
-						_shopName = shopPicker.Items[shopPicker.SelectedIndex];
-				    };
-                    MyInformation.Children.Add(shopPicker);
-                }
-
-                if (unpaidCount < 1)
-                {
-                    referenceBoxView.IsVisible = false;
-                }
-            }
-            else
+				HeightRequest = 10,
+				BackgroundColor = Color.LightGray
+			};
+			MyInformation.Children.Add(myBoxView);
+            foreach (var UserInfo in userInfo)
             {
-				var myLabel = new Label()
+                if (UserInfo.Paid)
 				{
-					Text = "내 매장 정보가 없습니다."
-				};
-				MyInformation.Children.Add(myLabel);
+                    paidCount++;
+                    _shopName = UserInfo.ShopName;
+					shopPicker.Items.Add(UserInfo.ShopName);
+
+					var shopInfo = UserInfo.RowKey.Split(':');
+					_shopLocation.Add(UserInfo.ShopName, shopInfo[0] + ":" + shopInfo[1] + ":" + shopInfo[2]);
+
+					switch (shopInfo[0])
+					{
+						case "Dongsan":
+                            shopInfo[0] = "동산상가";
+							break;
+						case "FifthBuilding":
+							shopInfo[0] = "5지구";
+							break;
+						case "SecondBuilding":
+							shopInfo[0] = "2지구";
+							break;
+					}
+
+                    Label shopName = new Label()
+                    {
+                        Text = "매장 이름 : " + UserInfo.ShopName,
+                        VerticalTextAlignment = TextAlignment.Center
+                    };
+                    Label shopLocation = new Label()
+                    {
+                        Text = "위치 : " + shopInfo[0] + " " + shopInfo[1] + " " + shopInfo[2],
+                        VerticalTextAlignment = TextAlignment.Center
+                    };
+                    Label phoneNumber = new Label()
+                    {
+                        Text = "전화 번호 : " + UserInfo.PhoneNumber,
+                        VerticalTextAlignment = TextAlignment.Center
+					};
+					Label servicePeriod = new Label()
+					{
+						Text = "만료 날짜 : " + UserInfo.Period,
+						VerticalTextAlignment = TextAlignment.Center
+					};
+					BoxView myBox = new BoxView()
+					{
+						HeightRequest = 10,
+						BackgroundColor = Color.LightGray
+					};
+
+                    switch (Device.RuntimePlatform)
+                    {
+                        case Device.iOS:
+                            shopName.HeightRequest = 30;
+                            shopLocation.HeightRequest = 30;
+							phoneNumber.HeightRequest = 30;
+							servicePeriod.HeightRequest = 30;
+                            break;
+                        case Device.Android:
+                            shopName.HeightRequest = 40;
+                            shopLocation.HeightRequest = 40;
+							phoneNumber.HeightRequest = 40;
+							servicePeriod.HeightRequest = 30;
+                            break;
+                    }
+
+                    MyInformation.Children.Add(shopName);
+                    MyInformation.Children.Add(shopLocation);
+					MyInformation.Children.Add(phoneNumber);
+					MyInformation.Children.Add(servicePeriod);
+                    MyInformation.Children.Add(myBox);
+                }
+                else
+				{
+                    unpaidCount++;
+					var rawShopInfo = UserInfo.RowKey.Split(':');
+					switch (rawShopInfo[0])
+					{
+						case "Dongsan":
+							rawShopInfo[0] = "동산상가";
+							break;
+						case "FifthBuilding":
+							rawShopInfo[0] = "5지구";
+							break;
+						case "SecondBuilding":
+							rawShopInfo[0] = "2지구";
+							break;
+					}
+					Label shopInfo = new Label()
+					{
+						Text = rawShopInfo[0] + " " + rawShopInfo[1] + " " + rawShopInfo[2] + " " + UserInfo.ShopName + " 등록 대기 중",
+						VerticalTextAlignment = TextAlignment.Center
+					};
+
+					BoxView myBox = new BoxView()
+					{
+						HeightRequest = 10,
+						BackgroundColor = Color.LightGray
+					};
+
+					MyInformation.Children.Insert(0, shopInfo);
+                }
+            }
+            if (paidCount > 1)
+            {
+				shopPicker.SelectedIndexChanged += (sender, args) =>
+				{
+					_shopName = shopPicker.Items[shopPicker.SelectedIndex];
+			    };
+                MyInformation.Children.Add(shopPicker);
             }
 
+            if (unpaidCount < 1)
+            {
+                referenceBoxView.IsVisible = false;
+            }
 			List<MyEntity> imageSource = new List<MyEntity>();
 			try
 			{
@@ -318,12 +302,12 @@ namespace westgateproject.View
                     myButton.Clicked += DeleteButton_Clicked;
                     myActivity.Children.Insert(3, myButton);
 
-                    var myBoxView = new BoxView()
+                    var myInsideBoxView = new BoxView()
                     {
                         HeightRequest = 10,
                         BackgroundColor = Color.LightGray
                     };
-                    myActivity.Children.Insert(4, myBoxView);
+                    myActivity.Children.Insert(4, myInsideBoxView);
                 }
             }
             else

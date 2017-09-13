@@ -137,13 +137,6 @@ namespace westgateproject.View
     			    }
     			}
 
-
-
-
-
-
-
-
 				Dictionary<string, string> getShopContentsParam = new Dictionary<string, string>
     			{
     				{ "shopOwner", _shopOwnerID},
@@ -311,18 +304,6 @@ namespace westgateproject.View
                 }
 				
                 likeNumList.Reverse();
-
-
-
-
-
-
-
-
-
-
-
-
 
             }
             else

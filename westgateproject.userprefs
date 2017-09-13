@@ -1,12 +1,14 @@
 ﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/InitialPage.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/WritingPage.xaml.cs">
     <Files>
-      <File FileName="Droid/MainActivity.cs" Line="1" Column="1" />
-      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="20" Column="18" />
+      <File FileName="westgateproject/Helper/SyncData.cs" Line="23" Column="5" />
+      <File FileName="westgateproject/View/Register.xaml.cs" Line="115" Column="28" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
+  <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.Android_Accelerated_x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
