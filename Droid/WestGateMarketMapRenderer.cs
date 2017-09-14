@@ -57,52 +57,7 @@ namespace westgateproject.Droid
 			NativeMap.InfoWindowClick += OnInfoWindowClick;
 			NativeMap.SetInfoWindowAdapter(this);
 
-			//map.SetOnMarkerClickListener(this);
 			NativeMap.SetOnCameraIdleListener(this);
-
-			//if (map != null)
-			//map.MapClick += googleMap_MapClick;
-
-			//var polygonOptions = new PolygonOptions();
-			//polygonOptions.InvokeFillColor(0x40FF0000);
-			//polygonOptions.InvokeStrokeColor(0x660000ff);
-			//polygonOptions.InvokeStrokeWidth(0);
-
-			//foreach (var position in shapeCoordinates)
-			//{
-			//    polygonOptions.Add(new LatLng(position.Latitude, position.Longitude));
-			//}
-
-			//NativeMap.AddPolygon(polygonOptions);
-
-
-			//NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8687925, 128.5801115), 17.3f));
-
-
-			//NativeMap.Clear();
-			//foreach (var pin in advertisementPins)
-			//{
-			//	var marker = new MarkerOptions();
-			//	marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
-			//	marker.SetTitle(pin.Pin.Label);
-			//	marker.SetSnippet(pin.Pin.Address);
-			//	marker.SetIcon(createPureTextIcon(pin.Id));
-			//	//marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
-			//	//NativeMap.AddMarker(marker);
-
-			//}
-
-			//var polygonOptions = new PolygonOptions();
-			//polygonOptions.InvokeFillColor(0x40FF0000);
-			//polygonOptions.InvokeStrokeColor(0x660000ff);
-			//polygonOptions.InvokeStrokeWidth(0);
-
-			//foreach (var position in shapeCoordinates)
-			//{
-			//	polygonOptions.Add(new LatLng(position.Latitude, position.Longitude));
-			//}
-
-			//NativeMap.AddPolygon(polygonOptions);
 
 
 			NativeMap.UiSettings.ZoomControlsEnabled = false;
@@ -113,7 +68,6 @@ namespace westgateproject.Droid
 			NativeMap.UiSettings.RotateGesturesEnabled = false;
 			NativeMap.UiSettings.TiltGesturesEnabled = false;
 
-			//NativeMap.SetMinZoomPreference(16.8f);
 
 			isRemoved = false;
 
@@ -124,41 +78,6 @@ namespace westgateproject.Droid
 		{
 			base.OnElementPropertyChanged(sender, e);
 
-
-
-
-
-			//if (e.PropertyName.Equals("VisibleRegion") && !isDrawn)
-			//{
-			//	NativeMap.Clear();
-			//	foreach (var pin in advertisementPins)
-			//	{
-			//		var marker = new MarkerOptions();
-			//		marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
-			//		marker.SetTitle(pin.Pin.Label);
-			//		marker.SetSnippet(pin.Pin.Address);
-			//		marker.SetIcon(createPureTextIcon(pin.Id));
-			//		//marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
-			//		NativeMap.AddMarker(marker);
-
-			//	}
-
-			//	var polygonOptions = new PolygonOptions();
-			//	polygonOptions.InvokeFillColor(0x40FF0000);
-			//	polygonOptions.InvokeStrokeColor(0x660000ff);
-			//	polygonOptions.InvokeStrokeWidth(0);
-
-			//	foreach (var position in shapeCoordinates)
-			//	{
-			//		polygonOptions.Add(new LatLng(position.Latitude, position.Longitude));
-			//	}
-
-			//	NativeMap.AddPolygon(polygonOptions);
-
-			//	isDrawn = true;
-			//}
-			//Console.WriteLine("isDrawn value : " + isDrawn);
-			//Console.WriteLine("e.PropertyName value : " + e.PropertyName);
 		}
 
 
@@ -238,26 +157,9 @@ namespace westgateproject.Droid
 				NativeMap.AddPolygon(polygonOptions);
 				isDrawn = true;
             }
-			//if (NativeMap.CameraPosition.Zoom >= 16f && isRemoved == true)
-			//{
-			//	//add marker
-			//	foreach (var mark in markerList)
-			//	mark.Visible = true;
-			//	isRemoved = false;
-			//}
-			//else if (NativeMap.CameraPosition.Zoom < 16f && isRemoved == false)
-			//{
-			//	//remove marker
-			//	foreach (var mark in markerList)
-			//	mark.Visible = false;
-			//	isRemoved = true;
-			//}
 			System.Diagnostics.Debug.WriteLine("Zoom : " + NativeMap.CameraPosition.Zoom);
             if (NativeMap.CameraPosition.Zoom < 16f)
 			{
-				//Console.WriteLine("map.Projection.VisibleRegion.FarRight.Longitude : " + NativeMap.Projection.VisibleRegion.FarRight.Longitude);
-				//Console.WriteLine("map.Projection.VisibleRegion.FarLeft.Longitude : " + NativeMap.Projection.VisibleRegion.FarLeft.Longitude);
-				//Console.WriteLine("mapspan : " + mapspan);
 				NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8680505, 128.580742087216), 16.8350f));
 			}
 			else
@@ -269,7 +171,6 @@ namespace westgateproject.Droid
 
 				System.Diagnostics.Debug.WriteLine(" up : " + up + " down : " + down + " left : " + left + " right : " + right);
 
-				//Console.WriteLine("mapspan in else : " + mapspan);
 				if (up > 35.8770726757578 || down < 35.8599352008226 || left < 128.573250509799 || right > 128.586412109435)
 				{
 					LatLng currentCenter = NativeMap.CameraPosition.Target;
@@ -305,7 +206,7 @@ namespace westgateproject.Droid
 				case "5지구":
 				case "동산상가":
 				case "상가연합회":
-				//case "1지구":
+				case "1지구":
 					formsMap.OnTap(customPin.Id);
 					break;
 			}
@@ -328,7 +229,7 @@ namespace westgateproject.Droid
 
 	            switch (customPin.Id)
 				{
-	                case "1지구":
+	                //case "1지구":
 	                case "4지구":
 	                case "명품프라자":
 	                case "건해산물상가":

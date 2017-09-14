@@ -24,16 +24,6 @@ namespace westgateproject.View.PageForEachFloor.first
 			InitializeComponent();
             backTouched = false;
 			onProcessing = false;
-
-			//switch (Device.RuntimePlatform)
-			//{
-			//	case Device.Android:
-			//		absL.Scale = (App.ScreenHeight - 90) / 265;
-			//		break;
-			//	default:
-			//		absL.Scale = (App.ScreenHeight - 70) / 265;
-			//		break;
-			//}
         }
 		protected async override void OnAppearing()
 		{
@@ -79,13 +69,25 @@ namespace westgateproject.View.PageForEachFloor.first
 				absL.Children.Add(shopLocation);
 			}
 
+			absL.AnchorX = 0;
+			absL.AnchorY = 0;
+			switch (Device.RuntimePlatform)
+			{
+			  case Device.Android:
+			      absL.Scale = (App.ScreenHeight - 90) / 265;
+			      break;
+			  default:
+			      absL.Scale = (App.ScreenHeight - 70) / 265;
+			      break;
+			}
+
 		}
 		async void OnTapped(object sender, EventArgs args)
 		{
 			if (!onProcessing)
 			{
 				onProcessing = true;
-				ShopInforSQLDb infoFromSQLite = new ShopInforSQLDb();
+				//ShopInforSQLDb infoFromSQLite = new ShopInforSQLDb();
 				var temp = sender as Label;
 				//infoFromSQLite = await App.Database.GetShopAsync("2지구", "1층", temp.Text);
 				await Navigation.PushAsync(new ShopInfoPage("2지구", "1층", temp.Text));

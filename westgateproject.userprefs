@@ -1,23 +1,16 @@
-﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/ImageScaleHelper.cs">
+﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/FirstPage.xaml.cs">
     <Files>
-      <File FileName="westgateproject/View/ShopInfoPage.xaml.cs" Line="474" Column="86" NotebookId="1" />
-      <File FileName="westgateproject/View/ShopInfoPage.xaml" Line="23" Column="27" NotebookId="1" />
-      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="336" Column="72" NotebookId="1" />
-      <File FileName="iOS/Main.cs" Line="17" Column="1" NotebookId="1" />
-      <File FileName="westgateproject/View/FirstPage.xaml" Line="38" Column="42" NotebookId="1" />
-      <File FileName="westgateproject/View/InitialPage.xaml" Line="13" Column="60" NotebookId="1" />
-      <File FileName="Droid/ImageScaleHelper.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="westgateproject/View/PageForEachFloor/first/firstFirst.xaml.cs" Line="26" Column="25" />
+      <File FileName="westgateproject/View/PageForEachFloor/second/secondFirst_east.xaml.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/PageForEachFloor/second/secondFirst_east.xaml" Line="1195" Column="1" />
+      <File FileName="Droid/WestGateMarketMapRenderer.cs" Line="209" Column="16" />
+      <File FileName="iOS/WestGateMarketMapRenderer.cs" Line="148" Column="6" />
+      <File FileName="westgateproject/Helper/SyncData.cs" Line="1" Column="1" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="345" Column="112" />
+      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="701" Column="1" />
+      <File FileName="iOS/Main.cs" Line="17" Column="1" />
     </Files>
-    <FloatingWindows>
-      <FloatingWindow WindowId="1" X="1381" Y="23" Width="1129" Height="1312">
-        <Files>
-          <File FileName="westgateproject/Models/RecentEntity.cs" Line="22" Column="1" />
-          <File FileName="westgateproject/Models/ContentsEntity.cs" Line="14" Column="29" />
-          <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="30" Column="9" />
-        </Files>
-      </FloatingWindow>
-    </FloatingWindows>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />

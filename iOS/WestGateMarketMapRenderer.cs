@@ -16,30 +16,10 @@ namespace westgateproject.iOS
 {
 	public class WestGateMarketMapRenderer:MapRenderer, IMKMapViewDelegate
 	{
-		//private readonly UITapGestureRecognizer _tapRecogniser;
 		private IMKAnnotation[] annotations;
 
         WestGateMarketMap formsMap;
-		//UIView customPinView;
         List<AdvertisementPin> advertisementPins;
-		//public WestGateMarketMapRenderer()
-		//{
-			//_tapRecogniser = new UITapGestureRecognizer(OnTap)
-			//{
-			//	NumberOfTapsRequired = 1,
-			//	NumberOfTouchesRequired = 1
-			//};
-		//}
-
-
-		//private void OnTap(UITapGestureRecognizer recognizer)
-		//{
-		//	var cgPoint = recognizer.LocationInView(Control);
-
-		//	var location = ((MKMapView)Control).ConvertPoint(cgPoint, Control);
-
-		//	((WestGateMarketMap)Element).OnTap(new Position(location.Latitude, location.Longitude));
-		//}
 
 		protected override void OnElementChanged(Xamarin.Forms.Platform.iOS.ElementChangedEventArgs<Xamarin.Forms.View> e)
 		{
@@ -49,11 +29,8 @@ namespace westgateproject.iOS
 			{
 
 				var nativeMap = Control as MKMapView;
-				//nativeMap.RemoveGestureRecognizer(_tapRecogniser);
 				nativeMap.GetViewForAnnotation = null;
 				nativeMap.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
-				//nativeMap.DidSelectAnnotationView -= OnDidSelectAnnotationView;
-				//nativeMap.DidDeselectAnnotationView -= OnDidDeselectAnnotationView;
 
 			}
 
@@ -65,10 +42,7 @@ namespace westgateproject.iOS
 
 				nativeMap.GetViewForAnnotation = GetViewForAnnotation;
 				nativeMap.CalloutAccessoryControlTapped += OnCalloutAccessoryControlTapped;
-				//nativeMap.DidSelectAnnotationView += OnDidSelectAnnotationView;
-				//nativeMap.DidDeselectAnnotationView += OnDidDeselectAnnotationView;
 
-				//nativeMap.AddGestureRecognizer(_tapRecogniser);
 				MKPolygon polygonOverlay = new MKPolygon();
 				CLLocationCoordinate2D[] coord = new CLLocationCoordinate2D[formsMap.ShapeCoordinates.Count];
 
@@ -90,38 +64,16 @@ namespace westgateproject.iOS
 				};
 				nativeMap.OverlayRenderer = (view, overlay) => renderer;
 				annotations = nativeMap.Annotations;
-				//var isRemoved = false;
 
 				nativeMap.RegionChanged += (sender, _e) =>
 				{
-					//if ((nativeMap.Region.Span.LongitudeDelta < 0.007) && (isRemoved == true))
-					//{
-					//	foreach (var _an in annotations)
-					//	{
-
-					//		nativeMap.AddAnnotation(_an);
-					//	}
-					//	isRemoved = false;
-					//}
-					//else if ((nativeMap.Region.Span.LongitudeDelta >= 0.007) && (isRemoved == false))
-					//{
-					//	annotations = nativeMap.Annotations;
-					//	nativeMap.RemoveAnnotations(nativeMap.Annotations);
-					//	isRemoved = true;
-					//}
-
-				//	var currentRegion = nativeMap.Region;
-                    //Debug.WriteLine("LongitudeDelta Region changed : " + nativeMap.Region.Span.LongitudeDelta);
 					if (nativeMap.Region.Span.LongitudeDelta > 0.008)
 					{
 						System.Diagnostics.Debug.WriteLine("LongitudeDelta : " + nativeMap.Region.Span.LongitudeDelta);
-						//                    Debug.WriteLine("LongitudeDelta if : " + nativeMap.Region.Span.LongitudeDelta);
 						nativeMap.SetRegion(new MKCoordinateRegion(new CLLocationCoordinate2D(35.8680838081858, 128.580841355511), new MKCoordinateSpan(0, 0.00583032772880188)), true);
-						//Debug.WriteLine("LongitudeDelta if : " + nativeMap.Region.Span.LongitudeDelta);
 					}
 					else
 					{
-                        //Debug.WriteLine("LongitudeDelta else : " + nativeMap.Region.Span.LongitudeDelta);
 						var halfLatDel = nativeMap.Region.Span.LatitudeDelta / 2;
 						var halfLonDel = nativeMap.Region.Span.LongitudeDelta / 2;
 						var currentSpan = nativeMap.Region.Span;
@@ -153,7 +105,6 @@ namespace westgateproject.iOS
 				nativeMap.ShowsScale = false;
 				nativeMap.ShowsTraffic = false;
 
-				//Debug.WriteLine("LongitudeDelta OnElement : " + nativeMap.Region.Span.LongitudeDelta);
 			}
 		}
 		MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
@@ -194,11 +145,11 @@ namespace westgateproject.iOS
                     case "5지구":
                     case "동산상가":
 					case "상가연합회":
+					case "1지구":
                         customLabel.BackgroundColor = UIColor.Green;
                         customLabel.TextColor = UIColor.Magenta;
                         annotationView.RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure);
 						break;
-					case "1지구":
                     case "4지구":
                     case "명품프라자":
                     case "건해산물상가":
@@ -236,37 +187,12 @@ namespace westgateproject.iOS
 				case "5지구":
 				case "동산상가":
 				case "상가연합회":
-				//case "1지구":
+				case "1지구":
                     formsMap.OnTap(customView.Id);
 					break;
 			}
 		}
 
-		//void OnDidSelectAnnotationView(object sender, MKAnnotationViewEventArgs e)
-		//{
-		//	var customView = e.View as CustomMKAnnotationView;
-		//	customPinView = new UIView();
-
-		//	if (customView.Id == "5지구")
-		//	{
-		//		customPinView.Frame = new CGRect(0, 0, 200, 84);
-		//		var image = new UIImageView(new CGRect(0, 0, 200, 84));
-		//		image.Image = UIImage.FromFile("xamarin.png");
-		//		customPinView.AddSubview(image);
-		//		customPinView.Center = new CGPoint(0, -(e.View.Frame.Height + 75));
-		//		e.View.AddSubview(customPinView);
-		//	}
-		//}
-
-		//void OnDidDeselectAnnotationView(object sender, MKAnnotationViewEventArgs e)
-		//{
-		//	if (!e.View.Selected)
-		//	{
-		//		customPinView.RemoveFromSuperview();
-		//		customPinView.Dispose();
-		//		customPinView = null;
-		//	}
-		//}
 
 		AdvertisementPin GetCustomPin(MKPointAnnotation annotation)
 		{

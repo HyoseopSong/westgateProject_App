@@ -697,7 +697,7 @@ namespace westgateproject
 		{
 			var senderButton = sender as Label;
 			senderButton.IsEnabled = false;
-			int senderIndex = myLike.Children.IndexOf(senderButton) / 3;
+			int senderIndex = myLike.Children.IndexOf(senderButton) / 4;
             var likeInfo = likeInfoList[senderIndex].Split(':');
 
 			var id = likeInfo[0];

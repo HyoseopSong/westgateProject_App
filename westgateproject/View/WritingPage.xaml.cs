@@ -335,14 +335,14 @@ namespace westgateproject.View
 								heartFilled.IsVisible = false;
 								likeNum.Text = (--likeNumList[indexOfThisLayout]).ToString();
 								imgSource.Text = "HeartEmpty";
-								await SyncData.UpdateLikeNum(imageSource[i].PartitionKey, imageSource[i].RowKey, App.userEmail.Split('@')[0], "down");
+								await SyncData.UpdateLikeNum(imageSource[indexOfThisLayout].PartitionKey, imageSource[indexOfThisLayout].RowKey, App.userEmail.Split('@')[0], "down");
 								break;
 							default:
 								heartEmpty.IsVisible = false;
 								heartFilled.IsVisible = true;
 								likeNum.Text = (++likeNumList[indexOfThisLayout]).ToString();
 								imgSource.Text = "HeartFilled";
-								await SyncData.UpdateLikeNum(imageSource[i].PartitionKey, imageSource[i].RowKey, App.userEmail.Split('@')[0], "up");
+								await SyncData.UpdateLikeNum(imageSource[indexOfThisLayout].PartitionKey, imageSource[indexOfThisLayout].RowKey, App.userEmail.Split('@')[0], "up");
 								break;
 
 						}
