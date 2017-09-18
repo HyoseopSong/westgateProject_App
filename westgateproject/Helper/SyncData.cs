@@ -127,12 +127,12 @@ namespace westgateproject.Helper
 
 		}
 
-        static async public Task<List<ShopMapInfoEntity>> DownloadShopMapInfo()
+        static async public Task<List<ShopMapInfoEntity>> DownloadShopMapInfo(string buildingFloor)
         {
 			List<ShopMapInfoEntity> getResult = new List<ShopMapInfoEntity>();
 			Dictionary<string, string> getDictionary = new Dictionary<string, string>
 			{
-				{ "buildingFloor", "2지구1층" }
+				{ "buildingFloor", buildingFloor }
 			};
 			getResult = await App.Client.InvokeApiAsync<List<ShopMapInfoEntity>>("getShopMapInfo", System.Net.Http.HttpMethod.Get, getDictionary);
 			

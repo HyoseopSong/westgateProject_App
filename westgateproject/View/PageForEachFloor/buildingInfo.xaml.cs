@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using westgateproject.Models;
-using westgateproject.View.PageForEachFloor.dongsan;
-using westgateproject.View.PageForEachFloor.fifth;
 using westgateproject.View.PageForEachFloor.first;
 using westgateproject.View.PageForEachFloor.office;
-using westgateproject.View.PageForEachFloor.second;
 using Xamarin.Forms;
 
 namespace westgateproject.View.PageForEachFloor
@@ -38,34 +35,25 @@ namespace westgateproject.View.PageForEachFloor
             forthFloor.Text = infoFromSQLite.Forth;
             switch (Title)
             {
-                case "2지구":
+				case "2지구":
+				case "아진상가":
+				case "건해산물상가":
+				case "명품프라자":
                     break;
                 case "1지구":
                 case "5지구":
                     forthFloor.BackgroundColor = Color.LightGray;
                     thirdFloor.BackgroundColor = Color.LightGray;
-                    //secondFloor.BackgroundColor = infoFromSQLite.Second;
-                    //firstFloor.BackgroundColor = infoFromSQLite.First;
                     baseFirstFloor.BackgroundColor = Color.LightGray;
                     break;
                 case "동산상가":
                     forthFloor.BackgroundColor = Color.LightGray;
-                    thirdFloor.BackgroundColor = Color.YellowGreen;
-                    //secondFloor.BackgroundColor = infoFromSQLite.Second;
-                    //firstFloor.BackgroundColor = infoFromSQLite.First;
                     baseFirstFloor.BackgroundColor = Color.YellowGreen;
-                    break;
-                case "아진상가":
-                    break;
-                case "건해산물상가":
-                    break;
-                case "명품프라자":
                     break;
                 case "상가연합회":
                     forthFloor.BackgroundColor = Color.LightGray;
                     thirdFloor.BackgroundColor = Color.LightGray;
                     secondFloor.BackgroundColor = Color.LightGray;
-                    //firstFloor.BackgroundColor = infoFromSQLite.First;
                     baseFirstFloor.BackgroundColor = Color.LightGray;
                     break;
                 default:
@@ -94,30 +82,30 @@ namespace westgateproject.View.PageForEachFloor
                         }
                         else if (sender == firstFloor)
                         {
-                            await Navigation.PushAsync(new firstFirst());
+                            await Navigation.PushAsync(new firstFirst(Title, "3층"));
                             //await DisplayAlert(sender.Text, "지도 정보가 아직 준비되지 않았습니다.", "확인");
                         }
                         break;
                     case "2지구":
                         if (sender == forthFloor)
-                        {
-                            await Navigation.PushAsync(new secondEnter(4));
+						{
+							await Navigation.PushAsync(new FloorMap(Title, "4층"));
                         }
                         else if (sender == thirdFloor)
-                        {
-                            await Navigation.PushAsync(new secondEnter(3));
+						{
+							await Navigation.PushAsync(new FloorMap(Title, "3층"));
                         }
                         else if (sender == secondFloor)
-                        {
-                            await Navigation.PushAsync(new secondEnter(2));
+						{
+							await Navigation.PushAsync(new FloorMap(Title, "2층"));
                         }
                         else if (sender == firstFloor)
-                        {
-                            await Navigation.PushAsync(new secondEnter(1));
+						{
+							await Navigation.PushAsync(new FloorMap(Title, "1층"));
                         }
                         else if (sender == baseFirstFloor)
-                        {
-                            await Navigation.PushAsync(new secondEnter(-1));
+						{
+							await Navigation.PushAsync(new FloorMap(Title, "지하1층"));
                         }
                         break;
                     case "5지구":
@@ -126,27 +114,27 @@ namespace westgateproject.View.PageForEachFloor
                         //    await Navigation.PushAsync(new Preparing());
                         //}
                         //else 
-                            if (sender == secondFloor)
-                        {
-                            await Navigation.PushAsync(new fifthSecond());
+                        if (sender == secondFloor)
+						{
+							await Navigation.PushAsync(new FloorMap(Title, "2층"));
                         }
                         else if (sender == firstFloor)
-                        {
-                            await Navigation.PushAsync(new fifthFirst());
+						{
+							await Navigation.PushAsync(new FloorMap(Title, "1층"));
                         }
                         break;
                     case "동산상가":
                         if (sender == thirdFloor)
                         {
-                            await DisplayAlert("3층", "지도 정보가 아직 준비되지 않았습니다.", "확인");
+                            await Navigation.PushAsync(new FloorMap(Title, "3층"));
                         }
                         else if (sender == secondFloor)
-                        {
-                            await Navigation.PushAsync(new dongsanSecond());
+						{
+							await Navigation.PushAsync(new FloorMap(Title, "2층"));
                         }
                         else if (sender == firstFloor)
-                        {
-                            await Navigation.PushAsync(new dongsanFirst());
+						{
+							await Navigation.PushAsync(new FloorMap(Title, "1층"));
                         }
                         else if (sender == baseFirstFloor)
                         {
@@ -177,8 +165,8 @@ namespace westgateproject.View.PageForEachFloor
                         break;
                     case "상가연합회":
                         if (sender == firstFloor)
-                        {
-                            await Navigation.PushAsync(new shopUnion());
+						{
+							await Navigation.PushAsync(new shopUnion());
                         }
                         break;
                     default:

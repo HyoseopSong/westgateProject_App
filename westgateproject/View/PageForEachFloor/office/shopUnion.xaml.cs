@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using westgateproject.Models;
 using Xamarin.Forms;
 
 namespace westgateproject.View.PageForEachFloor.office
@@ -9,6 +7,11 @@ namespace westgateproject.View.PageForEachFloor.office
 	{
 		public bool onProcessing;
 		bool backTouched;
+		double currentScale = 1;
+		double startScale = 1;
+		double maxScaleValue;
+		double minScaleValue;
+
 		protected override bool OnBackButtonPressed()
 		{
 			if (!backTouched)
@@ -28,18 +31,31 @@ namespace westgateproject.View.PageForEachFloor.office
 			switch (Device.RuntimePlatform)
 			{
 				case Device.Android:
-					absL.Scale = (App.ScreenHeight - 90) / 189;
+					maxScaleValue = (App.ScreenHeight - 110) / 189;
 					break;
 				default:
-					absL.Scale = (App.ScreenHeight - 70) / 189;
+					maxScaleValue = (App.ScreenHeight - 70) / 189;
 					break;
 			}
-			NavigationPage.SetHasBackButton(this, false);
-			onProcessing = false;
+			minScaleValue = App.ScreenWidth / 444;
+
+			sliderBar.Maximum = maxScaleValue;
+			sliderBar.Minimum = minScaleValue;
 
 			var boundaryBox = new BoxView { Color = Color.Red };
-			AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(490 * absL.Scale, App.ScreenWidth, 0, 30));
+			AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(444 * maxScaleValue, 190 * maxScaleValue, 0, 1));
 			absL.Children.Add(boundaryBox);
+			onProcessing = false;
+
+			switch (Device.RuntimePlatform)
+			{
+				case Device.iOS:
+					sliderBar.IsVisible = false;
+					var pinchGesture = new PinchGestureRecognizer();
+					pinchGesture.PinchUpdated += OnPinchUpdated;
+					absL.GestureRecognizers.Add(pinchGesture);
+					break;
+			}
 		}
 
 		async void OnTapped(object sender, EventArgs args)
@@ -51,9 +67,41 @@ namespace westgateproject.View.PageForEachFloor.office
 				onProcessing = false;
 			}
 		}
-		async void goBack(object sender, EventArgs args)
+		//async void goBack(object sender, EventArgs args)
+		//{
+		//    await Navigation.PopAsync();
+		//}
+		void OnPinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
 		{
-		    await Navigation.PopAsync();
+			if (e.Status == GestureStatus.Started)
+			{
+				System.Diagnostics.Debug.WriteLine("OnPichUpdated Started");
+				startScale = absL.Scale;
+				absL.AnchorX = 0;
+				absL.AnchorY = 0;
+			}
+			if (e.Status == GestureStatus.Running)
+			{
+				// Calculate the scale factor to be applied.
+				currentScale += (e.Scale - 1) * startScale;
+				currentScale = Math.Max(minScaleValue, currentScale);
+				currentScale = Math.Min(currentScale, maxScaleValue);
+
+				absL.Scale = currentScale;
+			}
+			if (e.Status == GestureStatus.Completed)
+			{
+				//int indexOfBoundaryBox = absL.Children.IndexOf(boundaryBox);
+				//var temp = absL.Children[indexOfBoundaryBox].Bounds;
+				//absL.Children[indexOfBoundaryBox].Layout(new Rectangle(width * currentScale, height * currentScale, 1, 1));
+			}
+		}
+
+		void OnSliderValueChanged(object sender, ValueChangedEventArgs args)
+		{
+			absL.AnchorX = 0;
+			absL.AnchorY = 0;
+			absL.Scale = args.NewValue;
 		}
     }
 }

@@ -32,18 +32,16 @@ namespace westgateproject.View.PageForEachFloor.office
 					absL.Scale = (App.ScreenHeight - 70) / 354;
 					break;
 			}
-			NavigationPage.SetHasBackButton(this, false);
-			parkingImage.TranslationX = 90;
 
 			var boundaryBox = new BoxView { Color = Color.Red };
-			AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(689 * absL.Scale, App.ScreenWidth, 0, 30));
+			AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(599 * absL.Scale, App.ScreenWidth, 0, 30));
 			absL.Children.Add(boundaryBox);
 		}
 
 
-		async void goBack(object sender, EventArgs args)
-		{
-			await Navigation.PopAsync();
-		}
+		//async void goBack(object sender, EventArgs args)
+		//{
+		//	await Navigation.PopAsync();
+		//}
     }
 }

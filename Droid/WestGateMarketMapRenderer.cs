@@ -206,7 +206,7 @@ namespace westgateproject.Droid
 				case "5지구":
 				case "동산상가":
 				case "상가연합회":
-				case "1지구":
+				//case "1지구":
 					formsMap.OnTap(customPin.Id);
 					break;
 			}
@@ -229,7 +229,7 @@ namespace westgateproject.Droid
 
 	            switch (customPin.Id)
 				{
-	                //case "1지구":
+	                case "1지구":
 	                case "4지구":
 	                case "명품프라자":
 	                case "건해산물상가":

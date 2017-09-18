@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.PageForEachFloor.first.firstFirst" xmlns:local="clr-namespace:westgateproject" Title="1지구">
-    <ScrollView Orientation="Horizontal" BackgroundColor="Gainsboro" x:Name="sv">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="westgateproject.View.PageForEachFloor.first.firstFirst" xmlns:local="clr-namespace:westgateproject">
+    <ScrollView Orientation="Both" BackgroundColor="Gainsboro" x:Name="sv">
         <AbsoluteLayout  x:Name="absL" >
+
+            <Label x:Name="loadingLabel" AbsoluteLayout.LayoutFlags="All" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="지도 정보를 불러오고 있습니다..." TextColor="Blue" FontSize="20"
+            AbsoluteLayout.LayoutBounds="0, 0.4, 1, 0.2">
+            </Label>
         </AbsoluteLayout>
     </ScrollView>
 </ContentPage>

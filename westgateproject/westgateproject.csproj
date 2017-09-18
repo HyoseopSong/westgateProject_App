@@ -51,59 +51,17 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\buildingInfo.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\dongsan\dongsanFirst.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\dongsan\dongsanSecond.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\fifth\fifthFirst.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\fifth\fifthSecond.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\office\shopUnion.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\office\unionParking.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondBaseFirst_east.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondBaseFirst_west.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondEnter.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondFirst_east.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondFirst_west.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondForth_east.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondForth_west.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondSecond_east.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondSecond_west.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondThird_east.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\second\secondThird_west.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="View\PageForEachFloor\first\firstFirst.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\FloorMap.xaml.cs">
+      <DependentUpon>FloorMap.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -114,6 +72,7 @@
     <EmbeddedResource Remove="View\PageForEachFloor\office\seafood.xaml" />
     <EmbeddedResource Remove="View\PageForEachFloor\forth\forthFirst.xaml" />
     <EmbeddedResource Remove="View\PageForEachFloor\myungpoom\myungpoomFirst.xaml" />
+    <EmbeddedResource Remove="View\PageForEachFloor\fifth\fifthFirst.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\PageForEachFloor\forth\" />
