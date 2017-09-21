@@ -32,7 +32,7 @@
                 <OnPlatform.iOS>list.png</OnPlatform.iOS>
             </OnPlatform>
         </ContentPage.Icon>
-        <ScrollView>
+        <ScrollView x:Name="ActivityScroll">
             <StackLayout x:Name="myActivity">
             </StackLayout>
         </ScrollView>     

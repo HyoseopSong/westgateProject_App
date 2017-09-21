@@ -21,7 +21,7 @@
             </OnPlatform>
         </ContentPage.Icon>
         
-        <ScrollView>
+        <ScrollView x:Name="RecentScroll">
             <StackLayout x:Name="myRecent">
             </StackLayout>  
         </ScrollView>
@@ -34,7 +34,7 @@
             </OnPlatform>
         </ContentPage.Icon>
         
-        <ScrollView>
+        <ScrollView x:Name="LikeScroll">
             <StackLayout x:Name="myLike">
             </StackLayout>  
         </ScrollView>

@@ -1,20 +1,12 @@
-﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/Properties/AndroidManifest.xml">
+﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/FirstPage.xaml.cs">
     <Files>
-      <File FileName="westgateproject/View/PageForEachFloor/office/shopUnion.xaml" Line="5" Column="42" NotebookId="1" />
-      <File FileName="westgateproject/View/PageForEachFloor/office/shopUnion.xaml.cs" Line="34" Column="44" NotebookId="1" />
-      <File FileName="westgateproject/View/PageForEachFloor/office/unionParking.xaml" Line="10" Column="1" NotebookId="1" />
-      <File FileName="iOS/Info.plist" NotebookId="1" />
-      <File FileName="Droid/Properties/AndroidManifest.xml" Line="1" Column="1" NotebookId="1" />
+      <File FileName="westgateproject/Models/ContentsEntity.cs" Line="4" Column="33" />
+      <File FileName="westgateproject/View/ShopInfoPage.xaml.cs" Line="31" Column="5" />
+      <File FileName="westgateproject/View/ShopInfoPage.xaml" Line="22" Column="37" />
+      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="878" Column="14" />
+      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="302" Column="25" />
     </Files>
-    <FloatingWindows>
-      <FloatingWindow WindowId="1" X="1538" Y="25" Width="1022" Height="1310">
-        <Files>
-          <File FileName="westgateproject/View/FloorMap.xaml" Line="16" Column="1" />
-          <File FileName="westgateproject/View/FloorMap.xaml.cs" Line="142" Column="1" />
-        </Files>
-      </FloatingWindow>
-    </FloatingWindows>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
