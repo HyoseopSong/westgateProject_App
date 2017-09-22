@@ -22,8 +22,7 @@ namespace westgateproject.Droid
 		List<AdvertisementPin> advertisementPins;
 		List<Position> shapeCoordinates;
         bool isDrawn;
-        bool isRemoved;
-		List<Marker> markerList;
+        //bool isRemoved;
         WestGateMarketMap formsMap;
 
 		protected override void OnElementChanged(Xamarin.Forms.Platform.Android.ElementChangedEventArgs<Map> e)
@@ -41,7 +40,6 @@ namespace westgateproject.Droid
 				shapeCoordinates = formsMap.ShapeCoordinates;
 				advertisementPins = formsMap.AdvertisementPins;
                 Control.GetMapAsync(this);
-				markerList = new List<Marker>();
 
                 isDrawn = false;
 
@@ -69,7 +67,7 @@ namespace westgateproject.Droid
 			NativeMap.UiSettings.TiltGesturesEnabled = false;
 
 
-			isRemoved = false;
+			//isRemoved = false;
 
 
 		}
@@ -128,11 +126,34 @@ namespace westgateproject.Droid
 
 		public void OnCameraIdle()
 		{
-            if (!isDrawn)
-            {
+           
+			System.Diagnostics.Debug.WriteLine("Zoom : " + NativeMap.CameraPosition.Zoom);
+            if (NativeMap.CameraPosition.Zoom < 16f)
+			{
+				NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8680505, 128.580742087216), 16.8350f));
+			}
+			else
+			{
+				var right = NativeMap.Projection.VisibleRegion.FarRight.Longitude;
+				var left = NativeMap.Projection.VisibleRegion.FarLeft.Longitude;
+				var up = NativeMap.Projection.VisibleRegion.FarRight.Latitude;
+				var down = NativeMap.Projection.VisibleRegion.NearLeft.Latitude;
+
+				System.Diagnostics.Debug.WriteLine(" up : " + up + " down : " + down + " left : " + left + " right : " + right);
+
+				if (up > 35.8770726757578 || down < 35.8599352008226 || left < 128.573250509799 || right > 128.586412109435)
+				{
+					LatLng currentCenter = NativeMap.CameraPosition.Target;
+					float currentZoom = NativeMap.CameraPosition.Zoom;
+                    NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8680505, 128.580742087216), currentZoom));
+                }
+			}
+
+			if (!isDrawn)
+			{
 				NativeMap.Clear();
 
-                foreach (var pin in advertisementPins)
+				foreach (var pin in advertisementPins)
 				{
 					var marker = new MarkerOptions();
 					marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
@@ -156,30 +177,7 @@ namespace westgateproject.Droid
 
 				NativeMap.AddPolygon(polygonOptions);
 				isDrawn = true;
-            }
-			System.Diagnostics.Debug.WriteLine("Zoom : " + NativeMap.CameraPosition.Zoom);
-            if (NativeMap.CameraPosition.Zoom < 16f)
-			{
-				NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8680505, 128.580742087216), 16.8350f));
 			}
-			else
-			{
-				var right = NativeMap.Projection.VisibleRegion.FarRight.Longitude;
-				var left = NativeMap.Projection.VisibleRegion.FarLeft.Longitude;
-				var up = NativeMap.Projection.VisibleRegion.FarRight.Latitude;
-				var down = NativeMap.Projection.VisibleRegion.NearLeft.Latitude;
-
-				System.Diagnostics.Debug.WriteLine(" up : " + up + " down : " + down + " left : " + left + " right : " + right);
-
-				if (up > 35.8770726757578 || down < 35.8599352008226 || left < 128.573250509799 || right > 128.586412109435)
-				{
-					LatLng currentCenter = NativeMap.CameraPosition.Target;
-					float currentZoom = NativeMap.CameraPosition.Zoom;
-                    NativeMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(35.8680505, 128.580742087216), currentZoom));
-                }
-			}
-
-
 		}
 
 		protected override void OnLayout(bool changed, int l, int t, int r, int b)

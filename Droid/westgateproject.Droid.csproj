@@ -22,6 +22,7 @@
     <CopyNuGetImplementations>true</CopyNuGetImplementations>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -256,6 +257,7 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="ImageScaleHelper.cs" />
     <Compile Include="Dialer.cs" />
+    <Compile Include="ZoomScrollViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

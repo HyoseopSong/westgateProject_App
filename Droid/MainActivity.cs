@@ -36,12 +36,6 @@ namespace westgateproject.Droid
 
         GoogleApiClient mGoogleApiClient;
 
-        TextView mStatus;
-
-        bool mIsResolving = false;
-
-        bool mShouldResolve = false;
-
         bool isOnStart = false;
 
         public void OnConnectionFailed(ConnectionResult result)

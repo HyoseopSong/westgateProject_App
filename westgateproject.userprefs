@@ -1,20 +1,20 @@
-﻿<Properties StartupConfiguration="{5FA0219F-B063-4D07-800B-CC38BDB5B916}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/FirstPage.xaml.cs">
+﻿<Properties StartupConfiguration="{34B9099E-4B00-4707-BFDE-0B95997F8893}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="westgateproject/View/FloorMap.xaml">
     <Files>
-      <File FileName="westgateproject/Models/ContentsEntity.cs" Line="4" Column="33" />
-      <File FileName="westgateproject/View/ShopInfoPage.xaml.cs" Line="31" Column="5" />
-      <File FileName="westgateproject/View/ShopInfoPage.xaml" Line="22" Column="37" />
-      <File FileName="westgateproject/View/WritingPage.xaml.cs" Line="878" Column="14" />
-      <File FileName="westgateproject/View/FirstPage.xaml.cs" Line="302" Column="25" />
+      <File FileName="westgateproject/View/InitialPage.xaml.cs" Line="31" Column="6" />
+      <File FileName="westgateproject/View/FloorMap.xaml.cs" Line="155" Column="1" />
+      <File FileName="westgateproject/View/FloorMap.xaml" Line="9" Column="26" />
+      <File FileName="Droid/WestGateMarketMapRenderer.cs" Line="41" Column="20" />
+      <File FileName="Droid/ZoomScrollViewRenderer.cs" Line="48" Column="67" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.westgateproject.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.1cb6798d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.westgateproject.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.2deb974fe6e9e3c56fb34a6716a06cba67c6f003" identitySerialNumber="324052336659C8A6">
+  <MonoDevelop.Ide.ItemProperties.westgateproject.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" identitySerialNumber="324052336659C8A6">
     <MonoDevelop.MacDev.AppleDevelopmentTeam DeveloperId="YL4U44UKWX" TeamId="MG5825XPXJ" />
   </MonoDevelop.Ide.ItemProperties.westgateproject.iOS>
   <MultiItemStartupConfigurations />

@@ -7,6 +7,7 @@ namespace westgateproject.View
 {
     public partial class FloorMap : ContentPage
 	{
+        static public float scale;
 		public bool onProcessing;
 		bool backTouched;
 		static public double maxScaleValue;
@@ -39,17 +40,29 @@ namespace westgateproject.View
 			Title = floor;
             _building = building;
             _floor = floor;
-            switch(Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    sliderBar.IsVisible = false;
-					var pinchGesture = new PinchGestureRecognizer();
-					pinchGesture.PinchUpdated += OnPinchUpdated;
-					absL.GestureRecognizers.Add(pinchGesture);
-					break;
-            }
+			var pinchGesture = new PinchGestureRecognizer();
+			pinchGesture.PinchUpdated += OnPinchUpdated;
+			absL.GestureRecognizers.Add(pinchGesture);
             isInitial = true;
 
+			MessagingCenter.Subscribe<object>(this, "PinchStart", (sender) =>
+			{
+                System.Diagnostics.Debug.WriteLine("PichStart");
+                OnPinchUpdated(this, new PinchGestureUpdatedEventArgs(GestureStatus.Started, 1, new Point(0, 0)));
+
+			});
+			MessagingCenter.Subscribe<object>(this, "PinchRunning", (sender) =>
+			{
+				System.Diagnostics.Debug.WriteLine("PinchRunning");
+				OnPinchUpdated(this, new PinchGestureUpdatedEventArgs(GestureStatus.Running, scale, new Point(0, 0)));
+
+			});
+			MessagingCenter.Subscribe<object>(this, "PinchCompleted", (sender) =>
+			{
+				System.Diagnostics.Debug.WriteLine("PinchCompleted");
+				OnPinchUpdated(this, new PinchGestureUpdatedEventArgs(GestureStatus.Completed, 1, new Point(0, 0)));
+
+			});
         }
 
 		protected async override void OnAppearing()
@@ -131,24 +144,21 @@ namespace westgateproject.View
 			switch (Device.RuntimePlatform)
 			{
 				case Device.Android:
-					maxScaleValue = (App.ScreenHeight - 110) / height;
+					maxScaleValue = (App.ScreenHeight - 80) / height;
 					break;
 				default:
-					maxScaleValue = (App.ScreenHeight - 70) / height;
+					maxScaleValue = (App.ScreenHeight - 65) / height;
 					break;
 			}
             minScaleValue = App.ScreenWidth / width;
 
-
-            sliderBar.Maximum = maxScaleValue;
-            sliderBar.Minimum = minScaleValue;
 
               //System.Diagnostics.Debug.WriteLine("scaleValue : " + scaleValue);
 			boundaryBox = new BoxView { Color = Color.Red };
             AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(width * maxScaleValue , height * maxScaleValue, 0, 1));
 			absL.Children.Add(boundaryBox);
 
-            //absL.Scale = sliderBar.Value;
+
 		}
 		async void OnTapped(object sender, EventArgs args)
 		{
@@ -163,12 +173,6 @@ namespace westgateproject.View
 				onProcessing = false;
 			}
 		}
-        void OnSliderValueChanged(object sender, ValueChangedEventArgs args)
-        {
-			absL.AnchorX = 0;
-			absL.AnchorY = 0;
-			absL.Scale = args.NewValue;
-        }
 		void OnPinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
 		{
 			if (e.Status == GestureStatus.Started)
@@ -180,6 +184,7 @@ namespace westgateproject.View
 			}
 			if (e.Status == GestureStatus.Running)
 			{
+                System.Diagnostics.Debug.WriteLine("scale value : " + scale);
 				// Calculate the scale factor to be applied.
 				currentScale += (e.Scale - 1) * startScale;
 				currentScale = Math.Max(minScaleValue, currentScale);
