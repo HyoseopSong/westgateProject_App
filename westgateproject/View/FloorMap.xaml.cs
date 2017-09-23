@@ -40,9 +40,14 @@ namespace westgateproject.View
 			Title = floor;
             _building = building;
             _floor = floor;
-			var pinchGesture = new PinchGestureRecognizer();
-			pinchGesture.PinchUpdated += OnPinchUpdated;
-			absL.GestureRecognizers.Add(pinchGesture);
+            switch(Device.RuntimePlatform)
+            {
+				case Device.iOS:
+					var pinchGesture = new PinchGestureRecognizer();
+					pinchGesture.PinchUpdated += OnPinchUpdated;
+					absL.GestureRecognizers.Add(pinchGesture);
+                    break;
+            }
             isInitial = true;
 
 			MessagingCenter.Subscribe<object>(this, "PinchStart", (sender) =>
@@ -152,11 +157,14 @@ namespace westgateproject.View
 			}
             minScaleValue = App.ScreenWidth / width;
 
-
+            System.Diagnostics.Debug.WriteLine("min, max : " + minScaleValue + ", " + maxScaleValue);
               //System.Diagnostics.Debug.WriteLine("scaleValue : " + scaleValue);
 			boundaryBox = new BoxView { Color = Color.Red };
             AbsoluteLayout.SetLayoutBounds(boundaryBox, new Rectangle(width * maxScaleValue , height * maxScaleValue, 0, 1));
 			absL.Children.Add(boundaryBox);
+            //absL.AnchorX = 0;
+            //absL.AnchorY = 0;
+            //absL.Scale = maxScaleValue;
 
 
 		}

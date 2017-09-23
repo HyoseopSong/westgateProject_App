@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:westgateproject.Helper;assembly=westgateproject" x:Class="westgateproject.View.FloorMap">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView Orientation="Both" BackgroundColor="SeaShell" x:Name="sv"> 
             <Label x:Name="loadingLabel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="지도 정보를 불러오고 있습니다..." TextColor="Blue" FontSize="20" />
-            <ScrollView Orientation="Both" BackgroundColor="SeaShell" x:Name="sv"> 
-                <AbsoluteLayout VerticalOptions="CenterAndExpand" x:Name="absL"/>
-            </ScrollView>
-        </StackLayout>
+
+            <AbsoluteLayout VerticalOptions="CenterAndExpand" x:Name="absL"/>
+        </ScrollView>
 	</ContentPage.Content>
 </ContentPage>
