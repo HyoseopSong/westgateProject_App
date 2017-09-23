@@ -19,7 +19,7 @@
         </StackLayout>
         <BoxView HeightRequest="10" BackgroundColor="Color.LightGray" />
     </StackLayout>
-    <ListView x:Name="ShopContentsListView" HasUnevenRows="true" SeparatorVisibility="None" ItemSelected="OnContentsSelection" IsPullToRefreshEnabled="true">
+    <ListView x:Name="ShopContentsListView" HasUnevenRows="true" SeparatorVisibility="None" ItemSelected="OnContentsSelection" IsPullToRefreshEnabled="true" Refreshing="RefreshShopContents">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

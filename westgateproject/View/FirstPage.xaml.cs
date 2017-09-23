@@ -16,19 +16,25 @@ namespace westgateproject
 	public partial class FirstPage : TabbedPage
 	{
 		public bool onProcessing;
-		int moreButtonCount;
-        int likeMoreButtonCount;
-		String imageURL;
         bool isInitial;
+        bool dataLoading;
+        int recentPageNumer;
+        int likePageNumber;
+        const int numOfRecentPage = 10;
+        const int numOfLikepage = 3;
 
-        List<RecentEntity> recentSource = new List<RecentEntity>();
-        List<LikeEntity> likeEntity = new List<LikeEntity>();
+		List<RecentEntity> recentSource = new List<RecentEntity>();
+		List<ContentsEntity> likeSource = new List<ContentsEntity>();
         List<ContentsEntity> ShopInfoList = new List<ContentsEntity>();
-
+		ObservableCollection<ContentsEntity> likeContents = new ObservableCollection<ContentsEntity>();
+		ObservableCollection<RecentEntity> recentContents = new ObservableCollection<RecentEntity>();
 
 		public FirstPage()
 		{
             isInitial = true;
+            dataLoading = false;
+            recentPageNumer = 0;
+            likePageNumber = 0;
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
             switch(Device.RuntimePlatform)
@@ -310,25 +316,44 @@ namespace westgateproject
 			recentSource = await App.Client.InvokeApiAsync<List<RecentEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
             recentSource.Reverse();
 
-
-			ObservableCollection<RecentEntity> recentContents = new ObservableCollection<RecentEntity>(recentSource);
-
-			foreach (var t in recentContents)
+			foreach (var t in recentSource)
 			{
 				t.RowKey = "https://westgateproject.blob.core.windows.net/" + t.ID.Split('@')[0] + "/" + t.RowKey;
 			}
-			RecentListView.ItemsSource = recentContents;
+            for (int i = 0; i < numOfRecentPage && i < recentSource.Count; i++)
+            {
+                recentContents.Add(recentSource[i]);
+            }
 
+			RecentListView.ItemsSource = recentContents;
+            RecentListView.ItemAppearing += (object sender, ItemVisibilityEventArgs e) =>
+            {
+                var item = e.Item as RecentEntity;
+                int index = recentContents.IndexOf(item);
+                if(recentContents.Count - 2 <= index)
+                {
+                    if(!dataLoading)
+                    {
+                        dataLoading = true;
+
+						recentPageNumer++;
+                        for (int i = recentPageNumer * numOfRecentPage; i < (recentPageNumer + 1) * numOfRecentPage && i < recentSource.Count; i++)
+                        {
+                            recentContents.Add(recentSource[i]);
+                        }
+
+                        dataLoading = false;
+                    }
+                }
+            };
 
 
 			Dictionary<string, string> getParamUserInfo = new Dictionary<string, string>
 			{
 				{ "userId", App.userEmail},
 			};
-			likeEntity = await App.Client.InvokeApiAsync<List<LikeEntity>>("likeContents", System.Net.Http.HttpMethod.Get, getParamUserInfo);
+			List<LikeEntity> likeEntity = await App.Client.InvokeApiAsync<List<LikeEntity>>("likeContents", System.Net.Http.HttpMethod.Get, getParamUserInfo);
             likeEntity.Reverse();
-
-			ObservableCollection<ContentsEntity> likeContents = new ObservableCollection<ContentsEntity>();
 
 			foreach (var temp in likeEntity)
 			{
@@ -340,10 +365,36 @@ namespace westgateproject
 						};
 				var content = await App.Client.InvokeApiAsync<ContentsEntity>("getShopContent", System.Net.Http.HttpMethod.Get, getParamUserInfo);
 				content.RowKey = "https://westgateproject.blob.core.windows.net/" + content.PartitionKey.Split('@')[0] + "/" + content.RowKey;
-				likeContents.Add(content);
+				likeSource.Add(content);
 			}
-			LikeListView.ItemsSource = likeContents;
 
+            for (int i = 0; i < numOfLikepage && i < likeSource.Count; i++)
+            {
+                likeContents.Add(likeSource[i]);
+            }
+
+
+			LikeListView.ItemsSource = likeContents;
+            LikeListView.ItemAppearing += (object sender, ItemVisibilityEventArgs e) =>
+            {
+                var item = e.Item as ContentsEntity;
+                int index = likeContents.IndexOf(item);
+                if(likeContents.Count -2 <= index)
+                {
+                    if(!dataLoading)
+                    {
+                        dataLoading = true;
+
+                        likePageNumber++;
+                        for (int i = likePageNumber * numOfLikepage; i < (likePageNumber + 1) * numOfLikepage && i < likeSource.Count; i++)
+                        {
+                            likeContents.Add(likeSource[i]);
+                        }
+
+                        dataLoading = false;
+                    }
+                }
+            };
 		}
 
 
@@ -409,101 +460,116 @@ namespace westgateproject
 		}
 
         async void OnRecentSelection(object sender, SelectedItemChangedEventArgs e)
-        {
-            ((ListView)sender).SelectedItem = null;
-            if (e.SelectedItem == null)
+		{
+			((ListView)sender).SelectedItem = null;
+            if (!onProcessing)
             {
-                return;
-            }
-            var item = (RecentEntity)e.SelectedItem;
+                onProcessing = true;
+                if (e.SelectedItem == null)
+                {
+                    return;
+                }
+                var item = (RecentEntity)e.SelectedItem;
 
-            IDictionary<string, string> getParam = new Dictionary<string, string>
+                IDictionary<string, string> getParam = new Dictionary<string, string>
             {
                 { "id", item.ID},
                 { "shopName", item.ShopName},
             };
-            Dictionary<string, string> shopInfo = new Dictionary<string, string>();
-            shopInfo = await App.Client.InvokeApiAsync<Dictionary<string, string>>("recent", System.Net.Http.HttpMethod.Get, getParam);
+                Dictionary<string, string> shopInfo = new Dictionary<string, string>();
+                shopInfo = await App.Client.InvokeApiAsync<Dictionary<string, string>>("recent", System.Net.Http.HttpMethod.Get, getParam);
 
-            string _building = "";
-            switch (shopInfo["building"])
-            {
-                case "Dongsan":
-                    _building = "동산상가";
-                    break;
-                case "SecondBuilding":
-                    _building = "2지구";
-                    break;
-                case "FifthBuilding":
-                    _building = "5지구";
-                    break;
+                string _building = "";
+                switch (shopInfo["building"])
+                {
+                    case "Dongsan":
+                        _building = "동산상가";
+                        break;
+                    case "SecondBuilding":
+                        _building = "2지구";
+                        break;
+                    case "FifthBuilding":
+                        _building = "5지구";
+                        break;
+                }
+                await Navigation.PushAsync(new ShopInfoPage(_building, shopInfo["floor"], shopInfo["location"]));
+                onProcessing = false;
             }
-            await Navigation.PushAsync(new ShopInfoPage(_building, shopInfo["floor"], shopInfo["location"]));
         }
 
 
 		async void OnLikeSelection(object sender, SelectedItemChangedEventArgs e)
-        {
+		{
 			((ListView)sender).SelectedItem = null;
-			if (e.SelectedItem == null)
-			{
-				return;
-			}
-			var item = (ContentsEntity)e.SelectedItem;
+            if (!onProcessing)
+            {
+                onProcessing = true;
+                if (e.SelectedItem == null)
+                {
+                    return;
+                }
+                var item = (ContentsEntity)e.SelectedItem;
 
-			IDictionary<string, string> getParam = new Dictionary<string, string>
-			{
-				{ "id", item.PartitionKey},
-				{ "shopName", item.ShopName},
-			};
-			string shopInfo = await App.Client.InvokeApiAsync<string>("userInformation", System.Net.Http.HttpMethod.Get, getParam);
+                IDictionary<string, string> getParam = new Dictionary<string, string>
+            {
+                { "id", item.PartitionKey},
+                { "shopName", item.ShopName},
+            };
+                string shopInfo = await App.Client.InvokeApiAsync<string>("userInformation", System.Net.Http.HttpMethod.Get, getParam);
 
-			var shopLocation = shopInfo.Split(':');
-			string _building = "";
-			switch (shopLocation[0])
-			{
-				case "Dongsan":
-					_building = "동산상가";
-					break;
-				case "SecondBuilding":
-					_building = "2지구";
-					break;
-				case "FifthBuilding":
-					_building = "5지구";
-					break;
-			}
-			await Navigation.PushAsync(new ShopInfoPage(_building, shopLocation[1], shopLocation[2]));
+                var shopLocation = shopInfo.Split(':');
+                string _building = "";
+                switch (shopLocation[0])
+                {
+                    case "Dongsan":
+                        _building = "동산상가";
+                        break;
+                    case "SecondBuilding":
+                        _building = "2지구";
+                        break;
+                    case "FifthBuilding":
+                        _building = "5지구";
+                        break;
+                }
+                await Navigation.PushAsync(new ShopInfoPage(_building, shopLocation[1], shopLocation[2]));
+                onProcessing = false;
+            }
         }
 
         async void RefreshRecent(object sender, EventArgs e)
         {
 			Debug.WriteLine("RefreshRecent");
+            recentPageNumer = 0;
 			recentSource = await App.Client.InvokeApiAsync<List<RecentEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
 			recentSource.Reverse();
 
-
-			ObservableCollection<RecentEntity> recentContents = new ObservableCollection<RecentEntity>(recentSource);
-
-			foreach (var t in recentContents)
+			foreach (var t in recentSource)
 			{
 				t.RowKey = "https://westgateproject.blob.core.windows.net/" + t.ID.Split('@')[0] + "/" + t.RowKey;
 			}
+            recentContents.Clear();
+			for (int i = 0; i < numOfRecentPage && i < recentSource.Count; i++)
+			{
+				recentContents.Add(recentSource[i]);
+			}
+
 			RecentListView.ItemsSource = recentContents;
 			RecentListView.IsRefreshing = false;
         }
 
         async void RefreshLike(object sender, EventArgs e)
-        {
+		{
+            
 			Debug.WriteLine("RefreshLike");
+            likePageNumber = 0;
 			Dictionary<string, string> getParamUserInfo = new Dictionary<string, string>
-				{
-					{ "userId", App.userEmail},
-				};
-			likeEntity = await App.Client.InvokeApiAsync<List<LikeEntity>>("likeContents", System.Net.Http.HttpMethod.Get, getParamUserInfo);
+			{
+				{ "userId", App.userEmail},
+			};
+			List<LikeEntity> likeEntity = await App.Client.InvokeApiAsync<List<LikeEntity>>("likeContents", System.Net.Http.HttpMethod.Get, getParamUserInfo);
 			likeEntity.Reverse();
 
-			ObservableCollection<ContentsEntity> likeContents = new ObservableCollection<ContentsEntity>();
-
+            likeSource.Clear();
 			foreach (var temp in likeEntity)
 			{
 				getParamUserInfo = new Dictionary<string, string>
@@ -514,9 +580,18 @@ namespace westgateproject
 						};
 				var content = await App.Client.InvokeApiAsync<ContentsEntity>("getShopContent", System.Net.Http.HttpMethod.Get, getParamUserInfo);
 				content.RowKey = "https://westgateproject.blob.core.windows.net/" + content.PartitionKey.Split('@')[0] + "/" + content.RowKey;
-				likeContents.Add(content);
+				likeSource.Add(content);
 			}
+            likeContents.Clear();
+			for (int i = 0; i < numOfLikepage && i < likeSource.Count; i++)
+			{
+				likeContents.Add(likeSource[i]);
+			}
+
+
 			LikeListView.ItemsSource = likeContents;
+
+
 			LikeListView.IsRefreshing = false;
         }
 		protected override bool OnBackButtonPressed()

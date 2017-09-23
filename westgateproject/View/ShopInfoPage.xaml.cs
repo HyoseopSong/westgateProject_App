@@ -20,8 +20,13 @@ namespace westgateproject.View
 		bool gotoRegister;
 		bool backTouched;
 		bool isInitial;
-        //List<int> likeNumList = new List<int>();
-        ObservableCollection<ContentsEntity> shopContents;
+        bool onPressing;
+        bool dataLoading;
+        int shopContentsPageNumber;
+
+        const int numOfShopContentPage = 10;
+        List<ContentsEntity> shopEntity = new List<ContentsEntity>();
+        ObservableCollection<ContentsEntity> shopContents = new ObservableCollection<ContentsEntity>();
 
 		protected override bool OnBackButtonPressed()
 		{
@@ -72,6 +77,9 @@ namespace westgateproject.View
 			{
 				Debug.WriteLine("OnAppearing else");
 				isInitial = false;
+                onPressing = false;
+                dataLoading = false;
+                shopContentsPageNumber = 0;
 			}
 
             string _building_Converted;
@@ -142,9 +150,6 @@ namespace westgateproject.View
 
 
 
-
-
-                //From here
 				Dictionary<string, string> getShopContentsParam = new Dictionary<string, string>
     			{
     				{ "shopOwner", _shopOwnerID},
@@ -152,7 +157,7 @@ namespace westgateproject.View
                     { "userID", App.userEmail.Split('@')[0] }
     			};
 
-				List<ContentsEntity> shopEntity = await App.Client.InvokeApiAsync<List<ContentsEntity>>("getShopContents", System.Net.Http.HttpMethod.Get, getShopContentsParam);
+				shopEntity = await App.Client.InvokeApiAsync<List<ContentsEntity>>("getShopContents", System.Net.Http.HttpMethod.Get, getShopContentsParam);
 
 				shopEntity.Reverse();
 				foreach (var s in shopEntity)
@@ -168,10 +173,31 @@ namespace westgateproject.View
                             break;
                     }
                 }
+                for (int i = 0; i < numOfShopContentPage && i < shopEntity.Count; i++)
+                {
+                   shopContents.Add(shopEntity[i]); 
+                }
 
-				shopContents = new ObservableCollection<ContentsEntity>(shopEntity);
 				ShopContentsListView.ItemsSource = shopContents;
+                ShopContentsListView.ItemAppearing += (object sender, ItemVisibilityEventArgs e) =>
+                {
+                    var item = e.Item as ContentsEntity;
+                    int index = shopContents.IndexOf(item);
+                    if(shopContents.Count - 2 <= index)
+                    {
+                        if(!dataLoading)
+                        {
+                            dataLoading = true;
 
+                            shopContentsPageNumber++;
+                            for (int i = shopContentsPageNumber * numOfShopContentPage; i < (shopContentsPageNumber + 1) * numOfShopContentPage && i < shopEntity.Count; i++)
+                            {
+                                shopContents.Add(shopEntity[i]);
+                            }
+                            dataLoading = false;
+                        }
+                    }
+                };
             }
             else
             {
@@ -223,31 +249,78 @@ namespace westgateproject.View
 
 		}
 
+        async void RefreshShopContents(object sender, EventArgs e)
+        {
+            shopContentsPageNumber = 0;
+
+
+			Dictionary<string, string> getShopContentsParam = new Dictionary<string, string>
+				{
+					{ "shopOwner", _shopOwnerID},
+					{ "shopName", this.Title},
+					{ "userID", App.userEmail.Split('@')[0] }
+				};
+
+			shopEntity = await App.Client.InvokeApiAsync<List<ContentsEntity>>("getShopContents", System.Net.Http.HttpMethod.Get, getShopContentsParam);
+
+			shopEntity.Reverse();
+			foreach (var s in shopEntity)
+			{
+				s.RowKey = "https://westgateproject.blob.core.windows.net/" + _shopOwnerID + "/" + s.RowKey;
+				switch (s.LikeMember)
+				{
+					case "True":
+						s.LikeMember = "HeartFilled.png";
+						break;
+					case "False":
+						s.LikeMember = "HeartEmpty.png";
+						break;
+				}
+			}
+            shopContents.Clear();
+			for (int i = 0; i < numOfShopContentPage && i < shopEntity.Count; i++)
+			{
+				shopContents.Add(shopEntity[i]);
+			}
+
+			ShopContentsListView.ItemsSource = shopContents;
+
+
+            ShopContentsListView.IsRefreshing = false;
+        }
+
+
 		async void OnContentsSelection(object sender, SelectedItemChangedEventArgs e)
 		{
-            Debug.WriteLine(((ListView)sender).SelectedItem);
-			((ListView)sender).SelectedItem = null;
-			if (e.SelectedItem == null)
-			{
-				return;
-			}
-			var item = (ContentsEntity)e.SelectedItem;
-            int indexOfItem = shopContents.IndexOf(item);
-            switch(shopContents[indexOfItem].LikeMember)
-			{
-				case "HeartFilled.png":
-                    shopContents[indexOfItem].LikeMember = "HeartEmpty.png";
-					shopContents[indexOfItem].Like--;
-                    var blobNameOfFilled = shopContents[indexOfItem].RowKey.Split('/');
-					await SyncData.UpdateLikeNum(shopOwner, blobNameOfFilled[blobNameOfFilled.Length-1], App.userEmail.Split('@')[0], "down");
-					break;
-				case "HeartEmpty.png":
-					shopContents[indexOfItem].LikeMember = "HeartFilled.png";
-                    shopContents[indexOfItem].Like++;
-					var blobNameOfEmpty = shopContents[indexOfItem].RowKey.Split('/');
-					await SyncData.UpdateLikeNum(shopOwner, blobNameOfEmpty[blobNameOfEmpty.Length - 1], App.userEmail.Split('@')[0], "up");
-                    break;
+            if(!onPressing)
+            {
+                onPressing = true;
+				Debug.WriteLine(((ListView)sender).SelectedItem);
+				((ListView)sender).SelectedItem = null;
+				if (e.SelectedItem == null)
+				{
+					return;
+				}
+				var item = (ContentsEntity)e.SelectedItem;
+				int indexOfItem = shopContents.IndexOf(item);
+				switch (shopContents[indexOfItem].LikeMember)
+				{
+					case "HeartFilled.png":
+						shopContents[indexOfItem].LikeMember = "HeartEmpty.png";
+						shopContents[indexOfItem].Like--;
+						var blobNameOfFilled = shopContents[indexOfItem].RowKey.Split('/');
+						await SyncData.UpdateLikeNum(shopOwner, blobNameOfFilled[blobNameOfFilled.Length - 1], App.userEmail.Split('@')[0], "down");
+						break;
+					case "HeartEmpty.png":
+						shopContents[indexOfItem].LikeMember = "HeartFilled.png";
+						shopContents[indexOfItem].Like++;
+						var blobNameOfEmpty = shopContents[indexOfItem].RowKey.Split('/');
+						await SyncData.UpdateLikeNum(shopOwner, blobNameOfEmpty[blobNameOfEmpty.Length - 1], App.userEmail.Split('@')[0], "up");
+						break;
+				}
+                onPressing = false;
             }
+
 		}
 
     }
