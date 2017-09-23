@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:westgateproject"
             x:Class="westgateproject.View.WritingPage"
             Title="내 매장" Icon="settings.png">
     <ContentPage Title="새 게시물">
@@ -32,9 +33,27 @@
                 <OnPlatform.iOS>list.png</OnPlatform.iOS>
             </OnPlatform>
         </ContentPage.Icon>
-        <ScrollView x:Name="ActivityScroll">
-            <StackLayout x:Name="myActivity">
-            </StackLayout>
-        </ScrollView>     
+        
+        <ListView x:Name="MyListView" HasUnevenRows="true" SeparatorVisibility="None" ItemSelected="OnMyContentSelection">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="{Binding RowKey}" Aspect="AspectFit" HeightRequest="{x:Static local:App.ScreenWidth}" />
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding LikeMember}" />
+                                <Label Text="{Binding Like}" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                            <Label Text="{Binding ShopName, StringFormat='{0}'}"
+                            TextColor="#f35e20" />
+                            <Label Text="{Binding Context}"
+                            HorizontalOptions="StartAndExpand"
+                            TextColor="#503026" />
+                            <BoxView BackgroundColor="LightGray" HeightRequest="10"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage>
 </TabbedPage>

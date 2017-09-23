@@ -316,16 +316,18 @@ namespace westgateproject
 			recentSource = await App.Client.InvokeApiAsync<List<RecentEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
             recentSource.Reverse();
 
+			RecentListView.ItemsSource = recentContents;
+            int ii = 0;
 			foreach (var t in recentSource)
 			{
 				t.RowKey = "https://westgateproject.blob.core.windows.net/" + t.ID.Split('@')[0] + "/" + t.RowKey;
-			}
-            for (int i = 0; i < numOfRecentPage && i < recentSource.Count; i++)
-            {
-                recentContents.Add(recentSource[i]);
-            }
 
-			RecentListView.ItemsSource = recentContents;
+                if (ii++ < numOfRecentPage)
+                {
+                    recentContents.Add(t);
+                }
+			}
+
             RecentListView.ItemAppearing += (object sender, ItemVisibilityEventArgs e) =>
             {
                 var item = e.Item as RecentEntity;
@@ -355,6 +357,8 @@ namespace westgateproject
 			List<LikeEntity> likeEntity = await App.Client.InvokeApiAsync<List<LikeEntity>>("likeContents", System.Net.Http.HttpMethod.Get, getParamUserInfo);
             likeEntity.Reverse();
 
+			LikeListView.ItemsSource = likeContents;
+            ii = 0;
 			foreach (var temp in likeEntity)
 			{
 				getParamUserInfo = new Dictionary<string, string>
@@ -366,15 +370,14 @@ namespace westgateproject
 				var content = await App.Client.InvokeApiAsync<ContentsEntity>("getShopContent", System.Net.Http.HttpMethod.Get, getParamUserInfo);
 				content.RowKey = "https://westgateproject.blob.core.windows.net/" + content.PartitionKey.Split('@')[0] + "/" + content.RowKey;
 				likeSource.Add(content);
+
+                if (ii++ < numOfLikepage)
+                {
+                    likeContents.Add(content);
+                }
+
 			}
 
-            for (int i = 0; i < numOfLikepage && i < likeSource.Count; i++)
-            {
-                likeContents.Add(likeSource[i]);
-            }
-
-
-			LikeListView.ItemsSource = likeContents;
             LikeListView.ItemAppearing += (object sender, ItemVisibilityEventArgs e) =>
             {
                 var item = e.Item as ContentsEntity;
@@ -466,7 +469,8 @@ namespace westgateproject
             {
                 onProcessing = true;
                 if (e.SelectedItem == null)
-                {
+				{
+					onProcessing = false;
                     return;
                 }
                 var item = (RecentEntity)e.SelectedItem;
@@ -506,15 +510,16 @@ namespace westgateproject
                 onProcessing = true;
                 if (e.SelectedItem == null)
                 {
+                    onProcessing = false;
                     return;
                 }
                 var item = (ContentsEntity)e.SelectedItem;
 
                 IDictionary<string, string> getParam = new Dictionary<string, string>
-            {
-                { "id", item.PartitionKey},
-                { "shopName", item.ShopName},
-            };
+                {
+                    { "id", item.PartitionKey},
+                    { "shopName", item.ShopName},
+                };
                 string shopInfo = await App.Client.InvokeApiAsync<string>("userInformation", System.Net.Http.HttpMethod.Get, getParam);
 
                 var shopLocation = shopInfo.Split(':');
@@ -543,17 +548,17 @@ namespace westgateproject
 			recentSource = await App.Client.InvokeApiAsync<List<RecentEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
 			recentSource.Reverse();
 
+			int i = 0;
+			recentContents.Clear();
 			foreach (var t in recentSource)
 			{
 				t.RowKey = "https://westgateproject.blob.core.windows.net/" + t.ID.Split('@')[0] + "/" + t.RowKey;
-			}
-            recentContents.Clear();
-			for (int i = 0; i < numOfRecentPage && i < recentSource.Count; i++)
-			{
-				recentContents.Add(recentSource[i]);
+                if(i++ < numOfRecentPage)
+				{
+					recentContents.Add(t);
+                }
 			}
 
-			RecentListView.ItemsSource = recentContents;
 			RecentListView.IsRefreshing = false;
         }
 
@@ -570,6 +575,8 @@ namespace westgateproject
 			likeEntity.Reverse();
 
             likeSource.Clear();
+            likeContents.Clear();
+            int i = 0;
 			foreach (var temp in likeEntity)
 			{
 				getParamUserInfo = new Dictionary<string, string>
@@ -581,17 +588,11 @@ namespace westgateproject
 				var content = await App.Client.InvokeApiAsync<ContentsEntity>("getShopContent", System.Net.Http.HttpMethod.Get, getParamUserInfo);
 				content.RowKey = "https://westgateproject.blob.core.windows.net/" + content.PartitionKey.Split('@')[0] + "/" + content.RowKey;
 				likeSource.Add(content);
+                if (i++ < numOfLikepage)
+                {
+                    likeContents.Add(content);
+                }
 			}
-            likeContents.Clear();
-			for (int i = 0; i < numOfLikepage && i < likeSource.Count; i++)
-			{
-				likeContents.Add(likeSource[i]);
-			}
-
-
-			LikeListView.ItemsSource = likeContents;
-
-
 			LikeListView.IsRefreshing = false;
         }
 		protected override bool OnBackButtonPressed()

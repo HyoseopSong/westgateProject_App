@@ -20,7 +20,7 @@ namespace westgateproject.View
 		bool gotoRegister;
 		bool backTouched;
 		bool isInitial;
-        bool onPressing;
+        bool onProcessing;
         bool dataLoading;
         int shopContentsPageNumber;
 
@@ -77,7 +77,7 @@ namespace westgateproject.View
 			{
 				Debug.WriteLine("OnAppearing else");
 				isInitial = false;
-                onPressing = false;
+                onProcessing = false;
                 dataLoading = false;
                 shopContentsPageNumber = 0;
 			}
@@ -160,6 +160,8 @@ namespace westgateproject.View
 				shopEntity = await App.Client.InvokeApiAsync<List<ContentsEntity>>("getShopContents", System.Net.Http.HttpMethod.Get, getShopContentsParam);
 
 				shopEntity.Reverse();
+				ShopContentsListView.ItemsSource = shopContents;
+                int ii = 0;
 				foreach (var s in shopEntity)
                 {
                     s.RowKey = "https://westgateproject.blob.core.windows.net/" + _shopOwnerID + "/" + s.RowKey;
@@ -172,13 +174,12 @@ namespace westgateproject.View
                             s.LikeMember = "HeartEmpty.png";
                             break;
                     }
-                }
-                for (int i = 0; i < numOfShopContentPage && i < shopEntity.Count; i++)
-                {
-                   shopContents.Add(shopEntity[i]); 
-                }
+                    if (ii++ < numOfShopContentPage)
+                    {
+                        shopContents.Add(s);
+                    }
+				}
 
-				ShopContentsListView.ItemsSource = shopContents;
                 ShopContentsListView.ItemAppearing += (object sender, ItemVisibilityEventArgs e) =>
                 {
                     var item = e.Item as ContentsEntity;
@@ -264,6 +265,8 @@ namespace westgateproject.View
 			shopEntity = await App.Client.InvokeApiAsync<List<ContentsEntity>>("getShopContents", System.Net.Http.HttpMethod.Get, getShopContentsParam);
 
 			shopEntity.Reverse();
+			shopContents.Clear();
+            int i = 0;
 			foreach (var s in shopEntity)
 			{
 				s.RowKey = "https://westgateproject.blob.core.windows.net/" + _shopOwnerID + "/" + s.RowKey;
@@ -276,15 +279,11 @@ namespace westgateproject.View
 						s.LikeMember = "HeartEmpty.png";
 						break;
 				}
+                if (i++ > numOfShopContentPage)
+                {
+                    shopContents.Add(s);
+                }
 			}
-            shopContents.Clear();
-			for (int i = 0; i < numOfShopContentPage && i < shopEntity.Count; i++)
-			{
-				shopContents.Add(shopEntity[i]);
-			}
-
-			ShopContentsListView.ItemsSource = shopContents;
-
 
             ShopContentsListView.IsRefreshing = false;
         }
@@ -292,13 +291,14 @@ namespace westgateproject.View
 
 		async void OnContentsSelection(object sender, SelectedItemChangedEventArgs e)
 		{
-            if(!onPressing)
+			((ListView)sender).SelectedItem = null;
+            if(!onProcessing)
             {
-                onPressing = true;
+                onProcessing = true;
 				Debug.WriteLine(((ListView)sender).SelectedItem);
-				((ListView)sender).SelectedItem = null;
 				if (e.SelectedItem == null)
 				{
+                    onProcessing = false;
 					return;
 				}
 				var item = (ContentsEntity)e.SelectedItem;
@@ -318,7 +318,7 @@ namespace westgateproject.View
 						await SyncData.UpdateLikeNum(shopOwner, blobNameOfEmpty[blobNameOfEmpty.Length - 1], App.userEmail.Split('@')[0], "up");
 						break;
 				}
-                onPressing = false;
+                onProcessing = false;
             }
 
 		}
