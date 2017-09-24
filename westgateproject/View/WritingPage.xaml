@@ -4,6 +4,9 @@
             xmlns:local="clr-namespace:westgateproject"
             x:Class="westgateproject.View.WritingPage"
             Title="내 매장" Icon="settings.png">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="검색" Clicked="OnSearchItemClicked"/>
+    </ContentPage.ToolbarItems>
     <ContentPage Title="새 게시물">
         <ContentPage.Icon>
             <OnPlatform x:TypeArguments="FileImageSource">
@@ -33,27 +36,34 @@
                 <OnPlatform.iOS>list.png</OnPlatform.iOS>
             </OnPlatform>
         </ContentPage.Icon>
-        
-        <ListView x:Name="MyListView" HasUnevenRows="true" SeparatorVisibility="None" ItemSelected="OnMyContentSelection">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Vertical">
-                            <Image Source="{Binding RowKey}" Aspect="AspectFit" HeightRequest="{x:Static local:App.ScreenWidth}" />
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding LikeMember}" />
-                                <Label Text="{Binding Like}" VerticalTextAlignment="Center"/>
+        <StackLayout>
+            <StackLayout x:Name="mySearchWindow" Orientation="Horizontal" IsVisible="false">
+                <Image Source="Search.png" />
+                <Entry x:Name="mySearchEntry" TextChanged="MySearch" Placeholder="검색어 입력" HorizontalOptions="FillAndExpand"/>
+                <Button x:Name="myComplete" Text="완료" Clicked="MyCompleteClicked" />
+                <Button x:Name="myCancel" Text="취소" Clicked="MyCancelClicked" IsVisible="false" />
+            </StackLayout>
+            <ListView x:Name="MyListView" HasUnevenRows="true" SeparatorVisibility="None" ItemSelected="OnMyContentSelection">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Image Source="{Binding RowKey}" Aspect="AspectFit" HeightRequest="{x:Static local:App.ScreenWidth}" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding LikeMember}" />
+                                    <Label Text="{Binding Like}" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                                <Label Text="{Binding ShopName, StringFormat='{0}'}"
+                                TextColor="#f35e20" />
+                                <Label Text="{Binding Context}"
+                                HorizontalOptions="StartAndExpand"
+                                TextColor="#503026" />
+                                <BoxView BackgroundColor="LightGray" HeightRequest="10"/>
                             </StackLayout>
-                            <Label Text="{Binding ShopName, StringFormat='{0}'}"
-                            TextColor="#f35e20" />
-                            <Label Text="{Binding Context}"
-                            HorizontalOptions="StartAndExpand"
-                            TextColor="#503026" />
-                            <BoxView BackgroundColor="LightGray" HeightRequest="10"/>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage>
 </TabbedPage>

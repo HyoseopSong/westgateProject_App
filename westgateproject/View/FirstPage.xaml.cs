@@ -425,6 +425,27 @@ namespace westgateproject
             }
         }
 
+		void OnSearchItemClicked(object sender, EventArgs args)
+		{
+            if(recentSearchWindow.IsVisible)
+            {
+                recentSearchWindow.IsVisible = false;
+            }
+            else
+            {
+				recentSearchWindow.IsVisible = true;
+            }
+
+            if(likeSearchWindow.IsVisible)
+            {
+                likeSearchWindow.IsVisible = false;
+            }
+            else
+            {
+                likeSearchWindow.IsVisible = true;
+            }
+		}
+
 		private class ActivityIndicatorScope : IDisposable
 		{
 			private bool showIndicator;
@@ -476,10 +497,10 @@ namespace westgateproject
                 var item = (RecentEntity)e.SelectedItem;
 
                 IDictionary<string, string> getParam = new Dictionary<string, string>
-            {
-                { "id", item.ID},
-                { "shopName", item.ShopName},
-            };
+                {
+                    { "id", item.ID},
+                    { "shopName", item.ShopName},
+                };
                 Dictionary<string, string> shopInfo = new Dictionary<string, string>();
                 shopInfo = await App.Client.InvokeApiAsync<Dictionary<string, string>>("recent", System.Net.Http.HttpMethod.Get, getParam);
 
@@ -601,15 +622,97 @@ namespace westgateproject
 			return true;
 		}
 
-		void OnButtonClicked(object sender, EventArgs args)
+
+        void RecentSearch(object sender, TextChangedEventArgs e)
+		{
+			recentComplete.IsVisible = true;
+			recentCancel.IsVisible = false;
+            if(e.NewTextValue == "")
+            {
+				RecentListView.ItemsSource = recentContents;
+            }
+            else
+			{
+				ObservableCollection<RecentEntity> recentSearchResult = new ObservableCollection<RecentEntity>();
+                RecentListView.ItemsSource = recentSearchResult;
+
+				foreach(var r in recentSource)
+                {
+                    if(r.Context.Contains(e.NewTextValue) || r.ShopName.Contains(e.NewTextValue))
+                    {
+                        recentSearchResult.Add(r);
+                    }
+
+               }
+            }
+		}
+
+		void LikeSearch(object sender, TextChangedEventArgs e)
 		{
 
-			MessagingCenter.Send<object>(this, "InstanceIDToken");
+			likeComplete.IsVisible = true;
+			likeCancel.IsVisible = false;
+			if (e.NewTextValue == "")
+			{
+				LikeListView.ItemsSource = likeContents;
+			}
+			else
+			{
+				ObservableCollection<ContentsEntity> likeSearchResult = new ObservableCollection<ContentsEntity>();
+				LikeListView.ItemsSource = likeSearchResult;
+
+				foreach (var r in likeSource)
+				{
+					if (r.Context.Contains(e.NewTextValue) || r.ShopName.Contains(e.NewTextValue))
+					{
+						likeSearchResult.Add(r);
+					}
+
+				}
+			}
 		}
-		void OnSubButtonClicked(object sender, EventArgs args)
+
+        void RecentCancelClicked(object sender, EventArgs e)
+        {
+            recentSearchEntry.Text = "";
+            recentCancel.IsVisible = false;
+            recentComplete.IsVisible = true;
+		}
+
+		void RecentCompleteClicked(object sender, EventArgs e)
+		{
+            if(recentSearchEntry.Text != "")
+            {
+				recentCancel.IsVisible = true;
+				recentComplete.IsVisible = false;
+            }
+		}
+		void LikeCancelClicked(object sender, EventArgs e)
 		{
 
-			MessagingCenter.Send<object>(this, "Subscribe");
+            likeSearchEntry.Text = "";
+            likeCancel.IsVisible = false;
+            likeComplete.IsVisible = true;
 		}
+		void LikeCompleteClicked(object sender, EventArgs e)
+		{
+            if(likeSearchEntry.Text != "")
+			{
+				likeCancel.IsVisible = true;
+				likeComplete.IsVisible = false;
+            }
+		}
+
+
+        //void OnButtonClicked(object sender, EventArgs args)
+        //{
+
+        //    MessagingCenter.Send<object>(this, "InstanceIDToken");
+        //}
+        //void OnSubButtonClicked(object sender, EventArgs args)
+        //{
+
+            //MessagingCenter.Send<object>(this, "Subscribe");
+        //}
 	}
 }

@@ -310,6 +310,9 @@
     <AndroidResource Include="Resources\drawable-hdpi\HeartFilled.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\HeartFilled.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\HeartFilled.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\Search.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Search.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Search.png" />
   </ItemGroup>
   <ItemGroup>
     <GoogleServicesJson Include="google-services.json" />

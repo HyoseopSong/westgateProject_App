@@ -17,6 +17,7 @@
     <PackageReference Include="Google.Apis" Version="1.28.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.0.2" />
+    <PackageReference Include="Microsoft.Azure.Search" Version="3.0.4" />
   </ItemGroup>
 
   <ItemGroup>

@@ -52,7 +52,7 @@ namespace westgateproject.View
 			_location = location;
             gotoRegister = false;
 			NavigationPage.SetHasBackButton(this, false);
-			//shopLabel.Text += _building + " " + _floor + " " + _location;
+			shopLabel.Text += _building + " " + _floor + " " + _location;
 			//Debug.WriteLine("shopLabel.Text = " + shopLabel.Text);
 
 			backTouched = false;
@@ -322,6 +322,62 @@ namespace westgateproject.View
             }
 
 		}
+
+
+		void ShopContentsSearch(object sender, TextChangedEventArgs e)
+		{
+
+			shopContentsComplete.IsVisible = true;
+			shopContentsCancel.IsVisible = false;
+			if (e.NewTextValue == "")
+			{
+				ShopContentsListView.ItemsSource = shopContents;
+			}
+			else
+			{
+				ObservableCollection<ContentsEntity> shopContentsSearchResult = new ObservableCollection<ContentsEntity>();
+				ShopContentsListView.ItemsSource = shopContentsSearchResult;
+
+				foreach (var r in shopContents)
+				{
+					if (r.Context.Contains(e.NewTextValue) || r.ShopName.Contains(e.NewTextValue))
+					{
+						shopContentsSearchResult.Add(r);
+					}
+
+				}
+			}
+		}
+
+		void ShopContentsCancelClicked(object sender, EventArgs e)
+		{
+			shopContentsSearchEntry.Text = "";
+			shopContentsCancel.IsVisible = false;
+			shopContentsComplete.IsVisible = true;
+		}
+
+		void ShopContentsCompleteClicked(object sender, EventArgs e)
+		{
+            if(shopContentsSearchEntry.Text != "")
+			{
+				shopContentsCancel.IsVisible = true;
+				shopContentsComplete.IsVisible = false;
+            }
+		}
+
+
+		void OnSearchItemClicked(object sender, EventArgs args)
+		{
+			if (shopSearchWindow.IsVisible)
+			{
+				shopSearchWindow.IsVisible = false;
+			}
+			else
+			{
+				shopSearchWindow.IsVisible = true;
+			}
+		}
+
 
     }
 }

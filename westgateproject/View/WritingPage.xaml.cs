@@ -375,6 +375,17 @@ namespace westgateproject.View
             }
         }
 
+		void OnSearchItemClicked(object sender, EventArgs args)
+		{
+			if (mySearchWindow.IsVisible)
+			{
+				mySearchWindow.IsVisible = false;
+			}
+			else
+			{
+				mySearchWindow.IsVisible = true;
+			}
+		}
 
         async void OnMyContentSelection(object sender, SelectedItemChangedEventArgs e)
         {
@@ -418,6 +429,45 @@ namespace westgateproject.View
             }
             return true;
         }
+		void MySearch(object sender, TextChangedEventArgs e)
+		{
 
+			myComplete.IsVisible = true;
+			myCancel.IsVisible = false;
+			if (e.NewTextValue == "")
+			{
+				MyListView.ItemsSource = myContents;
+			}
+			else
+			{
+				ObservableCollection<ContentsEntity> mySearchResult = new ObservableCollection<ContentsEntity>();
+				MyListView.ItemsSource = mySearchResult;
+
+				foreach (var r in MyContentsSource)
+				{
+					if (r.Context.Contains(e.NewTextValue) || r.ShopName.Contains(e.NewTextValue))
+					{
+						mySearchResult.Add(r);
+					}
+
+				}
+			}
+		}
+
+		void MyCancelClicked(object sender, EventArgs e)
+		{
+			mySearchEntry.Text = "";
+			myCancel.IsVisible = false;
+			myComplete.IsVisible = true;
+		}
+
+		void MyCompleteClicked(object sender, EventArgs e)
+		{
+			if (mySearchEntry.Text != "")
+			{
+				myCancel.IsVisible = true;
+				myComplete.IsVisible = false;
+			}
+		}
     }
 }

@@ -189,9 +189,6 @@
     <BundleResource Include="Resources\advertisement%403x.png" />
     <BundleResource Include="Resources\advertisement%402x.png" />
     <BundleResource Include="Resources\advertisement.png" />
-    <BundleResource Include="Resources\arrows%402x.png" />
-    <BundleResource Include="Resources\arrows%403x.png" />
-    <BundleResource Include="Resources\arrows.png" />
     <BundleResource Include="Resources\globe%403x.png" />
     <BundleResource Include="Resources\globe%402x.png" />
     <BundleResource Include="Resources\globe.png" />
@@ -205,6 +202,9 @@
     <BundleResource Include="Resources\HeartFilled.png" />
     <BundleResource Include="Resources\HeartFilled%402x.png" />
     <BundleResource Include="Resources\HeartFilled%403x.png" />
+    <BundleResource Include="Resources\Search.png" />
+    <BundleResource Include="Resources\Search%402x.png" />
+    <BundleResource Include="Resources\Search%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
