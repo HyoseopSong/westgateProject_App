@@ -133,7 +133,7 @@ namespace westgateproject
 			WGMarketMap.ShapeCoordinates.Add(new Position(35.868936, 128.578874)); //  2지구
 			WGMarketMap.ShapeCoordinates.Add(new Position(35.868594, 128.578901)); //  2지구
 			WGMarketMap.ShapeCoordinates.Add(new Position(35.868368, 128.578799)); //     5지구
-
+            var pinList = new List<AdvertisementPin>();
 			var pin = new AdvertisementPin
 			{
 				Pin = new Pin
@@ -146,9 +146,8 @@ namespace westgateproject
 				Id = "1지구",
                 width = 40
 			};
-
-			WGMarketMap.AdvertisementPins = new List<AdvertisementPin> { pin };
-			WGMarketMap.Pins.Add(pin.Pin);
+            pinList.Add(pin);
+			
 
 			pin = new AdvertisementPin
 			{
@@ -162,9 +161,7 @@ namespace westgateproject
 				Id = "2지구",
 				width = 40
 			};
-
-			WGMarketMap.AdvertisementPins.Add(pin);
-			WGMarketMap.Pins.Add(pin.Pin);
+			pinList.Add(pin);;
 
 			pin = new AdvertisementPin
 			{
@@ -178,9 +175,7 @@ namespace westgateproject
 				Id = "4지구",
 				width = 40
 			};
-
-			WGMarketMap.AdvertisementPins.Add(pin);
-			WGMarketMap.Pins.Add(pin.Pin);
+			pinList.Add(pin);
 
 
 			pin = new AdvertisementPin
@@ -195,9 +190,7 @@ namespace westgateproject
 				Id = "5지구",
 				width = 40
 			};
-
-			WGMarketMap.AdvertisementPins.Add(pin);
-			WGMarketMap.Pins.Add(pin.Pin);
+            pinList.Add(pin);
 
 
 			pin = new AdvertisementPin
@@ -212,9 +205,7 @@ namespace westgateproject
 				Id = "동산상가",
 				width = 60
 			};
-
-			WGMarketMap.AdvertisementPins.Add(pin);
-			WGMarketMap.Pins.Add(pin.Pin);
+			pinList.Add(pin);
 
 
 			pin = new AdvertisementPin
@@ -229,9 +220,7 @@ namespace westgateproject
 				Id = "명품프라자",
 				width = 80
 			};
-
-			WGMarketMap.AdvertisementPins.Add(pin);
-			WGMarketMap.Pins.Add(pin.Pin);
+            pinList.Add(pin);
 
 
 			pin = new AdvertisementPin
@@ -246,9 +235,7 @@ namespace westgateproject
 				Id = "상가연합회",
 				width = 80
 			};
-
-			WGMarketMap.AdvertisementPins.Add(pin);
-			WGMarketMap.Pins.Add(pin.Pin);
+			pinList.Add(pin);
 
 
 			pin = new AdvertisementPin
@@ -263,10 +250,7 @@ namespace westgateproject
 				Id = "건해산물상가",
 				width = 100
 			};
-
-			WGMarketMap.AdvertisementPins.Add(pin);
-			WGMarketMap.Pins.Add(pin.Pin);
-
+			pinList.Add(pin);
 
 			pin = new AdvertisementPin
 			{
@@ -280,9 +264,7 @@ namespace westgateproject
 				Id = "아진상가",
 				width = 60
 			};
-
-			WGMarketMap.AdvertisementPins.Add(pin);
-			WGMarketMap.Pins.Add(pin.Pin);
+			pinList.Add(pin);
 
 
 			pin = new AdvertisementPin
@@ -297,9 +279,19 @@ namespace westgateproject
 				Id = "4지구 대체상가",
 				width = 120
 			};
+			pinList.Add(pin);
 
-			WGMarketMap.AdvertisementPins.Add(pin);
-			WGMarketMap.Pins.Add(pin.Pin);
+            WGMarketMap.AdvertisementPins = new List<AdvertisementPin>();
+            foreach(AdvertisementPin p in pinList)
+			{
+				WGMarketMap.AdvertisementPins.Add(p);
+                switch(Device.RuntimePlatform)
+                {
+					case Device.iOS:
+						WGMarketMap.Pins.Add(p.Pin);
+                        break;
+                }
+            }
 
 
 			onProcessing = false;

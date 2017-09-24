@@ -279,7 +279,7 @@ namespace westgateproject.View
 						s.LikeMember = "HeartEmpty.png";
 						break;
 				}
-                if (i++ > numOfShopContentPage)
+                if (i++ < numOfShopContentPage)
                 {
                     shopContents.Add(s);
                 }

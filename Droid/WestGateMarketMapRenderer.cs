@@ -75,7 +75,7 @@ namespace westgateproject.Droid
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
-
+            System.Diagnostics.Debug.WriteLine("e.PropertyName : " + e.PropertyName);
 		}
 
 
@@ -151,8 +151,7 @@ namespace westgateproject.Droid
 
 			if (!isDrawn)
 			{
-				NativeMap.Clear();
-
+				//NativeMap.Clear();
 				foreach (var pin in advertisementPins)
 				{
 					var marker = new MarkerOptions();
