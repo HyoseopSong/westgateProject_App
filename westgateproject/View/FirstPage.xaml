@@ -71,4 +71,21 @@
         </ListView>
     </ContentPage>
 
+    <ContentPage Title="서문시장">
+        <ContentPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <OnPlatform.iOS>globe.png</OnPlatform.iOS>
+            </OnPlatform>
+        </ContentPage.Icon>
+        <StackLayout>
+            <Button Text="Log Token"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand" 
+            Clicked="OnButtonClicked" />
+            <Button Text="Subscribe to Notifications"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand" 
+            Clicked="OnSubButtonClicked" />
+        </StackLayout>
+    </ContentPage>
 </TabbedPage>

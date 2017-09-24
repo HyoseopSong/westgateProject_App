@@ -1,96 +1,31 @@
 {
   "project_info": {
-    "project_number": "62511156556",
-    "project_id": "westgateproject-172113"
+    "project_number": "722427871298",
+    "firebase_url": "https://westgateproject-179004.firebaseio.com",
+    "project_id": "westgateproject-179004",
+    "storage_bucket": "westgateproject-179004.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:62511156556:android:68f0dba75de2cfef",
-        "android_client_info": {
-          "package_name": "hyoseop.metal.chopsticks.westgateproject"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "62511156556-qbh68mfq43hke0r6k5c9t3kj1gq25ovr.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "hyoseop.metal.chopsticks.westgateproject",
-            "certificate_hash": "9e17dca0c67f502259b899d93cce011db05e0a9a"
-          }
-        },
-        {
-          "client_id": "62511156556-a00tlqg2dmt7u4ab3qtjs98l71g9082c.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "62511156556-eb28nq2m58mqe2n4vba2j09gjqdfliu7.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "62511156556-qvinj04gvn5ipq3127s1k03ke54dta8g.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyD6LPhxaZJPcVpiCUAL6un66VWuPVlsbyU"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 1
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:62511156556:android:8b61a96343efc4a2",
+        "mobilesdk_app_id": "1:722427871298:android:8b61a96343efc4a2",
         "android_client_info": {
           "package_name": "hyoseop.metal.chopsticks.westgateproject1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "62511156556-qgr6dsif0bo01ub9m85i61h7e13t2slv.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "hyoseop.metal.chopsticks.westgateproject1",
-            "certificate_hash": "a1db3c15315d1e057a212af4966595e2e7af79b4"
-          }
-        },
-        {
-          "client_id": "62511156556-a00tlqg2dmt7u4ab3qtjs98l71g9082c.apps.googleusercontent.com",
+          "client_id": "722427871298-711p3n942gql35qk4qdg2ehcobk9egv5.apps.googleusercontent.com",
           "client_type": 3
         },
         {
-          "client_id": "62511156556-eb28nq2m58mqe2n4vba2j09gjqdfliu7.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "62511156556-0nn8sfrn74vcf7ivbgh659q78go0vpdn.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "hyoseop.metal.chopsticks.westgateproject1",
-            "certificate_hash": "9e17dca0c67f502259b899d93cce011db05e0a9a"
-          }
-        },
-        {
-          "client_id": "62511156556-qvinj04gvn5ipq3127s1k03ke54dta8g.apps.googleusercontent.com",
+          "client_id": "722427871298-rf4n6dusrrnk61h8ft6oc37340kp5fem.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD6LPhxaZJPcVpiCUAL6un66VWuPVlsbyU"
+          "current_key": "AIzaSyAtHmSv4aZRTHQeqvhlgO7cXg2oEkbaUJw"
         }
       ],
       "services": {
@@ -102,7 +37,7 @@
           "other_platform_oauth_client": []
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

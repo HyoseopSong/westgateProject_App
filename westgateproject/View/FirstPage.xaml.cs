@@ -601,5 +601,15 @@ namespace westgateproject
 			return true;
 		}
 
+		void OnButtonClicked(object sender, EventArgs args)
+		{
+
+			MessagingCenter.Send<object>(this, "InstanceIDToken");
+		}
+		void OnSubButtonClicked(object sender, EventArgs args)
+		{
+
+			MessagingCenter.Send<object>(this, "Subscribe");
+		}
 	}
 }

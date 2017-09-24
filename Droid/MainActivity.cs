@@ -1,5 +1,4 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Gms.Auth.Api;
@@ -9,14 +8,13 @@ using Android.Gms.Common.Apis;
 using Android.OS;
 using Android.Util;
 using Android.Widget;
-using Java.Lang;
 using Newtonsoft.Json.Linq;
 using Plugin.Connectivity;
-using Plugin.Permissions;
-using westgateproject.Helper;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using Firebase.Messaging;
+using Firebase.Iid;
+using westgateproject.View;
 
 namespace westgateproject.Droid
 {
@@ -93,7 +91,8 @@ namespace westgateproject.Droid
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
-            
+
+			Log.Debug(TAG, "google app id: " + Resource.String.google_app_id);
 
             FormsAppCompatActivity.ToolbarResource = Resource.Layout.Toolbar;
             FormsAppCompatActivity.TabLayoutResource = Resource.Layout.Tabbar;
@@ -114,7 +113,17 @@ namespace westgateproject.Droid
 
             // Load the main application
             LoadApplication (new App ());
+			if (Intent.Extras != null)
+			{
+				foreach (var key in Intent.Extras.KeySet())
+				{
+					var value = Intent.Extras.GetString(key);
+					Log.Debug(TAG, "Key: {0} Value: {1}", key, value);
+				}
+			}
 
+
+			//IsPlayServicesAvailable();
 
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
                                                              .RequestIdToken(Constants.WebClientID)
@@ -147,17 +156,17 @@ namespace westgateproject.Droid
                 Finish();
 			});
 
-        }
+			MessagingCenter.Subscribe<object>(this, "InstanceIDToken", (sender) =>
+			{
+                Register.FirebaseInstanceID = FirebaseInstanceId.Instance.Token;
+                Log.Debug(TAG, "InstanceID token: " + FirebaseInstanceId.Instance.Token);
+			});
 
-        protected override void OnStart()
-        {
-			base.OnStart();
-        }
-
-        protected override void OnStop()
-        {
-            base.OnStop();
-
+			MessagingCenter.Subscribe<object>(this, "Subscribe", (sender) =>
+			{
+				FirebaseMessaging.Instance.SubscribeToTopic("news");
+				Log.Debug(TAG, "Subscribed to remote notifications");
+			});
         }
 
         protected override void OnDestroy()
@@ -249,6 +258,28 @@ namespace westgateproject.Droid
             }
 
         }
+
+		public bool IsPlayServicesAvailable()
+		{
+			int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+			if (resultCode != ConnectionResult.Success)
+			{
+                if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+                {
+                    Toast.MakeText(this, GoogleApiAvailability.Instance.GetErrorString(resultCode), ToastLength.Short).Show();
+                }
+				else
+				{
+                    Toast.MakeText(this, "This device is not supported", ToastLength.Short).Show();
+				}
+				return false;
+			}
+			else
+			{
+                Toast.MakeText(this, "Google Play Services is available.", ToastLength.Short).Show();
+				return true;
+			}
+		}
     }
 }
 

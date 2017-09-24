@@ -8,6 +8,8 @@ namespace westgateproject.View
 {
 	public partial class Register : ContentPage
 	{
+        public static string FirebaseInstanceID;
+
 		string _building;
 		string _floor;
 		string _location;
@@ -91,6 +93,7 @@ namespace westgateproject.View
             }
             else
 			{
+
 				if (addInfo.Text == null)
 				{
                     addInfo.Text = " ";
@@ -107,7 +110,13 @@ namespace westgateproject.View
 					{ "payment", _payment},
                     { "homepage", _homepage }
 				};
-
+                switch(Device.RuntimePlatform)
+                {
+					case Device.Android:
+						MessagingCenter.Send<object>(this, "InstanceIDToken");
+                        postDictionary.Add("pushID", FirebaseInstanceID);
+                        break;
+                }
 
                 if(!(await App.Client.InvokeApiAsync<bool>("userInformation", System.Net.Http.HttpMethod.Post, postDictionary)))
                 {

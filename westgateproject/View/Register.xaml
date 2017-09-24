@@ -104,7 +104,7 @@
                 </Picker>
             </StackLayout>
             
-    	    <Label Text="추가 요청 사항 : " VerticalTextAlignment="Center">
+    	    <Label Text="취급 품목 : " VerticalTextAlignment="Center">
                 <Label.HeightRequest>
                     <OnPlatform x:TypeArguments="x:Double"
                         iOS="30"
