@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:westgateproject" x:Class="westgateproject.FirstPage" Title="서문시장.net" >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="검색" Clicked="OnSearchItemClicked"/>
-        <ToolbarItem Text="내 매장" Clicked="OnItemClicked"/>
+        <ToolbarItem x:Name="searchToolbarItem" Text="검색" Clicked="OnSearchItemClicked"/>
+        <ToolbarItem x:Name="myShopToolbarItem" Clicked="OnItemClicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage Title="서문시장">
         <ContentPage.Icon>

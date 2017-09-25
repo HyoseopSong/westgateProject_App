@@ -22,14 +22,13 @@ namespace westgateproject.View
         int myPageNumber;
         const int numOfMyPage = 10;
 		Stream stream;
-        Picker shopPicker;
 
-		Dictionary<string, string> _shopLocation = new Dictionary<string, string>();
+		string _shopLocation = "";
 		List<UserInfoEntity> userInfo = new List<UserInfoEntity>();
 		List<string> blobNameList = new List<string>();
         List<ContentsEntity> MyContentsSource = new List<ContentsEntity>();
         ObservableCollection<ContentsEntity> myContents = new ObservableCollection<ContentsEntity>();
-
+        ObservableCollection<UserInfoEntity> shopListSource = new ObservableCollection<UserInfoEntity>();
 
         public WritingPage(){}
 
@@ -38,36 +37,37 @@ namespace westgateproject.View
             InitializeComponent();
             dataLoading = false;
             backTouched = false;
-            _shopLocation = new Dictionary<string, string>();
-            myIdLabel.Text = "내 계정 : " + App.userEmail;
-            myIdLabel.VerticalTextAlignment = TextAlignment.Center;
 
+            Title = App.userEmail;
             CameraButton.WidthRequest = App.ScreenWidth / 2;
             PictureButton.WidthRequest = App.ScreenWidth / 2;
             UploadTextEditor.BackgroundColor = Color.Lime;
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    //shopName.HeightRequest = 30;
-                    //shopLocation.HeightRequest = 30;
-                    //phoneNumber.HeightRequest = 30;
-                    myIdLabel.HeightRequest = 30;
-                    break;
-                case Device.Android:
-                    //shopName.HeightRequest = 40;
-                    //shopLocation.HeightRequest = 40;
-                    //phoneNumber.HeightRequest = 40;
-                    myIdLabel.HeightRequest = 40;
-                    break;
-            }
 
             userInfo = userInfoParam;
-            isInitial = true;
+			isInitial = true;
 
+			searchToolbarItem.Text = "";
+			searchToolbarItem.Clicked -= OnSearchItemClicked;
+			//syncLabel();
+			this.CurrentPageChanged += (object sender, EventArgs e) => {
+				var i = this.Children.IndexOf(this.CurrentPage);
+				if (i > 1)
+				{
+					searchToolbarItem.Text = "검색";
+					searchToolbarItem.Clicked += OnSearchItemClicked;
+
+				}
+				else
+				{
+					searchToolbarItem.Text = "";
+					searchToolbarItem.Clicked -= OnSearchItemClicked;
+				}
+			};
             //syncLabel();
         }
         protected override async void OnAppearing()
         {
+            UploadTextEditor.HeightRequest = App.ScreenHeight * 0.2;
             if(!isInitial)
             {
                 Debug.WriteLine("OnAppearing if");
@@ -80,138 +80,129 @@ namespace westgateproject.View
                 onProcessing = false;
             }
 
-            shopPicker = new Picker
+
+            shopListSource = new ObservableCollection<UserInfoEntity>(userInfo);
+            MyShopListView.ItemsSource = shopListSource;
+
+            foreach(var s in shopListSource)
             {
-                Title = "게시 할 매장",
-                VerticalOptions = LayoutOptions.CenterAndExpand
-            };
+		        var rawBuildingInfo = s.RowKey.Split(':')[0];
+                switch (rawBuildingInfo)
+		        {
+		            case "Dongsan":
+                        s.RowKey = s.RowKey.Replace(rawBuildingInfo, "동산상가");
+		                break;
+					case "FifthBuilding":
+						s.RowKey = s.RowKey.Replace(rawBuildingInfo, "5지구");
+		                break;
+					case "SecondBuilding":
+						s.RowKey = s.RowKey.Replace(rawBuildingInfo, "2지구");
+		                break;
+		        }
+                s.RowKey = s.RowKey.Replace(":", " ");
+			}
 
-            int paidCount = 0;
-            int unpaidCount = 0;
+            //foreach (var UserInfo in userInfo)
+            //{
+            //    if (UserInfo.Paid)
+            //    {
+            //        _shopName = UserInfo.ShopName;
+            //        shopPicker.Items.Add(UserInfo.ShopName);
 
-            BoxView myBoxView = new BoxView()
-            {
-                HeightRequest = 10,
-                BackgroundColor = Color.LightGray
-            };
-            MyInformation.Children.Add(myBoxView);
-            foreach (var UserInfo in userInfo)
-            {
-                if (UserInfo.Paid)
-                {
-                    paidCount++;
-                    _shopName = UserInfo.ShopName;
-                    shopPicker.Items.Add(UserInfo.ShopName);
+            //        var shopInfo = UserInfo.RowKey.Split(':');
+            //        _shopLocation.Add(UserInfo.ShopName, shopInfo[0] + ":" + shopInfo[1] + ":" + shopInfo[2]);
 
-                    var shopInfo = UserInfo.RowKey.Split(':');
-                    _shopLocation.Add(UserInfo.ShopName, shopInfo[0] + ":" + shopInfo[1] + ":" + shopInfo[2]);
+            //        switch (shopInfo[0])
+            //        {
+            //            case "Dongsan":
+            //                shopInfo[0] = "동산상가";
+            //                break;
+            //            case "FifthBuilding":
+            //                shopInfo[0] = "5지구";
+            //                break;
+            //            case "SecondBuilding":
+            //                shopInfo[0] = "2지구";
+            //                break;
+            //        }
 
-                    switch (shopInfo[0])
-                    {
-                        case "Dongsan":
-                            shopInfo[0] = "동산상가";
-                            break;
-                        case "FifthBuilding":
-                            shopInfo[0] = "5지구";
-                            break;
-                        case "SecondBuilding":
-                            shopInfo[0] = "2지구";
-                            break;
-                    }
+            //        Label shopName = new Label()
+            //        {
+            //            Text = "매장 이름 : " + UserInfo.ShopName,
+            //            VerticalTextAlignment = TextAlignment.Center
+            //        };
+            //        Label shopLocation = new Label()
+            //        {
+            //            Text = "위치 : " + shopInfo[0] + " " + shopInfo[1] + " " + shopInfo[2],
+            //            VerticalTextAlignment = TextAlignment.Center
+            //        };
+            //        Label phoneNumber = new Label()
+            //        {
+            //            Text = "전화 번호 : " + UserInfo.PhoneNumber,
+            //            VerticalTextAlignment = TextAlignment.Center
+            //        };
+            //        Label servicePeriod = new Label()
+            //        {
+            //            Text = "만료 날짜 : " + UserInfo.Period,
+            //            VerticalTextAlignment = TextAlignment.Center
+            //        };
+            //        BoxView myBox = new BoxView()
+            //        {
+            //            HeightRequest = 10,
+            //            BackgroundColor = Color.LightGray
+            //        };
 
-                    Label shopName = new Label()
-                    {
-                        Text = "매장 이름 : " + UserInfo.ShopName,
-                        VerticalTextAlignment = TextAlignment.Center
-                    };
-                    Label shopLocation = new Label()
-                    {
-                        Text = "위치 : " + shopInfo[0] + " " + shopInfo[1] + " " + shopInfo[2],
-                        VerticalTextAlignment = TextAlignment.Center
-                    };
-                    Label phoneNumber = new Label()
-                    {
-                        Text = "전화 번호 : " + UserInfo.PhoneNumber,
-                        VerticalTextAlignment = TextAlignment.Center
-                    };
-                    Label servicePeriod = new Label()
-                    {
-                        Text = "만료 날짜 : " + UserInfo.Period,
-                        VerticalTextAlignment = TextAlignment.Center
-                    };
-                    BoxView myBox = new BoxView()
-                    {
-                        HeightRequest = 10,
-                        BackgroundColor = Color.LightGray
-                    };
+            //        switch (Device.RuntimePlatform)
+            //        {
+            //            case Device.iOS:
+            //                shopName.HeightRequest = 30;
+            //                shopLocation.HeightRequest = 30;
+            //                phoneNumber.HeightRequest = 30;
+            //                servicePeriod.HeightRequest = 30;
+            //                break;
+            //            case Device.Android:
+            //                shopName.HeightRequest = 40;
+            //                shopLocation.HeightRequest = 40;
+            //                phoneNumber.HeightRequest = 40;
+            //                servicePeriod.HeightRequest = 30;
+            //                break;
+            //        }
 
-                    switch (Device.RuntimePlatform)
-                    {
-                        case Device.iOS:
-                            shopName.HeightRequest = 30;
-                            shopLocation.HeightRequest = 30;
-                            phoneNumber.HeightRequest = 30;
-                            servicePeriod.HeightRequest = 30;
-                            break;
-                        case Device.Android:
-                            shopName.HeightRequest = 40;
-                            shopLocation.HeightRequest = 40;
-                            phoneNumber.HeightRequest = 40;
-                            servicePeriod.HeightRequest = 30;
-                            break;
-                    }
+            //        MyInformation.Children.Add(shopName);
+            //        MyInformation.Children.Add(shopLocation);
+            //        MyInformation.Children.Add(phoneNumber);
+            //        MyInformation.Children.Add(servicePeriod);
+            //        MyInformation.Children.Add(myBox);
+            //    }
+            //    else
+            //    {
+            //        var rawShopInfo = UserInfo.RowKey.Split(':');
+            //        switch (rawShopInfo[0])
+            //        {
+            //            case "Dongsan":
+            //                rawShopInfo[0] = "동산상가";
+            //                break;
+            //            case "FifthBuilding":
+            //                rawShopInfo[0] = "5지구";
+            //                break;
+            //            case "SecondBuilding":
+            //                rawShopInfo[0] = "2지구";
+            //                break;
+            //        }
+            //        Label shopInfo = new Label()
+            //        {
+            //            Text = rawShopInfo[0] + " " + rawShopInfo[1] + " " + rawShopInfo[2] + " " + UserInfo.ShopName + " 등록 대기 중",
+            //            VerticalTextAlignment = TextAlignment.Center
+            //        };
 
-                    MyInformation.Children.Add(shopName);
-                    MyInformation.Children.Add(shopLocation);
-                    MyInformation.Children.Add(phoneNumber);
-                    MyInformation.Children.Add(servicePeriod);
-                    MyInformation.Children.Add(myBox);
-                }
-                else
-                {
-                    unpaidCount++;
-                    var rawShopInfo = UserInfo.RowKey.Split(':');
-                    switch (rawShopInfo[0])
-                    {
-                        case "Dongsan":
-                            rawShopInfo[0] = "동산상가";
-                            break;
-                        case "FifthBuilding":
-                            rawShopInfo[0] = "5지구";
-                            break;
-                        case "SecondBuilding":
-                            rawShopInfo[0] = "2지구";
-                            break;
-                    }
-                    Label shopInfo = new Label()
-                    {
-                        Text = rawShopInfo[0] + " " + rawShopInfo[1] + " " + rawShopInfo[2] + " " + UserInfo.ShopName + " 등록 대기 중",
-                        VerticalTextAlignment = TextAlignment.Center
-                    };
+            //        BoxView myBox = new BoxView()
+            //        {
+            //            HeightRequest = 10,
+            //            BackgroundColor = Color.LightGray
+            //        };
 
-                    BoxView myBox = new BoxView()
-                    {
-                        HeightRequest = 10,
-                        BackgroundColor = Color.LightGray
-                    };
-
-                    MyInformation.Children.Insert(0, shopInfo);
-                }
-            }
-            shopPicker.SelectedIndex = -1;
-            if (paidCount > 1)
-            {
-                shopPicker.SelectedIndexChanged += (sender, args) =>
-                {
-                    _shopName = shopPicker.Items[shopPicker.SelectedIndex];
-                };
-                MyInformation.Children.Add(shopPicker);
-            }
-
-            if (unpaidCount < 1)
-            {
-                referenceBoxView.IsVisible = false;
-            }
+            //        MyInformation.Children.Insert(0, shopInfo);
+            //    }
+            //}
 
 
 
@@ -273,16 +264,16 @@ namespace westgateproject.View
             senderButton.IsEnabled = false;
             string result = "";
 
-            if(PhotoImage.Source != null && UploadTextEditor.Text != null && shopPicker.SelectedIndex > -1)
+            if(PhotoImage.Source != null && UploadTextEditor.Text != null && uploadShopName.Text != "")
             {
-
+                Debug.WriteLine(UploadTextEditor.Text + " " + _shopName + " " + _shopLocation);
                 switch (Device.RuntimePlatform)
                 {
                     case Device.Android:
-                        result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text, _shopName, _shopLocation[_shopName]);
+                        result = await SyncData.UploadContents(photoStream, UploadTextEditor.Text, _shopName, _shopLocation);
                         break;
                     case Device.iOS:
-                        result = await SyncData.UploadByteArrayContents(stream, UploadTextEditor.Text, _shopName, _shopLocation[_shopName]);
+                        result = await SyncData.UploadByteArrayContents(stream, UploadTextEditor.Text, _shopName, _shopLocation);
                         break;
                 }
 				result += ".jpg";
@@ -295,8 +286,10 @@ namespace westgateproject.View
                 myContents.Insert(0, tempEntity);
 
                 PhotoImage.IsVisible = false;
+                AlterText.IsVisible = true;
                 PhotoImage.Source = null;
                 UploadTextEditor.Text = null;
+                MyShopListView.IsVisible = true;
             }
             else
             {
@@ -323,7 +316,8 @@ namespace westgateproject.View
             if (photoStream != null)
 			{
 				PhotoImage.IsVisible = true;
-                PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
+                AlterText.IsVisible = false;
+                PhotoImage.HeightRequest = App.ScreenWidth;
 
                 switch (Device.RuntimePlatform)
                 {
@@ -338,8 +332,8 @@ namespace westgateproject.View
 
                         break;
                 }
-            }
 
+            }
 
         }
 
@@ -353,11 +347,12 @@ namespace westgateproject.View
                 CompressionQuality = 50
             });
 
-            PhotoImage.IsVisible = true;
 
             if (photoStream != null)
             {
-                PhotoImage.HeightRequest = App.ScreenHeight * 0.7;
+				PhotoImage.HeightRequest = App.ScreenWidth;
+				PhotoImage.IsVisible = true;
+				AlterText.IsVisible = false;
 
                 switch(Device.RuntimePlatform)
                 {
@@ -372,6 +367,7 @@ namespace westgateproject.View
 
                         break;
                 }
+
             }
         }
 
@@ -467,6 +463,82 @@ namespace westgateproject.View
 			{
 				myCancel.IsVisible = true;
 				myComplete.IsVisible = false;
+			}
+		}
+
+		async void OnMyShopListSelection(object sender, SelectedItemChangedEventArgs e)
+		{
+			((ListView)sender).SelectedItem = null;
+			//Debug.WriteLine("item.PartitionKey : " + item.PartitionKey);
+			//Debug.WriteLine("item.RowKey : " + item.RowKey);
+            //Debug.WriteLine("item.Paid : " + item.Paid);
+    //        if (item.Paid)
+    //        {
+    //            if(item.RowKey.Contains("동산상가"))
+				//{
+				//	item.RowKey = item.RowKey.Replace("동산상가", "Dongsan");
+    //            }
+    //            else if(item.RowKey.Contains("5지구"))
+    //            {
+    //                item.RowKey = item.RowKey.Replace("5지구", "FifthBuilding");
+    //            }
+    //            else if(item.RowKey.Contains("2지구"))
+    //            {
+    //                item.RowKey = item.RowKey.Replace("2지구", "SecondBuilding");
+    //            }
+				//item.RowKey = item.RowKey.Replace(" ", ":");
+				//Debug.WriteLine("item.RowKey2 : " + item.RowKey);
+				//var index = userInfo.IndexOf(item);
+				//Debug.WriteLine("index : " + index);
+				//uploadShopName.Text = userInfo[index].ShopName;
+				//_shopLocation = userInfo[index].RowKey;
+            //    this.CurrentPage = this.Children[1];
+            //}
+            //else
+            //{
+            //    await DisplayAlert("승인되지 않은 매장", "승인된 후 게시물을 등록 할 수 있습니다.", "확인");
+            //}
+
+
+			if (!onProcessing)
+			{
+				onProcessing = true;
+				if (e.SelectedItem == null)
+				{
+					onProcessing = false;
+					return;
+				}
+
+                var item = (UserInfoEntity)e.SelectedItem;
+                if(item.Paid)
+                {
+					Debug.WriteLine("item.Paid is true");
+					if (item.RowKey.Contains("동산상가"))
+    				{
+                        item.RowKey = item.RowKey.Replace("동산상가", "Dongsan");
+                    }
+                    else if(item.RowKey.Contains("5지구"))
+                    {
+                        item.RowKey = item.RowKey.Replace("5지구", "FifthBuilding");
+                    }
+                    else if(item.RowKey.Contains("2지구"))
+                    {
+                        item.RowKey = item.RowKey.Replace("2지구", "SecondBuilding");
+                    }
+                    item.RowKey = item.RowKey.Replace(" ", ":");
+                    Debug.WriteLine("item.RowKey2 : " + item.RowKey);
+                    var index = userInfo.IndexOf(item);
+                    Debug.WriteLine("index : " + index);
+                    uploadShopName.Text = "게시할 매장 : " + userInfo[index].ShopName;
+                    _shopName = userInfo[index].ShopName;
+                    _shopLocation = userInfo[index].RowKey;
+                    this.CurrentPage = this.Children[1];
+				}
+                else
+                {
+                    await DisplayAlert("승인되지 않은 매장", "승인되면 내 소식을 게시할 수 있습니다.", "확인");
+                }
+				onProcessing = false;
 			}
 		}
     }

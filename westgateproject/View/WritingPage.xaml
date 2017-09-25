@@ -3,10 +3,46 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:westgateproject"
             x:Class="westgateproject.View.WritingPage"
-            Title="내 매장" Icon="settings.png">
+             Icon="settings.png">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="검색" Clicked="OnSearchItemClicked"/>
+        <ToolbarItem x:Name="searchToolbarItem" Text="검색" Clicked="OnSearchItemClicked"/>
     </ContentPage.ToolbarItems>
+    <ContentPage Title="내 매장">
+        <ContentPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <OnPlatform.iOS>Shop.png</OnPlatform.iOS>
+            </OnPlatform>
+        </ContentPage.Icon>
+        <ListView x:Name="MyShopListView" HasUnevenRows="true" SeparatorVisibility="None" ItemSelected="OnMyShopListSelection">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <Label x:Name="paidLabel" Text="{Binding Paid}" IsVisible="false"
+                            TextColor="#f35e20" />
+                            <Label Text="{Binding ShopName, StringFormat='{0}'}"
+                            TextColor="#f35e20" />
+                            <Label Text="{Binding RowKey}"
+                            TextColor="#503026" />
+                            <Label Text="{Binding PhoneNumber}"
+                            TextColor="#503026" />
+                            <Label Text="{Binding AddInfo}"
+                            TextColor="#503026" />
+                            <Label Text="{Binding Period}"
+                            TextColor="#503026" >
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference paidLabel}, Path=Text}" Value="False">
+                                        <Setter Property="Text" Value="승인 대기 중" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <BoxView BackgroundColor="LightGray" HeightRequest="10"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage>
     <ContentPage Title="새 게시물">
         <ContentPage.Icon>
             <OnPlatform x:TypeArguments="FileImageSource">
@@ -14,18 +50,15 @@
             </OnPlatform>
         </ContentPage.Icon>
         <ScrollView>
-			<StackLayout>
-				<Label x:Name="myIdLabel"/>
-                <BoxView x:Name="referenceBoxView" HeightRequest="10" BackgroundColor="Color.LightGray" />
-                <StackLayout x:Name="MyInformation">
-
-                </StackLayout>
+            <StackLayout>
+                <Label x:Name="uploadShopName" Text="내 매장 탭에서 게시 할 매장을 선택해 주세요." VerticalOptions="Center" />
                 <StackLayout Orientation="Horizontal" Spacing="0">
                     <Button x:Name="CameraButton" Text="사진 촬영" Clicked="CameraButton_Clicked"/>
                     <Button x:Name="PictureButton" Text="사진첩" Clicked="PicturePicker_Clicked"/>
                 </StackLayout>
-		        <Image x:Name="PhotoImage"/>
-                <Editor x:Name="UploadTextEditor" Keyboard="Chat" BackgroundColor="Lime" HeightRequest="200"/>
+                <Label x:Name="AlterText" Text="입력된 사진이 없습니다." VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
+    	        <Image x:Name="PhotoImage" />
+                <Editor x:Name="UploadTextEditor" Keyboard="Chat" BackgroundColor="Lime"/>
                 <Button x:Name="Upload" Text="게시" Clicked="UploadButton_Clicked" />
             </StackLayout>
         </ScrollView>

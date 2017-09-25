@@ -293,8 +293,26 @@ namespace westgateproject
                 }
             }
 
-
+            searchToolbarItem.Text = "";
+			searchToolbarItem.Clicked -= OnSearchItemClicked;
 			onProcessing = false;
+			this.CurrentPageChanged += (object sender, EventArgs e) => {
+				var i = this.Children.IndexOf(this.CurrentPage);
+				if (i > 0)
+				{
+					if (searchToolbarItem.Text == "")
+					{
+						searchToolbarItem.Text = "검색";
+						searchToolbarItem.Clicked += OnSearchItemClicked;
+					}
+
+				}
+				else
+				{
+					searchToolbarItem.Text = "";
+					searchToolbarItem.Clicked -= OnSearchItemClicked;
+				}
+			};
 
 		}
 
@@ -304,6 +322,7 @@ namespace westgateproject
             {
                 return;
             }
+            myShopToolbarItem.Text = App.userEmail.Split('@')[0];
             isInitial = false;
 			recentSource = await App.Client.InvokeApiAsync<List<RecentEntity>>("recent", System.Net.Http.HttpMethod.Get, null);
             recentSource.Reverse();

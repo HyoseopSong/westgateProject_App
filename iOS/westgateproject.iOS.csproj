@@ -205,6 +205,9 @@
     <BundleResource Include="Resources\Search.png" />
     <BundleResource Include="Resources\Search%402x.png" />
     <BundleResource Include="Resources\Search%403x.png" />
+    <BundleResource Include="Resources\Shop.png" />
+    <BundleResource Include="Resources\Shop%402x.png" />
+    <BundleResource Include="Resources\Shop%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

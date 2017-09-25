@@ -313,6 +313,9 @@
     <AndroidResource Include="Resources\drawable-hdpi\Search.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\Search.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Search.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\Shop.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Shop.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Shop.png" />
   </ItemGroup>
   <ItemGroup>
     <GoogleServicesJson Include="google-services.json" />

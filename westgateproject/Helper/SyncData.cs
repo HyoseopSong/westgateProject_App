@@ -110,7 +110,7 @@ namespace westgateproject.Helper
 			//await blockBlob.UploadFromFileAsync(img.Path);
 			await blockBlob.UploadFromStreamAsync(stream);
 
-
+            Debug.WriteLine("UploadByteArray : " + text + " " + blobName + " " + shopName + " " + shopLocation);
 			IDictionary<string, string> postDictionary = new Dictionary<string, string>
 			{
 				{ "content", text },
