@@ -288,6 +288,7 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_152x152.png">
       <InProject>false</InProject>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\서문시장 아이콘.png" />
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

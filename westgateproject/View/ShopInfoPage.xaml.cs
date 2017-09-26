@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using westgateproject.Helper;
 using westgateproject.Models;
@@ -130,6 +131,23 @@ namespace westgateproject.View
 						case "phoneNumber":
 							Debug.WriteLine("temp.Value : " + temp.Value);
 							shopPhoneNumber.Text = temp.Value;
+							break;
+						case "homepage":
+							Debug.WriteLine("temp.Value : " + temp.Value);
+                            switch(temp.Value)
+                            {
+                                case "제작 완료":
+									IdnMapping idn = new IdnMapping();
+                                    var titleWithoutBlank = Title.Replace(" ", "");
+                                    homePage.Text = "https://서문시장.net/" + titleWithoutBlank;
+									homePage.Clicked += (object sender, EventArgs e) => {
+										Device.OpenUri(new Uri("https://xn--z92bt1ipqb91i.net/" + titleWithoutBlank));
+									};
+                                    break;
+                                default:
+                                    shopHomepage.IsVisible = false;
+                                    break;
+                            }
 							break;
                         case "notOnService":
                             if (App.userEmail == shopOwner)

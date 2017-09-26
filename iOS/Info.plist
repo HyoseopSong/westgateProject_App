@@ -4,10 +4,6 @@
 <dict>
 	<key>CFBundleIdentifier</key>
 	<string>hyoseop.metal.chopsticks.westgateproject</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.11</string>
-	<key>CFBundleVersion</key>
-	<string>1.61</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -57,5 +53,9 @@
 	<string>Photo Library</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.4</string>
+	<key>CFBundleVersion</key>
+	<string>2.6</string>
 </dict>
 </plist>
